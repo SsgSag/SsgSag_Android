@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SignUp.SignUp1">
+
+
+    <ImageView
+            android:id="@+id/iv_back_1"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp"
+            android:src="@drawable/ic_arrow_back"
+            android:paddingHorizontal="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <ImageView
+            android:scaleType="fitXY"
+            android:src="@drawable/progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <ScrollView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:id="@+id/ll_signUp_1"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView
+                        android:layout_marginTop="41dp"
+                        android:layout_marginBottom="24dp"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="bold"
+                        android:letterSpacing="-0.02"
+                        android:textColor="#000"
+                        android:text="회원 정보를 입력해주세요"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <ImageView
+                        android:layout_marginBottom="40dp"
+                        android:background="@color/cursorColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="135dp"/>
+
+                <LinearLayout
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <EditText
+                            android:singleLine="true"
+                            android:imeOptions="actionDone"
+                            android:id="@+id/et_id"
+                            android:hint="아이디"
+                            android:letterSpacing="-0.02"
+                            android:textColor="#000"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="40dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    <EditText
+                            android:inputType="textPassword"
+                            android:singleLine="true"
+                            android:id="@+id/et_pw"
+                            android:hint="비밀번호"
+                            android:letterSpacing="-0.02"
+                            android:textColor="#000"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="40dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    <EditText
+                            android:inputType="textPassword"
+                            android:singleLine="true"
+                            android:id="@+id/et_pw_check"
+                            android:hint="비밀번호 확인"
+                            android:letterSpacing="-0.02"
+                            android:textColor="#000"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="40dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </ScrollView>
+
+
+    <ImageView
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/bt_next_unactive"
+            android:id="@+id/iv_next_1"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"/>
+
+</LinearLayout>

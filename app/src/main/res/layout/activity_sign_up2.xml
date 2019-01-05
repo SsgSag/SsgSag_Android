@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SignUp.SignUp1">
+
+
+    <ImageView
+            android:id="@+id/iv_back_2"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp"
+            android:src="@drawable/ic_arrow_back"
+            android:paddingHorizontal="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <ImageView
+            android:scaleType="fitXY"
+            android:src="@drawable/progressbar_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <ScrollView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:id="@+id/ll_signUp_1"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="20dp"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="bold"
+                        android:letterSpacing="-0.02"
+                        android:textColor="#000"
+                        android:text="프로필 정보를 확인해 주세요"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <RelativeLayout
+                        android:layout_marginBottom="42dp"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_profile"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_default_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"/>
+
+                    <ImageView
+                            android:id="@+id/btn_camera"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:src="@drawable/bt_camera"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </RelativeLayout>
+                <LinearLayout
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <EditText
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:id="@+id/et_name"
+                            android:hint="이름"
+                            android:letterSpacing="-0.02"
+                            android:textColor="#000"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="40dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    <EditText
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:singleLine="true"
+                            android:id="@+id/et_birth"
+                            android:hint="생년월일(YYMMDD)"
+                            android:letterSpacing="-0.02"
+                            android:textColor="#000"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="40dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    <EditText
+                            android:inputType="textEmailAddress"
+                            android:singleLine="true"
+                            android:id="@+id/et_email"
+                            android:hint="이메일"
+                            android:letterSpacing="-0.02"
+                            android:textColor="#000"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="40dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                            android:id="@+id/iv_male"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/bt_male_unactive"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                    <ImageView
+                            android:id="@+id/iv_female"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/bt_female_unactive"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_marginTop="64dp"
+                        android:layout_marginBottom="25dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <CheckBox
+                            android:id="@+id/cb_service_privacy"
+                            android:button="@color/very_light_pink"
+                            android:background="@drawable/cb_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:id="@+id/tv_service"
+                                android:text="@string/sign_up_1_service"
+                                android:letterSpacing="-0.02"
+                                android:textColor="@color/brown_grey"
+                                android:textStyle="normal"
+                                android:fontFamily="sans-serif-medium"
+                                android:textSize="13sp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        <TextView
+                                android:id="@+id/tv_privacy"
+                                android:text="@string/sign_up_1_privacy"
+                                android:letterSpacing="-0.02"
+                                android:textColor="@color/brown_grey"
+                                android:textStyle="normal"
+                                android:fontFamily="sans-serif-medium"
+                                android:textSize="13sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </ScrollView>
+
+
+    <ImageView
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/bt_next_unactive"
+            android:id="@+id/iv_next_2"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"/>
+
+</LinearLayout>

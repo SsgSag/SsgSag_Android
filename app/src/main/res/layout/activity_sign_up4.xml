@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SignUp.SignUp3">
+    <RelativeLayout
+            android:id="@+id/signup3_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <ImageView
+                android:id="@+id/iv_back_4"
+                android:paddingTop="16dp"
+                android:paddingBottom="12dp"
+                android:src="@drawable/ic_arrow_back"
+                android:paddingHorizontal="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <ImageView
+                android:clickable="false"
+                android:scaleType="fitXY"
+                android:layout_marginTop="52dp"
+                android:src="@drawable/progressbar_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <ScrollView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:clickable="false"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="sans-serif"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="38dp"
+                    android:lineSpacingExtra="9sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="관심분야를 기반으로\n활동을 추천해드려요"/>
+            <RelativeLayout
+                    android:layout_marginTop="140dp"
+                    android:id="@+id/img_1st_line"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <ImageView
+                            android:clickable="true"
+                            android:id="@+id/btn_idea"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/bt_preference_idea_unactive" />
+
+                    <ImageView
+                            android:clickable="true"
+                            android:id="@+id/btn_camera"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/bt_preference_camera_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/img_2nd_line"
+                    android:layout_below="@+id/img_1st_line"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                            android:id="@+id/btn_design"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/bt_preference_design_unactive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    <ImageView
+                            android:clickable="true"
+                            android:id="@+id/btn_marketing"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/bt_preference_marketing_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                    android:id="@+id/img_3rd_line"
+                    android:layout_below="@+id/img_2nd_line"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                            android:clickable="true"
+                            android:id="@+id/btn_tech"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/bt_preference_tech_unactive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <ImageView
+                            android:clickable="true"
+                            android:id="@+id/btn_literature"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/bt_preference_literature_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/img_4th_line"
+                    android:layout_below="@+id/img_3rd_line"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                            android:clickable="true"
+                            android:id="@+id/btn_scholarship"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/bt_preference_sholarship_unactive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <ImageView
+                            android:clickable="true"
+                            android:id="@+id/btn_health"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/bt_preference_health_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/img_5th_line"
+                    android:layout_below="@+id/img_4th_line"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                            android:clickable="true"
+                            android:id="@+id/btn_startup"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/bt_preference_startup_unactive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <ImageView
+                            android:clickable="true"
+                            android:id="@+id/btn_art"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/bt_preference_art_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                    android:paddingBottom="44dp"
+                    android:id="@+id/img_6th_line"
+                    android:layout_below="@+id/img_5th_line"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                            android:clickable="true"
+                            android:id="@+id/btn_economy"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/bt_preference_economy_unactive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <ImageView
+                            android:clickable="true"
+                            android:id="@+id/btn_society"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/bt_preference_society_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <RelativeLayout
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <ImageView
+                android:clickable="true"
+                android:id="@+id/btn_start"
+                android:src="@drawable/bt_start_unactive"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

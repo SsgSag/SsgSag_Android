@@ -34,7 +34,7 @@ class HomeFragment : Fragment(), CardStackListener {
     private var cardStackView: CardStackView? =null
 //    private var LeftButtonView: CardStackView?= null
     private val manager by lazy { CardStackLayoutManager(context, this) }
-    private val adapter by lazy { CardStackAdapter(createPosters()) }
+//    private val adapter by lazy { CardStackAdapter(createPosters()) }
 //    private val lbadapter by lazy  {LeftButtonAdpater(createPosters())}
 //    private var manager: CardStackLayoutManager? = null
 //    private val adapter:CardStackAdapter = CardStackAdapter(createPosters())
@@ -52,7 +52,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         homeFragmentView = inflater!!.inflate(R.layout.fragment_home, container, false)
-        getPosterListResponse()
+//        getPosterListResponse()
 //        setupNavigation()
         return homeFragmentView
     }
@@ -81,9 +81,9 @@ class HomeFragment : Fragment(), CardStackListener {
         //스와이프 시 반응
         Toast.makeText(this.context,"eeeeeeeeeee",Toast.LENGTH_SHORT).show()
         Log.d("CardStackView", "onCardSwiped: p = ${manager.topPosition}, d = $direction")
-        if (manager.topPosition == adapter.itemCount - 5) {
-            paginate()
-        }
+//        if (manager.topPosition == adapter.itemCount - 5) {
+//            paginate()
+//        }
     }
 
     override fun onCardRewound() {
@@ -177,7 +177,7 @@ class HomeFragment : Fragment(), CardStackListener {
         manager.setCanScrollVertical(true)
 
         cardStackView!!.layoutManager = manager
-        cardStackView!!.adapter = adapter
+//        cardStackView!!.adapter = adapter
 //        LeftButtonView!!.adapter = lbadapter
         cardStackView!!.itemAnimator.apply {
             if (this is DefaultItemAnimator) {
@@ -237,15 +237,15 @@ class HomeFragment : Fragment(), CardStackListener {
     }
     */
 
-    private fun paginate() {
-        val old = adapter.getSpots()
+//    private fun paginate() {
+//        val old = adapter.getSpots()
 //        val new = old.plus(createPosters())
-        val new = old.plus(createPosters())
-        val callback = SpotDiffCallback(old, new)
-        val result = DiffUtil.calculateDiff(callback)
-        adapter.setSpots(new as ArrayList<PosterData>)
-        result.dispatchUpdatesTo(adapter)
-    }
+//        val new = old.plus(createPosters())
+//        val callback = SpotDiffCallback(old, new)
+//        val result = DiffUtil.calculateDiff(callback)
+//        adapter.setSpots(new as ArrayList<PosterData>)
+//        result.dispatchUpdatesTo(adapter)
+//    }
 
 /*
     private fun reload() {
@@ -413,250 +413,250 @@ class HomeFragment : Fragment(), CardStackListener {
         })
     }
 
-    private fun createPosters(): ArrayList<PosterData> {
-        val posters = ArrayList<PosterData>()
-        Log.e("imageeeee","eeeeeeeeeeeee")
-
-        //1번 CARD
-        posters.add(
-            PosterData(
-                inputPosterArr[0].posterIdx,
-                inputPosterArr[0].categoryIdx,
-                inputPosterArr[0].photoUrl,
-                inputPosterArr[0].posterName,
-                inputPosterArr[0].posterRegDate,
-                inputPosterArr[0].posterStartDate,
-                inputPosterArr[0].posterEndDate,
-                inputPosterArr[0].posterWebsite,
-                inputPosterArr[0].isSeek,
-                inputPosterArr[0].outline,
-                inputPosterArr[0].target,
-                inputPosterArr[0].period,
-                inputPosterArr[0].benefit,
-                inputPosterArr[0].documentDate,
-                inputPosterArr[0].announceDate1,
-                inputPosterArr[0].announceDate2,
-                inputPosterArr[0].finalAnnounceDate,
-                inputPosterArr[0].interviewDate
-            )
-        )
-        //2번 CARD
-        posters.add(
-            PosterData(
-                inputPosterArr[1].posterIdx,
-                inputPosterArr[1].categoryIdx,
-                inputPosterArr[1].photoUrl,
-                inputPosterArr[1].posterName,
-                inputPosterArr[1].posterRegDate,
-                inputPosterArr[1].posterStartDate,
-                inputPosterArr[1].posterEndDate,
-                inputPosterArr[1].posterWebsite,
-                inputPosterArr[1].isSeek,
-                inputPosterArr[1].outline,
-                inputPosterArr[1].target,
-                inputPosterArr[1].period,
-                inputPosterArr[1].benefit,
-                inputPosterArr[1].documentDate,
-                inputPosterArr[1].announceDate1,
-                inputPosterArr[1].announceDate2,
-                inputPosterArr[1].finalAnnounceDate,
-                inputPosterArr[1].interviewDate
-            )
-        )
-
-        //3번 CARD
-        posters.add(
-            PosterData(
-                inputPosterArr[2].posterIdx,
-                inputPosterArr[2].categoryIdx,
-                inputPosterArr[2].photoUrl,
-                inputPosterArr[2].posterName,
-                inputPosterArr[2].posterRegDate,
-                inputPosterArr[2].posterStartDate,
-                inputPosterArr[2].posterEndDate,
-                inputPosterArr[2].posterWebsite,
-                inputPosterArr[2].isSeek,
-                inputPosterArr[2].outline,
-                inputPosterArr[2].target,
-                inputPosterArr[2].period,
-                inputPosterArr[2].benefit,
-                inputPosterArr[2].documentDate,
-                inputPosterArr[2].announceDate1,
-                inputPosterArr[2].announceDate2,
-                inputPosterArr[2].finalAnnounceDate,
-                inputPosterArr[2].interviewDate
-            )
-        )
-
-        //4번 CARD
-        posters.add(
-            PosterData(
-                inputPosterArr[3].posterIdx,
-                inputPosterArr[3].categoryIdx,
-                inputPosterArr[3].photoUrl,
-                inputPosterArr[3].posterName,
-                inputPosterArr[3].posterRegDate,
-                inputPosterArr[3].posterStartDate,
-                inputPosterArr[3].posterEndDate,
-                inputPosterArr[3].posterWebsite,
-                inputPosterArr[3].isSeek,
-                inputPosterArr[3].outline,
-                inputPosterArr[3].target,
-                inputPosterArr[3].period,
-                inputPosterArr[3].benefit,
-                inputPosterArr[3].documentDate,
-                inputPosterArr[3].announceDate1,
-                inputPosterArr[3].announceDate2,
-                inputPosterArr[3].finalAnnounceDate,
-                inputPosterArr[3].interviewDate
-            )
-        )
-
-        //5번 CARD
-        posters.add(
-            PosterData(
-                inputPosterArr[4].posterIdx,
-                inputPosterArr[4].categoryIdx,
-                inputPosterArr[4].photoUrl,
-                inputPosterArr[4].posterName,
-                inputPosterArr[4].posterRegDate,
-                inputPosterArr[4].posterStartDate,
-                inputPosterArr[4].posterEndDate,
-                inputPosterArr[4].posterWebsite,
-                inputPosterArr[4].isSeek,
-                inputPosterArr[4].outline,
-                inputPosterArr[4].target,
-                inputPosterArr[4].period,
-                inputPosterArr[4].benefit,
-                inputPosterArr[4].documentDate,
-                inputPosterArr[4].announceDate1,
-                inputPosterArr[4].announceDate2,
-                inputPosterArr[4].finalAnnounceDate,
-                inputPosterArr[4].interviewDate
-            )
-        )
-
-        //6번 CARD
-        posters.add(
-            PosterData(
-                inputPosterArr[5].posterIdx,
-                inputPosterArr[5].categoryIdx,
-                inputPosterArr[5].photoUrl,
-                inputPosterArr[5].posterName,
-                inputPosterArr[5].posterRegDate,
-                inputPosterArr[5].posterStartDate,
-                inputPosterArr[5].posterEndDate,
-                inputPosterArr[5].posterWebsite,
-                inputPosterArr[5].isSeek,
-                inputPosterArr[5].outline,
-                inputPosterArr[5].target,
-                inputPosterArr[5].period,
-                inputPosterArr[5].benefit,
-                inputPosterArr[5].documentDate,
-                inputPosterArr[5].announceDate1,
-                inputPosterArr[5].announceDate2,
-                inputPosterArr[5].finalAnnounceDate,
-                inputPosterArr[5].interviewDate
-            )
-        )
-
-        //7번 CARD
-        posters.add(
-            PosterData(
-                inputPosterArr[6].posterIdx,
-                inputPosterArr[6].categoryIdx,
-                inputPosterArr[6].photoUrl,
-                inputPosterArr[6].posterName,
-                inputPosterArr[6].posterRegDate,
-                inputPosterArr[6].posterStartDate,
-                inputPosterArr[6].posterEndDate,
-                inputPosterArr[6].posterWebsite,
-                inputPosterArr[6].isSeek,
-                inputPosterArr[6].outline,
-                inputPosterArr[6].target,
-                inputPosterArr[6].period,
-                inputPosterArr[6].benefit,
-                inputPosterArr[6].documentDate,
-                inputPosterArr[6].announceDate1,
-                inputPosterArr[6].announceDate2,
-                inputPosterArr[6].finalAnnounceDate,
-                inputPosterArr[6].interviewDate
-            )
-        )
-
-        //8번 CARD
-        posters.add(
-            PosterData(
-                inputPosterArr[7].posterIdx,
-                inputPosterArr[7].categoryIdx,
-                inputPosterArr[7].photoUrl,
-                inputPosterArr[7].posterName,
-                inputPosterArr[7].posterRegDate,
-                inputPosterArr[7].posterStartDate,
-                inputPosterArr[7].posterEndDate,
-                inputPosterArr[7].posterWebsite,
-                inputPosterArr[7].isSeek,
-                inputPosterArr[7].outline,
-                inputPosterArr[7].target,
-                inputPosterArr[7].period,
-                inputPosterArr[7].benefit,
-                inputPosterArr[7].documentDate,
-                inputPosterArr[7].announceDate1,
-                inputPosterArr[7].announceDate2,
-                inputPosterArr[7].finalAnnounceDate,
-                inputPosterArr[7].interviewDate
-            )
-        )
-
-        //9번 CARD
-        posters.add(
-            PosterData(
-                inputPosterArr[8].posterIdx,
-                inputPosterArr[8].categoryIdx,
-                inputPosterArr[8].photoUrl,
-                inputPosterArr[8].posterName,
-                inputPosterArr[8].posterRegDate,
-                inputPosterArr[8].posterStartDate,
-                inputPosterArr[8].posterEndDate,
-                inputPosterArr[8].posterWebsite,
-                inputPosterArr[8].isSeek,
-                inputPosterArr[8].outline,
-                inputPosterArr[8].target,
-                inputPosterArr[8].period,
-                inputPosterArr[8].benefit,
-                inputPosterArr[8].documentDate,
-                inputPosterArr[8].announceDate1,
-                inputPosterArr[8].announceDate2,
-                inputPosterArr[8].finalAnnounceDate,
-                inputPosterArr[8].interviewDate
-            )
-        )
-
-        //10번 CARD
-        posters.add(
-            PosterData(
-                inputPosterArr[9].posterIdx,
-                inputPosterArr[9].categoryIdx,
-                inputPosterArr[9].photoUrl,
-                inputPosterArr[9].posterName,
-                inputPosterArr[9].posterRegDate,
-                inputPosterArr[9].posterStartDate,
-                inputPosterArr[9].posterEndDate,
-                inputPosterArr[9].posterWebsite,
-                inputPosterArr[9].isSeek,
-                inputPosterArr[9].outline,
-                inputPosterArr[9].target,
-                inputPosterArr[9].period,
-                inputPosterArr[9].benefit,
-                inputPosterArr[9].documentDate,
-                inputPosterArr[9].announceDate1,
-                inputPosterArr[9].announceDate2,
-                inputPosterArr[9].finalAnnounceDate,
-                inputPosterArr[9].interviewDate
-            )
-        )
-        return posters
-    }
+//    private fun createPosters(): ArrayList<PosterData> {
+//        val posters = ArrayList<PosterData>()
+//        Log.e("imageeeee","eeeeeeeeeeeee")
+//
+//        //1번 CARD
+//        posters.add(
+//            PosterData(
+//                inputPosterArr[0].posterIdx,
+//                inputPosterArr[0].categoryIdx,
+//                inputPosterArr[0].photoUrl,
+//                inputPosterArr[0].posterName,
+//                inputPosterArr[0].posterRegDate,
+//                inputPosterArr[0].posterStartDate,
+//                inputPosterArr[0].posterEndDate,
+//                inputPosterArr[0].posterWebsite,
+//                inputPosterArr[0].isSeek,
+//                inputPosterArr[0].outline,
+//                inputPosterArr[0].target,
+//                inputPosterArr[0].period,
+//                inputPosterArr[0].benefit,
+//                inputPosterArr[0].documentDate,
+//                inputPosterArr[0].announceDate1,
+//                inputPosterArr[0].announceDate2,
+//                inputPosterArr[0].finalAnnounceDate,
+//                inputPosterArr[0].interviewDate
+//            )
+//        )
+//        //2번 CARD
+//        posters.add(
+//            PosterData(
+//                inputPosterArr[1].posterIdx,
+//                inputPosterArr[1].categoryIdx,
+//                inputPosterArr[1].photoUrl,
+//                inputPosterArr[1].posterName,
+//                inputPosterArr[1].posterRegDate,
+//                inputPosterArr[1].posterStartDate,
+//                inputPosterArr[1].posterEndDate,
+//                inputPosterArr[1].posterWebsite,
+//                inputPosterArr[1].isSeek,
+//                inputPosterArr[1].outline,
+//                inputPosterArr[1].target,
+//                inputPosterArr[1].period,
+//                inputPosterArr[1].benefit,
+//                inputPosterArr[1].documentDate,
+//                inputPosterArr[1].announceDate1,
+//                inputPosterArr[1].announceDate2,
+//                inputPosterArr[1].finalAnnounceDate,
+//                inputPosterArr[1].interviewDate
+//            )
+//        )
+//
+//        //3번 CARD
+//        posters.add(
+//            PosterData(
+//                inputPosterArr[2].posterIdx,
+//                inputPosterArr[2].categoryIdx,
+//                inputPosterArr[2].photoUrl,
+//                inputPosterArr[2].posterName,
+//                inputPosterArr[2].posterRegDate,
+//                inputPosterArr[2].posterStartDate,
+//                inputPosterArr[2].posterEndDate,
+//                inputPosterArr[2].posterWebsite,
+//                inputPosterArr[2].isSeek,
+//                inputPosterArr[2].outline,
+//                inputPosterArr[2].target,
+//                inputPosterArr[2].period,
+//                inputPosterArr[2].benefit,
+//                inputPosterArr[2].documentDate,
+//                inputPosterArr[2].announceDate1,
+//                inputPosterArr[2].announceDate2,
+//                inputPosterArr[2].finalAnnounceDate,
+//                inputPosterArr[2].interviewDate
+//            )
+//        )
+//
+//        //4번 CARD
+//        posters.add(
+//            PosterData(
+//                inputPosterArr[3].posterIdx,
+//                inputPosterArr[3].categoryIdx,
+//                inputPosterArr[3].photoUrl,
+//                inputPosterArr[3].posterName,
+//                inputPosterArr[3].posterRegDate,
+//                inputPosterArr[3].posterStartDate,
+//                inputPosterArr[3].posterEndDate,
+//                inputPosterArr[3].posterWebsite,
+//                inputPosterArr[3].isSeek,
+//                inputPosterArr[3].outline,
+//                inputPosterArr[3].target,
+//                inputPosterArr[3].period,
+//                inputPosterArr[3].benefit,
+//                inputPosterArr[3].documentDate,
+//                inputPosterArr[3].announceDate1,
+//                inputPosterArr[3].announceDate2,
+//                inputPosterArr[3].finalAnnounceDate,
+//                inputPosterArr[3].interviewDate
+//            )
+//        )
+//
+//        //5번 CARD
+//        posters.add(
+//            PosterData(
+//                inputPosterArr[4].posterIdx,
+//                inputPosterArr[4].categoryIdx,
+//                inputPosterArr[4].photoUrl,
+//                inputPosterArr[4].posterName,
+//                inputPosterArr[4].posterRegDate,
+//                inputPosterArr[4].posterStartDate,
+//                inputPosterArr[4].posterEndDate,
+//                inputPosterArr[4].posterWebsite,
+//                inputPosterArr[4].isSeek,
+//                inputPosterArr[4].outline,
+//                inputPosterArr[4].target,
+//                inputPosterArr[4].period,
+//                inputPosterArr[4].benefit,
+//                inputPosterArr[4].documentDate,
+//                inputPosterArr[4].announceDate1,
+//                inputPosterArr[4].announceDate2,
+//                inputPosterArr[4].finalAnnounceDate,
+//                inputPosterArr[4].interviewDate
+//            )
+//        )
+//
+//        //6번 CARD
+//        posters.add(
+//            PosterData(
+//                inputPosterArr[5].posterIdx,
+//                inputPosterArr[5].categoryIdx,
+//                inputPosterArr[5].photoUrl,
+//                inputPosterArr[5].posterName,
+//                inputPosterArr[5].posterRegDate,
+//                inputPosterArr[5].posterStartDate,
+//                inputPosterArr[5].posterEndDate,
+//                inputPosterArr[5].posterWebsite,
+//                inputPosterArr[5].isSeek,
+//                inputPosterArr[5].outline,
+//                inputPosterArr[5].target,
+//                inputPosterArr[5].period,
+//                inputPosterArr[5].benefit,
+//                inputPosterArr[5].documentDate,
+//                inputPosterArr[5].announceDate1,
+//                inputPosterArr[5].announceDate2,
+//                inputPosterArr[5].finalAnnounceDate,
+//                inputPosterArr[5].interviewDate
+//            )
+//        )
+//
+//        //7번 CARD
+//        posters.add(
+//            PosterData(
+//                inputPosterArr[6].posterIdx,
+//                inputPosterArr[6].categoryIdx,
+//                inputPosterArr[6].photoUrl,
+//                inputPosterArr[6].posterName,
+//                inputPosterArr[6].posterRegDate,
+//                inputPosterArr[6].posterStartDate,
+//                inputPosterArr[6].posterEndDate,
+//                inputPosterArr[6].posterWebsite,
+//                inputPosterArr[6].isSeek,
+//                inputPosterArr[6].outline,
+//                inputPosterArr[6].target,
+//                inputPosterArr[6].period,
+//                inputPosterArr[6].benefit,
+//                inputPosterArr[6].documentDate,
+//                inputPosterArr[6].announceDate1,
+//                inputPosterArr[6].announceDate2,
+//                inputPosterArr[6].finalAnnounceDate,
+//                inputPosterArr[6].interviewDate
+//            )
+//        )
+//
+//        //8번 CARD
+//        posters.add(
+//            PosterData(
+//                inputPosterArr[7].posterIdx,
+//                inputPosterArr[7].categoryIdx,
+//                inputPosterArr[7].photoUrl,
+//                inputPosterArr[7].posterName,
+//                inputPosterArr[7].posterRegDate,
+//                inputPosterArr[7].posterStartDate,
+//                inputPosterArr[7].posterEndDate,
+//                inputPosterArr[7].posterWebsite,
+//                inputPosterArr[7].isSeek,
+//                inputPosterArr[7].outline,
+//                inputPosterArr[7].target,
+//                inputPosterArr[7].period,
+//                inputPosterArr[7].benefit,
+//                inputPosterArr[7].documentDate,
+//                inputPosterArr[7].announceDate1,
+//                inputPosterArr[7].announceDate2,
+//                inputPosterArr[7].finalAnnounceDate,
+//                inputPosterArr[7].interviewDate
+//            )
+//        )
+//
+//        //9번 CARD
+//        posters.add(
+//            PosterData(
+//                inputPosterArr[8].posterIdx,
+//                inputPosterArr[8].categoryIdx,
+//                inputPosterArr[8].photoUrl,
+//                inputPosterArr[8].posterName,
+//                inputPosterArr[8].posterRegDate,
+//                inputPosterArr[8].posterStartDate,
+//                inputPosterArr[8].posterEndDate,
+//                inputPosterArr[8].posterWebsite,
+//                inputPosterArr[8].isSeek,
+//                inputPosterArr[8].outline,
+//                inputPosterArr[8].target,
+//                inputPosterArr[8].period,
+//                inputPosterArr[8].benefit,
+//                inputPosterArr[8].documentDate,
+//                inputPosterArr[8].announceDate1,
+//                inputPosterArr[8].announceDate2,
+//                inputPosterArr[8].finalAnnounceDate,
+//                inputPosterArr[8].interviewDate
+//            )
+//        )
+//
+//        //10번 CARD
+//        posters.add(
+//            PosterData(
+//                inputPosterArr[9].posterIdx,
+//                inputPosterArr[9].categoryIdx,
+//                inputPosterArr[9].photoUrl,
+//                inputPosterArr[9].posterName,
+//                inputPosterArr[9].posterRegDate,
+//                inputPosterArr[9].posterStartDate,
+//                inputPosterArr[9].posterEndDate,
+//                inputPosterArr[9].posterWebsite,
+//                inputPosterArr[9].isSeek,
+//                inputPosterArr[9].outline,
+//                inputPosterArr[9].target,
+//                inputPosterArr[9].period,
+//                inputPosterArr[9].benefit,
+//                inputPosterArr[9].documentDate,
+//                inputPosterArr[9].announceDate1,
+//                inputPosterArr[9].announceDate2,
+//                inputPosterArr[9].finalAnnounceDate,
+//                inputPosterArr[9].interviewDate
+//            )
+//        )
+//        return posters
+//    }
 
 /*
     private fun createPosters(): ArrayList<PosterData> {
