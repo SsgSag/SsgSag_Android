@@ -1,6 +1,7 @@
 package com.sopt.appjam_sggsag.Network
 
 import com.google.gson.JsonObject
+import com.sopt.appjam_sggsag.Post.PostCalendarResponse
 import com.sopt.appjam_sggsag.Post.PostLogInResponse
 import com.sopt.appjam_sggsag.Post.PostPosterListResponse
 import com.sopt.appjam_sggsag.Post.PostSignUpResponse
@@ -34,4 +35,12 @@ interface NetworkService{
 //        @Header("Content-Type") content_type : JSONObject
 //        @Body() body : JsonObject
     ): Call<PostPosterListResponse>
+
+    //캘린더
+    @POST("/todo/show")
+    fun postCalendarResponse (
+        @Header("Content-Type") content_type : String = "application/json",
+        @Header("Authorization") token : String,
+        @Body() body : JsonObject
+    ) : Call<PostCalendarResponse>
 }

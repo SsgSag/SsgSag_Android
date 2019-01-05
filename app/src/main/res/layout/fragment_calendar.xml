@@ -1,15 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <RelativeLayout
+        android:id="@+id/fragment_calendar_rl"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+
+    <LinearLayout
+            android:id="@+id/frag_calendar_relative_layout1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <TextView
-                android:text="Calendar Fragment"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-    </RelativeLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="100">
+        <LinearLayout
+                android:id="@+id/tl_top_frag_cal_top_menu"
+                android:layout_width="match_parent"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:weightSum="3" android:layout_weight="6">
+            <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                <ImageView
+                        android:id="@+id/frag_calendar_before"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_cal_arrow_left"/>
+            </RelativeLayout>
+            <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                <TextView
+                        android:id="@+id/frag_calendar_year_month"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="30dp"
+                        android:text=""/>
+            </RelativeLayout>
+            <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                <ImageView
+                        android:id="@+id/frag_calendar_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_cal_arrow_right"
+                        android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="0.5dp"
+                android:layout_marginRight="8.4dp"
+                android:layout_marginLeft="9.5dp"
+                android:orientation="horizontal" android:layout_weight="5.4">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textColor="#ff0000"
+                    android:textSize="15dp"
+                    android:text="일"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:text="월"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:text="화"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:text="수"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:text="목"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:text="금"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textColor="#0000ff"
+                    android:textSize="15dp"
+                    android:text="토"/>
+        </LinearLayout>
+        <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" android:layout_weight="84.6">
+            <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_frag_calendar_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="8.4dp"
+                    android:layout_marginRight="8.5dp"
+                    android:layout_marginBottom="24.2dp">
+
+            </android.support.v4.view.ViewPager>
+
+
+            <LinearLayout
+                    android:id="@+id/schedule_linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:weightSum="100"
+                    android:background="#ffffff"
+                    android:visibility="visible">
+                <android.support.v4.view.ViewPager
+                        android:id="@+id/vp_frag_calendar_view_pager2"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="8.4dp"
+                        android:layout_marginRight="8.5dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="50"/>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/textline"
+                        android:layout_weight="8">
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/ic_todolist_tab_down"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="20dp"
+                            android:layout_marginBottom="4dp"
+                            android:text="투두리스트"/>
+
+                </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_frag_calendar_todo_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="42"/>
+            </LinearLayout>
+            <ImageView
+                    android:id="@+id/go_todo_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginBottom="29dp"
+                    android:src="@drawable/ic_todolist_btn"/>
+            <ImageView
+                    android:id="@+id/frag_calendar_iv_register"
+                    android:layout_width="63dp"
+                    android:clickable="true"
+                    android:layout_gravity="bottom|right"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="29dp"
+                    android:layout_marginRight="26dp"
+                    android:src="@drawable/btn_floating_plus"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>

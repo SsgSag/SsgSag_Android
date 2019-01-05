@@ -9,4 +9,7 @@
     </string>
     <string name="out_activity_contents">동아리, 서포터즈, 봉사활동 등 \n본인이 했던 대외활동에 대한 구체적인 내용을\n작성해 보세요!</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
