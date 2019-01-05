@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import com.sopt.appjam_sggsag.MainActivity
 import com.sopt.appjam_sggsag.MyApplication
-import com.sopt.appjam_sggsag.Network.ApplicationController
 import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.activity_sign_up4.*
@@ -18,7 +17,7 @@ class SignUp4 : AppCompatActivity() {
     var gender: String?=null
 
     val networkService: NetworkService by lazy {
-        ApplicationController.instance.networkService
+        MyApplication.instance.networkService
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
