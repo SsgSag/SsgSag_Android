@@ -7,6 +7,8 @@ import android.widget.RelativeLayout
 import com.sopt.appjam_sggsag.Adapter.MyFragmentStatePagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
+
+var flag : Int = 0;
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +20,12 @@ class MainActivity : AppCompatActivity() {
     private fun configureBottomNavigation() {
         vp_main_act_view_frag_pager.adapter = MyFragmentStatePagerAdapter(supportFragmentManager, 3) //3개를 고정시키겠다.
         vp_main_act_view_frag_pager.offscreenPageLimit = 3
-        vp_main_act_view_frag_pager.setCurrentItem(1,true)
+        if(flag==0) {
+            vp_main_act_view_frag_pager.setCurrentItem(1, true)
+        }else {
+            vp_main_act_view_frag_pager.setCurrentItem(2, true)
+        }
+        flag++
         // ViewPager와 Tablayout을 엮어줍니다!
         tl_top_navi_act_top_menu.setupWithViewPager(vp_main_act_view_frag_pager)
         //TabLayout에 붙일 layout을 찾아준 다음

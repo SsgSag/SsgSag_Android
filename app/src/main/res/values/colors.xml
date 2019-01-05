@@ -8,4 +8,12 @@
     <color name="very_light_pink">#e0e0e0</color>
     <color name="cursorColor">#5e7cff</color>
     <color name="normalColor">#e0e0e0</color>
+
+    <color name="color0">#6176DD</color>
+    <color name="color1">#07A6FF</color>
+    <color name="color2">#B87AF2</color>
+    <color name="color3">#D0AFF0</color>
+    <color name="color4">#FE6D6D</color>
+    <color name="color5">#FFA0A0</color>
+
 </resources>
