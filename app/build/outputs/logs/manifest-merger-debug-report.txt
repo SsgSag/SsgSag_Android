@@ -1,0 +1,334 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:2:1-52:12
+MERGED from [com.android.support:design:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\design-28.0.0.aar\ab4d30405278ab16604f7d15e2a25336\AndroidManifest.xml:17:1-24:12
+MERGED from [com.airbnb.android:lottie:2.6.0-beta19] C:\Users\Public\caches\transforms-1\files-1.1\lottie-2.6.0-beta19.aar\e2eb2a93c44df9bd2dad0e1754f8c26c\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:anko:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-0.10.7.aar\3a2d23f75a7f443491d71824126dc886\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:anko-appcompat-v7:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-0.10.7.aar\5566efc0723395bd3cfb2aabd94a43b9\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-coroutines-0.10.7.aar\bf986f88faabb0a949c27dc726e2db62\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:anko-appcompat-v7-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-commons-0.10.7.aar\d50c3e6f59fc9dced1698369e10db54d\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:appcompatV7-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\appcompatV7-base-0.10.7.aar\70e68179d9676d0d859e1b4ed8c21a99\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\fde9884640b1e0b7a54b8604bf02203f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Public\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\c29eed07fa5b00cece843bfbc5c30c18\AndroidManifest.xml:2:1-11:12
+MERGED from [:cardstackview] E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\cardstackview\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\7be8212aa9c8852e6ec3666a2450306f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.makeramen:roundedimageview:2.3.0] C:\Users\Public\caches\transforms-1\files-1.1\roundedimageview-2.3.0.aar\40b81fd912a0d994cca324752260ac64\AndroidManifest.xml:2:1-9:12
+MERGED from [de.hdodenhof:circleimageview:2.2.0] C:\Users\Public\caches\transforms-1\files-1.1\circleimageview-2.2.0.aar\55f4464ed0b8087fa9c425782eecbfdc\AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\Public\caches\transforms-1\files-1.1\glide-4.8.0.aar\a9d35d274ef0e1aca0de08f8970a1151\AndroidManifest.xml:2:1-12:12
+MERGED from [org.jetbrains.anko:anko-sqlite:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sqlite-0.10.7.aar\f448e9e5e042b818cd4cb85a78e5be62\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:anko-sdk27:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sdk27-0.10.7.aar\c1953b9378bbf78e45db661d9c033cee\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:anko-sdk27-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sdk27-coroutines-0.10.7.aar\1c2cc12be7f5ad82598e00a560ebe903\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:anko-support-v4:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-support-v4-0.10.7.aar\4401c5052f9de13cc947c936b6cfdad7\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:anko-support-v4-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-support-v4-commons-0.10.7.aar\7d5d5190e0768dd53891d40fb70cfd54\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:anko-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-commons-0.10.7.aar\351f0e0326edd5f9f0538a83f394a905\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:anko-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-coroutines-0.10.7.aar\ca93b905d81509a979717af8ab7c2916\AndroidManifest.xml:2:1-13:12
+MERGED from [org.jetbrains.anko:sqlite-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\sqlite-base-0.10.7.aar\f920adb41917068e4b2eb80152dd408e\AndroidManifest.xml:2:1-11:12
+MERGED from [org.jetbrains.anko:platform-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\platform-base-0.10.7.aar\95689f1264e432a8e0460a98b7599ecf\AndroidManifest.xml:2:1-11:12
+MERGED from [org.jetbrains.anko:supportV4-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\supportV4-base-0.10.7.aar\2752615e3b7bb55514d2cdea6df9bf6d\AndroidManifest.xml:2:1-11:12
+MERGED from [org.jetbrains.anko:commons-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\commons-base-0.10.7.aar\d35e3abbaf4365148d7d65c6ce804e03\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:transition:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\transition-28.0.0.aar\6b92bb358d8c16547045e49ca5b53e07\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\53ccab2bab10ec8431ba6b5109ae4a05\AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\Public\caches\transforms-1\files-1.1\gifdecoder-4.8.0.aar\5fafd1292a5c7f44b1f485641db3d093\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Public\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\b0ed014ced48ec9f91f0a133046515d9\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Public\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\6bcce5a501396ac8ccf076642044177f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\675c772221cf7181b17e2929c384afce\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\ff2e17e00fce858c90c6c56fa8853334\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\fa2eb2978d770b71e7ba3e6e8b4e126b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\f4dacb7e64a439e8bfeaeb6a2ea03a05\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\loader-28.0.0.aar\2c25cb54794cb449e86d4776ef6386a3\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\ed3bdf98441650ac2adab03fa0222d78\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\livedata-1.1.1.aar\ad74b09778598e5befcb7f4d327f5a77\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\48ea87f9f28622b0f5397f4ee602d84a\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\runtime-1.1.1.aar\2f9ce5dd00421fd1b86e7a40ed129f26\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\0858f774417b3121de6f619c2ccd929e\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\c0bb9628e7711819172a0679a1ee8d20\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\8ab18c42504af31a6a023c7574b2bc87\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\c1ed8810865e533c32efe6e4d17b03a0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\7b58f45d9b53f8e6241aff74701b82bd\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\customview-28.0.0.aar\ffb020693e4ec7f749ceeaa143ddc792\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\018fd80abf57482148733a52ba4b2d5a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\4a6750b8596f11ea137f9cbaee8c8b10\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d1f88481d5f94c6927cd7b71d8b31497\AndroidManifest.xml:17:1-24:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\runtime-1.1.1.aar\bfabe2f481d8c5c05502d090b270e7b3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\e611d468109fa650b337df1a164cfc07\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\c1531a1fef2883ad277857bb7fb9bc6b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\675ce2f860353000769532e2e830f09f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\c2ba702d9993a171fae7a1ff197d0a93\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\print-28.0.0.aar\5724413c1d3ffa1691abe2aedbef2f88\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\395895303d414289d900794228ed4356\AndroidManifest.xml:17:1-22:12
+INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:2:1-52:12
+	package
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:3:11-43
+		INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+		INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:2:1-52:12
+		INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:2:1-52:12
+		INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:5:5-66
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:5:22-64
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:8:5-70
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:8:22-68
+uses-permission#android.permission.READ_PROFILE
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:9:5-70
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:9:22-68
+uses-permission#android.permission.READ_CONTACTS
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:10:5-71
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:10:22-69
+application
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:13:5-50:19
+MERGED from [com.android.support:design:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\design-28.0.0.aar\ab4d30405278ab16604f7d15e2a25336\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\design-28.0.0.aar\ab4d30405278ab16604f7d15e2a25336\AndroidManifest.xml:22:5-20
+MERGED from [com.airbnb.android:lottie:2.6.0-beta19] C:\Users\Public\caches\transforms-1\files-1.1\lottie-2.6.0-beta19.aar\e2eb2a93c44df9bd2dad0e1754f8c26c\AndroidManifest.xml:11:5-20
+MERGED from [com.airbnb.android:lottie:2.6.0-beta19] C:\Users\Public\caches\transforms-1\files-1.1\lottie-2.6.0-beta19.aar\e2eb2a93c44df9bd2dad0e1754f8c26c\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-0.10.7.aar\3a2d23f75a7f443491d71824126dc886\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-0.10.7.aar\3a2d23f75a7f443491d71824126dc886\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-appcompat-v7:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-0.10.7.aar\5566efc0723395bd3cfb2aabd94a43b9\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-appcompat-v7:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-0.10.7.aar\5566efc0723395bd3cfb2aabd94a43b9\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-coroutines-0.10.7.aar\bf986f88faabb0a949c27dc726e2db62\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-coroutines-0.10.7.aar\bf986f88faabb0a949c27dc726e2db62\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-appcompat-v7-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-commons-0.10.7.aar\d50c3e6f59fc9dced1698369e10db54d\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-appcompat-v7-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-commons-0.10.7.aar\d50c3e6f59fc9dced1698369e10db54d\AndroidManifest.xml:11:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Public\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\c29eed07fa5b00cece843bfbc5c30c18\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Public\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\c29eed07fa5b00cece843bfbc5c30c18\AndroidManifest.xml:9:5-20
+MERGED from [de.hdodenhof:circleimageview:2.2.0] C:\Users\Public\caches\transforms-1\files-1.1\circleimageview-2.2.0.aar\55f4464ed0b8087fa9c425782eecbfdc\AndroidManifest.xml:9:5-20
+MERGED from [de.hdodenhof:circleimageview:2.2.0] C:\Users\Public\caches\transforms-1\files-1.1\circleimageview-2.2.0.aar\55f4464ed0b8087fa9c425782eecbfdc\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\Public\caches\transforms-1\files-1.1\glide-4.8.0.aar\a9d35d274ef0e1aca0de08f8970a1151\AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\Public\caches\transforms-1\files-1.1\glide-4.8.0.aar\a9d35d274ef0e1aca0de08f8970a1151\AndroidManifest.xml:10:5-20
+MERGED from [org.jetbrains.anko:anko-sqlite:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sqlite-0.10.7.aar\f448e9e5e042b818cd4cb85a78e5be62\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-sqlite:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sqlite-0.10.7.aar\f448e9e5e042b818cd4cb85a78e5be62\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-sdk27:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sdk27-0.10.7.aar\c1953b9378bbf78e45db661d9c033cee\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-sdk27:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sdk27-0.10.7.aar\c1953b9378bbf78e45db661d9c033cee\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-sdk27-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sdk27-coroutines-0.10.7.aar\1c2cc12be7f5ad82598e00a560ebe903\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-sdk27-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sdk27-coroutines-0.10.7.aar\1c2cc12be7f5ad82598e00a560ebe903\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-support-v4:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-support-v4-0.10.7.aar\4401c5052f9de13cc947c936b6cfdad7\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-support-v4:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-support-v4-0.10.7.aar\4401c5052f9de13cc947c936b6cfdad7\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-support-v4-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-support-v4-commons-0.10.7.aar\7d5d5190e0768dd53891d40fb70cfd54\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-support-v4-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-support-v4-commons-0.10.7.aar\7d5d5190e0768dd53891d40fb70cfd54\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-commons-0.10.7.aar\351f0e0326edd5f9f0538a83f394a905\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-commons-0.10.7.aar\351f0e0326edd5f9f0538a83f394a905\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-coroutines-0.10.7.aar\ca93b905d81509a979717af8ab7c2916\AndroidManifest.xml:11:5-20
+MERGED from [org.jetbrains.anko:anko-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-coroutines-0.10.7.aar\ca93b905d81509a979717af8ab7c2916\AndroidManifest.xml:11:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\Public\caches\transforms-1\files-1.1\gifdecoder-4.8.0.aar\5fafd1292a5c7f44b1f485641db3d093\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\Public\caches\transforms-1\files-1.1\gifdecoder-4.8.0.aar\5fafd1292a5c7f44b1f485641db3d093\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d1f88481d5f94c6927cd7b71d8b31497\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d1f88481d5f94c6927cd7b71d8b31497\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\e611d468109fa650b337df1a164cfc07\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\e611d468109fa650b337df1a164cfc07\AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d1f88481d5f94c6927cd7b71d8b31497\AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:18:13-39
+	android:label
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:16:13-45
+	android:roundIcon
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:17:13-58
+	android:icon
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:15:13-47
+	android:allowBackup
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:14:13-39
+	android:theme
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:19:13-44
+activity#com.sopt.appjam_sggsag.MainActivity
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:20:9-49
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:20:19-47
+activity#com.sopt.appjam_sggsag.SplashActivity
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:21:9-22:20
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:21:19-49
+activity#com.sopt.appjam_sggsag.ScheduleRegisterActivity
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:23:9-24:20
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:23:19-59
+activity#com.sopt.appjam_sggsag.InfoActivity
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:25:9-28:50
+	android:label
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:27:17-60
+	android:theme
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:28:17-48
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:26:17-45
+activity#com.sopt.appjam_sggsag.SignUp.SignUp1
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:29:9-30:20
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:29:19-49
+activity#com.sopt.appjam_sggsag.SignUp.SignUp2
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:31:9-32:20
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:31:19-49
+activity#com.sopt.appjam_sggsag.SignUp.SignUp3
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:33:9-34:20
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:33:19-49
+activity#com.sopt.appjam_sggsag.SignUp.SignUp4
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:35:9-41:20
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:35:19-49
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:36:13-40:29
+action#android.intent.action.MAIN
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:37:17-68
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:37:25-66
+category#android.intent.category.LAUNCHER
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:39:17-76
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:39:27-74
+activity#com.sopt.appjam_sggsag.LoginActivity
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:42:9-43:20
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:42:19-48
+activity#com.sopt.appjam_sggsag.Career.OutActivityDetail
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:44:9-45:20
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:44:19-59
+activity#com.sopt.appjam_sggsag.Career.CareerMainActivity
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:46:9-47:20
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:46:19-60
+activity#com.sopt.appjam_sggsag.Career.LicenseDetail
+ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:48:9-49:20
+	android:name
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml:48:19-55
+uses-sdk
+INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:design:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\design-28.0.0.aar\ab4d30405278ab16604f7d15e2a25336\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\design-28.0.0.aar\ab4d30405278ab16604f7d15e2a25336\AndroidManifest.xml:20:5-44
+MERGED from [com.airbnb.android:lottie:2.6.0-beta19] C:\Users\Public\caches\transforms-1\files-1.1\lottie-2.6.0-beta19.aar\e2eb2a93c44df9bd2dad0e1754f8c26c\AndroidManifest.xml:7:5-9:41
+MERGED from [com.airbnb.android:lottie:2.6.0-beta19] C:\Users\Public\caches\transforms-1\files-1.1\lottie-2.6.0-beta19.aar\e2eb2a93c44df9bd2dad0e1754f8c26c\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-0.10.7.aar\3a2d23f75a7f443491d71824126dc886\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-0.10.7.aar\3a2d23f75a7f443491d71824126dc886\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-appcompat-v7:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-0.10.7.aar\5566efc0723395bd3cfb2aabd94a43b9\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-appcompat-v7:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-0.10.7.aar\5566efc0723395bd3cfb2aabd94a43b9\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-coroutines-0.10.7.aar\bf986f88faabb0a949c27dc726e2db62\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-coroutines-0.10.7.aar\bf986f88faabb0a949c27dc726e2db62\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-appcompat-v7-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-commons-0.10.7.aar\d50c3e6f59fc9dced1698369e10db54d\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-appcompat-v7-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-appcompat-v7-commons-0.10.7.aar\d50c3e6f59fc9dced1698369e10db54d\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:appcompatV7-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\appcompatV7-base-0.10.7.aar\70e68179d9676d0d859e1b4ed8c21a99\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:appcompatV7-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\appcompatV7-base-0.10.7.aar\70e68179d9676d0d859e1b4ed8c21a99\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\fde9884640b1e0b7a54b8604bf02203f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\fde9884640b1e0b7a54b8604bf02203f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Public\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\c29eed07fa5b00cece843bfbc5c30c18\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Public\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\c29eed07fa5b00cece843bfbc5c30c18\AndroidManifest.xml:5:5-7:41
+MERGED from [:cardstackview] E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\cardstackview\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
+MERGED from [:cardstackview] E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\cardstackview\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\7be8212aa9c8852e6ec3666a2450306f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\7be8212aa9c8852e6ec3666a2450306f\AndroidManifest.xml:20:5-44
+MERGED from [com.makeramen:roundedimageview:2.3.0] C:\Users\Public\caches\transforms-1\files-1.1\roundedimageview-2.3.0.aar\40b81fd912a0d994cca324752260ac64\AndroidManifest.xml:7:5-43
+MERGED from [com.makeramen:roundedimageview:2.3.0] C:\Users\Public\caches\transforms-1\files-1.1\roundedimageview-2.3.0.aar\40b81fd912a0d994cca324752260ac64\AndroidManifest.xml:7:5-43
+MERGED from [de.hdodenhof:circleimageview:2.2.0] C:\Users\Public\caches\transforms-1\files-1.1\circleimageview-2.2.0.aar\55f4464ed0b8087fa9c425782eecbfdc\AndroidManifest.xml:5:5-7:41
+MERGED from [de.hdodenhof:circleimageview:2.2.0] C:\Users\Public\caches\transforms-1\files-1.1\circleimageview-2.2.0.aar\55f4464ed0b8087fa9c425782eecbfdc\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\Public\caches\transforms-1\files-1.1\glide-4.8.0.aar\a9d35d274ef0e1aca0de08f8970a1151\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\Public\caches\transforms-1\files-1.1\glide-4.8.0.aar\a9d35d274ef0e1aca0de08f8970a1151\AndroidManifest.xml:6:5-8:41
+MERGED from [org.jetbrains.anko:anko-sqlite:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sqlite-0.10.7.aar\f448e9e5e042b818cd4cb85a78e5be62\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-sqlite:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sqlite-0.10.7.aar\f448e9e5e042b818cd4cb85a78e5be62\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-sdk27:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sdk27-0.10.7.aar\c1953b9378bbf78e45db661d9c033cee\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-sdk27:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sdk27-0.10.7.aar\c1953b9378bbf78e45db661d9c033cee\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-sdk27-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sdk27-coroutines-0.10.7.aar\1c2cc12be7f5ad82598e00a560ebe903\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-sdk27-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-sdk27-coroutines-0.10.7.aar\1c2cc12be7f5ad82598e00a560ebe903\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-support-v4:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-support-v4-0.10.7.aar\4401c5052f9de13cc947c936b6cfdad7\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-support-v4:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-support-v4-0.10.7.aar\4401c5052f9de13cc947c936b6cfdad7\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-support-v4-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-support-v4-commons-0.10.7.aar\7d5d5190e0768dd53891d40fb70cfd54\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-support-v4-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-support-v4-commons-0.10.7.aar\7d5d5190e0768dd53891d40fb70cfd54\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-commons-0.10.7.aar\351f0e0326edd5f9f0538a83f394a905\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-commons:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-commons-0.10.7.aar\351f0e0326edd5f9f0538a83f394a905\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-coroutines-0.10.7.aar\ca93b905d81509a979717af8ab7c2916\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:anko-coroutines:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\anko-coroutines-0.10.7.aar\ca93b905d81509a979717af8ab7c2916\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:sqlite-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\sqlite-base-0.10.7.aar\f920adb41917068e4b2eb80152dd408e\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:sqlite-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\sqlite-base-0.10.7.aar\f920adb41917068e4b2eb80152dd408e\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:platform-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\platform-base-0.10.7.aar\95689f1264e432a8e0460a98b7599ecf\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:platform-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\platform-base-0.10.7.aar\95689f1264e432a8e0460a98b7599ecf\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:supportV4-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\supportV4-base-0.10.7.aar\2752615e3b7bb55514d2cdea6df9bf6d\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:supportV4-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\supportV4-base-0.10.7.aar\2752615e3b7bb55514d2cdea6df9bf6d\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:commons-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\commons-base-0.10.7.aar\d35e3abbaf4365148d7d65c6ce804e03\AndroidManifest.xml:7:5-9:41
+MERGED from [org.jetbrains.anko:commons-base:0.10.7] C:\Users\Public\caches\transforms-1\files-1.1\commons-base-0.10.7.aar\d35e3abbaf4365148d7d65c6ce804e03\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:transition:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\transition-28.0.0.aar\6b92bb358d8c16547045e49ca5b53e07\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\transition-28.0.0.aar\6b92bb358d8c16547045e49ca5b53e07\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\53ccab2bab10ec8431ba6b5109ae4a05\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\53ccab2bab10ec8431ba6b5109ae4a05\AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\Public\caches\transforms-1\files-1.1\gifdecoder-4.8.0.aar\5fafd1292a5c7f44b1f485641db3d093\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\Public\caches\transforms-1\files-1.1\gifdecoder-4.8.0.aar\5fafd1292a5c7f44b1f485641db3d093\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Public\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\b0ed014ced48ec9f91f0a133046515d9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Public\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\b0ed014ced48ec9f91f0a133046515d9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Public\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\6bcce5a501396ac8ccf076642044177f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Public\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\6bcce5a501396ac8ccf076642044177f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\675c772221cf7181b17e2929c384afce\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\675c772221cf7181b17e2929c384afce\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\ff2e17e00fce858c90c6c56fa8853334\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\ff2e17e00fce858c90c6c56fa8853334\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\fa2eb2978d770b71e7ba3e6e8b4e126b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\fa2eb2978d770b71e7ba3e6e8b4e126b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\f4dacb7e64a439e8bfeaeb6a2ea03a05\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\f4dacb7e64a439e8bfeaeb6a2ea03a05\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\loader-28.0.0.aar\2c25cb54794cb449e86d4776ef6386a3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\loader-28.0.0.aar\2c25cb54794cb449e86d4776ef6386a3\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\ed3bdf98441650ac2adab03fa0222d78\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\ed3bdf98441650ac2adab03fa0222d78\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\livedata-1.1.1.aar\ad74b09778598e5befcb7f4d327f5a77\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\livedata-1.1.1.aar\ad74b09778598e5befcb7f4d327f5a77\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\48ea87f9f28622b0f5397f4ee602d84a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\48ea87f9f28622b0f5397f4ee602d84a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\runtime-1.1.1.aar\2f9ce5dd00421fd1b86e7a40ed129f26\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\runtime-1.1.1.aar\2f9ce5dd00421fd1b86e7a40ed129f26\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\0858f774417b3121de6f619c2ccd929e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\0858f774417b3121de6f619c2ccd929e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\c0bb9628e7711819172a0679a1ee8d20\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\c0bb9628e7711819172a0679a1ee8d20\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\8ab18c42504af31a6a023c7574b2bc87\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\8ab18c42504af31a6a023c7574b2bc87\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\c1ed8810865e533c32efe6e4d17b03a0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\c1ed8810865e533c32efe6e4d17b03a0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\7b58f45d9b53f8e6241aff74701b82bd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\7b58f45d9b53f8e6241aff74701b82bd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\customview-28.0.0.aar\ffb020693e4ec7f749ceeaa143ddc792\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\customview-28.0.0.aar\ffb020693e4ec7f749ceeaa143ddc792\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\018fd80abf57482148733a52ba4b2d5a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\018fd80abf57482148733a52ba4b2d5a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\4a6750b8596f11ea137f9cbaee8c8b10\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\4a6750b8596f11ea137f9cbaee8c8b10\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d1f88481d5f94c6927cd7b71d8b31497\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d1f88481d5f94c6927cd7b71d8b31497\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\runtime-1.1.1.aar\bfabe2f481d8c5c05502d090b270e7b3\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Public\caches\transforms-1\files-1.1\runtime-1.1.1.aar\bfabe2f481d8c5c05502d090b270e7b3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\e611d468109fa650b337df1a164cfc07\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\e611d468109fa650b337df1a164cfc07\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\c1531a1fef2883ad277857bb7fb9bc6b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\c1531a1fef2883ad277857bb7fb9bc6b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\675ce2f860353000769532e2e830f09f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\675ce2f860353000769532e2e830f09f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\c2ba702d9993a171fae7a1ff197d0a93\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\c2ba702d9993a171fae7a1ff197d0a93\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\print-28.0.0.aar\5724413c1d3ffa1691abe2aedbef2f88\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\print-28.0.0.aar\5724413c1d3ffa1691abe2aedbef2f88\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\395895303d414289d900794228ed4356\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Public\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\395895303d414289d900794228ed4356\AndroidManifest.xml:20:5-44
+INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+		INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+		ADDED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml
+		INJECTED from E:\20\2018_HYU_HAK\SOPT\AppJam_SggSag_heyhey\app\src\main\AndroidManifest.xml

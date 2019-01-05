@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jetbrains.anko:appcompatV7-base-0.10.7">
+    <CLASSES>
+      <root url="jar://C:/Users/Public/caches/transforms-1/files-1.1/appcompatV7-base-0.10.7.aar/70e68179d9676d0d859e1b4ed8c21a99/jars/classes.jar!/" />
+      <root url="file://C:/Users/Public/caches/transforms-1/files-1.1/appcompatV7-base-0.10.7.aar/70e68179d9676d0d859e1b4ed8c21a99/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://C:/Users/Public/caches/modules-2/files-2.1/org.jetbrains.anko/appcompatV7-base/0.10.7/179990bc28c57fc9b935d37b7854d5d29276bca/appcompatV7-base-0.10.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
