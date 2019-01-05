@@ -13,11 +13,11 @@ import android.view.animation.AccelerateInterpolator
 import android.widget.TextView
 import android.widget.Toast
 import com.google.gson.JsonParser
-import com.sopt.appjam_sggsag.Network.ApplicationController
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.Data.PosterData
 import com.sopt.appjam_sggsag.Post.PostPosterListResponse
 import com.sopt.appjam_sggsag.CardStackAdapter
+import com.sopt.appjam_sggsag.MyApplication
 import com.sopt.appjam_sggsag.SpotDiffCallback
 import com.sopt.appjam_sggsag.Network.NetworkService
 import com.yuyakaido.android.cardstackview.*
@@ -46,7 +46,7 @@ class HomeFragment : Fragment(), CardStackListener {
         ArrayList<PosterData>()
     }
     val networkService: NetworkService by lazy {
-        ApplicationController.instance.networkService
+        MyApplication.instance.networkService
     }
     var inputPosterArr = ArrayList<PosterData>()
 
