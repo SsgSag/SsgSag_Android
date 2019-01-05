@@ -6,7 +6,6 @@ import android.util.DisplayMetrics
 import android.view.WindowManager
 import com.sopt.appjam_sggsag.Data.CalendarDateData
 import com.sopt.appjam_sggsag.Data.EventList
-import com.sopt.appjam_sggsag.Network.ApplicationController
 import com.sopt.appjam_sggsag.Network.NetworkService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,6 +14,8 @@ class MyApplication : Application() {
     public var screen_height:Int? = 0
     override fun onCreate() {
         super.onCreate()
+        instance = this
+        buildNetWork()
         setData()
         //screen_height = getScreenHeightInDPs(this) 스크린 높이
     }
@@ -103,11 +104,7 @@ class MyApplication : Application() {
     companion object {
         lateinit var instance: MyApplication
     }
-    override fun onCreate() {
-        super.onCreate()
-        instance = this
-        buildNetWork()
-    }
+
     fun buildNetWork() {
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(baseURL)
