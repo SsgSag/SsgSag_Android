@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.sopt.appjam_sggsag.Data.Career.CareerListData
+import com.sopt.appjam_sggsag.Data.Career.CertificateListData
 import com.sopt.appjam_sggsag.R
 import org.jetbrains.anko.find
 
-class CareerRecyclerViewAdapter(val ctx : Context, val dataList: ArrayList<CareerListData>) : RecyclerView.Adapter<CareerRecyclerViewAdapter.Holder>() {
+class CertificateRecyclerViewAdapter(val ctx : Context, val dataList: ArrayList<CertificateListData>) : RecyclerView.Adapter<CertificateRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_career_list, parent, false)
+        val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_award_list, parent, false)
         return Holder(view)
     }
 

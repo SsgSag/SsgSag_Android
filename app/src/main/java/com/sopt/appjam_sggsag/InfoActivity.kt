@@ -131,4 +131,5 @@ class InfoActivity : AppCompatActivity() {
             }
         }
     }
+
 }

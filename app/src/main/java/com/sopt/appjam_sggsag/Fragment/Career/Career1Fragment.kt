@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.sopt.appjam_sggsag.Adapter.Career.CareerRecyclerViewAdapter
-import com.sopt.appjam_sggsag.Data.CareerListData
+import com.sopt.appjam_sggsag.Career.OutActivityDetail
+import com.sopt.appjam_sggsag.Data.Career.CareerListData
 import com.sopt.appjam_sggsag.R
+import kotlinx.android.synthetic.main.activity_out_detail.*
 import kotlinx.android.synthetic.main.fragment_career1.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
@@ -28,7 +30,7 @@ class Career1Fragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         career1Fragment = inflater!!.inflate(R.layout.fragment_career1, container, false)
-
+        setBtnOnClickListener()
         return career1Fragment
     }
 
@@ -45,6 +47,13 @@ class Career1Fragment : Fragment() {
         rv_career1_frag_activity_list.adapter = careerRecyclerViewAdapter
         rv_career1_frag_activity_list.layoutManager = LinearLayoutManager(activity)
 
+    }
+
+    private fun setBtnOnClickListener(){
+        val add_activity: RelativeLayout = career1Fragment!!.find(R.id.btn_add_activity)
+        add_activity.setOnClickListener {
+            startActivity<OutActivityDetail>()
+        }
     }
 
 
