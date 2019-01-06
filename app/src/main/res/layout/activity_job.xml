@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JobActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/btn_iv_back_job"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp"
+            android:src="@drawable/ic_arrow_back"
+            android:paddingHorizontal="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:clickable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:letterSpacing="-0.02"
+            android:text="구직여부"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:id="@+id/job_text_1"
+                android:layout_marginTop="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="12sp"
+                android:text="구직여부를 활성화하면"/>
+            <TextView
+                android:id="@+id/job_text_2"
+                android:clickable="false"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:letterSpacing="-0.02"
+                android:fontFamily="sans-serif"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/job_text_1"
+                android:lineSpacingExtra="9sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="관심직무를 기반으로\n채용정보를 제공해드려요"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(복수선택)"
+                android:layout_toEndOf="@+id/job_text_2"
+                android:layout_marginTop="101dp"
+                android:layout_marginLeft="6dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:letterSpacing="-0.02"
+                android:fontFamily="sans-serif"
+                android:textSize="15sp"
+                android:lineSpacingExtra="14sp"/>
+            <RelativeLayout
+                android:clickable="true"
+                android:id="@+id/btn_job_toggle"
+                android:layout_below="@+id/job_text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:clickable="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/toggle_off"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="24dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_below="@+id/btn_job_toggle"
+                android:layout_marginTop="40dp"
+                android:id="@+id/img_1st_line"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_management"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/bt_job_management_unactive" />
+
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_marketing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/bt_job_marketing_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/img_2nd_line"
+                android:layout_below="@+id/img_1st_line"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_tech"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/bt_job_tech_unactive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_design"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/bt_job_design_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/img_3rd_line"
+                android:layout_below="@+id/img_2nd_line"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_trade"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/bt_job_trade_unactive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_sales"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/bt_job_sales_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/img_4th_line"
+                android:layout_below="@+id/img_3rd_line"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_service"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/bt_job_service_unactive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_study"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/bt_job_study_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/img_5th_line"
+                android:layout_below="@+id/img_4th_line"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_industry"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/bt_job_industry_unactive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_edu"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/bt_job_literature_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/img_6th_line"
+                android:layout_below="@+id/img_5th_line"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_construct"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/bt_job_construct_unactive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_medical"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/bt_job_medical_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:paddingBottom="44dp"
+                android:id="@+id/img_7th_line"
+                android:layout_below="@+id/img_6th_line"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_media"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/bt_job_art_unactive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:clickable="true"
+                        android:id="@+id/btn_job_speciality"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/bt_job_speciality_unactive" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/btn_my_page_save"
+            android:src="@drawable/bt_save_mypage_unactive"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>
