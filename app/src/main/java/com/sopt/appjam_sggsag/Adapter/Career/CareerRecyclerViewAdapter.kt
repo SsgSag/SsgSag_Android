@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.sopt.appjam_sggsag.Data.CareerListData
+import com.sopt.appjam_sggsag.Data.Career.CareerListData
 import com.sopt.appjam_sggsag.R
 import org.jetbrains.anko.find
 

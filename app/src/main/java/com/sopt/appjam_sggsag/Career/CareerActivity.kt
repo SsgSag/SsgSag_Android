@@ -14,6 +14,7 @@ class CareerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_career)
         configureBottomNavigation()
+        setBtnOnClickListener()
     }
 
     private fun configureBottomNavigation(){
@@ -27,5 +28,11 @@ class CareerActivity : AppCompatActivity() {
         tl_top_navi_career_top_menu.getTabAt(0)!!.customView = TopNaviLayout.findViewById(R.id.btn_top_navi_activity_tab) as RelativeLayout
         tl_top_navi_career_top_menu.getTabAt(1)!!.customView = TopNaviLayout.findViewById(R.id.btn_top_navi_award_tab) as RelativeLayout
         tl_top_navi_career_top_menu.getTabAt(2)!!.customView = TopNaviLayout.findViewById(R.id.btn_top_navi_certificate_tab) as RelativeLayout
+    }
+
+    private fun setBtnOnClickListener(){
+        btn_iv_back_career.setOnClickListener {
+            finish()
+        }
     }
 }

@@ -6,13 +6,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import com.sopt.appjam_sggsag.Adapter.Career.CareerRecyclerViewAdapter
-import com.sopt.appjam_sggsag.Data.CareerListData
+import com.sopt.appjam_sggsag.Data.Career.CareerListData
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.fragment_career1.*
-import org.jetbrains.anko.find
-import org.jetbrains.anko.support.v4.startActivity
 
 class Career1Fragment : Fragment() {
     private var career1Fragment: View? = null
