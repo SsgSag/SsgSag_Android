@@ -5,11 +5,22 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
+import com.sopt.appjam_sggsag.Career.CareerActivity
+import com.sopt.appjam_sggsag.JobActivity
 import com.sopt.appjam_sggsag.R
+import com.sopt.appjam_sggsag.SignUp.SignUp4
+import org.jetbrains.anko.find
+import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 class MyPageFragment:Fragment(){
+    private var myPageFragment: View? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val myPageFragment : View = inflater!!.inflate(R.layout.fragment_my_page, container, false)
+        myPageFragment = inflater!!.inflate(R.layout.fragment_my_page, container, false)
+
+        setOnBtnClickListener()
+
         return myPageFragment
     }
 
@@ -21,6 +32,37 @@ class MyPageFragment:Fragment(){
                 instance = MyPageFragment()
             }
             return instance!!
+        }
+    }
+
+    private fun setOnBtnClickListener(){
+        val btn_profile_setting: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_profile_setting)
+        btn_profile_setting.setOnClickListener {
+            toast("프로필 변경")
+        }
+        val btn_preference: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_preference)
+        btn_preference.setOnClickListener {
+            toast("관심분야")
+        }
+        val btn_job: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_job)
+        btn_job.setOnClickListener {
+            startActivity<JobActivity>()
+        }
+        val btn_career: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_career)
+        btn_career.setOnClickListener {
+            startActivity<CareerActivity>()
+        }
+        val btn_notice: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_notice)
+        btn_notice.setOnClickListener {
+            toast("공지사항")
+        }
+        val btn_push_setting: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_push_setting)
+        btn_push_setting.setOnClickListener {
+            toast("푸시 알림 설정")
+        }
+        val btn_account: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_account_management)
+        btn_account.setOnClickListener {
+            toast("계정관리")
         }
     }
 }
