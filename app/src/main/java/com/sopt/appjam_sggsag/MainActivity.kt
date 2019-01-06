@@ -7,8 +7,7 @@ import android.widget.RelativeLayout
 import com.sopt.appjam_sggsag.Adapter.MyFragmentStatePagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
-
-var flag : Int = 0;
+var flag : Int = 0
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
