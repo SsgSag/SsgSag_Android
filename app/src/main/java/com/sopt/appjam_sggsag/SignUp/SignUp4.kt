@@ -8,13 +8,18 @@ import com.sopt.appjam_sggsag.MyApplication
 import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.activity_sign_up4.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.jetbrains.anko.startActivity
+import java.io.File
 
 class SignUp4 : AppCompatActivity() {
-    var interestListServer: ArrayList<Int> = ArrayList()
+    lateinit var interestListServer: Array<Byte>
+    //    var interestListServer: ArrayList<Byte> = ArrayList()
     var interestList: ArrayList<Int> = arrayListOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     var check = 0
-    var gender: String?=null
+    lateinit var gender: String
 
     val networkService: NetworkService by lazy {
         MyApplication.instance.networkService
@@ -169,7 +174,7 @@ class SignUp4 : AppCompatActivity() {
         btn_start.setOnClickListener {
             for (i in 0..11) {
                 if (interestList[i] == 1)
-                    interestListServer.add(i)
+                    interestListServer= arrayOf(i.toByte())
             }
             Log.d("interest", "진희야 힘내" + interestListServer)
             getSignUpResponseData()
@@ -192,27 +197,29 @@ class SignUp4 : AppCompatActivity() {
 
     private fun getSignUpResponseData() {
 
-        //Json 형식의 객체 만들기
-//        var jsonObject = JSONObject()
-//        jsonObject.put("userEmail", SignUp1.getSignUp1.id)
-//        jsonObject.put("userPw", SignUp1.getSignUp1.pw)
-//        jsonObject.put("userName", SignUp2.getSignUp2.name)
-//        jsonObject.put("userUniv", SignUp3.getSignUp3.school)
-//        jsonObject.put("userMajor", SignUp3.getSignUp3.major)
-//        jsonObject.put("userStudentNum", SignUp3.getSignUp3.sid)
-//
-//        jsonObject.put("userBirth", SignUp2.getSignUp2.birth)
-//        jsonObject.put("userPushAllow", "1")
-//        jsonObject.put("userInfoAllow", "1")
-//        jsonObject.put("userInterest", interestListServer)
-//        jsonObject.put("profile", SignUp2.getSignUp2.imageURI)
-//
-//        if(SignUp2.getSignUp2.btn==1)
-//            gender="female"
-//        else if(SignUp2.getSignUp2.btn==2)
-//            gender="male"
-//
-//        jsonObject.put("userGender", gender)
+        var userEmail = RequestBody.create(MediaType.parse("text/plain"), SignUp1.getSignUp1.id)
+        var userPw = RequestBody.create(MediaType.parse("text/plain"), SignUp1.getSignUp1.pw)
+        var userName = RequestBody.create(MediaType.parse("text/plain"), SignUp2.getSignUp2.name)
+        var userUniv = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.school)
+        var userMajor = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.major)
+        var userStudentNum = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.sid)
+        var userBirth = RequestBody.create(MediaType.parse("text/plain"), SignUp2.getSignUp2.birth)
+        var userPushAllow = RequestBody.create(MediaType.parse("text/plain"), "1")
+        var userInfoAllow = RequestBody.create(MediaType.parse("text/plain"), "1")
+//        var userInterest = RequestBody.create(MediaType.parse("text/plain"), interestListServer)
+//        var profile = RequestBody.create(MediaType.parse("text/plain"), )
+
+        if(SignUp2.getSignUp2.btn==1)
+            gender="female"
+        else if(SignUp2.getSignUp2.btn==2)
+            gender="male"
+
+        var userGender = RequestBody.create(MediaType.parse("text/plain"), gender)
+
+        val file : File = File(SignUp2.getSignUp2.imageURI)
+        val requestfile : RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+        val data : MultipartBody.Part = MultipartBody.Part.createFormData("photo", file.name, requestfile)
+
 //
 //        //Gson 라이브러리의 Json Parser을 통해 객체를 Json으로!
 //        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
