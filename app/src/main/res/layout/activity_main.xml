@@ -17,6 +17,7 @@
     </android.support.design.widget.TabLayout>
 
     <com.sopt.appjam_sggsag.Adapter.NonSwipeableViewPager
+            android:layout_marginTop="56dp"
             android:id="@+id/vp_main_act_view_frag_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
