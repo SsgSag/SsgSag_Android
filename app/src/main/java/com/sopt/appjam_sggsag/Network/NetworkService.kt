@@ -5,6 +5,7 @@ import com.sopt.appjam_sggsag.Post.PostCalendarResponse
 import com.sopt.appjam_sggsag.Post.PostLogInResponse
 import com.sopt.appjam_sggsag.Post.PostPosterListResponse
 import com.sopt.appjam_sggsag.Post.PostSignUpResponse
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -19,7 +20,14 @@ interface NetworkService{
         @Part("userPw") userPw : RequestBody,
         @Part("userName") userName : RequestBody,
         @Part("userUniv") userUniv : RequestBody,
-        @Part("userMajor") userMajor : RequestBody
+        @Part("userMajor") userMajor : RequestBody,
+        @Part("userStudentNum") userStudentNum : RequestBody,
+        @Part("userGender") userGender : RequestBody,
+        @Part("userBirth") userBirth : RequestBody,
+        @Part("userPushAllow") userPushAllow : RequestBody,
+        @Part("userInfoAllow") userInfoAllow : RequestBody,
+        @Part("userInterest") userInterest : RequestBody,
+        @Part profile: MultipartBody.Part?
     ) : Call<PostSignUpResponse> //return type
 
     //로그인

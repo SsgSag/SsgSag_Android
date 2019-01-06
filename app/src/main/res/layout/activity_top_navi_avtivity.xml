@@ -12,7 +12,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_person_black_24dp"/>
+                android:src="@drawable/ic_user"/>
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/btn_top_navi_home_tab"
@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_home_black_24dp"/>
+                android:src="@drawable/ic_main"/>
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/btn_top_navi_calendar_tab"
@@ -34,6 +34,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_event_note_black_24dp"/>
+                android:src="@drawable/ic_cal"/>
     </RelativeLayout>
 </LinearLayout>
