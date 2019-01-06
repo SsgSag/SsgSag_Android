@@ -25,6 +25,10 @@ import com.sopt.appjam_sggsag.Data.TodoListData
 import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.ScheduleRegisterActivity
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+
+
 
 
 class CalendarFragment : Fragment(), GetYearMonthTab {
@@ -127,20 +131,33 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
             //calendar_month--
             vp_frag_calendar_view_pager.setCurrentItem(calendar_month+1,true)
             vp_frag_calendar_view_pager2.setCurrentItem(calendar_month+1,true)
-            calendar_month++
+            //calendar_month++
         }
 
         frag_calendar_next.setOnClickListener {
             //  calendar_month++
             vp_frag_calendar_view_pager.setCurrentItem(calendar_month-1,true)
+            Log.e("CalendarLog22",calendar_month.toString())
             vp_frag_calendar_view_pager2.setCurrentItem(calendar_month-1,true)
-            calendar_month--
+            //calendar_month--
         }
         frag_calendar_iv_register.setOnClickListener {
 
             startActivity<ScheduleRegisterActivity>()
             activity!!.finish()
 
+        }
+        iv_big_calendar.setOnClickListener {
+
+            val animation = AlphaAnimation(1f, 0f)
+            animation.duration = 400
+            val animation2 = AlphaAnimation(0f, 1f)
+            animation2.duration = 400
+
+            schedule_linear_layout.visibility = (View.GONE)
+            schedule_linear_layout.setAnimation(animation);
+            vp_frag_calendar_view_pager.visibility = View.VISIBLE
+            vp_frag_calendar_view_pager.setAnimation(animation2);
         }
 
     }

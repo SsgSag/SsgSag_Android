@@ -19,6 +19,7 @@
                     android:layout_height="56dp"/>
 
             <ImageView
+                    android:id="@+id/btn_exit"
                     android:paddingVertical="16dp"
                     android:paddingHorizontal="16dp"
                     android:src="@drawable/ic_x_close"
@@ -88,7 +89,7 @@
                                 android:layout_height="wrap_content">
                             <LinearLayout
                                     android:orientation="vertical"
-                                    android:layout_weight="1"
+                                    android:layout_weight="0.4"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content">
                                 <TextView
@@ -99,7 +100,7 @@
                                         android:textStyle="normal"
                                         android:fontFamily="sans-serif"
                                         android:textSize="15sp"
-                                        android:text="219년 1월 1일"
+                                        android:text="2019년 1월 1일"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"/>
                                 <TextView
@@ -115,13 +116,13 @@
 
                             <ImageView
                                     android:src="@drawable/ic_arrow_gradation"
-                                    android:layout_weight="1"
+                                    android:layout_weight="0.2"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"/>
 
                             <LinearLayout
                                     android:orientation="vertical"
-                                    android:layout_weight="1"
+                                    android:layout_weight="0.4"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content">
                                 <TextView
@@ -164,6 +165,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                             <LinearLayout
+                                    android:id="@+id/ll_category_contest"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:orientation="horizontal"
@@ -187,12 +189,13 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                    android:id="@+id/ll_category_activity"
                                     android:orientation="horizontal"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content">
                                 <ImageView
-                                        android:id="@+id/id_category_activity"
+                                        android:id="@+id/iv_category_activity"
                                         android:layout_marginRight="12dp"
                                         android:src="@drawable/ic_category_activity"
                                         android:layout_width="wrap_content"
@@ -210,12 +213,13 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                    android:id="@+id/ll_category_club"
                                     android:orientation="horizontal"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content">
                                 <ImageView
-                                        android:id="@+id/id_category_club"
+                                        android:id="@+id/iv_category_club"
                                         android:layout_marginRight="12dp"
                                         android:src="@drawable/ic_category_club"
                                         android:layout_width="wrap_content"
@@ -239,6 +243,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                             <LinearLayout
+                                    android:id="@+id/ll_category_school"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:orientation="horizontal"
@@ -262,12 +267,13 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                    android:id="@+id/ll_category_career"
                                     android:orientation="horizontal"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content">
                                 <ImageView
-                                        android:id="@+id/id_category_career"
+                                        android:id="@+id/iv_category_career"
                                         android:layout_marginRight="12dp"
                                         android:src="@drawable/ic_category_career"
                                         android:layout_width="wrap_content"
@@ -285,13 +291,14 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                    android:id="@+id/ll_category_extra"
                                     android:layout_marginBottom="36dp"
                                     android:orientation="horizontal"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content">
                                 <ImageView
-                                        android:id="@+id/id_category_extra"
+                                        android:id="@+id/iv_category_extra"
                                         android:layout_marginRight="12dp"
                                         android:src="@drawable/ic_category_extra"
                                         android:layout_width="wrap_content"
