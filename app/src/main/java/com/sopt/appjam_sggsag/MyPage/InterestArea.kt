@@ -7,7 +7,6 @@ import com.sopt.appjam_sggsag.MainActivity
 import com.sopt.appjam_sggsag.MyApplication
 import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.R
-import com.sopt.appjam_sggsag.SignUp.SignUp3
 import kotlinx.android.synthetic.main.activity_interest_area.*
 import org.jetbrains.anko.startActivity
 
@@ -25,20 +24,14 @@ class InterestArea : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up4)
+        setContentView(R.layout.activity_interest_area)
         setOnBtnClickListener()
     }
 
-    override fun onBackPressed() {
-        startActivity<SignUp3>()
-        finish()
-        super.onBackPressed()
-    }
 
     private fun setOnBtnClickListener() {
 
-        iv_back_4.setOnClickListener {
-            startActivity<SignUp3>()
+        iv_back_mypage.setOnClickListener {
             finish()
         }
         // 기획/아이디어

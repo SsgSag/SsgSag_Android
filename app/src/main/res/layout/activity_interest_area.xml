@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp">
         <ImageView
-                android:id="@+id/iv_back_4"
+                android:id="@+id/iv_back_mypage"
                 android:paddingTop="16dp"
                 android:paddingBottom="12dp"
                 android:src="@drawable/ic_arrow_back"
