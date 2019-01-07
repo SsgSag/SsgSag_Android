@@ -14,7 +14,7 @@
             <RelativeLayout
                     android:clickable="false"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="112dp"
+                    android:layout_marginTop="56dp"
                     android:layout_width="128dp"
                     android:layout_height="128dp">
 
@@ -110,30 +110,50 @@
                         android:gravity="center_horizontal"/>
             </RelativeLayout>
             <LinearLayout
-                    android:paddingVertical="15dp"
                     android:layout_marginTop="37dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                <ImageView
-                        android:clickable="false"
+                <TextView
+                        android:paddingVertical="15dp"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="-0.02"
+                        android:textColor="#000"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif-medium"
+                        android:textSize="16sp"
+                        android:text="관심분야"
+                        android:id="@+id/btn_my_page_preference"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bt_preference"/>
-                <ImageView
-                        android:clickable="false"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:paddingVertical="15dp"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/btn_my_page_job"
+                        android:letterSpacing="-0.02"
+                        android:textColor="#000"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif-medium"
+                        android:textSize="16sp"
+                        android:text="구직여부"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bt_job"/>
-                <ImageView
-                        android:clickable="false"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:paddingVertical="15dp"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/btn_my_page_career"
+                        android:letterSpacing="-0.02"
+                        android:textColor="#000"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif-medium"
+                        android:textSize="16sp"
+                        android:text="나의이력"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bt_career"/>
+                        android:layout_height="wrap_content"/>
             </LinearLayout>
             <ImageView
                     android:scaleType="fitXY"

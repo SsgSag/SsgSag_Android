@@ -19,11 +19,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".Career.LicenseDetail">
         </activity>
@@ -44,8 +40,13 @@
         <activity android:name=".ScheduleRegisterActivity">
         </activity>
         <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
-        <activity android:name=".JobActivity"/>
+        <activity android:name=".MyPage.JobActivity"/>
         <activity android:name=".Career.CareerActivity">
         </activity>
         <activity android:name=".MyPage.InterestArea">

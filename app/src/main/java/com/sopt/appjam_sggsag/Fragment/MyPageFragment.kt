@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+import android.widget.TextView
 import com.sopt.appjam_sggsag.Career.CareerActivity
-import com.sopt.appjam_sggsag.JobActivity
+import com.sopt.appjam_sggsag.MyPage.InterestArea
+import com.sopt.appjam_sggsag.MyPage.JobActivity
 import com.sopt.appjam_sggsag.R
-import com.sopt.appjam_sggsag.SignUp.SignUp4
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
@@ -40,15 +41,15 @@ class MyPageFragment:Fragment(){
         btn_profile_setting.setOnClickListener {
             toast("프로필 변경")
         }
-        val btn_preference: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_preference)
+        val btn_preference: TextView = myPageFragment!!.find(R.id.btn_my_page_preference)
         btn_preference.setOnClickListener {
-            toast("관심분야")
+            startActivity<InterestArea>()
         }
-        val btn_job: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_job)
+        val btn_job: TextView = myPageFragment!!.find(R.id.btn_my_page_job)
         btn_job.setOnClickListener {
             startActivity<JobActivity>()
         }
-        val btn_career: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_career)
+        val btn_career: TextView = myPageFragment!!.find(R.id.btn_my_page_career)
         btn_career.setOnClickListener {
             startActivity<CareerActivity>()
         }
