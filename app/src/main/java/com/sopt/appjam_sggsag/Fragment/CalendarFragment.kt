@@ -1,6 +1,7 @@
 package com.sopt.appjam_sggsag.Fragment
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import android.text.Spannable
 import android.text.style.ForegroundColorSpan
 import android.text.SpannableStringBuilder
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.text.style.StyleSpan
 import android.util.Log
 import com.sopt.appjam_sggsag.Adapter.CalendarViewPagerAdapter
@@ -27,8 +29,12 @@ import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.ScheduleRegisterActivity
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
-
-
+import android.widget.BaseAdapter
+import android.widget.Toast
+import com.baoyz.swipemenulistview.SwipeMenu
+import com.baoyz.swipemenulistview.SwipeMenuCreator
+import com.baoyz.swipemenulistview.SwipeMenuItem
+import com.baoyz.swipemenulistview.SwipeMenuListView
 
 
 class CalendarFragment : Fragment(), GetYearMonthTab {
@@ -36,18 +42,20 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
     // var select_year : Int? = null       //RegisterScheduleActivity에서 넘겨받을 날짜 정보(spinner로 부터)
     // var select_month : Int? = null
     // var select_day : Int? = null
-    var temp_month=0;
+    var temp_month = 0;
     var calendar_month = 24;
+    var mArrayList: ArrayList<String>? = ArrayList()
+
     companion object {
-        private var instance : CalendarFragment? = null
+        private var instance: CalendarFragment? = null
         @Synchronized
-        fun getInstance(year: Int, month:Int, day: Int ) : CalendarFragment{
-            if(instance==null){
-                instance = CalendarFragment().apply{
-                    arguments = Bundle().apply{
-                        putInt("year",year)
-                        putInt("month",month)
-                        putInt("day",day)
+        fun getInstance(year: Int, month: Int, day: Int): CalendarFragment {
+            if (instance == null) {
+                instance = CalendarFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("year", year)
+                        putInt("month", month)
+                        putInt("day", day)
                     }
                 }
             }
@@ -69,26 +77,22 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
 
     override fun getYearMonthTab(year: String, month: String) {
 
-        val sp :SpannableStringBuilder?
-        if(month.length==1){
-            sp = SpannableStringBuilder(year+".0"+month)
-        }
-        else {
+        val sp: SpannableStringBuilder?
+        if (month.length == 1) {
+            sp = SpannableStringBuilder(year + ".0" + month)
+        } else {
             sp = SpannableStringBuilder(year + "." + month)
         }
         //1월 -> 12월, 12월 -> 1월 고려 안한 코드
-        if(temp_month<month.toInt()){
+        if (temp_month < month.toInt()) {
             calendar_month++
-        }
-        else if(temp_month>month.toInt()){
+        } else if (temp_month > month.toInt()) {
             calendar_month--
-        }
-        else{
+        } else {
 
         }
-
-        temp_month=month.toInt()
-        Log.e("temp_month",temp_month.toString())
+        temp_month = month.toInt()
+        Log.e("temp_month", temp_month.toString())
         sp.setSpan(StyleSpan(Typeface.BOLD), 4, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         frag_calendar_year_month.setText(sp)
 
@@ -112,11 +116,92 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
         setRecyclerView()
         configureBottomNavigation()
         setOnClickListener()
+        listView.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT)        //추가
+        for (i in 0..4) {
+            mArrayList?.add("List item -->i")
+        }
+        var listAdapter: ListDataAdapter = ListDataAdapter()
+        listView.adapter = listAdapter
+
+        val creator = SwipeMenuCreator { menu ->
+            // Create different menus depending on the view type
+            val goodItem = SwipeMenuItem(
+                getActivity()
+            )
+            // set item background
+            goodItem.background = ColorDrawable(
+                Color.rgb(
+                    0x30, 0xB1,
+                    0xF5
+                )
+            )
+            // set item width
+            goodItem.width = 90
+            // set a icon
+            goodItem.setIcon(R.drawable.ic_task_complete)
+            // add to menu
+            menu.addMenuItem(goodItem)
+
+            // create "delete" item
+            val deleteItem = SwipeMenuItem(
+                getActivity()
+            )
+            // set item background
+            deleteItem.background = ColorDrawable(
+                Color.rgb(
+                    0xF9,
+                    0x3F, 0x25
+                )
+            )
+            // set item width
+            deleteItem.width = 90
+            // set a icon
+            deleteItem.setIcon(R.drawable.ic_task_delete)
+            // add to menu
+            menu.addMenuItem(deleteItem)
+        }
+        listView.setMenuCreator(creator)
+
+        listView.setOnMenuItemClickListener(
+            object : SwipeMenuListView.OnMenuItemClickListener {
+                override fun onMenuItemClick(position: Int, menu: SwipeMenu, index: Int): Boolean {
+
+                    when (index) {
+                        0 -> Toast.makeText(activity!!, "Like button press", Toast.LENGTH_SHORT).show()
+                        1 -> {
+                            mArrayList!!.removeAt(position)
+                            listAdapter.notifyDataSetChanged()
+                            Toast.makeText(activity!!, "Item deleted", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    return true
+                }
+            })
+
+        listView.setOnMenuStateChangeListener(object : SwipeMenuListView.OnMenuStateChangeListener {
+            override fun onMenuOpen(position: Int) {
+
+            }
+
+            override fun onMenuClose(position: Int) {
+
+            }
+        })
+
+        listView.setOnSwipeListener(object : SwipeMenuListView.OnSwipeListener {
+            override fun onSwipeStart(position: Int) {
+
+            }
+
+            override fun onSwipeEnd(position: Int) {
+
+            }
+        })
 
     }
 
 
-    private fun setOnClickListener(){
+    private fun setOnClickListener() {
         /*
         frag_calendar_tv_title.setOnClickListener{
             frag_calendar_tv_title.setVisibility(TextView.INVISIBLE);
@@ -129,16 +214,16 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
 */
         frag_calendar_before.setOnClickListener {
             //calendar_month--
-            vp_frag_calendar_view_pager.setCurrentItem(calendar_month+1,true)
-            vp_frag_calendar_view_pager2.setCurrentItem(calendar_month+1,true)
+            vp_frag_calendar_view_pager.setCurrentItem(calendar_month + 1, true)
+            vp_frag_calendar_view_pager2.setCurrentItem(calendar_month + 1, true)
             //calendar_month++
         }
 
         frag_calendar_next.setOnClickListener {
             //  calendar_month++
-            vp_frag_calendar_view_pager.setCurrentItem(calendar_month-1,true)
-            Log.e("CalendarLog22",calendar_month.toString())
-            vp_frag_calendar_view_pager2.setCurrentItem(calendar_month-1,true)
+            vp_frag_calendar_view_pager.setCurrentItem(calendar_month - 1, true)
+            Log.e("CalendarLog22", calendar_month.toString())
+            vp_frag_calendar_view_pager2.setCurrentItem(calendar_month - 1, true)
             //calendar_month--
         }
         frag_calendar_iv_register.setOnClickListener {
@@ -163,26 +248,26 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
     }
 
 
-    private fun setRecyclerView(){
+    private fun setRecyclerView() {
         //임시 데이터
-        var dataList:ArrayList<TodoListData> = ArrayList()
-        dataList.add(TodoListData("할 일1","D-3"))
+        var dataList: ArrayList<TodoListData> = ArrayList()
+        dataList.add(TodoListData("할 일1", "D-3"))
         dataList.add(TodoListData("할 일2", "D-2"))
 
-        todoListRecyclerViewAdapter = TodoListRecyclerViewAdapter(activity!!,dataList)
-        rv_frag_calendar_todo_list.adapter = todoListRecyclerViewAdapter
-        rv_frag_calendar_todo_list.layoutManager = LinearLayoutManager(activity)
+        // todoListRecyclerViewAdapter = TodoListRecyclerViewAdapter(activity!!,dataList)
+        //   rv_frag_calendar_todo_list.adapter = todoListRecyclerViewAdapter
+        //  rv_frag_calendar_todo_list.layoutManager = LinearLayoutManager(activity)
     }
 
 
     private fun configureBottomNavigation() {
 
-        vp_frag_calendar_view_pager.adapter = CalendarViewPagerAdapter(childFragmentManager, 50,this) //3개를 고정시키겠다.
+        vp_frag_calendar_view_pager.adapter = CalendarViewPagerAdapter(childFragmentManager, 50, this) //3개를 고정시키겠다.
         vp_frag_calendar_view_pager2.adapter = CalendarViewPagerAdapter2(childFragmentManager, 50, this)
         vp_frag_calendar_view_pager.offscreenPageLimit = 0
         vp_frag_calendar_view_pager2.offscreenPageLimit = 0
-        vp_frag_calendar_view_pager.setCurrentItem(24,true)
-        vp_frag_calendar_view_pager2.setCurrentItem(24,true)
+        vp_frag_calendar_view_pager.setCurrentItem(24, true)
+        vp_frag_calendar_view_pager2.setCurrentItem(24, true)
 
         //frag_calendar_year_month.setText(year.toString())
         //오빠 저 그럼 오빠가 해결해줄 수 있는 질문 하나 더 있어요 ㅎㅅㅎ
@@ -229,4 +314,40 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
     }
 
 */
+
+    inner internal class ListDataAdapter : BaseAdapter() {
+
+        var holder: ViewHolder? = null
+
+        override fun getCount(): Int {
+            return mArrayList!!.size
+        }
+
+        override fun getItem(i: Int): Any? {
+            return null
+        }
+
+        override fun getItemId(i: Int): Long {
+            return 0
+        }
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            var convertView = convertView
+
+            if (convertView == null) {
+                holder = ViewHolder()
+                convertView = layoutInflater.inflate(R.layout.list_item, null)
+                // holder.mTextview
+                holder?.mTextview = convertView!!.findViewById<View>(R.id.tv_rv_todo_category) as TextView
+                convertView.tag = holder
+            } else {
+                holder = convertView.tag as ViewHolder
+            }
+            holder?.mTextview!!.text = mArrayList!!.get(position)
+            return convertView
+        }
+        internal inner class ViewHolder {
+            var mTextview: TextView? = null
+        }
+    }
 }

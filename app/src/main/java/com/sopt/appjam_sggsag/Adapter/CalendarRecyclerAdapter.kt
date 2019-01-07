@@ -10,13 +10,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.baoyz.swipemenulistview.SwipeMenuListView
 import com.sopt.appjam_sggsag.Data.CalendarDateData
 import com.sopt.appjam_sggsag.Data.EventList
 import com.sopt.appjam_sggsag.Data.EventNameList
 import com.sopt.appjam_sggsag.R
 import org.jetbrains.anko.toast
 import java.util.*
+import java.util.zip.Inflater
+import android.support.v4.content.ContextCompat.getSystemService
+import android.view.animation.AlphaAnimation
+import kotlinx.android.synthetic.main.fragment_calendar.view.*
 
+
+//var textSize : Float = 2.5f
 var year: Int = 2019
 var toDay: Int = 1   //아니 이게 사실은 달 받아오는 거임.
 
@@ -28,6 +35,7 @@ class CalendarRecyclerAdapter(
 ) :
     RecyclerView.Adapter<CalendarRecyclerAdapter.Holder>() {
 
+    lateinit var viewGroup : ViewGroup
     var eventName: String? = null      //scheduleList에 있는 event 종류 저장
     val eventNameList: ArrayList<EventNameList> = ArrayList()   //우선순위 순 이벤트 저장
     internal var startDay: Int = 0  //이번달의 시작요일
@@ -42,26 +50,45 @@ class CalendarRecyclerAdapter(
 
 
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_calendar, parent, false)
+
+        viewGroup  = parent
         eventNameList.clear()   //시작시 우선순위 갱신하기 위해 eventNameList 클리어
         for (i in 0..41) {
             for (j in 0..4) {
                 arr[i][j] = 9999
             }
         }
+       // setOnClickListener(view2)
         saveEventName()     //scheduleList에 있는 이벤트 종류 저장
         sorting()
         //scheduleList 기반 eventNameList에 기간순으로 이벤트 저장. ex) 가장 긴 일정 : 인덱스0을 가짐.
         setDay(month)       //날짜 셋팅, arr 배열 채우기
         params.setMargins(0, 0, 10, 5)   //두번째날부터 쓸 마진, 첫번째날은 있는 그대로 ㅇㅋㅇㅋ
         params2.setMargins(0, 0, 0, 5)
+
         return Holder(view)
     }
 
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+
+        val inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view2 = inflater.inflate(R.layout.fragment_calendar, viewGroup, false)
+            holder.oneDay.setOnClickListener{
+                val animation = AlphaAnimation(1f, 0f)
+                animation.duration = 400
+                val animation2 = AlphaAnimation(0f, 1f)
+                animation2.duration = 400
+
+                view2.schedule_linear_layout.visibility = View.VISIBLE
+                //ctx.toast(holder.numberView1.text)
+                view2.schedule_linear_layout.setAnimation(animation2)
+                view2.vp_frag_calendar_view_pager.visibility = View.GONE
+            }
 
         holder.numberView1.text = dataList[position].day
 
@@ -221,24 +248,7 @@ class CalendarRecyclerAdapter(
         }
 
 
-        holder.oneDay.setOnClickListener {
-            //토스트뜨고
-            //
-            holder.numberView1
-            ctx.toast(holder.numberView1.text)
-            //하트 상태 바꾸고
-            /*
-            if(dataList[position].isLike==true){
-                dataList[position].isLike=false
-                holder.heartImage.visibility = View.GONE
-            }
-            else{
-                dataList[position].isLike=true
-                holder.heartImage.visibility = View.VISIBLE
-            }
-            */
 
-        }
 
         //holder.heartImage.image = dataList[position].isLike.image
         /*
@@ -313,7 +323,6 @@ class CalendarRecyclerAdapter(
 
 
     }
-
 
 
     private fun saveEventName() {
