@@ -181,14 +181,12 @@
                             android:text="투두리스트"/>
 
                 </LinearLayout>
-                <ScrollView android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="42">
-                <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_frag_calendar_todo_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </ScrollView>
+                <com.baoyz.swipemenulistview.SwipeMenuListView
+                        android:id="@+id/listView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="42"/>
+
             </LinearLayout>
             <ImageView
                     android:id="@+id/go_todo_list"
