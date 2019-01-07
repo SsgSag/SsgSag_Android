@@ -9,10 +9,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
         <ImageView
+                android:id="@+id/tab_my_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_user"/>
+                android:src="@drawable/tab_my_page_selector"/>
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/btn_top_navi_home_tab"
@@ -20,10 +21,11 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5">
         <ImageView
+                android:id="@+id/tab_main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_main"/>
+                android:src="@drawable/tab_main_selector"/>
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/btn_top_navi_calendar_tab"
@@ -31,9 +33,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
         <ImageView
+                android:id="@+id/tab_cal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_cal"/>
+                android:src="@drawable/tab_cal_selector"/>
     </RelativeLayout>
 </LinearLayout>
