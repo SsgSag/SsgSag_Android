@@ -8,12 +8,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.sopt.appjam_sggsag.Data.CalendarDateData
 import com.sopt.appjam_sggsag.Data.EventList
 import com.sopt.appjam_sggsag.Data.EventNameList
+import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 import com.sopt.appjam_sggsag.R
+import kotlinx.android.synthetic.main.fragment_calendar.view.*
 import org.jetbrains.anko.toast
 import java.util.*
 
@@ -22,14 +25,17 @@ class CalendarRecyclerAdapter2(
     val ctx: Context,
     val dataList: ArrayList<CalendarDateData>,
     val scheduleList: ArrayList<EventList>,
-    val month: Int
+    val month: Int,
+    val listener: GetYearMonthTab
 ) :
     RecyclerView.Adapter<CalendarRecyclerAdapter2.Holder>() {
 
-
+    lateinit var viewGroup : ViewGroup
 
     var year: Int = 2019
     var toDay: Int = 1   //아니 이게 사실은 달 받아오는 거임.
+    var yyear : Int = year
+    var mmonth : Int = toDay
     var eventName: String? = null      //scheduleList에 있는 event 종류 저장
     val eventNameList: ArrayList<EventNameList> = ArrayList()   //우선순위 순 이벤트 저장
     internal var startDay: Int = 0  //이번달의 시작요일
@@ -46,12 +52,15 @@ class CalendarRecyclerAdapter2(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_calendar, parent, false)
+        val view33: View = LayoutInflater.from(ctx).inflate(R.layout.fragment_calendar, parent, false)
+        view33.tv_todo_title.setText("도희는바보다")
         eventNameList.clear()   //시작시 우선순위 갱신하기 위해 eventNameList 클리어
         for (i in 0..41) {
             for (j in 0..4) {
                 arr[i][j] = 9999
             }
         }
+        viewGroup  = parent
         saveEventName()     //scheduleList에 있는 이벤트 종류 저장
         sorting()
         //scheduleList 기반 eventNameList에 기간순으로 이벤트 저장. ex) 가장 긴 일정 : 인덱스0을 가짐.
@@ -65,7 +74,15 @@ class CalendarRecyclerAdapter2(
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+        val inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
+        holder.oneDay.setOnClickListener{
+
+            //리스너 여기있어요.
+            listener.onClick(com.sopt.appjam_sggsag.Adapter.year, com.sopt.appjam_sggsag.Adapter.toDay,holder.numberView1.toString())
+            ctx.toast(year.toString()+(toDay+1).toString()+holder.numberView1.text)
+
+        }
         holder.numberView1.text = dataList[position].day
 
         if (dataList[position].color == "blue") {
@@ -244,11 +261,11 @@ class CalendarRecyclerAdapter2(
         }
 
 
-        holder.oneDay.setOnClickListener {
+//        holder.oneDay.setOnClickListener {
             //토스트뜨고
             //
-            holder.numberView1
-            ctx.toast(holder.numberView1.text)
+  //          holder.numberView1
+    //        ctx.toast(holder.numberView1.text)
             //하트 상태 바꾸고
             /*
             if(dataList[position].isLike==true){
@@ -261,7 +278,7 @@ class CalendarRecyclerAdapter2(
             }
             */
 
-        }
+      //  }
 
         //holder.heartImage.image = dataList[position].isLike.image
         /*
@@ -275,10 +292,11 @@ class CalendarRecyclerAdapter2(
     private fun getDay(month: Int) {
         val iCal = Calendar.getInstance()
         year = iCal.get(Calendar.YEAR)
-
         toDay = iCal.get(Calendar.MONTH)
         iCal.set(Calendar.MONTH, (toDay + month))
         iCal.set(Calendar.DATE, 1)      //오늘을 1일이라고 설정.
+        yyear = iCal.get(Calendar.YEAR)
+        mmonth = iCal.get(Calendar.MONTH)
         startDay = iCal.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY
         iCal.add(Calendar.MONTH, 1)
         iCal.add(Calendar.DATE, -1)

@@ -6,7 +6,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.TextView
 import com.sopt.appjam_sggsag.Adapter.Career.CareerRecyclerViewAdapter
 import com.sopt.appjam_sggsag.Career.OutActivityDetail
 import com.sopt.appjam_sggsag.Data.Career.CareerListData
@@ -20,10 +23,40 @@ class Career1Fragment : Fragment() {
     private var career1Fragment: View? = null
     lateinit var careerRecyclerViewAdapter: CareerRecyclerViewAdapter
 
+    private var titleTxt : String? = null
+    private var activityDate : String? = null
+    private var contentTxt : String? = null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+        arguments?.let{
+            titleTxt = it.getString("title")
+            activityDate = it.getString("date")
+            contentTxt = it.getString("content")
+        }
+
+    }
+
+
+    companion object {
+        private var instance: Career1Fragment? = null
+        @Synchronized
+        fun getInstance(titleTxt: String, activityDate: String, contentTxt: String): Career1Fragment{
+            if(instance==null){
+                instance = Career1Fragment().apply{
+                    arguments = Bundle().apply{
+                        putString("title", titleTxt)
+                        putString("date", activityDate)
+                        putString("content", contentTxt)
+                    }
+                }
+            }
+            return instance!!
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -31,13 +64,22 @@ class Career1Fragment : Fragment() {
         // Inflate the layout for this fragment
         career1Fragment = inflater!!.inflate(R.layout.fragment_career1, container, false)
         setBtnOnClickListener()
+
         return career1Fragment
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setRecyclerView()
+
+
+        val position: Int = careerRecyclerViewAdapter.itemCount
+        careerRecyclerViewAdapter.dataList.add(CareerListData(titleTxt, activityDate, contentTxt))
+        careerRecyclerViewAdapter.notifyItemInserted(position)
+
+
     }
+
 
     private fun setRecyclerView(){
         var dataList: ArrayList<CareerListData> = ArrayList()
@@ -54,7 +96,9 @@ class Career1Fragment : Fragment() {
         add_activity.setOnClickListener {
             startActivity<OutActivityDetail>()
         }
+
     }
+
 
 
 

@@ -9,12 +9,23 @@ import android.view.ViewGroup
 import com.sopt.appjam_sggsag.Adapter.CalendarRecyclerAdapter2
 import com.sopt.appjam_sggsag.Data.CalendarDateData
 import com.sopt.appjam_sggsag.Data.EventList
+import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 import com.sopt.appjam_sggsag.MyApplication
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.fragment_calendar_detail.*
 
 
-class CalendarDetailFragment2 : Fragment(){
+class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
+    override fun getYearMonthTab(year: String, month: String) {
+        //이거 아마 안쓸걸? 걍 비워두자
+    }
+
+    override fun onClick(year: Int, month: Int, day: String) {
+        val yyear = year
+        val mmonth = month
+        val dday = day
+
+    }
 
     lateinit var recyclerViewAdapter: CalendarRecyclerAdapter2
 
@@ -53,7 +64,7 @@ class CalendarDetailFragment2 : Fragment(){
 
 
         //리사이클러뷰 어댑터를 만들어서 아래처럼 고대로 하면 돼! 그 리사이클러뷰 어댑터에서 ctx는 activity!! 이거 넘겨주면되고!
-        recyclerViewAdapter = CalendarRecyclerAdapter2(activity!!, dataList,scheduleList, month)
+        recyclerViewAdapter = CalendarRecyclerAdapter2(activity!!, dataList,scheduleList, month,this)
         frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter
         frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
 
