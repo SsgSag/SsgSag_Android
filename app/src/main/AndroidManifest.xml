@@ -31,11 +31,7 @@
         <activity android:name=".SignUp.SignUp3">
         </activity>
         <activity android:name=".SignUp.SignUp4">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
 
-            <category android:name="android.intent.category.LAUNCHER"/>
-        </intent-filter>
         </activity>
         <activity android:name=".InfoActivity">
         </activity>
@@ -44,15 +40,18 @@
         <activity android:name=".ScheduleRegisterActivity">
         </activity>
         <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
-        <activity android:name=".JobActivity"/>
+        <activity android:name=".MyPage.JobActivity"/>
         <activity android:name=".Career.CareerActivity">
         </activity>
         <activity android:name=".MyPage.InterestArea">
         </activity>
         <activity android:name=".Career.AwardDetail"></activity>
-        <activity android:name=".InterestActivity"></activity>
     </application>
 
 </manifest>
