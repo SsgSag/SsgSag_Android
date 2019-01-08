@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.sopt.appjam_sggsag.Career.CareerActivity
+import com.sopt.appjam_sggsag.InterestActivity
 import com.sopt.appjam_sggsag.JobActivity
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.SignUp.SignUp4
@@ -42,7 +43,7 @@ class MyPageFragment:Fragment(){
         }
         val btn_preference: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_preference)
         btn_preference.setOnClickListener {
-            toast("관심분야")
+            startActivity<InterestActivity>()
         }
         val btn_job: RelativeLayout = myPageFragment!!.find(R.id.btn_my_page_job)
         btn_job.setOnClickListener {

@@ -67,7 +67,7 @@
                                 android:fontFamily="sans-serif"
                                 android:textSize="22sp"
                                 android:layout_marginTop="38dp"
-                                android:hint="활동명"
+                                android:hint="활동명 입력"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -109,16 +109,15 @@
                                         android:fontFamily="sans-serif"
                                         android:textStyle="normal"
                                         android:textSize="18sp"
-                                        android:id="@+id/tv_time_start"
-                                        android:text="2018년 11월"
+                                        android:id="@+id/tv_activity_start"
+                                        android:text="2018년 11월 25일"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"/>
                             </LinearLayout>
 
                             <ImageView
                                     android:src="@drawable/ic_arrow_gradation"
-                                    android:layout_weight="1"
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
 
                             <LinearLayout
@@ -143,8 +142,8 @@
                                         android:textColor="#000"
                                         android:fontFamily="sans-serif"
                                         android:textSize="18sp"
-                                        android:id="@+id/tv_time_end"
-                                        android:text="2019년 10월"
+                                        android:id="@+id/tv_activity_end"
+                                        android:text="2019년 10월 28일"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"/>
                             </LinearLayout>
