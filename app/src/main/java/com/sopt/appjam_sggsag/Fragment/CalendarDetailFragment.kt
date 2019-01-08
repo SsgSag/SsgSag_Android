@@ -4,7 +4,9 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
+import android.util.EventLog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +28,12 @@ import com.sopt.appjam_sggsag.MyApplication
 
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.fragment_calendar_detail.*
+import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.toast
+import com.sopt.appjam_sggsag.R.id.listView
+import com.baoyz.swipemenulistview.SwipeMenuLayout
+
+
 
 
 class CalendarDetailFragment : Fragment(), GetYearMonthTab {
@@ -33,7 +41,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
     lateinit var recyclerViewAdapter: CalendarRecyclerAdapter
     lateinit var recyclerViewAdapter3: CalendarRecyclerAdapter2
 
-    var mArrayList: java.util.ArrayList<String>? = java.util.ArrayList()
+    var mArrayList: ArrayList<EventList> = ArrayList()
 
     var yyear : Int = 0
     var mmonth : Int = 0
@@ -46,7 +54,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         yyear = year
         mmonth = month
         dday = day
-
+        toast(dday)
         val params =
             LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 689)
         val animation = AlphaAnimation(0f, 1f)
@@ -54,12 +62,26 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         frag_calendar_detail_recycle_view.layoutParams = params
         recyclerViewAdapter3 = CalendarRecyclerAdapter2(activity!!, dataList, scheduleList, month,this)
         frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter3
-
         frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
         ll_todo_all_list.visibility = View.VISIBLE
         ll_todo_all_list.setAnimation(animation)
-
-
+        tv_todo_title2.setText((month+1).toString()+"월 "+dday+"일")
+        //list에 표시할 정보 골라내기
+        Toast.makeText(activity!!, "바보도희"+year.toString(),Toast.LENGTH_SHORT).show()
+        toast("날짜래요:"+dday)
+        var count = 0
+        for(i in 0..scheduleList.size-1){
+            if(scheduleList[i].year==yyear &&scheduleList[i].month==mmonth+1 && scheduleList[i].day.toString()==dday){
+                mArrayList.add(EventList(year,mmonth+1,dday.toInt(),scheduleList[i].eventName,2))
+                //변경사항 카테고리
+//                var eee = mArrayList[i].eventName
+                count++
+            }
+        }
+        if(count>4){
+            //표시 추가
+        }
+        toast("던져버려"+count.toString())
     }
 
 
@@ -94,15 +116,15 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
 
         //scheduleList 받아와서 날짜로 검사해서, 그 size로 for문 돌게.
         //1. scheduleList 받아오기.
+
+        /*
         var count = 0
         for(i in 0..scheduleList.size-1){
             if(scheduleList[i].year==yyear &&scheduleList[i].month==mmonth+1 && scheduleList[i].day.toString()==dday ){
-                count++
+                mArrayList.add(scheduleList[i].eventName)
             }
         }
-        for (i in 0..count-1) {
-            mArrayList?.add("왜 이게 안뜨지?ㅇㅅㅇ")
-        }
+        */
         var listAdapter: ListDataAdapter = ListDataAdapter()
         listView2.adapter = listAdapter
 
@@ -110,41 +132,40 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
             // Create different menus depending on the view type
             val goodItem = SwipeMenuItem(getActivity())
             // set item background
-            goodItem.background = ColorDrawable(
-                Color.rgb(0x30, 0xB1,0xF5)
-            )
+            goodItem.background = ColorDrawable(Color.rgb(0x30, 0xB1,0xF5))
             // set item width
-            goodItem.width = 127
+            goodItem.width = 200
             // set a icon
             goodItem.setIcon(R.drawable.ic_task_complete)
             // add to menu
             menu.addMenuItem(goodItem)
 
             // create "delete" item
-            val deleteItem = SwipeMenuItem(
-                getActivity()
-            )
+            val deleteItem = SwipeMenuItem(getActivity())
             // set item background
-            deleteItem.background = ColorDrawable(
-                Color.rgb(0xE4,0xE4, 0xE4)
-            )
+            deleteItem.background = ColorDrawable(Color.rgb(0xE4,0xE4, 0xE4))
             // set item width
-            deleteItem.width = 127
+            deleteItem.width = 200
             // set a icon
             deleteItem.setIcon(R.drawable.ic_task_delete)
             // add to menu
             menu.addMenuItem(deleteItem)
         }
+
+
         listView2.setMenuCreator(creator)
 
         listView2.setOnMenuItemClickListener(
             object : SwipeMenuListView.OnMenuItemClickListener {
                 override fun onMenuItemClick(position: Int, menu: SwipeMenu, index: Int): Boolean {
-
                     when (index) {
                         0 -> {
                             Toast.makeText(activity!!, position.toString()+"지원완료", Toast.LENGTH_SHORT).show()
-                           // mArrayList[position]
+                            val view = listView2 as SwipeMenuLayout
+                            menu.getMenuItem(0).background = ColorDrawable(Color.rgb(0xE4,0xE4, 0xE4))// .setIcon(R.drawable.ic_task_delete)
+                           // listView2.mTitle
+                            //menu.getMenuItem(0).icon = R.drawable.ic_task_delete
+                            //listAdapter.notifyDataSetChanged()
                             /*
                             goodItem.background = ColorDrawable(
                                 Color.rgb(0x30, 0xB1,0xF5)
@@ -153,7 +174,8 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
                         }
                         1 -> {
                             mArrayList!!.removeAt(position)
-                            listAdapter.notifyDataSetChanged()
+                            //서버에서 일정 삭제 요청.
+                            listAdapter.notifyDataSetChanged()      //바뀌었다고 알려줌.
                             Toast.makeText(activity!!, "Item deleted", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -163,21 +185,21 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
 
         listView2.setOnMenuStateChangeListener(object : SwipeMenuListView.OnMenuStateChangeListener {
             override fun onMenuOpen(position: Int) {
-
+                 //   toast("onMenuOpen")
             }
 
             override fun onMenuClose(position: Int) {
-
+             //   toast("onMenuClose")
             }
         })
 
         listView2.setOnSwipeListener(object : SwipeMenuListView.OnSwipeListener {
             override fun onSwipeStart(position: Int) {
-
+              //  toast("onSwipeStart")
             }
 
             override fun onSwipeEnd(position: Int) {
-
+               // toast("onSwipeEnd")
             }
         })
     }
@@ -235,17 +257,53 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
                 holder = ViewHolder()
                 convertView = layoutInflater.inflate(R.layout.list_item, null)
                 // holder.mTextview
-                holder?.mTextview = convertView!!.findViewById<View>(R.id.tv_rv_todo_category) as TextView
+                holder?.mCategoryview = convertView!!.findViewById<View>(R.id.tv_rv_todo_category) as TextView
+                holder?.mTitleview = convertView!!.findViewById<View>(R.id.tv_rv_todo_title) as TextView
+                holder?.mPeriodview = convertView!!.findViewById<View>(R.id.tv_rv_todo_period) as TextView
                 convertView.tag = holder
             } else {
                 holder = convertView.tag as ViewHolder
             }
-            holder?.mTextview!!.text = mArrayList!!.get(position)
+
+            when(mArrayList.get(position).category){
+                0->{
+                    holder?.mCategoryview!!.text = "공모전"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color0))
+                }
+                1->{
+                    holder?.mCategoryview!!.text = "대외활동"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color1))
+                }
+                2->{
+                    holder?.mCategoryview!!.text = "동아리"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color2))
+                }
+                3->{
+                    holder?.mCategoryview!!.text = "교내활동"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color3))
+                }
+                4->{
+                    holder?.mCategoryview!!.text = "채용"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color4))
+                }
+                5->{
+                    holder?.mCategoryview!!.text = "기타"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
+                }
+            }
+            holder?.mTitleview!!.text = mArrayList!!.get(position).eventName
+
+            //계산코드
+            holder?.mPeriodview!!.text = (mArrayList!!.get(position).month).toString()+"."+mArrayList!!.get(position).day.toString()+" ~ "
+
             return convertView
         }
 
         internal inner class ViewHolder {
-            var mTextview: TextView? = null
+            var mCategoryview: TextView? = null
+            var mTitleview: TextView? = null
+            var mPeriodview: TextView? = null
+
         }
     }
 

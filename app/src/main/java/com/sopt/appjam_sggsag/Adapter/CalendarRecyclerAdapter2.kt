@@ -1,5 +1,6 @@
 package com.sopt.appjam_sggsag.Adapter
 
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.graphics.Color
 import android.support.v4.content.ContextCompat
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.sopt.appjam_sggsag.Data.CalendarDateData
 import com.sopt.appjam_sggsag.Data.EventList
 import com.sopt.appjam_sggsag.Data.EventNameList
@@ -52,20 +54,16 @@ class CalendarRecyclerAdapter2(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_calendar, parent, false)
-        val view33: View = LayoutInflater.from(ctx).inflate(R.layout.fragment_calendar, parent, false)
-        view33.tv_todo_title.setText("도희는바보다")
         eventNameList.clear()   //시작시 우선순위 갱신하기 위해 eventNameList 클리어
         for (i in 0..41) {
             for (j in 0..4) {
                 arr[i][j] = 9999
             }
         }
-        viewGroup  = parent
         saveEventName()     //scheduleList에 있는 이벤트 종류 저장
         sorting()
         //scheduleList 기반 eventNameList에 기간순으로 이벤트 저장. ex) 가장 긴 일정 : 인덱스0을 가짐.
         setDay(month)       //날짜 셋팅, arr 배열 채우기
-        Log.e("doheedohee", "네")
         params.setMargins(0, 0, 10, 5)   //두번째날부터 쓸 마진, 첫번째날은 있는 그대로 ㅇㅋㅇㅋ
         params2.setMargins(0, 0, 0, 5)
         return Holder(view)
@@ -76,13 +74,16 @@ class CalendarRecyclerAdapter2(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-        holder.oneDay.setOnClickListener{
 
+        holder.oneDay.setOnClickListener{
             //리스너 여기있어요.
-            listener.onClick(com.sopt.appjam_sggsag.Adapter.year, com.sopt.appjam_sggsag.Adapter.toDay,holder.numberView1.toString())
-            ctx.toast(year.toString()+(toDay+1).toString()+holder.numberView1.text)
+            var printDay = holder.numberView1.text
+            listener.onClick(yyear, mmonth, printDay.toString())
+            Log.e("CRA2", "CalendarRecyclerAdapter2")
 
         }
+
+
         holder.numberView1.text = dataList[position].day
 
         if (dataList[position].color == "blue") {
