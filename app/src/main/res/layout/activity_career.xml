@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Career.CareerActivity">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".Career.CareerActivity">
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp">
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
         <ImageView
-            android:id="@+id/btn_iv_back_career"
-            android:layout_marginLeft="16dp"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back"/>
+                android:id="@+id/btn_iv_back_career"
+                android:layout_marginLeft="16dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back"/>
         <TextView
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이력"
-            android:textSize="18sp"
-            android:textColor="#000000"
-            android:letterSpacing="-0.02"
-            android:gravity="center_horizontal"/>
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이력"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:letterSpacing="-0.02"
+                android:gravity="center_horizontal"/>
     </RelativeLayout>
     <android.support.design.widget.TabLayout
-        android:id="@+id/tl_top_navi_career_top_menu"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        app:tabIndicatorColor="0000">
+            android:id="@+id/tl_top_navi_career_top_menu"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            app:tabIndicatorColor="#0000">
     </android.support.design.widget.TabLayout>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/vp_career_act_view_frag_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:id="@+id/vp_career_act_view_frag_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     </android.support.v4.view.ViewPager>
 </LinearLayout>
