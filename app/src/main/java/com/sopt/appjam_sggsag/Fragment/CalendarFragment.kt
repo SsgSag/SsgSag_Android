@@ -1,23 +1,17 @@
 package com.sopt.appjam_sggsag.Fragment
 
 
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_calendar.*
-import kotlinx.android.synthetic.main.fragment_calendar.view.*
 import org.jetbrains.anko.support.v4.startActivity
 import java.util.*
 import android.text.Spannable
-import android.text.style.ForegroundColorSpan
 import android.text.SpannableStringBuilder
 import android.graphics.Typeface
-import android.graphics.drawable.ColorDrawable
 import android.text.style.StyleSpan
 import android.util.Log
 import com.sopt.appjam_sggsag.Adapter.CalendarViewPagerAdapter
@@ -28,16 +22,22 @@ import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.ScheduleRegisterActivity
 import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
-import android.widget.BaseAdapter
-import android.widget.Toast
-import com.baoyz.swipemenulistview.SwipeMenu
-import com.baoyz.swipemenulistview.SwipeMenuCreator
-import com.baoyz.swipemenulistview.SwipeMenuItem
-import com.baoyz.swipemenulistview.SwipeMenuListView
 
 
 class CalendarFragment : Fragment(), GetYearMonthTab {
+    override fun onClick(year: Int, month: Int, day: String) {
+        if (day != "") {
+            val animation = AlphaAnimation(1f, 0f)
+            animation.duration = 400
+            val animation2 = AlphaAnimation(0f, 1f)
+            animation2.duration = 400
+
+            schedule_linear_layout.visibility = (View.VISIBLE)
+            schedule_linear_layout.setAnimation(animation);
+            vp_frag_calendar_view_pager.visibility = View.GONE
+            vp_frag_calendar_view_pager.setAnimation(animation2);
+        }
+    }
 
     // var select_year : Int? = null       //RegisterScheduleActivity에서 넘겨받을 날짜 정보(spinner로 부터)
     // var select_month : Int? = null
@@ -116,87 +116,6 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
         setRecyclerView()
         configureBottomNavigation()
         setOnClickListener()
-        listView.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT)        //추가
-        for (i in 0..4) {
-            mArrayList?.add("List item -->i")
-        }
-        var listAdapter: ListDataAdapter = ListDataAdapter()
-        listView.adapter = listAdapter
-
-        val creator = SwipeMenuCreator { menu ->
-            // Create different menus depending on the view type
-            val goodItem = SwipeMenuItem(
-                getActivity()
-            )
-            // set item background
-            goodItem.background = ColorDrawable(
-                Color.rgb(
-                    0x30, 0xB1,
-                    0xF5
-                )
-            )
-            // set item width
-            goodItem.width = 90
-            // set a icon
-            goodItem.setIcon(R.drawable.ic_task_complete)
-            // add to menu
-            menu.addMenuItem(goodItem)
-
-            // create "delete" item
-            val deleteItem = SwipeMenuItem(
-                getActivity()
-            )
-            // set item background
-            deleteItem.background = ColorDrawable(
-                Color.rgb(
-                    0xF9,
-                    0x3F, 0x25
-                )
-            )
-            // set item width
-            deleteItem.width = 90
-            // set a icon
-            deleteItem.setIcon(R.drawable.ic_task_delete)
-            // add to menu
-            menu.addMenuItem(deleteItem)
-        }
-        listView.setMenuCreator(creator)
-
-        listView.setOnMenuItemClickListener(
-            object : SwipeMenuListView.OnMenuItemClickListener {
-                override fun onMenuItemClick(position: Int, menu: SwipeMenu, index: Int): Boolean {
-
-                    when (index) {
-                        0 -> Toast.makeText(activity!!, "Like button press", Toast.LENGTH_SHORT).show()
-                        1 -> {
-                            mArrayList!!.removeAt(position)
-                            listAdapter.notifyDataSetChanged()
-                            Toast.makeText(activity!!, "Item deleted", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                    return true
-                }
-            })
-
-        listView.setOnMenuStateChangeListener(object : SwipeMenuListView.OnMenuStateChangeListener {
-            override fun onMenuOpen(position: Int) {
-
-            }
-
-            override fun onMenuClose(position: Int) {
-
-            }
-        })
-
-        listView.setOnSwipeListener(object : SwipeMenuListView.OnSwipeListener {
-            override fun onSwipeStart(position: Int) {
-
-            }
-
-            override fun onSwipeEnd(position: Int) {
-
-            }
-        })
 
     }
 
@@ -315,39 +234,5 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
 
 */
 
-    inner internal class ListDataAdapter : BaseAdapter() {
 
-        var holder: ViewHolder? = null
-
-        override fun getCount(): Int {
-            return mArrayList!!.size
-        }
-
-        override fun getItem(i: Int): Any? {
-            return null
-        }
-
-        override fun getItemId(i: Int): Long {
-            return 0
-        }
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            var convertView = convertView
-
-            if (convertView == null) {
-                holder = ViewHolder()
-                convertView = layoutInflater.inflate(R.layout.list_item, null)
-                // holder.mTextview
-                holder?.mTextview = convertView!!.findViewById<View>(R.id.tv_rv_todo_category) as TextView
-                convertView.tag = holder
-            } else {
-                holder = convertView.tag as ViewHolder
-            }
-            holder?.mTextview!!.text = mArrayList!!.get(position)
-            return convertView
-        }
-        internal inner class ViewHolder {
-            var mTextview: TextView? = null
-        }
-    }
 }
