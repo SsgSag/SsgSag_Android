@@ -136,7 +136,7 @@
                     android:layout_marginLeft="8.4dp"
                     android:layout_marginRight="8.5dp"
                     android:layout_marginBottom="24.2dp"
-                    android:visibility="invisible">
+                    android:visibility="visible">
 
             </android.support.v4.view.ViewPager>
 
@@ -150,7 +150,7 @@
                     android:background="#ffffff"
                     android:layout_marginLeft="8.4dp"
                     android:layout_marginRight="8.5dp"
-                    android:visibility="visible">
+                    android:visibility="gone">
                 <android.support.v4.view.ViewPager
                         android:id="@+id/vp_frag_calendar_view_pager2"
                         android:layout_width="match_parent"
@@ -173,6 +173,7 @@
                             android:paddingVertical="5dp"
                             android:src="@drawable/ic_todolist_tab_down"/>
                     <TextView
+                            android:id="@+id/tv_todo_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -181,14 +182,12 @@
                             android:text="투두리스트"/>
 
                 </LinearLayout>
-                <ScrollView android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="42">
-                <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_frag_calendar_todo_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </ScrollView>
+                <com.baoyz.swipemenulistview.SwipeMenuListView
+                        android:id="@+id/listView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="42"/>
+
             </LinearLayout>
             <ImageView
                     android:id="@+id/go_todo_list"

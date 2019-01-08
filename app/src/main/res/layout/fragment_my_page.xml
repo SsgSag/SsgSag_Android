@@ -1,276 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="vertical"
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
             <RelativeLayout
-                android:clickable="false"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="136dp"
-                android:layout_width="128dp"
-                android:layout_height="128dp">
-                <ImageView
                     android:clickable="false"
-                    android:src="@drawable/img_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="56dp"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp">
+
                 <RelativeLayout
-                    android:id="@+id/btn_my_page_profile_setting"
-                    android:clickable="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:clickable="false"
+                        android:id="@+id/btn_my_page_profile_setting"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:src="@drawable/bt_camera" />
+                        android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_profile_my_page"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_default_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"/>
+                    <ImageView
+                            android:id="@+id/iv_camera_my_page"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:src="@drawable/bt_camera"/>
                 </RelativeLayout>
 
 
             </RelativeLayout>
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/mypage_user_name"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
-                    android:letterSpacing="-0.02"
-                    android:gravity="center_horizontal"
-                    android:text="김은혜"/>
+                        android:id="@+id/mypage_user_name"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:letterSpacing="-0.02"
+                        android:gravity="center_horizontal"
+                        android:text="김은혜"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/mypage_user_name"
-                    android:layout_alignBaseline="@+id/mypage_user_name"
-                    android:layout_marginStart="8dp"
-                    android:letterSpacing="-0.02"
-                    android:text="(dg9363)"
-                    android:textColor="#000000"
-                    android:textSize="15sp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/mypage_user_name"
+                        android:layout_alignBaseline="@+id/mypage_user_name"
+                        android:layout_marginStart="8dp"
+                        android:letterSpacing="-0.02"
+                        android:text="(dg9363)"
+                        android:textColor="#000000"
+                        android:textSize="15sp"/>
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/mypage_user_uni"
-                    android:layout_marginLeft="24dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="서울여자대학교"
-                    android:textSize="15sp"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="normal"
-                    android:textColor="#9b9b9b"
-                    android:letterSpacing="-0.02"
-                    android:gravity="center_horizontal"/>
+                        android:id="@+id/mypage_user_uni"
+                        android:layout_marginLeft="24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="서울여자대학교"
+                        android:textSize="15sp"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="normal"
+                        android:textColor="#9b9b9b"
+                        android:letterSpacing="-0.02"
+                        android:gravity="center_horizontal"/>
 
                 <ImageView
-                    android:id="@+id/mypage_user_rectangle"
-                    android:layout_marginStart="8dp"
-                    android:layout_toRightOf="@+id/mypage_user_uni"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/rectangle"/>
+                        android:id="@+id/mypage_user_rectangle"
+                        android:layout_marginStart="8dp"
+                        android:layout_toRightOf="@+id/mypage_user_uni"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/rectangle"/>
 
                 <TextView
-                    android:layout_toRightOf="@+id/mypage_user_rectangle"
-                    android:layout_marginStart="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="산업디자인"
-                    android:textSize="15sp"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="normal"
-                    android:textColor="#9b9b9b"
-                    android:letterSpacing="-0.02"
-                    android:gravity="center_horizontal"/>
+                        android:layout_toRightOf="@+id/mypage_user_rectangle"
+                        android:layout_marginStart="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="산업디자인"
+                        android:textSize="15sp"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="normal"
+                        android:textColor="#9b9b9b"
+                        android:letterSpacing="-0.02"
+                        android:gravity="center_horizontal"/>
             </RelativeLayout>
             <LinearLayout
-                android:paddingVertical="15dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="37dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:clickable="true"
-                    android:id="@+id/btn_my_page_preference"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:clickable="false"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bt_preference"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/btn_my_page_job"
-                    android:clickable="true"
-                    android:layout_marginLeft="74dp"
-                    android:layout_width="wrap_content"
+                    android:layout_marginTop="37dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:clickable="false"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bt_job"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/btn_my_page_career"
-                    android:clickable="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:clickable="false"
-                        android:layout_marginLeft="74dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bt_career"/>
-                </RelativeLayout>
+
+                <TextView
+                        android:paddingVertical="15dp"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="-0.02"
+                        android:textColor="#000"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif-medium"
+                        android:textSize="16sp"
+                        android:text="관심분야"
+                        android:id="@+id/btn_my_page_preference"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:paddingVertical="15dp"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/btn_my_page_job"
+                        android:letterSpacing="-0.02"
+                        android:textColor="#000"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif-medium"
+                        android:textSize="16sp"
+                        android:text="구직여부"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:paddingVertical="15dp"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/btn_my_page_career"
+                        android:letterSpacing="-0.02"
+                        android:textColor="#000"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif-medium"
+                        android:textSize="16sp"
+                        android:text="나의이력"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
             </LinearLayout>
             <ImageView
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/line_gradation"/>
-            <RelativeLayout
-                android:id="@+id/btn_my_page_notice"
-                android:clickable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:clickable="false"
                     android:scaleType="fitXY"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/my_page_list_rectangle"/>
-                <TextView
-                    android:id="@+id/my_page_notice_text"
-                    android:clickable="false"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="24dp"
+                    android:src="@drawable/line_gradation"/>
+            <RelativeLayout
+                    android:id="@+id/btn_my_page_notice"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="공지사항"
-                    android:textColor="#616161"
-                    android:textSize="16sp"
-                    android:letterSpacing="-0.02" />
+                    android:layout_height="wrap_content">
                 <ImageView
-                    android:clickable="false"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="16dp"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_next_mypage"/>
+                        android:clickable="false"
+                        android:scaleType="fitXY"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/my_page_list_rectangle"/>
+                <TextView
+                        android:id="@+id/my_page_notice_text"
+                        android:clickable="false"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="공지사항"
+                        android:textColor="#616161"
+                        android:textSize="16sp"
+                        android:letterSpacing="-0.02"/>
+                <ImageView
+                        android:clickable="false"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="16dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_next_mypage"/>
             </RelativeLayout>
             <ImageView
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/line"/>
-            <RelativeLayout
-                android:id="@+id/btn_my_page_push_setting"
-                android:clickable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:clickable="false"
                     android:scaleType="fitXY"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/my_page_list_rectangle"/>
-                <TextView
-                    android:id="@+id/my_page_alarm_text"
-                    android:clickable="false"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="24dp"
+                    android:src="@drawable/line"/>
+            <RelativeLayout
+                    android:id="@+id/btn_my_page_push_setting"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="푸시 알림 설정"
-                    android:textColor="#616161"
-                    android:textSize="16sp"
-                    android:letterSpacing="-0.02" />
+                    android:layout_height="wrap_content">
                 <ImageView
-                    android:clickable="false"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="16dp"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_next_mypage"/>
+                        android:clickable="false"
+                        android:scaleType="fitXY"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/my_page_list_rectangle"/>
+                <TextView
+                        android:id="@+id/my_page_alarm_text"
+                        android:clickable="false"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="푸시 알림 설정"
+                        android:textColor="#616161"
+                        android:textSize="16sp"
+                        android:letterSpacing="-0.02"/>
+                <ImageView
+                        android:clickable="false"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="16dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_next_mypage"/>
             </RelativeLayout>
             <ImageView
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/line"/>
-            <RelativeLayout
-                android:id="@+id/btn_my_page_account_management"
-                android:clickable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:clickable="false"
                     android:scaleType="fitXY"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/my_page_list_rectangle"/>
-                <TextView
-                    android:id="@+id/my_page_account_text"
-                    android:clickable="false"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="24dp"
+                    android:src="@drawable/line"/>
+            <RelativeLayout
+                    android:id="@+id/btn_my_page_account_management"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="계정관리"
-                    android:textColor="#616161"
-                    android:textSize="16sp"
-                    android:letterSpacing="-0.02" />
+                    android:layout_height="wrap_content">
                 <ImageView
-                    android:clickable="false"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="16dp"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_next_mypage"/>
+                        android:clickable="false"
+                        android:scaleType="fitXY"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/my_page_list_rectangle"/>
+                <TextView
+                        android:id="@+id/my_page_account_text"
+                        android:clickable="false"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="계정관리"
+                        android:textColor="#616161"
+                        android:textSize="16sp"
+                        android:letterSpacing="-0.02"/>
+                <ImageView
+                        android:clickable="false"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="16dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_next_mypage"/>
             </RelativeLayout>
             <ImageView
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/line"/>
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/line"/>
             <ImageView
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="131dp"
-                android:src="@drawable/my_page_list_rectangle"/>
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="131dp"
+                    android:src="@drawable/my_page_list_rectangle"/>
         </LinearLayout>
     </ScrollView>
-
 
 
 </LinearLayout>

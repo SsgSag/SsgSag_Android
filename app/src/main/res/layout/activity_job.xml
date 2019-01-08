@@ -6,15 +6,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".JobActivity">
+    tools:context=".MyPage.JobActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp">
         <ImageView
-            android:clickable="true"
             android:id="@+id/btn_iv_back_job"
-            android:paddingTop="16dp"
-            android:paddingBottom="12dp"
+            android:paddingVertical="16dp"
             android:src="@drawable/ic_arrow_back"
             android:paddingHorizontal="16dp"
             android:layout_width="wrap_content"
@@ -86,13 +84,12 @@
                 android:layout_below="@+id/job_text_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:clickable="false"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/toggle_off"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="24dp"/>
+                <Switch
+                        android:id="@+id/sw_job"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="24dp"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -107,14 +104,12 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:clickable="true"
                         android:id="@+id/btn_job_management"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/bt_job_management_unactive" />
 
                     <ImageView
-                        android:clickable="true"
                         android:id="@+id/btn_job_marketing"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -305,7 +300,7 @@
         android:layout_height="wrap_content">
         <ImageView
             android:clickable="true"
-            android:id="@+id/btn_my_page_save"
+            android:id="@+id/btn_job_save"
             android:src="@drawable/bt_save_mypage_unactive"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
