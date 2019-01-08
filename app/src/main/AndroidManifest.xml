@@ -51,6 +51,8 @@
         </activity>
         <activity android:name=".MyPage.InterestArea">
         </activity>
+        <activity android:name=".Career.AwardDetail"></activity>
+        <activity android:name=".InterestActivity"></activity>
     </application>
 
 </manifest>
