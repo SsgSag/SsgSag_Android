@@ -34,6 +34,7 @@ class OutActivityDetail : AppCompatActivity() {
         setContentView(R.layout.activity_out_detail)
         setBtnOnClickListener()
 
+        // edit text에서 타이틀과 내용 가져옴
         titleTxt = findViewById(R.id.et_activity_title) as EditText
         contentTxt = findViewById(R.id.et_activity_note) as EditText
 
@@ -100,10 +101,31 @@ class OutActivityDetail : AppCompatActivity() {
                     endYear = "${datePicker.year}"
                     endMonth = "${datePicker.month + 1}"
                     endDay = "${datePicker.dayOfMonth}"
-                    if(endYear >= startYear && endMonth >= startMonth && endDay > startDay){
+                    if(endYear > startYear){
                         tv_activity_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
                         check_date = true
-                    } else{
+                    }
+                    else if(endYear == startYear){
+                        if(endMonth > startMonth){
+                            tv_activity_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
+                            check_date = true
+                        }
+                        else if(endMonth==startMonth){
+                            if(endDay >= startDay){
+                                tv_activity_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
+                                check_date = true
+                            }
+                            else{
+                                toast("잘못된 날짜입니다.")
+                                check_date = false
+                            }
+                        }
+                        else {
+                            toast("잘못된 날짜입니다.")
+                            check_date = false
+                        }
+                    }
+                    else {
                         toast("잘못된 날짜입니다.")
                         check_date = false
                     }
@@ -114,11 +136,11 @@ class OutActivityDetail : AppCompatActivity() {
     }
 
 
-    /*
+/*
     private fun sendData(fragment: Fragment) {
         if(titleTxt!=null&&contentTxt!=null){
             val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.rv_career1_frag_activity_list, fragment)
+            transaction.add(R.id.fl_rv_career1_frag_activity_list, fragment)
             transaction.commit()
         }
     }*/

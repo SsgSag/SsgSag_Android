@@ -36,7 +36,6 @@ class ScheduleRegisterActivity : AppCompatActivity() {
         setOnClickListener()
         eventList = (this.application as MyApplication).eventList1
         // var dataList : ArrayList<CalendarDateData> = CalendarDetailFragment.dataList
-
     }
 
     private fun setOnClickListener() {
@@ -256,6 +255,7 @@ class ScheduleRegisterActivity : AppCompatActivity() {
         btn_exit.setOnClickListener {
             //eventList.add(EventList(year_spinner.getSelectedItem().toString().toInt(),month_spinner.getSelectedItem().toString().toInt(),day_spinner.getSelectedItem().toString().toInt(),register_event_name.text.toString(),3))
             //category3 넣어놨음.이거 받아와야함.
+
             startActivity<MainActivity>()
             finish()
         }
