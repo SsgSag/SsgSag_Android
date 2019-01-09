@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.sopt.appjam_sggsag.Career.CareerActivity
-import com.sopt.appjam_sggsag.InterestActivity
-import com.sopt.appjam_sggsag.JobActivity
+import com.sopt.appjam_sggsag.MyPage.JobActivity
 import com.sopt.appjam_sggsag.MyPage.InterestArea
 import com.sopt.appjam_sggsag.MyPage.JobActivity
 import com.sopt.appjam_sggsag.R

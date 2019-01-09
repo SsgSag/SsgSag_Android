@@ -46,7 +46,7 @@
         <activity android:name=".SplashActivity">
 
         </activity>
-        <activity android:name=".JobActivity"/>
+        <activity android:name=".MyPage.JobActivity"/>
         <activity android:name=".Career.CareerActivity">
         </activity>
     </application>

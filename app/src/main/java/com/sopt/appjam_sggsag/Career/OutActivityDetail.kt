@@ -100,10 +100,31 @@ class OutActivityDetail : AppCompatActivity() {
                     endYear = "${datePicker.year}"
                     endMonth = "${datePicker.month + 1}"
                     endDay = "${datePicker.dayOfMonth}"
-                    if(endYear >= startYear && endMonth >= startMonth && endDay > startDay){
+                    if(endYear > startYear){
                         tv_activity_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
                         check_date = true
-                    } else{
+                    }
+                    else if(endYear == startYear){
+                        if(endMonth > startMonth){
+                            tv_activity_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
+                            check_date = true
+                        }
+                        else if(endMonth==startMonth){
+                            if(endDay >= startDay){
+                                tv_activity_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
+                                check_date = true
+                            }
+                            else{
+                                toast("잘못된 날짜입니다.")
+                                check_date = false
+                            }
+                        }
+                        else {
+                            toast("잘못된 날짜입니다.")
+                            check_date = false
+                        }
+                    }
+                    else {
                         toast("잘못된 날짜입니다.")
                         check_date = false
                     }
