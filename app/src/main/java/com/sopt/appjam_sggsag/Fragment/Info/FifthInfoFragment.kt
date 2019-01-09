@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.sopt.appjam_sggsag.LoginActivity
 import com.sopt.appjam_sggsag.R
+import kotlinx.android.synthetic.main.activity_info.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -18,6 +19,12 @@ class FifthInfoFragment: Fragment(){
         fifthInfoFragment = inflater!!.inflate(R.layout.fragment_fifth_info, container, false)
 
         setOnBtnClickListener()
+
+        progress_1.setImageResource(R.drawable.progress_unactive)
+        progress_2.setImageResource(R.drawable.progress_unactive)
+        progress_3.setImageResource(R.drawable.progress_unactive)
+        progress_4.setImageResource(R.drawable.progress_unactive)
+        progress_5.setImageResource(R.drawable.progress_active)
 
         return fifthInfoFragment
     }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import com.sopt.appjam_sggsag.DB.SharedPreferenceController
+import com.sopt.appjam_sggsag.Info.WelcomeActivity
 import org.jetbrains.anko.startActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -21,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
         if(SharedPreferenceController.checkFirst(this)){
             Handler().apply {
                 postDelayed({
-                    startActivity<InfoActivity>()
+                    startActivity<WelcomeActivity>()
                     finish()
                 }, 1000)
             }

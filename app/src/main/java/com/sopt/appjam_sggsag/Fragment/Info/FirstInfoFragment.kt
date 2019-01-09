@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.sopt.appjam_sggsag.R
+import kotlinx.android.synthetic.main.activity_info.*
 
 class FirstInfoFragment: Fragment(){
 
@@ -16,7 +17,6 @@ class FirstInfoFragment: Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         firstInfoFragment = inflater!!.inflate(R.layout.fragment_first_info, container, false)
-
 
         return firstInfoFragment
 

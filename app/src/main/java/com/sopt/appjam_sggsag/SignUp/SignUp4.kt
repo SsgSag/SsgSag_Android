@@ -178,7 +178,7 @@ class SignUp4 : AppCompatActivity() {
             }
             Log.d("interest", "진희야 힘내" + interestListServer)
             getSignUpResponseData()
-            startActivity<MainActivity>()
+            startActivity<MainActivity>("check_signUp" to 1)
             finish()
         }
     }
@@ -197,28 +197,28 @@ class SignUp4 : AppCompatActivity() {
 
     private fun getSignUpResponseData() {
 
-        var userEmail = RequestBody.create(MediaType.parse("text/plain"), SignUp1.getSignUp1.id)
-        var userPw = RequestBody.create(MediaType.parse("text/plain"), SignUp1.getSignUp1.pw)
-        var userName = RequestBody.create(MediaType.parse("text/plain"), SignUp2.getSignUp2.name)
-        var userUniv = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.school)
-        var userMajor = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.major)
-        var userStudentNum = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.sid)
-        var userBirth = RequestBody.create(MediaType.parse("text/plain"), SignUp2.getSignUp2.birth)
-        var userPushAllow = RequestBody.create(MediaType.parse("text/plain"), "1")
-        var userInfoAllow = RequestBody.create(MediaType.parse("text/plain"), "1")
+//        var userEmail = RequestBody.create(MediaType.parse("text/plain"), SignUp1.getSignUp1.id)
+//        var userPw = RequestBody.create(MediaType.parse("text/plain"), SignUp1.getSignUp1.pw)
+//        var userName = RequestBody.create(MediaType.parse("text/plain"), SignUp2.getSignUp2.name)
+//        var userUniv = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.school)
+//        var userMajor = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.major)
+//        var userStudentNum = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.sid)
+//        var userBirth = RequestBody.create(MediaType.parse("text/plain"), SignUp2.getSignUp2.birth)
+//        var userPushAllow = RequestBody.create(MediaType.parse("text/plain"), 1)
+//        var userInfoAllow = RequestBody.create(MediaType.parse("text/plain"), 1)
 //        var userInterest = RequestBody.create(MediaType.parse("text/plain"), interestListServer)
 //        var profile = RequestBody.create(MediaType.parse("text/plain"), )
 
-        if(SignUp2.getSignUp2.btn==1)
-            gender="female"
-        else if(SignUp2.getSignUp2.btn==2)
-            gender="male"
-
-        var userGender = RequestBody.create(MediaType.parse("text/plain"), gender)
-
-        val file : File = File(SignUp2.getSignUp2.imageURI)
-        val requestfile : RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-        val data : MultipartBody.Part = MultipartBody.Part.createFormData("photo", file.name, requestfile)
+//        if(SignUp2.getSignUp2.btn==1)
+//            gender="female"
+//        else if(SignUp2.getSignUp2.btn==2)
+//            gender="male"
+//
+//        var userGender = RequestBody.create(MediaType.parse("text/plain"), gender)
+//
+//        val file : File = File(SignUp2.getSignUp2.imageURI)
+//        val requestfile : RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+//        val data : MultipartBody.Part = MultipartBody.Part.createFormData("photo", file.name, requestfile)
 
 //
 //        //Gson 라이브러리의 Json Parser을 통해 객체를 Json으로!
