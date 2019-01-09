@@ -22,7 +22,6 @@ import org.jetbrains.anko.support.v4.startActivity
 class Career1Fragment : Fragment() {
     private var career1Fragment: View? = null
     lateinit var careerRecyclerViewAdapter: CareerRecyclerViewAdapter
-
     private var titleTxt : String? = null
     private var activityDate : String? = null
     private var contentTxt : String? = null
@@ -32,17 +31,13 @@ class Career1Fragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         //bundle
         arguments?.let{
             titleTxt = it.getString("title")
             activityDate = it.getString("date")
             contentTxt = it.getString("content")
         }
-
     }
-
-
 
     // bundle
     companion object {

@@ -23,7 +23,6 @@ import com.sopt.appjam_sggsag.Career.CareerActivity
 import com.sopt.appjam_sggsag.MainActivity
 import com.sopt.appjam_sggsag.MyPage.InterestArea
 import com.sopt.appjam_sggsag.MyPage.JobActivity
-import com.sopt.appjam_sggsag.MyPage.InterestArea
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.SignUp.SignUp2
 import kotlinx.android.synthetic.main.activity_sign_up2.*
