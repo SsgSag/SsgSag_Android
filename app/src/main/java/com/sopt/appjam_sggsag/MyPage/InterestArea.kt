@@ -168,7 +168,6 @@ class InterestArea : AppCompatActivity() {
                     interestListServer= arrayOf(i.toByte())
             }
             Log.d("interest", "진희야 힘내" + interestListServer)
-            startActivity<MainActivity>()
             finish()
         }
     }

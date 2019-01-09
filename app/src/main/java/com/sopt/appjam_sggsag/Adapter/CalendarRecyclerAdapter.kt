@@ -73,11 +73,8 @@ class CalendarRecyclerAdapter(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
-        holder.oneDay.setOnClickListener {
-            listener.onClick(yyear, mmonth, holder.numberView1.toString())
-            ctx.toast(yyear.toString() + (mmonth + 1).toString() + holder.numberView1.text)
-        }
 
+        var testText = holder.numberView1.text
 
         holder.numberView1.text = dataList[position].day
 
@@ -236,7 +233,12 @@ class CalendarRecyclerAdapter(
             //setColor(holder.numberView5,position)
         }
 
-
+        holder.oneDay.setOnClickListener {
+            var printDay = holder.numberView1.text
+            listener.onClick(yyear, mmonth, printDay.toString())
+            //printDay = ""
+            Log.e("CRA", "CalendarRecyclerAdapter")
+        }
         //holder.heartImage.image = dataList[position].isLike.image
         /*
         if(dataList[position].isLike==false){
