@@ -34,6 +34,7 @@ class OutActivityDetail : AppCompatActivity() {
         setContentView(R.layout.activity_out_detail)
         setBtnOnClickListener()
 
+        // edit text에서 타이틀과 내용 가져옴
         titleTxt = findViewById(R.id.et_activity_title) as EditText
         contentTxt = findViewById(R.id.et_activity_note) as EditText
 
@@ -135,11 +136,11 @@ class OutActivityDetail : AppCompatActivity() {
     }
 
 
-    /*
+/*
     private fun sendData(fragment: Fragment) {
         if(titleTxt!=null&&contentTxt!=null){
             val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.rv_career1_frag_activity_list, fragment)
+            transaction.add(R.id.fl_rv_career1_frag_activity_list, fragment)
             transaction.commit()
         }
     }*/

@@ -33,6 +33,7 @@ class Career1Fragment : Fragment() {
         super.onCreate(savedInstanceState)
 
 
+        //bundle
         arguments?.let{
             titleTxt = it.getString("title")
             activityDate = it.getString("date")
@@ -42,6 +43,8 @@ class Career1Fragment : Fragment() {
     }
 
 
+
+    // bundle
     companion object {
         private var instance: Career1Fragment? = null
         @Synchronized
@@ -73,6 +76,7 @@ class Career1Fragment : Fragment() {
         setRecyclerView()
 
 
+        //recycler view에 아이템 추가함
         val position: Int = careerRecyclerViewAdapter.itemCount
         careerRecyclerViewAdapter.dataList.add(CareerListData(titleTxt, activityDate, contentTxt))
         careerRecyclerViewAdapter.notifyItemInserted(position)

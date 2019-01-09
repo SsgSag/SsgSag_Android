@@ -10,7 +10,6 @@ import android.widget.TextView
 import com.sopt.appjam_sggsag.Career.CareerActivity
 import com.sopt.appjam_sggsag.MyPage.JobActivity
 import com.sopt.appjam_sggsag.MyPage.InterestArea
-import com.sopt.appjam_sggsag.MyPage.JobActivity
 import com.sopt.appjam_sggsag.R
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
@@ -44,7 +43,6 @@ class MyPageFragment:Fragment(){
         }
         val btn_preference: TextView = myPageFragment!!.find(R.id.btn_my_page_preference)
         btn_preference.setOnClickListener {
-            startActivity<InterestActivity>()
             startActivity<InterestArea>()
         }
         val btn_job: TextView = myPageFragment!!.find(R.id.btn_my_page_job)
