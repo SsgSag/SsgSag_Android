@@ -25,7 +25,7 @@ class SignUp2 : AppCompatActivity() {
         lateinit var name :String
         lateinit var birth: String
         lateinit var email: String
-        lateinit var imageURI: String
+        var imageURI: String?= null
         var btn: Int = 0
     }
 

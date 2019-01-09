@@ -11,6 +11,8 @@ import android.support.design.widget.TabLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.TabHost
+import com.sopt.appjam_sggsag.Fragment.SignUpDialogFragment
+import org.jetbrains.anko.toast
 
 var flag: Int = 0
 
@@ -19,6 +21,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var check :Int = intent.getIntExtra("check_signUp",0)
+        if(check==1){
+            val firstDlg: SignUpDialogFragment = SignUpDialogFragment()
+            firstDlg.show(supportFragmentManager,"first dialog")
+        }
+
         configureBottomNavigation()
     }
 
