@@ -30,11 +30,11 @@ class FifthInfoFragment: Fragment(){
     }
 
     private fun setOnBtnClickListener(){
-        val fifth_skip: RelativeLayout = fifthInfoFragment!!.find(R.id.btn_fifth_skip)
-        fifth_skip.setOnClickListener {
-            startActivity<LoginActivity>()
-            activity!!.finish()
-        }
+//        val fifth_skip: RelativeLayout = fifthInfoFragment!!.find(R.id.btn_fifth_skip)
+//        fifth_skip.setOnClickListener {
+//            startActivity<LoginActivity>()
+//            activity!!.finish()
+//        }
     }
 
 }

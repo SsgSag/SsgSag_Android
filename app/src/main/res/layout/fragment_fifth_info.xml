@@ -54,27 +54,6 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-                android:layout_alignParentBottom="true"
-                android:clickable="true"
-                android:paddingHorizontal="35dp"
-                android:layout_marginBottom="26dp"
-                android:id="@+id/btn_fifth_skip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
-
-            <TextView
-                    android:clickable="false"
-                    android:textColor="#5a78fa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="시작하기"
-                    android:textSize="14sp"
-                    android:textStyle="normal" />
-        </RelativeLayout>
     </RelativeLayout>
 
 

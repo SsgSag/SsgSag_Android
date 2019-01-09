@@ -18,8 +18,14 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.sopt.appjam_sggsag.DB.SharedPreferenceController
+import com.sopt.appjam_sggsag.LoginActivity
 import com.sopt.appjam_sggsag.MainActivity
 import com.sopt.appjam_sggsag.R
+import kotlinx.android.synthetic.main.activity_welcome.*
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.padding
+import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.startActivity
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -107,17 +113,35 @@ class WelcomeActivity : AppCompatActivity() {
 
         Log.e("진희야 힘내", "aaaaa $currentPage")
 
+        val lp =
+            LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        lp.setMargins(6, 0, 0, 0)
 
         dotsLayout!!.removeAllViews()
         for (i in dots.indices) {
             dots[i] = ImageView(this)
             dots[i]!!.setImageResource(R.drawable.progress_unactive)
+            dots[i]!!.layoutParams=lp
             dotsLayout!!.addView(dots[i])
         }
+        dots[currentPage]!!.setImageResource(R.drawable.progress_active)
 
-//        if (dots.size.isNotEmpty())
-            dots[currentPage]!!.setImageResource(R.drawable.progress_active)
+        if (currentPage == 4) {
+            showHide(tv_start_info)
+            tv_start_info.setOnClickListener {
+                startActivity<LoginActivity>()
+            }
+        }
     }
+
+    private fun showHide(view:View) {
+        view.visibility = if (view.visibility == View.VISIBLE){
+            View.INVISIBLE
+        } else{
+            View.VISIBLE
+        }
+    }
+
 
     private fun getItem(i: Int): Int {
         return viewPager!!.currentItem + i
@@ -129,7 +153,7 @@ class WelcomeActivity : AppCompatActivity() {
         finish()
     }
 
-    // Making notification bar transparent
+// Making notification bar transparent
 
     private fun changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
