@@ -1,43 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragment.Career.Career1Fragment">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#f2f3f5"
+                tools:context=".Fragment.Career.Career1Fragment">
     <RelativeLayout
-        android:id="@+id/activity_top"
-        android:layout_marginTop="12dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:clickable="true"
-            android:id="@+id/btn_add_activity"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
+            android:id="@+id/activity_top"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
+        <RelativeLayout
+                android:clickable="true"
+                android:id="@+id/btn_add_activity"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             <ImageView
-                android:clickable="false"
-                android:id="@+id/btn_career_plus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_plus"/>
+                    android:clickable="false"
+                    android:id="@+id/btn_career_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_plus"/>
             <TextView
-                android:clickable="false"
-                android:layout_toRightOf="@+id/btn_career_plus"
-                android:layout_marginLeft="8dp"
-                android:text="추가하기"
-                android:textSize="16sp"
-                android:fontFamily="sans-serif"
-                android:textStyle="normal"
-                android:textColor="#000000"
-                android:letterSpacing="-0.02"
-                android:lineSpacingExtra="14sp"
-                android:gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                    android:clickable="false"
+                    android:layout_toRightOf="@+id/btn_career_plus"
+                    android:layout_marginLeft="8dp"
+                    android:text="추가하기"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textColor="#000000"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="14sp"
+                    android:gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/rl_empty_career"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/activity_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <ImageView
+                android:layout_marginTop="85dp"
+                android:id="@+id/iv_empty_career"
+                android:src="@drawable/img_empty_career"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:gravity="center"
+                android:lineSpacingExtra="9sp"
+                android:textColor="#b2b2b2"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="36dp"
+                android:layout_below="@+id/iv_empty_career"
+                android:text="어떤 활동을 했는지\n기록해보세요!"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+
     <FrameLayout
             android:id="@+id/fl_rv_career1_frag_activity_list"
             android:layout_centerHorizontal="true"

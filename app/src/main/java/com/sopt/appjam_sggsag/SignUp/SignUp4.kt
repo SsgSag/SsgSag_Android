@@ -211,6 +211,7 @@ class SignUp4 : AppCompatActivity() {
         var userMajor = SignUp3.getSignUp3.major
         var userStudentNum = SignUp3.getSignUp3.sid
         var userBirth = SignUp2.getSignUp2.birth
+        var userId = SignUp2.getSignUp2.email
 
         if(SignUp2.getSignUp2.btn==1)
             gender="female"
@@ -222,6 +223,7 @@ class SignUp4 : AppCompatActivity() {
         val jsonObject : JSONObject = JSONObject()
         jsonObject.put("userEmail", userEmail)
         jsonObject.put("userPw", userPw)
+        jsonObject.put("userId", userId)
         jsonObject.put("userName", userName)
         jsonObject.put("userUniv", userUniv)
         jsonObject.put("userMajor", userMajor)
@@ -242,10 +244,7 @@ class SignUp4 : AppCompatActivity() {
             override fun onResponse(call: Call<PostSignUpResponse>, response: Response<PostSignUpResponse>) {
                 if (response.isSuccessful) {
                     Log.d("log값", response.body()?.status.toString()) //status가 201이면 성공적
-                    //val token = response.body()!!.data.token
-                    //저번 시간에 배웠던 SharedPreference에 토큰을 저장!
-                    //SharedPreferenceController.setAuthorization(this@LoginActivity, token)
-                    //toast(SharedPreferenceController.getAuthorization(this@LoginActivity))
+
                     if(response.body()?.status == "201"){
                         toast("status : " + response.body()?.status)
                         startActivity<MainActivity>()

@@ -13,6 +13,7 @@ import com.sopt.appjam_sggsag.R
 import org.jetbrains.anko.find
 
 class CareerRecyclerViewAdapter(val ctx : Context, val dataList: ArrayList<CareerListData>) : RecyclerView.Adapter<CareerRecyclerViewAdapter.Holder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_career_list, parent, false)
         return Holder(view)
