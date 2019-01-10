@@ -19,6 +19,7 @@
                     android:layout_height="56dp"/>
 
             <ImageView
+                    android:id="@+id/btn_out_activity_close"
                     android:paddingVertical="16dp"
                     android:paddingHorizontal="16dp"
                     android:src="@drawable/ic_x_close"
@@ -59,14 +60,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                         <EditText
-                                android:id="@+id/et_schedule_title"
+                                android:id="@+id/et_activity_title"
                                 android:letterSpacing="-0.02"
                                 android:textColor="#000"
                                 android:textStyle="bold"
                                 android:fontFamily="sans-serif"
                                 android:textSize="22sp"
                                 android:layout_marginTop="38dp"
-                                android:hint="일정 입력"
+                                android:hint="활동명 입력"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -108,16 +109,15 @@
                                         android:fontFamily="sans-serif"
                                         android:textStyle="normal"
                                         android:textSize="18sp"
-                                        android:id="@+id/tv_time_start"
-                                        android:text="2018년 11월"
+                                        android:id="@+id/tv_activity_start"
+                                        android:text="2018년 11월 25일"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"/>
                             </LinearLayout>
 
                             <ImageView
                                     android:src="@drawable/ic_arrow_gradation"
-                                    android:layout_weight="1"
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
 
                             <LinearLayout
@@ -142,8 +142,8 @@
                                         android:textColor="#000"
                                         android:fontFamily="sans-serif"
                                         android:textSize="18sp"
-                                        android:id="@+id/tv_time_end"
-                                        android:text="2019년 10월"
+                                        android:id="@+id/tv_activity_end"
+                                        android:text="2019년 10월 28일"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"/>
                             </LinearLayout>
@@ -174,7 +174,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingHorizontal="10dp"
                                 android:background="@drawable/edit_text_line"
-                                android:id="@+id/et_note"
+                                android:id="@+id/et_activity_note"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:lines="5"
@@ -187,7 +187,7 @@
                 </RelativeLayout>
 
                 <ImageView
-                        android:id="@+id/btn_schedule_save"
+                        android:id="@+id/btn_activity_save"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="30dp"
                         android:layout_marginTop="16dp"

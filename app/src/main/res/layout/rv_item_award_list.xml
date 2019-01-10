@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
 
-</android.support.constraint.ConstraintLayout>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="137dp">
+
+    <ImageView
+            android:layout_marginBottom="12dp"
+        android:id="@+id/career_card_background"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/award_rectangle"/>
+
+    <ImageView
+            android:id="@+id/btn_award_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/career_card_background"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/group_3" />
+    <TextView
+        android:id="@+id/career_card_title"
+        android:layout_alignLeft="@+id/career_card_background"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IT동아리 SOPT 23기"
+        android:textColor="#3a57e5"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
+        android:textSize="19sp"/>
+    <TextView
+        android:id="@+id/career_card_time"
+        android:layout_alignLeft="@+id/career_card_background"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="4dp"
+        android:layout_below="@+id/career_card_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018.08 ~ 2019.01"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-light"
+        android:textStyle="normal"
+        android:textColor="#a3a3a3"
+        android:letterSpacing="-0.02" />
+    <TextView
+        android:id="@+id/career_card_content"
+        android:layout_below="@+id/career_card_time"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/career_card_background"
+        android:layout_marginLeft="18dp"
+        android:layout_alignRight="@+id/career_card_background"
+        android:layout_marginRight="18dp"
+        android:textSize="16sp"
+        android:textColor="#4a4a4a"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="7sp"
+        android:text="대상"/>
+</RelativeLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="336dp"
+        android:layout_height="814dp">
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <TextView
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="26dp"
+                android:layout_marginTop="34dp"
+                android:text="상세정보"
+                android:letterSpacing="-0.02"
+                android:textStyle="bold"
+                android:textColor="#5874fd"
+                android:fontFamily="sans-serif"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <LinearLayout
+                    android:id="@+id/btn_go_website"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="34dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:layout_marginRight="4dp"
+                        android:text="웹사이트"
+                        android:lineSpacingExtra="9sp"
+                        android:letterSpacing="-0.02"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="#5874fd"
+                        android:textSize="13sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <ImageView
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/ic_arrow_next_web"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:layout_marginHorizontal="16dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="@string/detail_dialog"
+                    android:lineSpacingExtra="8sp"
+                    android:letterSpacing="-0.02"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+            android:paddingRight="22dp"
+            android:paddingBottom="30dp"
+            android:layout_gravity="right"
+            android:lineSpacingExtra="7sp"
+            android:letterSpacing="-0.02"
+            android:textColor="#666"
+            android:textStyle="normal"
+            android:fontFamily="sans-serif-light"
+            android:textSize="15sp"
+            android:text="닫기"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

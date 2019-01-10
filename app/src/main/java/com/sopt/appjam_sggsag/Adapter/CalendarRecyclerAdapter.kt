@@ -16,18 +16,27 @@ import com.sopt.appjam_sggsag.Data.EventNameList
 import com.sopt.appjam_sggsag.R
 import org.jetbrains.anko.toast
 import java.util.*
+import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 
+
+var textSize: Float = 2.5f
 var year: Int = 2019
 var toDay: Int = 1   //아니 이게 사실은 달 받아오는 거임.
+var date: Int = 0
 
 class CalendarRecyclerAdapter(
     val ctx: Context,
     val dataList: ArrayList<CalendarDateData>,
     val scheduleList: ArrayList<EventList>,
-    val month: Int
+    val month: Int,
+    val listener: GetYearMonthTab
 ) :
     RecyclerView.Adapter<CalendarRecyclerAdapter.Holder>() {
 
+
+    var yyear: Int = year
+    var mmonth: Int = toDay
+    lateinit var viewGroup: ViewGroup
     var eventName: String? = null      //scheduleList에 있는 event 종류 저장
     val eventNameList: ArrayList<EventNameList> = ArrayList()   //우선순위 순 이벤트 저장
     internal var startDay: Int = 0  //이번달의 시작요일
@@ -41,27 +50,32 @@ class CalendarRecyclerAdapter(
     var flag = 0
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_calendar, parent, false)
+
         eventNameList.clear()   //시작시 우선순위 갱신하기 위해 eventNameList 클리어
         for (i in 0..41) {
             for (j in 0..4) {
                 arr[i][j] = 9999
             }
         }
+        // setOnClickListener(view2)
         saveEventName()     //scheduleList에 있는 이벤트 종류 저장
         sorting()
         //scheduleList 기반 eventNameList에 기간순으로 이벤트 저장. ex) 가장 긴 일정 : 인덱스0을 가짐.
         setDay(month)       //날짜 셋팅, arr 배열 채우기
         params.setMargins(0, 0, 10, 5)   //두번째날부터 쓸 마진, 첫번째날은 있는 그대로 ㅇㅋㅇㅋ
         params2.setMargins(0, 0, 0, 5)
+
         return Holder(view)
     }
 
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+
+
+        var testText = holder.numberView1.text
 
         holder.numberView1.text = dataList[position].day
 
@@ -83,11 +97,11 @@ class CalendarRecyclerAdapter(
         //  holder.numberView5.setTextSize(1.0f)
         //   Log.e("arr[position]",arr[position][1])
         if (arr[position][1] != 9999) {
-            if(eventNameList[arr[position][1]].minDay.toString()== dataList[position].day || position%7==0){
-                holder.numberView2.text = " "+eventNameList[arr[position][1]].eventName
+            if (eventNameList[arr[position][1]].minDay.toString() == dataList[position].day || position % 7 == 0) {
+                holder.numberView2.text = " " + eventNameList[arr[position][1]].eventName
                 // holder.numberView2.setTextSize(1.0f)
             }
-            if(eventNameList[arr[position][1]].maxDay.toString()== dataList[position].day){
+            if (eventNameList[arr[position][1]].maxDay.toString() == dataList[position].day) {
                 holder.numberView2.layoutParams = params
                 // holder.numberView2.setTextSize(1.0f)
             }
@@ -117,11 +131,11 @@ class CalendarRecyclerAdapter(
             //setColor(holder.numberView2,position)
         }
         if (arr[position][2] != 9999) {
-            if(eventNameList[arr[position][2]].minDay.toString()== dataList[position].day || position%7==0) {
-                holder.numberView3.text = " "+eventNameList[arr[position][2]].eventName
+            if (eventNameList[arr[position][2]].minDay.toString() == dataList[position].day || position % 7 == 0) {
+                holder.numberView3.text = " " + eventNameList[arr[position][2]].eventName
                 //      holder.numberView3.setTextSize(1.0f)
             }
-            if(eventNameList[arr[position][2]].maxDay.toString()== dataList[position].day){
+            if (eventNameList[arr[position][2]].maxDay.toString() == dataList[position].day) {
                 holder.numberView3.layoutParams = params
                 //     holder.numberView3.setTextSize(1.0f)
             }
@@ -151,11 +165,11 @@ class CalendarRecyclerAdapter(
             //setColor(holder.numberView3,position)
         }
         if (arr[position][3] != 9999) {
-            if(eventNameList[arr[position][3]].minDay.toString()== dataList[position].day || position%7==0) {
-                holder.numberView4.text = " "+eventNameList[arr[position][3]].eventName
+            if (eventNameList[arr[position][3]].minDay.toString() == dataList[position].day || position % 7 == 0) {
+                holder.numberView4.text = " " + eventNameList[arr[position][3]].eventName
                 //   holder.numberView4.setTextSize(1.0f)
             }
-            if(eventNameList[arr[position][3]].maxDay.toString()== dataList[position].day){
+            if (eventNameList[arr[position][3]].maxDay.toString() == dataList[position].day) {
                 holder.numberView4.layoutParams = params
                 //   holder.numberView4.setTextSize(1.0f)
             }
@@ -186,11 +200,11 @@ class CalendarRecyclerAdapter(
 
         }
         if (arr[position][4] != 9999) {
-            if(eventNameList[arr[position][4]].minDay.toString()== dataList[position].day || position%7==0) {
-                holder.numberView5.text = " "+eventNameList[arr[position][4]].eventName
+            if (eventNameList[arr[position][4]].minDay.toString() == dataList[position].day || position % 7 == 0) {
+                holder.numberView5.text = " " + eventNameList[arr[position][4]].eventName
                 //   holder.numberView5.setTextSize(1.0f)
             }
-            if(eventNameList[arr[position][4]].maxDay.toString()== dataList[position].day){
+            if (eventNameList[arr[position][4]].maxDay.toString() == dataList[position].day) {
                 holder.numberView5.layoutParams = params
                 //   holder.numberView5.setTextSize(1.0f)
             }
@@ -220,32 +234,24 @@ class CalendarRecyclerAdapter(
             //setColor(holder.numberView5,position)
         }
 
-
         holder.oneDay.setOnClickListener {
-            //토스트뜨고
-            //
-            holder.numberView1
-            ctx.toast(holder.numberView1.text)
-            //하트 상태 바꾸고
-            /*
-            if(dataList[position].isLike==true){
-                dataList[position].isLike=false
-                holder.heartImage.visibility = View.GONE
-            }
-            else{
-                dataList[position].isLike=true
-                holder.heartImage.visibility = View.VISIBLE
-            }
-            */
-
+            var printDay = holder.numberView1.text
+            listener.onClick(yyear, mmonth, printDay.toString())
+            holder.numberView1.setBackgroundResource(R.drawable.select_marker)
+            holder.numberView1.setTextColor(Color.WHITE)
+            //printDay = ""
+            Log.e("CRA", "CalendarRecyclerAdapter")
         }
-
         //holder.heartImage.image = dataList[position].isLike.image
         /*
         if(dataList[position].isLike==false){
             holder.heartImage.visibility = View.GONE
         }
         */
+        if(holder.numberView1.text == date.toString() && yyear==year && mmonth==toDay){
+            holder.numberView1.setBackgroundResource(R.drawable.today_marker);
+            holder.numberView1.setTextColor(Color.WHITE)
+        }
     }
 
 
@@ -254,8 +260,12 @@ class CalendarRecyclerAdapter(
         year = iCal.get(Calendar.YEAR)
 
         toDay = iCal.get(Calendar.MONTH)
+        date = iCal.get(Calendar.DATE)
         iCal.set(Calendar.MONTH, (toDay + month))
         iCal.set(Calendar.DATE, 1)      //오늘을 1일이라고 설정.
+        yyear = iCal.get(Calendar.YEAR)
+        mmonth = iCal.get(Calendar.MONTH)
+
         startDay = iCal.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY
         iCal.add(Calendar.MONTH, 1)
         iCal.add(Calendar.DATE, -1)
@@ -315,9 +325,7 @@ class CalendarRecyclerAdapter(
     }
 
 
-
     private fun saveEventName() {
-
         for (i in 0..scheduleList.size - 1) {
             eventName = scheduleList[i].eventName
             if ((year == scheduleList[i].year) && ((month + 1) == scheduleList[i].month)) {
@@ -337,12 +345,28 @@ class CalendarRecyclerAdapter(
                     }
 
                     if (alreadyExist == 0) {
-                        eventNameList.add(EventNameList(eventName!!, scheduleList[i].category, 1, scheduleList[i].day,scheduleList[i].day))
+                        eventNameList.add(
+                            EventNameList(
+                                eventName!!,
+                                scheduleList[i].category,
+                                1,
+                                scheduleList[i].day,
+                                scheduleList[i].day
+                            )
+                        )
                     } else {
                         alreadyExist = 0
                     }
                 } else {
-                    eventNameList.add(EventNameList(eventName!!, scheduleList[i].category, 1, scheduleList[i].day,scheduleList[i].day))
+                    eventNameList.add(
+                        EventNameList(
+                            eventName!!,
+                            scheduleList[i].category,
+                            1,
+                            scheduleList[i].day,
+                            scheduleList[i].day
+                        )
+                    )
                 }
             }
 
@@ -364,8 +388,8 @@ class CalendarRecyclerAdapter(
         }
     }
 
-    private fun setColor(tv: TextView, position:Int){
-        Log.e("[position][i]",arr[position][2].toString())//eventNameList[arr[position][2]].eventName)
+    private fun setColor(tv: TextView, position: Int) {
+        Log.e("[position][i]", arr[position][2].toString())//eventNameList[arr[position][2]].eventName)
         //var category = eventNameList[arr[position][1]].category
         /*
         when (eventNameList[arr[position][1]].category) {
@@ -396,9 +420,10 @@ class CalendarRecyclerAdapter(
         }
         */
 
+
     }
 
-    private fun changeLayout(){
+    private fun changeLayout() {
         //fragment_calendar의 schedule_linear_layout를 setVisible을 visible로 바꾼다.
 
     }

@@ -40,7 +40,7 @@
 
                 <TextView
                         android:layout_marginTop="41dp"
-                        android:layout_marginBottom="24dp"
+                        android:layout_marginBottom="37dp"
                         android:textSize="20sp"
                         android:fontFamily="sans-serif"
                         android:textStyle="bold"
@@ -51,10 +51,11 @@
                         android:layout_height="wrap_content"/>
 
                 <ImageView
-                        android:layout_marginBottom="40dp"
-                        android:background="@color/cursorColor"
-                        android:layout_width="match_parent"
-                        android:layout_height="135dp"/>
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/img_signup_userdata"
+                        android:layout_marginBottom="36dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                 <LinearLayout
                         android:focusable="true"
@@ -63,10 +64,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                     <EditText
+                            android:backgroundTint="#e0e0e0"
                             android:singleLine="true"
                             android:imeOptions="actionDone"
                             android:id="@+id/et_id"
-                            android:hint="아이디"
+                            android:hint="이메일"
                             android:letterSpacing="-0.02"
                             android:textColor="#000"
                             android:textStyle="normal"
@@ -77,6 +79,7 @@
                             android:layout_height="wrap_content"/>
 
                     <EditText
+                            android:backgroundTint="#e0e0e0"
                             android:inputType="textPassword"
                             android:singleLine="true"
                             android:id="@+id/et_pw"
@@ -91,6 +94,7 @@
                             android:layout_height="wrap_content"/>
 
                     <EditText
+                            android:backgroundTint="#e0e0e0"
                             android:inputType="textPassword"
                             android:singleLine="true"
                             android:id="@+id/et_pw_check"

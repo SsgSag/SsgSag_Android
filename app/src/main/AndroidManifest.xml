@@ -13,7 +13,7 @@
     <application
             android:name=".MyApplication"
             android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_launcher_app"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
@@ -39,14 +39,22 @@
         <activity android:name=".ScheduleRegisterActivity">
         </activity>
         <activity android:name=".SplashActivity">
+
+        </activity>
+        <activity android:name=".MyPage.JobActivity"/>
+        <activity android:name=".Career.CareerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".JobActivity"/>
-        <activity android:name=".Career.CareerActivity">
+        <activity android:name=".MyPage.InterestArea">
+        </activity>
+        <activity android:name=".Career.AwardDetail"/>
+        <activity android:name=".Info.WelcomeActivity">
+        </activity>
+        <activity android:name=".CalendarDetailActivity">
         </activity>
     </application>
 

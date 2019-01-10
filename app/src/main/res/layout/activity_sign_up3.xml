@@ -58,6 +58,7 @@
                         android:layout_height="wrap_content"/>
 
                 <EditText
+                        android:backgroundTint="#e0e0e0"
                         android:id="@+id/et_school"
                         android:hint="학교 선택"
                         android:singleLine="true"
@@ -71,6 +72,7 @@
                         android:layout_height="wrap_content"/>
 
                 <EditText
+                        android:backgroundTint="#e0e0e0"
                         android:id="@+id/et_major"
                         android:hint="학과 선택"
                         android:singleLine="true"
@@ -84,6 +86,7 @@
                         android:layout_height="wrap_content"/>
 
                 <EditText
+                        android:backgroundTint="#e0e0e0"
                         android:id="@+id/et_grade"
                         android:hint="학년"
                         android:singleLine="true"
@@ -97,6 +100,7 @@
                         android:layout_height="wrap_content"/>
 
                 <EditText
+                        android:backgroundTint="#e0e0e0"
                         android:id="@+id/et_sid"
                         android:hint="학번"
                         android:singleLine="true"

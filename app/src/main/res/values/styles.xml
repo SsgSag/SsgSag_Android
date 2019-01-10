@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:tabStripEnabled">false</item>-->
 
         <!--상대바 컬러 투명-->
         <!--<item name="android:windowTranslucentStatus">true</item>-->
@@ -13,11 +14,20 @@
 
         <item name="android:windowLightStatusBar">true</item>
 
-
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <!--<style name="tabTheme" parent="ThemeOver">-->
+        <!--<item name="android:tabWidgetStyle">@style/Widget.TabWidget</item>-->
+    <!--</style>-->
+
+    <!--<style name="Widget.TabWidget" parent="android:Theme">-->
+        <!--<item name="android:tabStripEnabled">false</item>-->
+    <!--</style>-->
+
+
 
 </resources>

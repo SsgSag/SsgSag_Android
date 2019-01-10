@@ -61,7 +61,7 @@
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true">
                         <EditText
-                                android:id="@+id/et_schedule_title"
+                                android:id="@+id/et_certificate_title"
                                 android:letterSpacing="-0.02"
                                 android:textColor="#000"
                                 android:textStyle="normal"
@@ -124,7 +124,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingHorizontal="10dp"
                                 android:background="@drawable/edit_text_line"
-                                android:id="@+id/et_note"
+                                android:id="@+id/et_certificate_note"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:lines="5"

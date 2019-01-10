@@ -1,11 +1,11 @@
 package com.sopt.appjam_sggsag.Post
 
+
 data class PostCalendarResponse(
     val status : Int,
     val message : String,
-    val data : CalendarData
+    val data : ArrayList<CalendarData>
 )
-
 data class CalendarData(
     val posterIdx : Int,
     val categoryIdx : Int,
@@ -16,5 +16,6 @@ data class CalendarData(
     val outline : String,
     val posterStartDate : String,
     val posterEndDate : String,
-    val dday : Int
+    val dday : Int,
+    val length : Int
 )

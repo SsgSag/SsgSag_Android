@@ -13,8 +13,16 @@ import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlinx.android.synthetic.main.activity_top_navi_avtivity.*
+import android.support.design.widget.TabLayout
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.TabHost
+import com.sopt.appjam_sggsag.Fragment.SignUpDialogFragment
+import org.jetbrains.anko.toast
 
-var flag : Int = 0;
+var flag: Int = 0
+
 class MainActivity : AppCompatActivity() {
 //    var inputPosterData : PosterData?= null
 
@@ -38,6 +46,12 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
+        var check :Int = intent.getIntExtra("check_signUp",0)
+        if(check==1){
+            val firstDlg: SignUpDialogFragment = SignUpDialogFragment()
+            firstDlg.show(supportFragmentManager,"first dialog")
+        }
+
         configureBottomNavigation()
 //        getPosterListResponse()
     }
@@ -51,13 +65,22 @@ class MainActivity : AppCompatActivity() {
       //      vp_main_act_view_frag_pager.setCurrentItem(2, true)
       //}
       //  flag++
+        if (flag == 0) {
+            vp_main_act_view_frag_pager.setCurrentItem(1, true)
+        } else {
+            vp_main_act_view_frag_pager.setCurrentItem(2, true)
+        }
+        flag++
         // ViewPager와 Tablayout을 엮어줍니다!
         tl_top_navi_act_top_menu.setupWithViewPager(vp_main_act_view_frag_pager)
         //TabLayout에 붙일 layout을 찾아준 다음
         val bottomNaviLayout: View = this.layoutInflater.inflate(R.layout.activity_top_navi_avtivity, null, false)
         //탭 하나하나 TabLayout에 연결시켜줍니다.
-        tl_top_navi_act_top_menu.getTabAt(0)!!.customView = bottomNaviLayout.findViewById(R.id.btn_top_navi_my_page_tab) as RelativeLayout
-        tl_top_navi_act_top_menu.getTabAt(1)!!.customView = bottomNaviLayout.findViewById(R.id.btn_top_navi_home_tab) as RelativeLayout
-        tl_top_navi_act_top_menu.getTabAt(2)!!.customView = bottomNaviLayout.findViewById(R.id.btn_top_navi_calendar_tab) as RelativeLayout
+        tl_top_navi_act_top_menu.getTabAt(0)!!.customView =
+                bottomNaviLayout.findViewById(R.id.btn_top_navi_my_page_tab) as RelativeLayout
+        tl_top_navi_act_top_menu.getTabAt(1)!!.customView =
+                bottomNaviLayout.findViewById(R.id.btn_top_navi_home_tab) as RelativeLayout
+        tl_top_navi_act_top_menu.getTabAt(2)!!.customView =
+                bottomNaviLayout.findViewById(R.id.btn_top_navi_calendar_tab) as RelativeLayout
     }
 }

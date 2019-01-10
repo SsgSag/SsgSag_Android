@@ -1,5 +1,6 @@
 package com.sopt.appjam_sggsag.Adapter
 
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.graphics.Color
 import android.support.v4.content.ContextCompat
@@ -8,12 +9,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.sopt.appjam_sggsag.Data.CalendarDateData
 import com.sopt.appjam_sggsag.Data.EventList
 import com.sopt.appjam_sggsag.Data.EventNameList
+import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 import com.sopt.appjam_sggsag.R
+import kotlinx.android.synthetic.main.fragment_calendar.view.*
+import kotlinx.android.synthetic.main.rv_item_calendar.view.*
 import org.jetbrains.anko.toast
 import java.util.*
 
@@ -22,14 +28,17 @@ class CalendarRecyclerAdapter2(
     val ctx: Context,
     val dataList: ArrayList<CalendarDateData>,
     val scheduleList: ArrayList<EventList>,
-    val month: Int
+    val month: Int,
+    val listener: GetYearMonthTab
 ) :
     RecyclerView.Adapter<CalendarRecyclerAdapter2.Holder>() {
 
-
+    lateinit var viewGroup : ViewGroup
 
     var year: Int = 2019
     var toDay: Int = 1   //아니 이게 사실은 달 받아오는 거임.
+    var yyear : Int = year
+    var mmonth : Int = toDay
     var eventName: String? = null      //scheduleList에 있는 event 종류 저장
     val eventNameList: ArrayList<EventNameList> = ArrayList()   //우선순위 순 이벤트 저장
     internal var startDay: Int = 0  //이번달의 시작요일
@@ -56,7 +65,6 @@ class CalendarRecyclerAdapter2(
         sorting()
         //scheduleList 기반 eventNameList에 기간순으로 이벤트 저장. ex) 가장 긴 일정 : 인덱스0을 가짐.
         setDay(month)       //날짜 셋팅, arr 배열 채우기
-        Log.e("doheedohee", "네")
         params.setMargins(0, 0, 10, 5)   //두번째날부터 쓸 마진, 첫번째날은 있는 그대로 ㅇㅋㅇㅋ
         params2.setMargins(0, 0, 0, 5)
         return Holder(view)
@@ -65,6 +73,11 @@ class CalendarRecyclerAdapter2(
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+        val inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
+
+
+
 
         holder.numberView1.text = dataList[position].day
 
@@ -244,24 +257,24 @@ class CalendarRecyclerAdapter2(
         }
 
 
-        holder.oneDay.setOnClickListener {
-            //토스트뜨고
-            //
-            holder.numberView1
-            ctx.toast(holder.numberView1.text)
-            //하트 상태 바꾸고
-            /*
-            if(dataList[position].isLike==true){
-                dataList[position].isLike=false
-                holder.heartImage.visibility = View.GONE
-            }
-            else{
-                dataList[position].isLike=true
-                holder.heartImage.visibility = View.VISIBLE
-            }
-            */
-
+//        holder.oneDay.setOnClickListener {
+        //토스트뜨고
+        //
+        //          holder.numberView1
+        //        ctx.toast(holder.numberView1.text)
+        //하트 상태 바꾸고
+        /*
+        if(dataList[position].isLike==true){
+            dataList[position].isLike=false
+            holder.heartImage.visibility = View.GONE
         }
+        else{
+            dataList[position].isLike=true
+            holder.heartImage.visibility = View.VISIBLE
+        }
+        */
+
+        //  }
 
         //holder.heartImage.image = dataList[position].isLike.image
         /*
@@ -269,16 +282,42 @@ class CalendarRecyclerAdapter2(
             holder.heartImage.visibility = View.GONE
         }
         */
+
+        if(holder.numberView1.text == date.toString() && yyear== com.sopt.appjam_sggsag.Adapter.year && mmonth== com.sopt.appjam_sggsag.Adapter.toDay){
+            holder.numberView1.setBackgroundResource(R.drawable.today_marker);
+            holder.numberView1.setTextColor(Color.WHITE)
+        }
+
+        setOnClickListener(holder)
     }
 
+
+    private fun setOnClickListener(holder:Holder){
+        holder.oneDay.setOnClickListener{
+            //리스너 여기있어요.
+
+            var printDay = holder.numberView1.text
+            holder.numberView2.setBackgroundResource(R.drawable.today_marker);
+            holder.numberView3.setTextColor(Color.WHITE)
+            // it.numbering1.text = "이이이"
+            //holder.numberView1.setBackgroundResource(R.drawable.select_marker)
+            //   holder.numberView1.setTextColor(Color.WHITE)
+            holder.numberView1.setText("77")
+            var xxxx = holder.numberView1.text
+            ctx.toast("도희는 자야한다")
+            listener.onClick(yyear, mmonth, printDay.toString())
+            Log.e("CRA2", printDay.toString())
+        }
+    }
 
     private fun getDay(month: Int) {
         val iCal = Calendar.getInstance()
         year = iCal.get(Calendar.YEAR)
-
         toDay = iCal.get(Calendar.MONTH)
         iCal.set(Calendar.MONTH, (toDay + month))
         iCal.set(Calendar.DATE, 1)      //오늘을 1일이라고 설정.
+        yyear = iCal.get(Calendar.YEAR)
+        mmonth = iCal.get(Calendar.MONTH)
         startDay = iCal.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY
         iCal.add(Calendar.MONTH, 1)
         iCal.add(Calendar.DATE, -1)
@@ -350,6 +389,7 @@ class CalendarRecyclerAdapter2(
                     for (j in 0..eventNameList.size - 1) {
                         if (eventName == eventNameList[j].eventName) {
                             eventNameList[j].count++
+                            Log.e("eventNameTest",eventNameList[j].count.toString())
                             if (scheduleList[i].day < eventNameList[j].minDay)
                                 eventNameList[j].minDay = scheduleList[i].day
                             if (scheduleList[i].day > eventNameList[j].maxDay)
