@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:background="@drawable/calendar_list_round_rectangle"
+              android:id="@+id/btn_calendar_list_item"
               android:layout_marginTop="8dp"
               android:layout_marginBottom="8dp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+              android:layout_width="336.6dp"
+              android:layout_height="75.3dp"
               android:layout_marginLeft="11.6dp"
               android:layout_marginRight="11.8dp"
               android:orientation="horizontal">
+    <ImageView
+            android:src="@drawable/label_task_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -17,25 +23,40 @@
                 android:id="@+id/tv_rv_todo_category"
                 android:layout_width="50.8dp"
                 android:layout_height="19.4dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="14.4dp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="-0.02"
                 android:textStyle="bold"
-                android:textSize="13dp"
+                android:textSize="12sp"
                 android:text="공모전"/>
         <TextView
                 android:id="@+id/tv_rv_todo_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:textSize="20dp"
+                android:layout_marginLeft="14.4dp"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="-0.02"
+                android:textStyle="normal"
+                android:textColor="#020202"
                 android:text="HDC 아이콘트롤스 조명 공모전"/>
         <TextView
                 android:id="@+id/tv_rv_todo_period"
                 android:layout_width="250.8dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:textSize="14dp"
+                android:layout_marginLeft="14.4dp"
+                android:textSize="13sp"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="-0.02"
+                android:textStyle="normal"
+                android:textColor="#8b8b8b"
                 android:text="HDC 아이콘트롤스 조명 공모전"/>
     </LinearLayout>
+    <ImageView
+            android:layout_marginVertical="8.7dp"
+            android:background="#e0e0e0"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
     <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -52,9 +73,12 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="2"
                 android:text="5"
-                android:textSize="35dp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#000000"
+                android:letterSpacing="-0.02"
+                android:textSize="34sp"
+                android:textStyle="normal"
+                android:gravity="center_horizontal"/>
         <TextView
                 android:id="@+id/tv_rv_d_day2"
                 android:layout_width="57.2dp"
@@ -64,7 +88,12 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:text="일 남음"
-                android:gravity="center"/>
+                android:fontFamily="sans-serif"
+                android:textColor="#868686"
+                android:letterSpacing="-0.02"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"/>
     </LinearLayout>
 
 

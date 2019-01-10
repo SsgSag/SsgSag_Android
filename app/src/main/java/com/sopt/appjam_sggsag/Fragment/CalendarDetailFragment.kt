@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
 import android.util.EventLog
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,11 +33,14 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
 import com.sopt.appjam_sggsag.R.id.listView
 import com.baoyz.swipemenulistview.SwipeMenuLayout
-
-
+import com.sopt.appjam_sggsag.CalendarDetailActivity
+import org.jetbrains.anko.find
+import org.jetbrains.anko.sdk27.coroutines.onItemClick
+import org.jetbrains.anko.support.v4.startActivity
 
 
 class CalendarDetailFragment : Fragment(), GetYearMonthTab {
+
 
     lateinit var recyclerViewAdapter: CalendarRecyclerAdapter
     lateinit var recyclerViewAdapter3: CalendarRecyclerAdapter2
@@ -62,6 +66,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         frag_calendar_detail_recycle_view.layoutParams = params
         recyclerViewAdapter3 = CalendarRecyclerAdapter2(activity!!, dataList, scheduleList, month,this)
         frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter3
+
         frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
         ll_todo_all_list.visibility = View.VISIBLE
         ll_todo_all_list.setAnimation(animation)
@@ -114,6 +119,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
 
         listView2.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT)       //왼쪽 모션 추가
 
+
         //scheduleList 받아와서 날짜로 검사해서, 그 size로 for문 돌게.
         //1. scheduleList 받아오기.
 
@@ -152,9 +158,11 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
             menu.addMenuItem(deleteItem)
         }
 
+        listView2.setOnItemClickListener { parent, view, position, id ->
+            startActivity<CalendarDetailActivity>()
+        }
 
         listView2.setMenuCreator(creator)
-
         listView2.setOnMenuItemClickListener(
             object : SwipeMenuListView.OnMenuItemClickListener {
                 override fun onMenuItemClick(position: Int, menu: SwipeMenu, index: Int): Boolean {
@@ -231,6 +239,8 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
             ll_todo_all_list.setAnimation(animation2)
             setRecycleView()
         }
+
+
     }
 
 
