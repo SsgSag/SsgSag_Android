@@ -11,55 +11,44 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.widget.TextView
-import android.widget.Toast
-import com.google.gson.JsonParser
-import com.sopt.appjam_sggsag.R
-import com.sopt.appjam_sggsag.Data.PosterData
-import com.sopt.appjam_sggsag.Post.PostPosterListResponse
 import com.sopt.appjam_sggsag.CardStackAdapter
+import com.sopt.appjam_sggsag.Data.DetailPosterData
 import com.sopt.appjam_sggsag.MyApplication
-import com.sopt.appjam_sggsag.SpotDiffCallback
+import com.sopt.appjam_sggsag.MyApplication.Companion.inputPosterData
 import com.sopt.appjam_sggsag.Network.NetworkService
+import com.sopt.appjam_sggsag.R
+import com.sopt.appjam_sggsag.SpotDiffCallback
 import com.yuyakaido.android.cardstackview.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.find
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment(), CardStackListener {
     private val drawerLayout by lazy { drawer_layout }
-    private var cardStackView: CardStackView? =null
-//    private var LeftButtonView: CardStackView?= null
-    private val manager by lazy { CardStackLayoutManager(context, this) }
-//    private val adapter by lazy { CardStackAdapter(createPosters()) }
-//    private val lbadapter by lazy  {LeftButtonAdpater(createPosters())}
-//    private var manager: CardStackLayoutManager? = null
-//    private val adapter:CardStackAdapter = CardStackAdapter(createPosters())
+    private var cardStackView: CardStackView? = null
+    //본래 선언
+    //private val manager by lazy { CardStackLayoutManager(context, this) }
+    //private val adapter by lazy { CardStackAdapter(createPosters()) }
+    lateinit var manager : CardStackLayoutManager
+    lateinit var adapter : CardStackAdapter
     private var homeFragmentView: View? = null
 
-    //For Server Communication
-    val WRITE_FRAGMENT_REQUESET_CODE = 1000
-    val dataList: ArrayList<PosterData> by lazy {
-        ArrayList<PosterData>()
-    }
     val networkService: NetworkService by lazy {
         MyApplication.instance.networkService
     }
-    var inputPosterArr = ArrayList<PosterData>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         homeFragmentView = inflater!!.inflate(R.layout.fragment_home, container, false)
-//        getPosterListResponse()
 //        setupNavigation()
         return homeFragmentView
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        getPosterListResponse()
+        //내가 차라리 메인에서 불러온다...
+        //getPosterListResponse()
+        //by lazy에서 lateinit으로 변경함에 따라 adapter 초기화하기 위함
+        manager =CardStackLayoutManager(context)
+        adapter= CardStackAdapter(createPosters())
         setupCardStackView()//CardStackAdapter가 처음 쓰이는 부분
         setupButton()
     }
@@ -78,12 +67,10 @@ class HomeFragment : Fragment(), CardStackListener {
     }
 
     override fun onCardSwiped(direction: Direction) {
-        //스와이프 시 반응
-        Toast.makeText(this.context,"eeeeeeeeeee",Toast.LENGTH_SHORT).show()
         Log.d("CardStackView", "onCardSwiped: p = ${manager.topPosition}, d = $direction")
-//        if (manager.topPosition == adapter.itemCount - 5) {
-//            paginate()
-//        }
+        if (manager.topPosition == adapter.itemCount - 5) {
+            paginate()
+        }
     }
 
     override fun onCardRewound() {
@@ -134,7 +121,7 @@ class HomeFragment : Fragment(), CardStackListener {
 */
 
     private fun setupCardStackView() {
-        cardStackView=homeFragmentView!!.find(R.id.card_stack_view)
+        cardStackView = homeFragmentView!!.find(R.id.card_stack_view)
 //        LeftButtonView=homeFragmentView!!.find(R.posterIdx.cs_view_for_progress)
 //        manager=CardStackLayoutManager(context, this)
 //        adapter=CardStackAdapter(createPosters())
@@ -177,7 +164,7 @@ class HomeFragment : Fragment(), CardStackListener {
         manager.setCanScrollVertical(true)
 
         cardStackView!!.layoutManager = manager
-//        cardStackView!!.adapter = adapter
+        cardStackView!!.adapter = adapter
 //        LeftButtonView!!.adapter = lbadapter
         cardStackView!!.itemAnimator.apply {
             if (this is DefaultItemAnimator) {
@@ -237,15 +224,15 @@ class HomeFragment : Fragment(), CardStackListener {
     }
     */
 
-//    private fun paginate() {
-//        val old = adapter.getSpots()
+    private fun paginate() {
+        val old = adapter.getSpots()
 //        val new = old.plus(createPosters())
-//        val new = old.plus(createPosters())
-//        val callback = SpotDiffCallback(old, new)
-//        val result = DiffUtil.calculateDiff(callback)
-//        adapter.setSpots(new as ArrayList<PosterData>)
-//        result.dispatchUpdatesTo(adapter)
-//    }
+        val new = old.plus(createPosters())
+        val callback = SpotDiffCallback(old, new)
+        val result = DiffUtil.calculateDiff(callback)
+        adapter.setSpots(new as ArrayList<DetailPosterData>)
+        result.dispatchUpdatesTo(adapter)
+    }
 
 /*
     private fun reload() {
@@ -361,335 +348,400 @@ class HomeFragment : Fragment(), CardStackListener {
     }
 */
 
-    private fun getPosterListResponse(){
-//        val jsonObject: JSONObject = JSONObject()
-//        val gsonObject : JSONObject= JsonParser().parse(jsonObject.toString()) as JSONObject
-        Log.e("1111111111111111","1111111111111111111111")
-        //바로 아래 라인에서 터진다
-        val postPosterListResponse
-                =networkService.postPosterResponse("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08")//,gsonObject)
-        Log.e("2222222222222","33333333333333333")
-        postPosterListResponse.enqueue(object : Callback<PostPosterListResponse>{
+    /*
+    private fun getPosterListResponse() {
+        Log.e("111111함수 정상 실행되구요", "함수 정상 실행되구요")
+        val postPosterListResponse: Call<PostPosterListResponse> =
+            networkService.postPosterResponse("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08")
+        //networkService.postPosterResponse(SharedPreferenceController.getAuthorization(this.context!!))
+        Log.e("111111여기까지는 들어옵니다.","여기까지는 들어옵니다.")
+        postPosterListResponse.enqueue(object : Callback<PostPosterListResponse> {
             override fun onFailure(call: Call<PostPosterListResponse>, t: Throwable) {
-                Log.e("iiiiiiiiiiiiiiiiiiiiPoster call fail",t.toString())
+                Log.e("111111그런데 onFailure도 안들어오고","그런데 onFailure도 안 들어오고")
             }
-            override fun onResponse(call: Call<PostPosterListResponse>, response: Response<PostPosterListResponse>) {
-                if(response.isSuccessful){
-                    Log.e("pleaseeeeeeeeeeeee","can you come to here")
-//                    val input : List<PosterData> = response.body()!!.data
-//                    input.size
-                    val inputPoster0 = response.body()!!.data[0]
-                    val inputPoster1 = response.body()!!.data[1]
-                    val inputPoster2 = response.body()!!.data[2]
-                    val inputPoster3 = response.body()!!.data[3]
-                    val inputPoster4 = response.body()!!.data[4]
-                    val inputPoster5 = response.body()!!.data[5]
-                    val inputPoster6 = response.body()!!.data[6]
-                    val inputPoster7 = response.body()!!.data[7]
-                    val inputPoster8 = response.body()!!.data[8]
-                    val inputPoster9 = response.body()!!.data[9]
-                    inputPosterArr.add(inputPoster0)
-                    inputPosterArr.add(inputPoster1)
-                    inputPosterArr.add(inputPoster2)
-                    inputPosterArr.add(inputPoster3)
-                    inputPosterArr.add(inputPoster4)
-                    inputPosterArr.add(inputPoster5)
-                    inputPosterArr.add(inputPoster6)
-                    inputPosterArr.add(inputPoster7)
-                    inputPosterArr.add(inputPoster8)
-                    inputPosterArr.add(inputPoster9)
-//                    inputPoster0,
-//                    inputPoster1,
-//                    inputPoster2,
-//                    inputPoster3,
-//                    inputPoster4,
-//                    inputPoster5,
-//                    inputPoster6,
-//                    inputPoster7,
-//                    inputPoster8,
-//                    inputPoster9
+            override fun onResponse(
+                call: Call<PostPosterListResponse>,
+                response: Response<PostPosterListResponse>
+            ) {
+                Log.e("111111onResponse도 안 들어옵니다." ,"onResponse도 안들어옵니다.")
+                if (response.isSuccessful) {
+                    //?.의 오른쪽이 함수이면 null safe operator
+                    //?.의 오른쪽이 변수/상수이면 null이 될 수 있는 타입 표시
+                    if (response.body()?.data!=null) {
+                        Log.e("pleaseeeeeeeeeeeee", "can you come to here")
+                        inputPosterData = response.body()!!.data
+                    }
                 }
             }
         })
     }
+    */
+    /*
+    private fun getPosterListResponse() {
+        ApplicationController.instance.networkService.postPosterResponse("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08")
+            .enqueue(object: Callback<PostPosterListResponse>{
+                override fun onFailure(call : Call<PostPosterListResponse>?,t : Throwable?){
+                    Log.e("onFailure 들어옴","들어옴")
+                }
+                override fun onResponse(call: Call<PostPosterListResponse>?, response: Response<PostPosterListResponse>) {
+                    Log.e("들어옴1",response.toString())
+                    Log.e("들어옴2",response!!.body().toString())
+                    if (response.body()?.data!=null) {
+                        Log.e("pleaseeeeeeeeeeeee", "can you come to here")
+                        inputPosterData = response.body()!!.data
+                        Log.e("들어옴3",inputPosterData.toString())
+                        hehehehe =1
+                        Log.e("hehehehe in response",hehehehe.toString())
+                    }
+                }
+            })
+    }
+    */
 
-//    private fun createPosters(): ArrayList<PosterData> {
-//        val posters = ArrayList<PosterData>()
-//        Log.e("imageeeee","eeeeeeeeeeeee")
-//
-//        //1번 CARD
-//        posters.add(
-//            PosterData(
-//                inputPosterArr[0].posterIdx,
-//                inputPosterArr[0].categoryIdx,
-//                inputPosterArr[0].photoUrl,
-//                inputPosterArr[0].posterName,
-//                inputPosterArr[0].posterRegDate,
-//                inputPosterArr[0].posterStartDate,
-//                inputPosterArr[0].posterEndDate,
-//                inputPosterArr[0].posterWebsite,
-//                inputPosterArr[0].isSeek,
-//                inputPosterArr[0].outline,
-//                inputPosterArr[0].target,
-//                inputPosterArr[0].period,
-//                inputPosterArr[0].benefit,
-//                inputPosterArr[0].documentDate,
-//                inputPosterArr[0].announceDate1,
-//                inputPosterArr[0].announceDate2,
-//                inputPosterArr[0].finalAnnounceDate,
-//                inputPosterArr[0].interviewDate
-//            )
-//        )
-//        //2번 CARD
-//        posters.add(
-//            PosterData(
-//                inputPosterArr[1].posterIdx,
-//                inputPosterArr[1].categoryIdx,
-//                inputPosterArr[1].photoUrl,
-//                inputPosterArr[1].posterName,
-//                inputPosterArr[1].posterRegDate,
-//                inputPosterArr[1].posterStartDate,
-//                inputPosterArr[1].posterEndDate,
-//                inputPosterArr[1].posterWebsite,
-//                inputPosterArr[1].isSeek,
-//                inputPosterArr[1].outline,
-//                inputPosterArr[1].target,
-//                inputPosterArr[1].period,
-//                inputPosterArr[1].benefit,
-//                inputPosterArr[1].documentDate,
-//                inputPosterArr[1].announceDate1,
-//                inputPosterArr[1].announceDate2,
-//                inputPosterArr[1].finalAnnounceDate,
-//                inputPosterArr[1].interviewDate
-//            )
-//        )
-//
-//        //3번 CARD
-//        posters.add(
-//            PosterData(
-//                inputPosterArr[2].posterIdx,
-//                inputPosterArr[2].categoryIdx,
-//                inputPosterArr[2].photoUrl,
-//                inputPosterArr[2].posterName,
-//                inputPosterArr[2].posterRegDate,
-//                inputPosterArr[2].posterStartDate,
-//                inputPosterArr[2].posterEndDate,
-//                inputPosterArr[2].posterWebsite,
-//                inputPosterArr[2].isSeek,
-//                inputPosterArr[2].outline,
-//                inputPosterArr[2].target,
-//                inputPosterArr[2].period,
-//                inputPosterArr[2].benefit,
-//                inputPosterArr[2].documentDate,
-//                inputPosterArr[2].announceDate1,
-//                inputPosterArr[2].announceDate2,
-//                inputPosterArr[2].finalAnnounceDate,
-//                inputPosterArr[2].interviewDate
-//            )
-//        )
-//
-//        //4번 CARD
-//        posters.add(
-//            PosterData(
-//                inputPosterArr[3].posterIdx,
-//                inputPosterArr[3].categoryIdx,
-//                inputPosterArr[3].photoUrl,
-//                inputPosterArr[3].posterName,
-//                inputPosterArr[3].posterRegDate,
-//                inputPosterArr[3].posterStartDate,
-//                inputPosterArr[3].posterEndDate,
-//                inputPosterArr[3].posterWebsite,
-//                inputPosterArr[3].isSeek,
-//                inputPosterArr[3].outline,
-//                inputPosterArr[3].target,
-//                inputPosterArr[3].period,
-//                inputPosterArr[3].benefit,
-//                inputPosterArr[3].documentDate,
-//                inputPosterArr[3].announceDate1,
-//                inputPosterArr[3].announceDate2,
-//                inputPosterArr[3].finalAnnounceDate,
-//                inputPosterArr[3].interviewDate
-//            )
-//        )
-//
-//        //5번 CARD
-//        posters.add(
-//            PosterData(
-//                inputPosterArr[4].posterIdx,
-//                inputPosterArr[4].categoryIdx,
-//                inputPosterArr[4].photoUrl,
-//                inputPosterArr[4].posterName,
-//                inputPosterArr[4].posterRegDate,
-//                inputPosterArr[4].posterStartDate,
-//                inputPosterArr[4].posterEndDate,
-//                inputPosterArr[4].posterWebsite,
-//                inputPosterArr[4].isSeek,
-//                inputPosterArr[4].outline,
-//                inputPosterArr[4].target,
-//                inputPosterArr[4].period,
-//                inputPosterArr[4].benefit,
-//                inputPosterArr[4].documentDate,
-//                inputPosterArr[4].announceDate1,
-//                inputPosterArr[4].announceDate2,
-//                inputPosterArr[4].finalAnnounceDate,
-//                inputPosterArr[4].interviewDate
-//            )
-//        )
-//
-//        //6번 CARD
-//        posters.add(
-//            PosterData(
-//                inputPosterArr[5].posterIdx,
-//                inputPosterArr[5].categoryIdx,
-//                inputPosterArr[5].photoUrl,
-//                inputPosterArr[5].posterName,
-//                inputPosterArr[5].posterRegDate,
-//                inputPosterArr[5].posterStartDate,
-//                inputPosterArr[5].posterEndDate,
-//                inputPosterArr[5].posterWebsite,
-//                inputPosterArr[5].isSeek,
-//                inputPosterArr[5].outline,
-//                inputPosterArr[5].target,
-//                inputPosterArr[5].period,
-//                inputPosterArr[5].benefit,
-//                inputPosterArr[5].documentDate,
-//                inputPosterArr[5].announceDate1,
-//                inputPosterArr[5].announceDate2,
-//                inputPosterArr[5].finalAnnounceDate,
-//                inputPosterArr[5].interviewDate
-//            )
-//        )
-//
-//        //7번 CARD
-//        posters.add(
-//            PosterData(
-//                inputPosterArr[6].posterIdx,
-//                inputPosterArr[6].categoryIdx,
-//                inputPosterArr[6].photoUrl,
-//                inputPosterArr[6].posterName,
-//                inputPosterArr[6].posterRegDate,
-//                inputPosterArr[6].posterStartDate,
-//                inputPosterArr[6].posterEndDate,
-//                inputPosterArr[6].posterWebsite,
-//                inputPosterArr[6].isSeek,
-//                inputPosterArr[6].outline,
-//                inputPosterArr[6].target,
-//                inputPosterArr[6].period,
-//                inputPosterArr[6].benefit,
-//                inputPosterArr[6].documentDate,
-//                inputPosterArr[6].announceDate1,
-//                inputPosterArr[6].announceDate2,
-//                inputPosterArr[6].finalAnnounceDate,
-//                inputPosterArr[6].interviewDate
-//            )
-//        )
-//
-//        //8번 CARD
-//        posters.add(
-//            PosterData(
-//                inputPosterArr[7].posterIdx,
-//                inputPosterArr[7].categoryIdx,
-//                inputPosterArr[7].photoUrl,
-//                inputPosterArr[7].posterName,
-//                inputPosterArr[7].posterRegDate,
-//                inputPosterArr[7].posterStartDate,
-//                inputPosterArr[7].posterEndDate,
-//                inputPosterArr[7].posterWebsite,
-//                inputPosterArr[7].isSeek,
-//                inputPosterArr[7].outline,
-//                inputPosterArr[7].target,
-//                inputPosterArr[7].period,
-//                inputPosterArr[7].benefit,
-//                inputPosterArr[7].documentDate,
-//                inputPosterArr[7].announceDate1,
-//                inputPosterArr[7].announceDate2,
-//                inputPosterArr[7].finalAnnounceDate,
-//                inputPosterArr[7].interviewDate
-//            )
-//        )
-//
-//        //9번 CARD
-//        posters.add(
-//            PosterData(
-//                inputPosterArr[8].posterIdx,
-//                inputPosterArr[8].categoryIdx,
-//                inputPosterArr[8].photoUrl,
-//                inputPosterArr[8].posterName,
-//                inputPosterArr[8].posterRegDate,
-//                inputPosterArr[8].posterStartDate,
-//                inputPosterArr[8].posterEndDate,
-//                inputPosterArr[8].posterWebsite,
-//                inputPosterArr[8].isSeek,
-//                inputPosterArr[8].outline,
-//                inputPosterArr[8].target,
-//                inputPosterArr[8].period,
-//                inputPosterArr[8].benefit,
-//                inputPosterArr[8].documentDate,
-//                inputPosterArr[8].announceDate1,
-//                inputPosterArr[8].announceDate2,
-//                inputPosterArr[8].finalAnnounceDate,
-//                inputPosterArr[8].interviewDate
-//            )
-//        )
-//
-//        //10번 CARD
-//        posters.add(
-//            PosterData(
-//                inputPosterArr[9].posterIdx,
-//                inputPosterArr[9].categoryIdx,
-//                inputPosterArr[9].photoUrl,
-//                inputPosterArr[9].posterName,
-//                inputPosterArr[9].posterRegDate,
-//                inputPosterArr[9].posterStartDate,
-//                inputPosterArr[9].posterEndDate,
-//                inputPosterArr[9].posterWebsite,
-//                inputPosterArr[9].isSeek,
-//                inputPosterArr[9].outline,
-//                inputPosterArr[9].target,
-//                inputPosterArr[9].period,
-//                inputPosterArr[9].benefit,
-//                inputPosterArr[9].documentDate,
-//                inputPosterArr[9].announceDate1,
-//                inputPosterArr[9].announceDate2,
-//                inputPosterArr[9].finalAnnounceDate,
-//                inputPosterArr[9].interviewDate
-//            )
-//        )
-//        return posters
-//    }
+    private fun createPosters(): ArrayList<DetailPosterData> {
+        val posters = ArrayList<DetailPosterData>()
+//        Log.e(inputPosterData!!.posters[0].photoUrl, inputPosterData!!.posters[0].photoUrl.toString())
+//        Log.e("posterIdx",inputPosterData!!.posters[0].posterIdx.toString())
+        Log.e("입력 전전전", "eeeeeeeeeeeee")
+//        Log.e("inputPosterData",inputPosterData.toString())
+        Log.e("inputPosterData!!.posters[0]",inputPosterData!!.posters[0].toString())
+        Log.e("poster 확인",posters.toString())
+//        Log.e("inputPosterData!!.posters[0].posterIdx",inputPosterData!!.posters[0].posterIdx.toString())
+        Log.e("-------------------","----------------------")
 
-/*
-    private fun createPosters(): ArrayList<PosterData> {
-        val posters = ArrayList<PosterData>()
-        Log.e("imageeeee", "eeeeeeeeeeeee")
-        //1번 CARD
+        //0번 CARD
         posters.add(
-            PosterData(
-                posterIdx = 1,
-                categoryIdx = 1,
-                photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
-                posterName = "hahaha",
-                posterRegDate = "hahah",
-                posterStartDate = "hahah",
-                posterEndDate = "hahah",
-                posterWebsite = "hahah",
-                isSeek = false,
-                outline = "hahah",
-                target = "hahah",
-                period = "hahah",
-                benefit = "hahah",
-                documentDate = "hahah",
-                announceDate1 = "hahah",
-                announceDate2 = "hahah",
-                finalAnnounceDate = "hahah",
-                interviewDate = "hahah"
+            DetailPosterData(
+                posterIdx = inputPosterData!!.posters[0].posterIdx,
+                categoryIdx = inputPosterData!!.posters[0].categoryIdx,
+                photoUrl = inputPosterData!!.posters[0].photoUrl,
+                posterName = inputPosterData!!.posters[0].posterName,
+                posterRegDate = inputPosterData!!.posters[0].posterRegDate,
+                posterStartDate = inputPosterData!!.posters[0].posterStartDate,
+                posterEndDate = inputPosterData!!.posters[0].posterEndDate,
+                posterWebsite = inputPosterData!!.posters[0].posterWebsite,
+                isSeek = inputPosterData!!.posters[0].isSeek,
+                outline = inputPosterData!!.posters[0].outline,
+                target = inputPosterData!!.posters[0].target,
+                period = inputPosterData!!.posters[0].period,
+                benefit = inputPosterData!!.posters[0].benefit,
+                announceDate1 = inputPosterData!!.posters[0].announceDate1,
+                announceDate2 = inputPosterData!!.posters[0].announceDate2,
+                finalAnnounceDate = inputPosterData!!.posters[0].finalAnnounceDate,
+                interviewDate = inputPosterData!!.posters[0].interviewDate,
+                documentDate = inputPosterData!!.posters[0].documentDate
             )
         )
 
+        Log.e("posters[0] 입력 완료"," ")
+//        Log.e("inputPosterData!!.posters[1]",inputPosterData!!.posters[1].toString())
+        Log.e("inputPosterData!!.posters[1].posterIdx",inputPosterData!!.posters[1].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+        Log.e("-------------------","----------------------")
+        //1번 CARD
+        posters.add(
+            DetailPosterData(
+                posterIdx = inputPosterData!!.posters[1].posterIdx,
+                categoryIdx = inputPosterData!!.posters[1].categoryIdx,
+                photoUrl = inputPosterData!!.posters[1].photoUrl,
+                posterName = inputPosterData!!.posters[1].posterName,
+                posterRegDate = inputPosterData!!.posters[1].posterRegDate,
+                posterStartDate = inputPosterData!!.posters[1].posterStartDate,
+                posterEndDate = inputPosterData!!.posters[1].posterEndDate,
+                posterWebsite = inputPosterData!!.posters[1].posterWebsite,
+                isSeek = inputPosterData!!.posters[1].isSeek,
+                outline = inputPosterData!!.posters[1].outline,
+                target = inputPosterData!!.posters[1].target,
+                period = inputPosterData!!.posters[1].period,
+                benefit = inputPosterData!!.posters[1].benefit,
+                announceDate1 = inputPosterData!!.posters[1].announceDate1,
+                announceDate2 = inputPosterData!!.posters[1].announceDate2,
+                finalAnnounceDate = inputPosterData!!.posters[1].finalAnnounceDate,
+                interviewDate = inputPosterData!!.posters[1].interviewDate,
+                documentDate = inputPosterData!!.posters[1].documentDate
+            )
+        )
+
+        Log.e("posters[1] 입력 완료"," ")
+//        Log.e("inputPosterData!!.posters[2]",inputPosterData!!.posters[2].toString())
+        Log.e("inputPosterData!!.posters[2].posterIdx",inputPosterData!!.posters[2].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+        Log.e("-------------------","----------------------")
+
         //2번 CARD
         posters.add(
-            PosterData(
+            DetailPosterData(
+                posterIdx = inputPosterData!!.posters[2].posterIdx,
+                categoryIdx = inputPosterData!!.posters[2].categoryIdx,
+                photoUrl = inputPosterData!!.posters[2].photoUrl,
+                posterName = inputPosterData!!.posters[2].posterName,
+                posterRegDate = inputPosterData!!.posters[2].posterRegDate,
+                posterStartDate = inputPosterData!!.posters[2].posterStartDate,
+                posterEndDate = inputPosterData!!.posters[2].posterEndDate,
+                posterWebsite = inputPosterData!!.posters[2].posterWebsite,
+                isSeek = inputPosterData!!.posters[2].isSeek,
+                outline = inputPosterData!!.posters[2].outline,
+                target = inputPosterData!!.posters[2].target,
+                period = inputPosterData!!.posters[2].period,
+                benefit = inputPosterData!!.posters[2].benefit,
+                announceDate1 = inputPosterData!!.posters[2].announceDate1,
+                announceDate2 = inputPosterData!!.posters[2].announceDate2,
+                finalAnnounceDate = inputPosterData!!.posters[2].finalAnnounceDate,
+                interviewDate = inputPosterData!!.posters[2].interviewDate,
+                documentDate = inputPosterData!!.posters[2].documentDate
+            )
+        )
+
+        Log.e("posters[2] 입력 완료"," ")
+//        Log.e("inputPosterData!!.posters[3]",inputPosterData!!.posters[3].toString())
+        Log.e("inputPosterData!!.posters[3].posterIdx",inputPosterData!!.posters[3].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+        Log.e("-------------------","----------------------")
+
+        //3번 CARD
+        posters.add(
+            DetailPosterData(
+                posterIdx = inputPosterData!!.posters[3].posterIdx,
+                categoryIdx = inputPosterData!!.posters[3].categoryIdx,
+                photoUrl = inputPosterData!!.posters[3].photoUrl,
+                posterName = inputPosterData!!.posters[3].posterName,
+                posterRegDate = inputPosterData!!.posters[3].posterRegDate,
+                posterStartDate = inputPosterData!!.posters[3].posterStartDate,
+                posterEndDate = inputPosterData!!.posters[3].posterEndDate,
+                posterWebsite = inputPosterData!!.posters[3].posterWebsite,
+                isSeek = inputPosterData!!.posters[3].isSeek,
+                outline = inputPosterData!!.posters[3].outline,
+                target = inputPosterData!!.posters[3].target,
+                period = inputPosterData!!.posters[3].period,
+                benefit = inputPosterData!!.posters[3].benefit,
+                announceDate1 = inputPosterData!!.posters[3].announceDate1,
+                announceDate2 = inputPosterData!!.posters[3].announceDate2,
+                finalAnnounceDate = inputPosterData!!.posters[3].finalAnnounceDate,
+                interviewDate = inputPosterData!!.posters[3].interviewDate,
+                documentDate = inputPosterData!!.posters[3].documentDate
+            )
+        )
+
+        Log.e("posters[3] 입력 완료"," ")
+//        Log.e("inputPosterData!!.posters[4]",inputPosterData!!.posters[4].toString())
+        Log.e("inputPosterData!!.posters[4].posterIdx",inputPosterData!!.posters[4].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+        Log.e("-------------------","----------------------")
+
+        //4번 CARD
+        posters.add(
+            DetailPosterData(
+                posterIdx = inputPosterData!!.posters[4].posterIdx,
+                categoryIdx = inputPosterData!!.posters[4].categoryIdx,
+                photoUrl = inputPosterData!!.posters[4].photoUrl,
+                posterName = inputPosterData!!.posters[4].posterName,
+                posterRegDate = inputPosterData!!.posters[4].posterRegDate,
+                posterStartDate = inputPosterData!!.posters[4].posterStartDate,
+                posterEndDate = inputPosterData!!.posters[4].posterEndDate,
+                posterWebsite = inputPosterData!!.posters[4].posterWebsite,
+                isSeek = inputPosterData!!.posters[4].isSeek,
+                outline = inputPosterData!!.posters[4].outline,
+                target = inputPosterData!!.posters[4].target,
+                period = inputPosterData!!.posters[4].period,
+                benefit = inputPosterData!!.posters[4].benefit,
+                announceDate1 = inputPosterData!!.posters[4].announceDate1,
+                announceDate2 = inputPosterData!!.posters[4].announceDate2,
+                finalAnnounceDate = inputPosterData!!.posters[4].finalAnnounceDate,
+                interviewDate = inputPosterData!!.posters[4].interviewDate,
+                documentDate = inputPosterData!!.posters[4].documentDate
+            )
+        )
+
+        Log.e("posters[4] 입력 완료"," ")
+//        Log.e("inputPosterData!!.posters[5]",inputPosterData!!.posters[5].toString())
+        Log.e("inputPosterData!!.posters[5].posterIdx",inputPosterData!!.posters[5].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+        Log.e("-------------------","----------------------")
+        //5번 CARD
+        posters.add(
+            DetailPosterData(
+                posterIdx = inputPosterData!!.posters[5].posterIdx,
+                categoryIdx = inputPosterData!!.posters[5].categoryIdx,
+                photoUrl = inputPosterData!!.posters[5].photoUrl,
+                posterName = inputPosterData!!.posters[5].posterName,
+                posterRegDate = inputPosterData!!.posters[5].posterRegDate,
+                posterStartDate = inputPosterData!!.posters[5].posterStartDate,
+                posterEndDate = inputPosterData!!.posters[5].posterEndDate,
+                posterWebsite = inputPosterData!!.posters[5].posterWebsite,
+                isSeek = inputPosterData!!.posters[5].isSeek,
+                outline = inputPosterData!!.posters[5].outline,
+                target = inputPosterData!!.posters[5].target,
+                period = inputPosterData!!.posters[5].period,
+                benefit = inputPosterData!!.posters[5].benefit,
+                announceDate1 = inputPosterData!!.posters[5].announceDate1,
+                announceDate2 = inputPosterData!!.posters[5].announceDate2,
+                finalAnnounceDate = inputPosterData!!.posters[5].finalAnnounceDate,
+                interviewDate = inputPosterData!!.posters[5].interviewDate,
+                documentDate = inputPosterData!!.posters[5].documentDate
+            )
+        )
+
+        Log.e("posters[5] 입력 완료"," ")
+//        Log.e("inputPosterData!!.posters[6]",inputPosterData!!.posters[6].toString())
+        Log.e("inputPosterData!!.posters[6].posterIdx",inputPosterData!!.posters[6].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+        Log.e("-------------------","----------------------")
+        //6번 CARD
+        posters.add(
+            DetailPosterData(
+                posterIdx = inputPosterData!!.posters[6].posterIdx,
+                categoryIdx = inputPosterData!!.posters[6].categoryIdx,
+                photoUrl = inputPosterData!!.posters[6].photoUrl,
+                posterName = inputPosterData!!.posters[6].posterName,
+                posterRegDate = inputPosterData!!.posters[6].posterRegDate,
+                posterStartDate = inputPosterData!!.posters[6].posterStartDate,
+                posterEndDate = inputPosterData!!.posters[6].posterEndDate,
+                posterWebsite = inputPosterData!!.posters[6].posterWebsite,
+                isSeek = inputPosterData!!.posters[6].isSeek,
+                outline = inputPosterData!!.posters[6].outline,
+                target = inputPosterData!!.posters[6].target,
+                period = inputPosterData!!.posters[6].period,
+                benefit = inputPosterData!!.posters[6].benefit,
+                announceDate1 = inputPosterData!!.posters[6].announceDate1,
+                announceDate2 = inputPosterData!!.posters[6].announceDate2,
+                finalAnnounceDate = inputPosterData!!.posters[6].finalAnnounceDate,
+                interviewDate = inputPosterData!!.posters[6].interviewDate,
+                documentDate = inputPosterData!!.posters[6].documentDate
+            )
+        )
+        Log.e("posters[6] 입력 완료"," ")
+//        Log.e("inputPosterData!!.posters[7]",inputPosterData!!.posters[7].toString())
+        Log.e("inputPosterData!!.posters[7].posterIdx",inputPosterData!!.posters[7].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+        Log.e("-------------------","----------------------")
+        //7번 CARD
+        posters.add(
+            DetailPosterData(
+                posterIdx = inputPosterData!!.posters[7].posterIdx,
+                categoryIdx = inputPosterData!!.posters[7].categoryIdx,
+                photoUrl = inputPosterData!!.posters[7].photoUrl,
+                posterName = inputPosterData!!.posters[7].posterName,
+                posterRegDate = inputPosterData!!.posters[7].posterRegDate,
+                posterStartDate = inputPosterData!!.posters[7].posterStartDate,
+                posterEndDate = inputPosterData!!.posters[7].posterEndDate,
+                posterWebsite = inputPosterData!!.posters[7].posterWebsite,
+                isSeek = inputPosterData!!.posters[7].isSeek,
+                outline = inputPosterData!!.posters[7].outline,
+                target = inputPosterData!!.posters[7].target,
+                period = inputPosterData!!.posters[7].period,
+                benefit = inputPosterData!!.posters[7].benefit,
+                announceDate1 = inputPosterData!!.posters[7].announceDate1,
+                announceDate2 = inputPosterData!!.posters[7].announceDate2,
+                finalAnnounceDate = inputPosterData!!.posters[7].finalAnnounceDate,
+                interviewDate = inputPosterData!!.posters[7].interviewDate,
+                documentDate = inputPosterData!!.posters[7].documentDate
+            )
+        )
+        Log.e("posters[7] 입력 완료"," ")
+//        Log.e("inputPosterData!!.posters[8]",inputPosterData!!.posters[8].toString())
+        Log.e("inputPosterData!!.posters[8].posterIdx",inputPosterData!!.posters[8].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+        Log.e("-------------------","----------------------")
+        //8번 CARD
+        posters.add(
+            DetailPosterData(
+                posterIdx = inputPosterData!!.posters[8].posterIdx,
+                categoryIdx = inputPosterData!!.posters[8].categoryIdx,
+                photoUrl = inputPosterData!!.posters[8].photoUrl,
+                posterName = inputPosterData!!.posters[8].posterName,
+                posterRegDate = inputPosterData!!.posters[8].posterRegDate,
+                posterStartDate = inputPosterData!!.posters[8].posterStartDate,
+                posterEndDate = inputPosterData!!.posters[8].posterEndDate,
+                posterWebsite = inputPosterData!!.posters[8].posterWebsite,
+                isSeek = inputPosterData!!.posters[8].isSeek,
+                outline = inputPosterData!!.posters[8].outline,
+                target = inputPosterData!!.posters[8].target,
+                period = inputPosterData!!.posters[8].period,
+                benefit = inputPosterData!!.posters[8].benefit,
+                announceDate1 = inputPosterData!!.posters[8].announceDate1,
+                announceDate2 = inputPosterData!!.posters[8].announceDate2,
+                finalAnnounceDate = inputPosterData!!.posters[8].finalAnnounceDate,
+                interviewDate = inputPosterData!!.posters[8].interviewDate,
+                documentDate = inputPosterData!!.posters[8].documentDate
+            )
+        )
+        Log.e("posters[8] 입력 완료"," ")
+//        Log.e("inputPosterData!!.posters[9]",inputPosterData!!.posters[9].toString())
+        Log.e("inputPosterData!!.posters[9].posterIdx",inputPosterData!!.posters[9].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+        Log.e("-------------------","----------------------")
+        //9번 CARD
+        posters.add(
+            DetailPosterData(
+                posterIdx = inputPosterData!!.posters[9].posterIdx,
+                categoryIdx = inputPosterData!!.posters[9].categoryIdx,
+                photoUrl = inputPosterData!!.posters[9].photoUrl,
+                posterName = inputPosterData!!.posters[9].posterName,
+                posterRegDate = inputPosterData!!.posters[9].posterRegDate,
+                posterStartDate = inputPosterData!!.posters[9].posterStartDate,
+                posterEndDate = inputPosterData!!.posters[9].posterEndDate,
+                posterWebsite = inputPosterData!!.posters[9].posterWebsite,
+                isSeek = inputPosterData!!.posters[9].isSeek,
+                outline = inputPosterData!!.posters[9].outline,
+                target = inputPosterData!!.posters[9].target,
+                period = inputPosterData!!.posters[9].period,
+                benefit = inputPosterData!!.posters[9].benefit,
+                announceDate1 = inputPosterData!!.posters[9].announceDate1,
+                announceDate2 = inputPosterData!!.posters[9].announceDate2,
+                finalAnnounceDate = inputPosterData!!.posters[9].finalAnnounceDate,
+                interviewDate = inputPosterData!!.posters[9].interviewDate,
+                documentDate = inputPosterData!!.posters[9].documentDate
+            )
+        )
+        Log.e("posters[9] 입력 완료"," ")
+        Log.e("inputPosterData!!.posters[9]",inputPosterData!!.posters[9].toString())
+        Log.e("inputPosterData!!.posters[9].posterIdx",inputPosterData!!.posters[9].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+        Log.e("-------------------","----------------------")
+        return posters
+    }
+
+/*
+    private fun createPosters(): ArrayList<DetailPosterData> {
+        val posters = ArrayList<DetailPosterData>()
+
+        Log.e("입력 전전전", "eeeeeeeeeeeee")
+        Log.e("inputPosterData!!.posters[0]",inputPosterData!!.posters[0].toString())
+        Log.e("poster 확인",posters.toString())
+
+        //1번 CARD
+        posters.add(
+            DetailPosterData(
                 posterIdx = 1,
+                categoryIdx = 1,
+                photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
+                posterName = "pepepe",
+                posterRegDate = "pepepe",
+                posterStartDate = "pepepe",
+                posterEndDate = "pepepe",
+                posterWebsite = "pepepe",
+                isSeek = 1,
+                outline = "pepepe",
+                target = "pepepe",
+                period = "pepepe",
+                benefit = "pepepe",
+                documentDate = "pepepe",
+                announceDate1 = "pepepe",
+                announceDate2 = "pepepe",
+                finalAnnounceDate = "pepepe",
+                interviewDate = "pepepe"
+            )
+        )
+
+        Log.e("posters[0] 입력 완료"," ")
+//        Log.e("inputPosterData!!.posters[1]",inputPosterData!!.posters[1].toString())
+        Log.e("inputPosterData!!.posters[1].posterIdx",inputPosterData!!.posters[1].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+
+        //2번 CARD
+        posters.add(
+            DetailPosterData(
+                posterIdx = 2,
                 categoryIdx = 1,
                 photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
                 posterName = "hahaha",
@@ -697,7 +749,7 @@ class HomeFragment : Fragment(), CardStackListener {
                 posterStartDate = "hahah",
                 posterEndDate = "hahah",
                 posterWebsite = "hahah",
-                isSeek = false,
+                isSeek = 0,
                 outline = "hahah",
                 target = "hahah",
                 period = "hahah",
@@ -709,9 +761,14 @@ class HomeFragment : Fragment(), CardStackListener {
                 interviewDate = "hahah"            )
         )
 
+        Log.e("posters[1] 입력 완료"," ")
+//        Log.e("inputPosterData!!.posters[1]",inputPosterData!!.posters[1].toString())
+        Log.e("inputPosterData!!.posters[2].posterIdx",inputPosterData!!.posters[2].posterIdx.toString())
+        Log.e("poster 확인",posters.toString())
+
         //3번 CARD
         posters.add(
-            PosterData(
+            DetailPosterData(
                 posterIdx = 1,
                 categoryIdx = 1,
                 photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
@@ -720,7 +777,7 @@ class HomeFragment : Fragment(), CardStackListener {
                 posterStartDate = "hahah",
                 posterEndDate = "hahah",
                 posterWebsite = "hahah",
-                isSeek = false,
+                isSeek = 0,
                 outline = "hahah",
                 target = "hahah",
                 period = "hahah",
@@ -734,7 +791,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
         //4번 CARD
         posters.add(
-            PosterData(
+            DetailPosterData(
                 posterIdx = 1,
                 categoryIdx = 1,
                 photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
@@ -743,7 +800,7 @@ class HomeFragment : Fragment(), CardStackListener {
                 posterStartDate = "hahah",
                 posterEndDate = "hahah",
                 posterWebsite = "hahah",
-                isSeek = false,
+                isSeek = 0,
                 outline = "hahah",
                 target = "hahah",
                 period = "hahah",
@@ -757,7 +814,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
         //5번 CARD
         posters.add(
-            PosterData(
+            DetailPosterData(
                 posterIdx = 1,
                 categoryIdx = 1,
                 photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
@@ -766,7 +823,7 @@ class HomeFragment : Fragment(), CardStackListener {
                 posterStartDate = "hahah",
                 posterEndDate = "hahah",
                 posterWebsite = "hahah",
-                isSeek = false,
+                isSeek = 0,
                 outline = "hahah",
                 target = "hahah",
                 period = "hahah",
@@ -780,7 +837,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
         //6번 CARD
         posters.add(
-            PosterData(
+            DetailPosterData(
                 posterIdx = 1,
                 categoryIdx = 1,
                 photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
@@ -789,7 +846,7 @@ class HomeFragment : Fragment(), CardStackListener {
                 posterStartDate = "hahah",
                 posterEndDate = "hahah",
                 posterWebsite = "hahah",
-                isSeek = false,
+                isSeek = 0,
                 outline = "hahah",
                 target = "hahah",
                 period = "hahah",
@@ -803,7 +860,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
         //7번 CARD
         posters.add(
-            PosterData(
+            DetailPosterData(
                 posterIdx = 1,
                 categoryIdx = 1,
                 photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
@@ -812,7 +869,7 @@ class HomeFragment : Fragment(), CardStackListener {
                 posterStartDate = "hahah",
                 posterEndDate = "hahah",
                 posterWebsite = "hahah",
-                isSeek = false,
+                isSeek = 0,
                 outline = "hahah",
                 target = "hahah",
                 period = "hahah",
@@ -826,7 +883,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
         //8번 CARD
         posters.add(
-            PosterData(
+            DetailPosterData(
                 posterIdx = 1,
                 categoryIdx = 1,
                 photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
@@ -835,7 +892,7 @@ class HomeFragment : Fragment(), CardStackListener {
                 posterStartDate = "hahah",
                 posterEndDate = "hahah",
                 posterWebsite = "hahah",
-                isSeek = false,
+                isSeek = 0,
                 outline = "hahah",
                 target = "hahah",
                 period = "hahah",
@@ -849,7 +906,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
         //9번 CARD
         posters.add(
-            PosterData(
+            DetailPosterData(
                 posterIdx = 1,
                 categoryIdx = 1,
                 photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
@@ -858,7 +915,7 @@ class HomeFragment : Fragment(), CardStackListener {
                 posterStartDate = "hahah",
                 posterEndDate = "hahah",
                 posterWebsite = "hahah",
-                isSeek = false,
+                isSeek = 0,
                 outline = "hahah",
                 target = "hahah",
                 period = "hahah",
@@ -873,7 +930,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
         //10번 CARD
         posters.add(
-            PosterData(
+            DetailPosterData(
                 posterIdx = 1,
                 categoryIdx = 1,
                 photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
@@ -882,7 +939,7 @@ class HomeFragment : Fragment(), CardStackListener {
                 posterStartDate = "hahah",
                 posterEndDate = "hahah",
                 posterWebsite = "hahah",
-                isSeek = false,
+                isSeek = 0,
                 outline = "hahah",
                 target = "hahah",
                 period = "hahah",
