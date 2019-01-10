@@ -19,6 +19,7 @@ import com.sopt.appjam_sggsag.Data.EventNameList
 import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
+import kotlinx.android.synthetic.main.rv_item_calendar.view.*
 import org.jetbrains.anko.toast
 import java.util.*
 
@@ -44,7 +45,6 @@ class CalendarRecyclerAdapter2(
     //  internal var toDay: Int = 0   //오늘
     internal var lastDay: Int = 0  //마지막 요일
     var arr = Array<IntArray>(42, { IntArray(5) })
-
     val params =
         LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
     val params2 =
@@ -76,13 +76,7 @@ class CalendarRecyclerAdapter2(
         val inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
 
-        holder.oneDay.setOnClickListener{
-            //리스너 여기있어요.
-            var printDay = holder.numberView1.text
-            listener.onClick(yyear, mmonth, printDay.toString())
-            Log.e("CRA2", "CalendarRecyclerAdapter2")
 
-        }
 
 
         holder.numberView1.text = dataList[position].day
@@ -264,23 +258,23 @@ class CalendarRecyclerAdapter2(
 
 
 //        holder.oneDay.setOnClickListener {
-            //토스트뜨고
-            //
-  //          holder.numberView1
-    //        ctx.toast(holder.numberView1.text)
-            //하트 상태 바꾸고
-            /*
-            if(dataList[position].isLike==true){
-                dataList[position].isLike=false
-                holder.heartImage.visibility = View.GONE
-            }
-            else{
-                dataList[position].isLike=true
-                holder.heartImage.visibility = View.VISIBLE
-            }
-            */
+        //토스트뜨고
+        //
+        //          holder.numberView1
+        //        ctx.toast(holder.numberView1.text)
+        //하트 상태 바꾸고
+        /*
+        if(dataList[position].isLike==true){
+            dataList[position].isLike=false
+            holder.heartImage.visibility = View.GONE
+        }
+        else{
+            dataList[position].isLike=true
+            holder.heartImage.visibility = View.VISIBLE
+        }
+        */
 
-      //  }
+        //  }
 
         //holder.heartImage.image = dataList[position].isLike.image
         /*
@@ -288,8 +282,33 @@ class CalendarRecyclerAdapter2(
             holder.heartImage.visibility = View.GONE
         }
         */
+
+        if(holder.numberView1.text == date.toString() && yyear== com.sopt.appjam_sggsag.Adapter.year && mmonth== com.sopt.appjam_sggsag.Adapter.toDay){
+            holder.numberView1.setBackgroundResource(R.drawable.today_marker);
+            holder.numberView1.setTextColor(Color.WHITE)
+        }
+
+        setOnClickListener(holder)
     }
 
+
+    private fun setOnClickListener(holder:Holder){
+        holder.oneDay.setOnClickListener{
+            //리스너 여기있어요.
+
+            var printDay = holder.numberView1.text
+            holder.numberView2.setBackgroundResource(R.drawable.today_marker);
+            holder.numberView3.setTextColor(Color.WHITE)
+            // it.numbering1.text = "이이이"
+            //holder.numberView1.setBackgroundResource(R.drawable.select_marker)
+            //   holder.numberView1.setTextColor(Color.WHITE)
+            holder.numberView1.setText("77")
+            var xxxx = holder.numberView1.text
+            ctx.toast("도희는 자야한다")
+            listener.onClick(yyear, mmonth, printDay.toString())
+            Log.e("CRA2", printDay.toString())
+        }
+    }
 
     private fun getDay(month: Int) {
         val iCal = Calendar.getInstance()
@@ -370,6 +389,7 @@ class CalendarRecyclerAdapter2(
                     for (j in 0..eventNameList.size - 1) {
                         if (eventName == eventNameList[j].eventName) {
                             eventNameList[j].count++
+                            Log.e("eventNameTest",eventNameList[j].count.toString())
                             if (scheduleList[i].day < eventNameList[j].minDay)
                                 eventNameList[j].minDay = scheduleList[i].day
                             if (scheduleList[i].day > eventNameList[j].maxDay)

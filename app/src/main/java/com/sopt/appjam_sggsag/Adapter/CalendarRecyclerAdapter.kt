@@ -22,6 +22,7 @@ import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 var textSize: Float = 2.5f
 var year: Int = 2019
 var toDay: Int = 1   //아니 이게 사실은 달 받아오는 거임.
+var date: Int = 0
 
 class CalendarRecyclerAdapter(
     val ctx: Context,
@@ -233,17 +234,24 @@ class CalendarRecyclerAdapter(
             //setColor(holder.numberView5,position)
         }
 
-
-
         holder.oneDay.setOnClickListener {
             var printDay = holder.numberView1.text
             listener.onClick(yyear, mmonth, printDay.toString())
+            holder.numberView1.setBackgroundResource(R.drawable.select_marker)
+            holder.numberView1.setTextColor(Color.WHITE)
             //printDay = ""
             Log.e("CRA", "CalendarRecyclerAdapter")
         }
-
-
-
+        //holder.heartImage.image = dataList[position].isLike.image
+        /*
+        if(dataList[position].isLike==false){
+            holder.heartImage.visibility = View.GONE
+        }
+        */
+        if(holder.numberView1.text == date.toString() && yyear==year && mmonth==toDay){
+            holder.numberView1.setBackgroundResource(R.drawable.today_marker);
+            holder.numberView1.setTextColor(Color.WHITE)
+        }
     }
 
 
@@ -252,10 +260,12 @@ class CalendarRecyclerAdapter(
         year = iCal.get(Calendar.YEAR)
 
         toDay = iCal.get(Calendar.MONTH)
+        date = iCal.get(Calendar.DATE)
         iCal.set(Calendar.MONTH, (toDay + month))
         iCal.set(Calendar.DATE, 1)      //오늘을 1일이라고 설정.
         yyear = iCal.get(Calendar.YEAR)
         mmonth = iCal.get(Calendar.MONTH)
+
         startDay = iCal.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY
         iCal.add(Calendar.MONTH, 1)
         iCal.add(Calendar.DATE, -1)
@@ -274,6 +284,7 @@ class CalendarRecyclerAdapter(
             day_count++
             dataList[startDay + i].day = day_count.toString()
             arr[startDay + i][0] = day_count
+            Log.e(arr[i][0].toString() + "arr[i][0]", arr[i][0].toString())
         }
 
         for (i in lastDay..(dataList.size - startDay - 1)) {
@@ -282,11 +293,13 @@ class CalendarRecyclerAdapter(
         }
 
         var count = 0
+        Log.e("setday 이벤트네임리스트 크기", eventNameList.size.toString())
         for (i in 0..eventNameList.size - 1) {
             for (h in 0..41) {
                 if (arr[h][0] == eventNameList[i].minDay) {
                     for (k in 1..4) {
                         count = 0
+                        Log.e("maxDay-minDay+1", eventNameList[i].count.toString())
                         for (check in 0..(eventNameList[i].count - 1)) {
                             if (arr[h + check][k] == 9999) {
                                 count++
@@ -297,6 +310,7 @@ class CalendarRecyclerAdapter(
                                 arr[h + check][k] = i
                             }
 
+                            Log.e("whynot", count.toString())
                             break
                         }
                     }
@@ -312,7 +326,6 @@ class CalendarRecyclerAdapter(
 
 
     private fun saveEventName() {
-
         for (i in 0..scheduleList.size - 1) {
             eventName = scheduleList[i].eventName
             if ((year == scheduleList[i].year) && ((month + 1) == scheduleList[i].month)) {
@@ -406,6 +419,7 @@ class CalendarRecyclerAdapter(
 
         }
         */
+
 
     }
 

@@ -1,6 +1,8 @@
 package com.sopt.appjam_sggsag.Fragment
 
 
+
+
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -25,24 +27,26 @@ import android.view.animation.AlphaAnimation
 
 
 class CalendarFragment : Fragment(), GetYearMonthTab {
+
     override fun onClick(year: Int, month: Int, day: String) {
         if (day != "") {
             val animation = AlphaAnimation(1f, 0f)
             animation.duration = 400
             val animation2 = AlphaAnimation(0f, 1f)
             animation2.duration = 400
-
+/*
             schedule_linear_layout.visibility = (View.VISIBLE)
             schedule_linear_layout.setAnimation(animation);
             vp_frag_calendar_view_pager.visibility = View.GONE
             vp_frag_calendar_view_pager.setAnimation(animation2);
+            */
         }
     }
 
     // var select_year : Int? = null       //RegisterScheduleActivity에서 넘겨받을 날짜 정보(spinner로 부터)
     // var select_month : Int? = null
     // var select_day : Int? = null
-    var temp_month = 0;
+    var temp_month = 1;
     var calendar_month = 24;
     var mArrayList: ArrayList<String>? = ArrayList()
 
@@ -132,17 +136,19 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
         }
 */
         frag_calendar_before.setOnClickListener {
-            //calendar_month--
-            vp_frag_calendar_view_pager.setCurrentItem(calendar_month + 1, true)
-            vp_frag_calendar_view_pager2.setCurrentItem(calendar_month + 1, true)
+            calendar_month--
+            vp_frag_calendar_view_pager.setCurrentItem(calendar_month, true)
+            Log.e("beforeButton", calendar_month.toString())
+            //      vp_frag_calendar_view_pager2.setCurrentItem(calendar_month + 1, true)
             //calendar_month++
         }
 
         frag_calendar_next.setOnClickListener {
-            //  calendar_month++
-            vp_frag_calendar_view_pager.setCurrentItem(calendar_month - 1, true)
+            calendar_month++
+            vp_frag_calendar_view_pager.setCurrentItem(calendar_month, true)
             Log.e("CalendarLog22", calendar_month.toString())
-            vp_frag_calendar_view_pager2.setCurrentItem(calendar_month - 1, true)
+            Log.e("nextButton", calendar_month.toString())
+            //    vp_frag_calendar_view_pager2.setCurrentItem(calendar_month - 1, true)
             //calendar_month--
         }
         frag_calendar_iv_register.setOnClickListener {
@@ -151,6 +157,7 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
             activity!!.finish()
 
         }
+        /*
         iv_big_calendar.setOnClickListener {
 
             val animation = AlphaAnimation(1f, 0f)
@@ -163,6 +170,7 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
             vp_frag_calendar_view_pager.visibility = View.VISIBLE
             vp_frag_calendar_view_pager.setAnimation(animation2);
         }
+        */
 
     }
 
@@ -181,12 +189,9 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
 
     private fun configureBottomNavigation() {
 
-        //vp_frag_calendar_view_pager.adapter = CalendarViewPagerAdapter(childFragmentManager, 50, this) //3개를 고정시키겠다.
-        vp_frag_calendar_view_pager2.adapter = CalendarViewPagerAdapter2(childFragmentManager, 50, this)
+        vp_frag_calendar_view_pager.adapter = CalendarViewPagerAdapter(childFragmentManager, 50, this) //3개를 고정시키겠다.
         vp_frag_calendar_view_pager.offscreenPageLimit = 0
-        vp_frag_calendar_view_pager2.offscreenPageLimit = 0
         vp_frag_calendar_view_pager.setCurrentItem(24, true)
-        vp_frag_calendar_view_pager2.setCurrentItem(24, true)
 
         //frag_calendar_year_month.setText(year.toString())
         //오빠 저 그럼 오빠가 해결해줄 수 있는 질문 하나 더 있어요 ㅎㅅㅎ
@@ -233,6 +238,5 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
     }
 
 */
-
-
 }
+
