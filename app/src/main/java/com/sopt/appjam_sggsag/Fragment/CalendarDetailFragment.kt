@@ -33,10 +33,15 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
 import com.sopt.appjam_sggsag.R.id.listView
 import com.baoyz.swipemenulistview.SwipeMenuLayout
+import com.sopt.appjam_sggsag.CalendarDetailActivity
+import org.jetbrains.anko.find
+import org.jetbrains.anko.sdk27.coroutines.onItemClick
+import org.jetbrains.anko.support.v4.startActivity
 import kotlinx.android.synthetic.main.item_spot.*
 
 
 class CalendarDetailFragment : Fragment(), GetYearMonthTab {
+
 
     lateinit var recyclerViewAdapter: CalendarRecyclerAdapter
     lateinit var recyclerViewAdapter3: CalendarRecyclerAdapter2
@@ -64,7 +69,9 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         frag_calendar_detail_recycle_view.layoutParams = params
        recyclerViewAdapter3 = CalendarRecyclerAdapter2(activity!!, dataList, scheduleList, month,this)
         frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter3
-       // frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
+
+        frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
+
         ll_todo_all_list.visibility = View.VISIBLE
         ll_todo_all_list.setAnimation(animation)
         tv_todo_title2.setText((month+1).toString()+"월 "+dday+"일")
@@ -115,6 +122,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         setRecycleView()
         listView2.invalidateViews();
         listView2.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT)       //왼쪽 모션 추가
+
 
         //scheduleList 받아와서 날짜로 검사해서, 그 size로 for문 돌게.
         //1. scheduleList 받아오기.
@@ -181,6 +189,10 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
             deleteItem.setIcon(R.drawable.ic_task_delete)
             // add to menu
             menu.addMenuItem(deleteItem)
+        }
+
+        listView2.setOnItemClickListener { parent, view, position, id ->
+            startActivity<CalendarDetailActivity>()
         }
 
         listView2.setMenuCreator(creator)
@@ -275,6 +287,8 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
             ll_todo_all_list.setAnimation(animation2)
             setRecycleView()
         }
+
+
     }
 
 

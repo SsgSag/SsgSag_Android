@@ -97,21 +97,31 @@ class ScheduleRegisterActivity : AppCompatActivity() {
                     endYear = "${datePicker.year}"
                     endMonth = "${datePicker.month + 1}"
                     endDay = "${datePicker.dayOfMonth}"
-                    if (endYear < startYear) {
-                        if (endMonth < startMonth) {
-                            if (endDay < startDay) {
+                    if(endYear > startYear){
+                        tv_date_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
+                        check_date = true
+                    }
+                    else if(endYear == startYear){
+                        if(endMonth > startMonth){
+                            tv_date_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
+                            check_date = true
+                        }
+                        else if(endMonth==startMonth){
+                            if(endDay >= startDay){
                                 tv_date_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
                                 check_date = true
-                            } else {
+                            }
+                            else{
                                 toast("잘못된 날짜입니다.")
                                 check_date = false
                             }
-                        } else {
+                        }
+                        else {
                             toast("잘못된 날짜입니다.")
                             check_date = false
                         }
-
-                    } else {
+                    }
+                    else {
                         toast("잘못된 날짜입니다.")
                         check_date = false
                     }
@@ -124,7 +134,6 @@ class ScheduleRegisterActivity : AppCompatActivity() {
         tv_time_start.setOnClickListener {
             alert {
                 isCancelable = false
-                toast("왜안돼")
                 lateinit var timePicker: TimePicker
                 customView {
                     verticalLayout {
@@ -136,11 +145,23 @@ class ScheduleRegisterActivity : AppCompatActivity() {
                     startMin = "${timePicker.minute}"
                     //"${timePicker.}"
                     if (startHour.toInt() > 12) {
-                        tv_time_start.setText("오후 " + (startHour.toInt() - 12) + ":" + startMin)
+                        if (startMin.length == 1){
+                            tv_time_start.setText("오후 " + (startHour.toInt() - 12) + ":0" + startMin)
+                        } else{
+                            tv_time_start.setText("오후 " + (startHour.toInt() - 12) + ":" + startMin)
+                        }
                     } else if (startHour.toInt() < 12) {
-                        tv_time_start.setText("오전 " + startHour + ":" + startMin)
+                        if (startMin.length == 1) {
+                            tv_time_start.setText("오전 " + startHour + ":0" + startMin)
+                        } else {
+                            tv_time_start.setText("오전 " + startHour + ":" + startMin)
+                        }
                     } else {
-                        tv_time_start.setText("오후 " + (startHour) + ":" + startMin)
+                        if (startMin.length == 1){
+                            tv_time_start.setText("오후 " + (startHour) + ":0" + startMin)
+                        } else{
+                            tv_time_start.setText("오후 " + (startHour) + ":" + startMin)
+                        }
                     }
                 }
                 noButton { }
@@ -162,8 +183,7 @@ class ScheduleRegisterActivity : AppCompatActivity() {
                     endMin = "${timePicker.minute}"
 
                     if (startYear == endYear && startMonth == endMonth && startDay == endDay) {
-                        if (startHour <= endHour) {
-                            if (startMin <= endMin) {
+                        if (startHour < endHour) {
                                 if (endHour.toInt() > 12) {
                                     if (endMin.length == 1) {
                                         tv_time_end.setText("오후 " + (endHour.toInt() - 12) + ":0" + endMin)
@@ -186,7 +206,7 @@ class ScheduleRegisterActivity : AppCompatActivity() {
                                     }
                                     check_time = true
                                 }
-                            }
+
                         } else if (startHour == endHour) {
                             if (startMin > endMin) {
                                 toast("잘못된 시간입니다.")
@@ -218,7 +238,7 @@ class ScheduleRegisterActivity : AppCompatActivity() {
                                     check_time = true
                                 }
                             }
-                        } else {
+                        } else if(startHour > endHour) {
                             toast("잘못된 시간입니다.")
                             check_time = false
                         }

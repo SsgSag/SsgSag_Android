@@ -63,6 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                     <EditText
+                            android:backgroundTint="#e0e0e0"
                             android:singleLine="true"
                             android:imeOptions="actionDone"
                             android:id="@+id/et_id"
@@ -77,6 +78,7 @@
                             android:layout_height="wrap_content"/>
 
                     <EditText
+                            android:backgroundTint="#e0e0e0"
                             android:inputType="textPassword"
                             android:singleLine="true"
                             android:id="@+id/et_pw"
@@ -91,6 +93,7 @@
                             android:layout_height="wrap_content"/>
 
                     <EditText
+                            android:backgroundTint="#e0e0e0"
                             android:inputType="textPassword"
                             android:singleLine="true"
                             android:id="@+id/et_pw_check"
