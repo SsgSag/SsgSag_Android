@@ -184,28 +184,28 @@ class ScheduleRegisterActivity : AppCompatActivity() {
 
                     if (startYear == endYear && startMonth == endMonth && startDay == endDay) {
                         if (startHour < endHour) {
-                                if (endHour.toInt() > 12) {
-                                    if (endMin.length == 1) {
-                                        tv_time_end.setText("오후 " + (endHour.toInt() - 12) + ":0" + endMin)
-                                    } else {
-                                        tv_time_end.setText("오후 " + (endHour.toInt() - 12) + ":" + endMin)
-                                    }
-                                    check_time = true
-                                } else if (endHour.toInt() < 12) {
-                                    if (endMin.length == 1) {
-                                        tv_time_end.setText("오전 " + endHour + ":0" + endMin)
-                                    } else {
-                                        tv_time_end.setText("오전 " + endHour + ":" + endMin)
-                                    }
-                                    check_time = true
+                            if (endHour.toInt() > 12) {
+                                if (endMin.length == 1) {
+                                    tv_time_end.setText("오후 " + (endHour.toInt() - 12) + ":0" + endMin)
                                 } else {
-                                    if (endMin.length == 1) {
-                                        tv_time_end.setText("오후 " + endHour + ":0" + endMin)
-                                    } else {
-                                        tv_time_end.setText("오후 " + endHour + ":" + endMin)
-                                    }
-                                    check_time = true
+                                    tv_time_end.setText("오후 " + (endHour.toInt() - 12) + ":" + endMin)
                                 }
+                                check_time = true
+                            } else if (endHour.toInt() < 12) {
+                                if (endMin.length == 1) {
+                                    tv_time_end.setText("오전 " + endHour + ":0" + endMin)
+                                } else {
+                                    tv_time_end.setText("오전 " + endHour + ":" + endMin)
+                                }
+                                check_time = true
+                            } else {
+                                if (endMin.length == 1) {
+                                    tv_time_end.setText("오후 " + endHour + ":0" + endMin)
+                                } else {
+                                    tv_time_end.setText("오후 " + endHour + ":" + endMin)
+                                }
+                                check_time = true
+                            }
 
                         } else if (startHour == endHour) {
                             if (startMin > endMin) {
@@ -343,7 +343,6 @@ class ScheduleRegisterActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 /*
     private fun setSpinner(){
