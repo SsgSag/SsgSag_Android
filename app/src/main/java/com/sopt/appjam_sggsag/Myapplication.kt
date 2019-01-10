@@ -6,12 +6,21 @@ import android.util.DisplayMetrics
 import android.view.WindowManager
 import com.sopt.appjam_sggsag.Data.CalendarDateData
 import com.sopt.appjam_sggsag.Data.EventList
+import com.sopt.appjam_sggsag.Data.PosterData
 import com.sopt.appjam_sggsag.Network.NetworkService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MyApplication : Application() {
     public var screen_height:Int? = 0
+    private val baseURL = "http://54.180.79.158:8080/"
+    lateinit var networkService: NetworkService
+
+    companion object {
+        lateinit var instance: MyApplication
+        var inputPosterData: PosterData? = null
+    }
+
     override fun onCreate() {
         super.onCreate()
         instance = this
@@ -99,11 +108,6 @@ class MyApplication : Application() {
         return Math.round(dm.heightPixels / dm.density)
     }
     */
-    private val baseURL = "http://54.180.79.158:8080/"
-    lateinit var networkService: NetworkService
-    companion object {
-        lateinit var instance: MyApplication
-    }
 
     fun buildNetWork() {
         val retrofit: Retrofit = Retrofit.Builder()

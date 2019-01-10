@@ -28,12 +28,11 @@ interface NetworkService{
         @Header("Content-Type") content_type : String,
         @Body() body : JsonObject
     ) : Call<PostLogInResponse>
+
     //Poster_승완
-    @POST("posters/show")
+    @POST("/posters/show")
     fun postPosterResponse(
-        @Header("Authorization") token : String//,
-//        @Header("Content-Type") content_type : JSONObject
-//        @Body() body : JsonObject
+        @Header("Authorization") auth : String
     ): Call<PostPosterListResponse>
 
     //캘린더
