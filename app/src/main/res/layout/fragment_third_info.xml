@@ -54,52 +54,6 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/info_text3"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="52dp">
-
-            <ImageView
-                    android:id="@+id/progress_active1"
-                    android:layout_width="6dp"
-                    android:layout_height="6dp"
-                    android:layout_alignParentTop="true"
-                    android:src="@drawable/progress_unactive" />
-
-            <ImageView
-                    android:id="@+id/progress_unactive1"
-                    android:layout_width="6dp"
-                    android:layout_height="6dp"
-                    android:layout_marginStart="6dp"
-                    android:layout_toEndOf="@+id/progress_active1"
-                    android:src="@drawable/progress_unactive" />
-
-            <ImageView
-                    android:id="@+id/progress_unactive2"
-                    android:layout_width="6dp"
-                    android:layout_height="6dp"
-                    android:layout_marginStart="6dp"
-                    android:layout_toEndOf="@+id/progress_unactive1"
-                    android:src="@drawable/progress_active" />
-
-            <ImageView
-                    android:id="@+id/progress_unactive3"
-                    android:layout_width="6dp"
-                    android:layout_height="6dp"
-                    android:layout_marginStart="6dp"
-                    android:layout_toEndOf="@+id/progress_unactive2"
-                    android:src="@drawable/progress_unactive" />
-
-            <ImageView
-                    android:id="@+id/progress_unactive4"
-                    android:layout_width="6dp"
-                    android:layout_height="6dp"
-                    android:layout_marginStart="6dp"
-                    android:layout_toEndOf="@+id/progress_unactive3"
-                    android:src="@drawable/progress_unactive" />
-        </RelativeLayout>
     </RelativeLayout>
 
 

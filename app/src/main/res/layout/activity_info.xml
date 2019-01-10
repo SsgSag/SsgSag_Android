@@ -16,4 +16,48 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <LinearLayout
+            android:layout_marginBottom="56dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+        <ImageView
+                android:id="@+id/progress_1"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/progress_active" />
+
+        <ImageView
+                android:id="@+id/progress_2"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/progress_unactive" />
+
+        <ImageView
+                android:id="@+id/progress_3"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/progress_unactive" />
+
+        <ImageView
+                android:id="@+id/progress_4"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/progress_unactive" />
+
+        <ImageView
+                android:id="@+id/progress_5"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/progress_unactive" />
+    </LinearLayout>
+
 </RelativeLayout>

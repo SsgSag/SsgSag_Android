@@ -233,18 +233,17 @@ class CalendarRecyclerAdapter(
             //setColor(holder.numberView5,position)
         }
 
+
+
         holder.oneDay.setOnClickListener {
             var printDay = holder.numberView1.text
             listener.onClick(yyear, mmonth, printDay.toString())
             //printDay = ""
             Log.e("CRA", "CalendarRecyclerAdapter")
         }
-        //holder.heartImage.image = dataList[position].isLike.image
-        /*
-        if(dataList[position].isLike==false){
-            holder.heartImage.visibility = View.GONE
-        }
-        */
+
+
+
     }
 
 
@@ -275,7 +274,6 @@ class CalendarRecyclerAdapter(
             day_count++
             dataList[startDay + i].day = day_count.toString()
             arr[startDay + i][0] = day_count
-            Log.e(arr[i][0].toString() + "arr[i][0]", arr[i][0].toString())
         }
 
         for (i in lastDay..(dataList.size - startDay - 1)) {
@@ -284,13 +282,11 @@ class CalendarRecyclerAdapter(
         }
 
         var count = 0
-        Log.e("setday 이벤트네임리스트 크기", eventNameList.size.toString())
         for (i in 0..eventNameList.size - 1) {
             for (h in 0..41) {
                 if (arr[h][0] == eventNameList[i].minDay) {
                     for (k in 1..4) {
                         count = 0
-                        Log.e("maxDay-minDay+1", eventNameList[i].count.toString())
                         for (check in 0..(eventNameList[i].count - 1)) {
                             if (arr[h + check][k] == 9999) {
                                 count++
@@ -301,7 +297,6 @@ class CalendarRecyclerAdapter(
                                 arr[h + check][k] = i
                             }
 
-                            Log.e("whynot", count.toString())
                             break
                         }
                     }

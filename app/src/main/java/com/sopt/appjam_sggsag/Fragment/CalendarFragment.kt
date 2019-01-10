@@ -181,7 +181,7 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
 
     private fun configureBottomNavigation() {
 
-        vp_frag_calendar_view_pager.adapter = CalendarViewPagerAdapter(childFragmentManager, 50, this) //3개를 고정시키겠다.
+        //vp_frag_calendar_view_pager.adapter = CalendarViewPagerAdapter(childFragmentManager, 50, this) //3개를 고정시키겠다.
         vp_frag_calendar_view_pager2.adapter = CalendarViewPagerAdapter2(childFragmentManager, 50, this)
         vp_frag_calendar_view_pager.offscreenPageLimit = 0
         vp_frag_calendar_view_pager2.offscreenPageLimit = 0
