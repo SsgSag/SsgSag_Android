@@ -21,12 +21,6 @@
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="14sp"
                 android:gravity="center_horizontal"/>
-        <ImageView
-                android:scaleType="fitXY"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/tab_career_android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/btn_top_navi_award_tab"
