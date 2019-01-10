@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.baoyz.swipemenulistview.SwipeMenu
 import com.baoyz.swipemenulistview.SwipeMenuCreator
 import com.baoyz.swipemenulistview.SwipeMenuItem
 import com.baoyz.swipemenulistview.SwipeMenuListView
+import com.sopt.appjam_sggsag.Adapter.CalendarRecyclerAdapter
 import com.sopt.appjam_sggsag.Adapter.CalendarRecyclerAdapter2
 import com.sopt.appjam_sggsag.Data.CalendarDateData
 import com.sopt.appjam_sggsag.Data.EventList
@@ -28,11 +30,25 @@ import org.jetbrains.anko.support.v4.toast
 
 
 class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
+
+
+    lateinit var recyclerViewAdapter: CalendarRecyclerAdapter2
+
+    //var dataList = (activity!!.application as MyApplication).dataList1
+    //(activity!!.application as MyApplication).
+    var dataList : ArrayList<CalendarDateData> = ArrayList()
+    var scheduleList : ArrayList<EventList> = ArrayList()
+    var mArrayList: ArrayList<EventList> = ArrayList()
+    var month: Int = 0
+
+
     override fun getYearMonthTab(year: String, month: String) {
         //이거 아마 안쓸걸? 걍 비워두자
     }
 
     override fun onClick(year: Int, month: Int, day: String) {
+        Log.e("CDF2","CEF2")
+        mArrayList.clear()
         val yyear = year
         val mmonth = month
         val dday = day
@@ -50,15 +66,6 @@ class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
         }
 
     }
-
-    lateinit var recyclerViewAdapter: CalendarRecyclerAdapter2
-
-    //var dataList = (activity!!.application as MyApplication).dataList1
-    //(activity!!.application as MyApplication).
-    var dataList : ArrayList<CalendarDateData> = ArrayList()
-    var scheduleList : ArrayList<EventList> = ArrayList()
-    var mArrayList: ArrayList<EventList> = ArrayList()
-    var month: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,6 +120,37 @@ class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
             // add to menu
             menu.addMenuItem(deleteItem)
         }
+
+        val creator2 = SwipeMenuCreator { menu ->
+            // Create different menus depending on the view type
+            val goodItem = SwipeMenuItem(getActivity())
+            // set item background
+            goodItem.background = ColorDrawable(
+                Color.rgb(0xE4,0xE4, 0xE4)
+            )
+            // set item width
+            goodItem.width = 200
+            // set a icon
+            goodItem.setIcon(R.drawable.ic_task_complete)
+            // add to menu
+            menu.addMenuItem(goodItem)
+
+            // create "delete" item
+            val deleteItem = SwipeMenuItem(
+                getActivity()
+            )
+            // set item background
+            deleteItem.background = ColorDrawable(
+                Color.rgb(0xE4,0xE4, 0xE4)
+            )
+            // set item width
+            deleteItem.width = 200
+            // set a icon
+            deleteItem.setIcon(R.drawable.ic_task_delete)
+            // add to menu
+            menu.addMenuItem(deleteItem)
+        }
+
         listView2.setMenuCreator(creator)
 
         listView2.setOnMenuItemClickListener(
@@ -121,7 +159,7 @@ class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
                     when (index) {
                         0 -> {
                             Toast.makeText(activity!!, position.toString()+"지원완료", Toast.LENGTH_SHORT).show()
-
+                            listView2.setMenuCreator(creator2)
                             /*
                             goodItem.background = ColorDrawable(
                                 Color.rgb(0x30, 0xB1,0xF5)

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import com.sopt.appjam_sggsag.Fragment.CalendarDetailFragment
 import com.sopt.appjam_sggsag.Fragment.CalendarDetailFragment2
 import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 import java.util.*

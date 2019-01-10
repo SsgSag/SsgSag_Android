@@ -44,6 +44,7 @@ class CalendarRecyclerAdapter2(
     //  internal var toDay: Int = 0   //오늘
     internal var lastDay: Int = 0  //마지막 요일
     var arr = Array<IntArray>(42, { IntArray(5) })
+
     val params =
         LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
     val params2 =

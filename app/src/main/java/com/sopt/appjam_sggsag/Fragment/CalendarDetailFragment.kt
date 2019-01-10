@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
 import android.util.EventLog
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,8 +33,7 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
 import com.sopt.appjam_sggsag.R.id.listView
 import com.baoyz.swipemenulistview.SwipeMenuLayout
-
-
+import kotlinx.android.synthetic.main.item_spot.*
 
 
 class CalendarDetailFragment : Fragment(), GetYearMonthTab {
@@ -51,6 +51,8 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
     }
 
     override fun onClick(year: Int, month: Int, day: String) {
+        Log.e("CDF","CEF")
+        mArrayList.clear()
         yyear = year
         mmonth = month
         dday = day
@@ -60,9 +62,9 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         val animation = AlphaAnimation(0f, 1f)
         animation.duration = 400
         frag_calendar_detail_recycle_view.layoutParams = params
-        recyclerViewAdapter3 = CalendarRecyclerAdapter2(activity!!, dataList, scheduleList, month,this)
+       recyclerViewAdapter3 = CalendarRecyclerAdapter2(activity!!, dataList, scheduleList, month,this)
         frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter3
-        frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
+       // frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
         ll_todo_all_list.visibility = View.VISIBLE
         ll_todo_all_list.setAnimation(animation)
         tv_todo_title2.setText((month+1).toString()+"월 "+dday+"일")
@@ -81,7 +83,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         if(count>4){
             //표시 추가
         }
-        toast("던져버려"+count.toString())
+        toast("던져버려"+mArrayList.size.toString())
     }
 
 
@@ -111,7 +113,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         dataList = (activity!!.application as MyApplication).dataList1
         scheduleList = (activity!!.application as MyApplication).eventList1
         setRecycleView()
-
+        listView2.invalidateViews();
         listView2.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT)       //왼쪽 모션 추가
 
         //scheduleList 받아와서 날짜로 검사해서, 그 size로 for문 돌게.
@@ -149,11 +151,41 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
             // set a icon
             deleteItem.setIcon(R.drawable.ic_task_delete)
             // add to menu
+        menu.addMenuItem(deleteItem)
+    }
+        val creator2 = SwipeMenuCreator { menu ->
+            // Create different menus depending on the view type
+            val goodItem = SwipeMenuItem(getActivity())
+            // set item background
+            goodItem.background = ColorDrawable(
+                Color.rgb(0xE4,0xE4, 0xE4)
+            )
+            // set item width
+            goodItem.width = 200
+            // set a icon
+            goodItem.setIcon(R.drawable.ic_task_complete)
+            // add to menu
+            menu.addMenuItem(goodItem)
+
+            // create "delete" item
+            val deleteItem = SwipeMenuItem(
+                getActivity()
+            )
+            // set item background
+            deleteItem.background = ColorDrawable(
+                Color.rgb(0xE4,0xE4, 0xE4)
+            )
+            // set item width
+            deleteItem.width = 200
+            // set a icon
+            deleteItem.setIcon(R.drawable.ic_task_delete)
+            // add to menu
             menu.addMenuItem(deleteItem)
         }
 
-
         listView2.setMenuCreator(creator)
+        listView2.requestLayout()
+        listAdapter.notifyDataSetChanged()
 
         listView2.setOnMenuItemClickListener(
             object : SwipeMenuListView.OnMenuItemClickListener {
@@ -161,9 +193,21 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
                     when (index) {
                         0 -> {
                             Toast.makeText(activity!!, position.toString()+"지원완료", Toast.LENGTH_SHORT).show()
-                            val view = listView2 as SwipeMenuLayout
-                            menu.getMenuItem(0).background = ColorDrawable(Color.rgb(0xE4,0xE4, 0xE4))// .setIcon(R.drawable.ic_task_delete)
-                           // listView2.mTitle
+                           // listView.Items.IndexOf(item );
+                           // listOf(listView2)[position].setBackgroundColor(Color.rgb(0xE4, 0xE4,0xE4))
+                            mArrayList!!.removeAt(position)
+                            //서버에서 일정 삭제 요청.
+                            listAdapter.notifyDataSetChanged()
+                            // listView2.getChildAt(position).setBackgroundColor(Color.rgb(0xE4, 0xE4,0xE4))
+                          //  listView2.getChildAt(position).item
+                           // listView2.getChildAt(position).isClickable = false
+                          //  listAdapter.holder?.mCategoryview?.text = "바보냐"
+                           // listView2.updateViewLayout(position,)
+                           // listView2.position.setBackgroundColor(Color.rgb(0xE4, 0xE4,0xE4))
+                          //  listView2.setMenuCreator(creator2)
+                              //  .setMenuCreator(creator2)
+                           // listAdapter.notifyDataSetChanged()
+                            // listView2.mTitle
                             //menu.getMenuItem(0).icon = R.drawable.ic_task_delete
                             //listAdapter.notifyDataSetChanged()
                             /*
