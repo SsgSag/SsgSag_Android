@@ -21,16 +21,13 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.sopt.appjam_sggsag.Career.CareerActivity
 import com.sopt.appjam_sggsag.DB.SharedPreferenceController
-import com.sopt.appjam_sggsag.MainActivity
 import com.sopt.appjam_sggsag.MyApplication
 import com.sopt.appjam_sggsag.MyPage.InterestArea
 import com.sopt.appjam_sggsag.MyPage.JobActivity
-import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.Post.InfoData
 import com.sopt.appjam_sggsag.Post.PostInfoResponse
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.SignUp.SignUp2
-import kotlinx.android.synthetic.main.activity_sign_up2.*
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
