@@ -61,6 +61,7 @@
                 android:maxLines="1"
                 android:inputType="textEmailAddress"
                 android:textColorHint="#b3ffffff"
+                android:textColor="#ffffff"
                 android:letterSpacing="-0.02"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif"
@@ -68,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         <EditText
+                android:textColor="#ffffff"
                 android:textCursorDrawable="@drawable/edit_text_line"
                 android:backgroundTint="#5cbfff"
                 android:id="@+id/edit_password"

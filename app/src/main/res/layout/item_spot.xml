@@ -370,7 +370,7 @@
                     <ImageView
                             android:id="@+id/process_line_2"
                             android:layout_toEndOf="@+id/process_paper_2"
-                            android:src="@drawable/line"
+                            android:src="@drawable/line_main_gradient_3"
                             android:layout_width="103dp"
                             android:layout_height="2dp"
                             android:layout_centerVertical="true"/>

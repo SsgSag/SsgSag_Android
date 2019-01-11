@@ -20,21 +20,33 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.sopt.appjam_sggsag.Career.CareerActivity
-import com.sopt.appjam_sggsag.MainActivity
+import com.sopt.appjam_sggsag.DB.SharedPreferenceController
+import com.sopt.appjam_sggsag.MyApplication
 import com.sopt.appjam_sggsag.MyPage.InterestArea
 import com.sopt.appjam_sggsag.MyPage.JobActivity
+import com.sopt.appjam_sggsag.Post.InfoData
+import com.sopt.appjam_sggsag.Post.PostInfoResponse
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.SignUp.SignUp2
-import kotlinx.android.synthetic.main.activity_sign_up2.*
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MyPageFragment : Fragment() {
     private var myPageFragment: View? = null
     val My_READ_STORAGE_REQUEST_CODE = 7777
     val REQUEST_CODE_SELECT_IMAGE: Int = 1004
+
+    var infolist :  InfoData? = null
+
+    val networkService: NetworkService by lazy {
+        MyApplication.instance.networkService
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myPageFragment = inflater!!.inflate(R.layout.fragment_my_page, container, false)
@@ -45,6 +57,13 @@ class MyPageFragment : Fragment() {
         return myPageFragment
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        //회원 정보 조회(통신)
+        getInfoResponse()
+
+    }
     companion object {
         private var instance: MyPageFragment? = null
         @Synchronized
@@ -179,5 +198,48 @@ class MyPageFragment : Fragment() {
         intent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
         intent.data = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
+    }
+
+    //회원 정보 조회(통신)
+    private fun getInfoResponse() {
+        var jsonObject = JSONObject()
+
+        val token = SharedPreferenceController.getAuthorization(this.context!!)
+        val postInfoResponse: Call<PostInfoResponse> = networkService.postInfoResponse(
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08")
+
+        postInfoResponse.enqueue(object : Callback<PostInfoResponse>{
+            override fun onFailure(call: Call<PostInfoResponse>, t: Throwable) {
+                Log.e("user info fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostInfoResponse>, response: Response<PostInfoResponse>) {
+                if(response.isSuccessful){
+                    toast(response.body()!!.message)
+
+
+                    infolist = response.body()?.data
+                    // 이름
+                    var user_name = infolist!!.userName
+                    val tv_mypage_name : TextView = myPageFragment!!.find(R.id.mypage_user_name)
+                    tv_mypage_name.setText(user_name)
+
+                    // 아이디
+                    var user_id = infolist!!.userId
+                    val tv_mypage_id : TextView = myPageFragment!!.find(R.id.mypage_user_id)
+                    tv_mypage_id.setText(user_id)
+
+                    // 대학교
+                    var user_uni = infolist!!.userUniv
+                    val tv_mypage_uni : TextView = myPageFragment!!.find(R.id.mypage_user_uni)
+                    tv_mypage_uni.setText(user_uni)
+
+                    // 전공
+                    var user_major = infolist!!.userMajor
+                    val tv_mypage_major : TextView = myPageFragment!!.find(R.id.mypage_user_major)
+                    tv_mypage_major.setText(user_major)
+                }
+            }
+        })
     }
 }

@@ -3,12 +3,9 @@ package com.sopt.appjam_sggsag.MyPage
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.sopt.appjam_sggsag.MainActivity
 import com.sopt.appjam_sggsag.MyApplication
-import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.activity_job.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class JobActivity : AppCompatActivity() {

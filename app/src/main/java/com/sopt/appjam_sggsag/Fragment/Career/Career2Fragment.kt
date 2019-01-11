@@ -11,11 +11,14 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.sopt.appjam_sggsag.Adapter.Career.AwardRecyclerViewAdapter
 import com.sopt.appjam_sggsag.Career.AwardDetail
+import com.sopt.appjam_sggsag.Career.LicenseDetail
 import com.sopt.appjam_sggsag.Data.Career.AwardListData
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.fragment_career1.*
+import kotlinx.android.synthetic.main.fragment_career2.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.startActivityForResult
 
 class Career2Fragment : Fragment() {
 
@@ -23,14 +26,9 @@ class Career2Fragment : Fragment() {
     private var career2Fragment: View? = null
     private var titleTxt: String? = null
     private var startDate: String? = null
-    private var endDate: String? = null
     private var contentTxt: String? = null
     lateinit var awardRecyclerViewAdapter: AwardRecyclerViewAdapter
     var dataList: ArrayList<AwardListData> = ArrayList()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -38,6 +36,15 @@ class Career2Fragment : Fragment() {
         setBtnOnClickListener()
         // Inflate the layout for this fragment
         return career2Fragment
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        awardRecyclerViewAdapter = AwardRecyclerViewAdapter(activity!!, dataList)
+
+        if(awardRecyclerViewAdapter.dataList.size==0)
+            rl_empty_award.visibility=View.VISIBLE
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -48,14 +55,13 @@ class Career2Fragment : Fragment() {
 
                 titleTxt = data!!.getStringExtra("title").toString()
                 startDate = data!!.getStringExtra("start_data").toString()
-                endDate = data!!.getStringExtra("end_data").toString()
                 contentTxt = data!!.getStringExtra("notes").toString()
 
-                dataList.add(AwardListData(titleTxt!!, startDate + " ~ " + endDate, contentTxt!!))
+                dataList.add(AwardListData(titleTxt!!, startDate!!, contentTxt!!))
 
 //                careerRecyclerViewAdapter = CareerRecyclerViewAdapter(activity!!, dataList)
-                rv_career1_frag_activity_list.adapter = awardRecyclerViewAdapter
-                rv_career1_frag_activity_list.layoutManager = LinearLayoutManager(activity)
+                rv_career2_frag_award_list.adapter = awardRecyclerViewAdapter
+                rv_career2_frag_award_list.layoutManager = LinearLayoutManager(activity)
 
                 invisibleImage()
             }
@@ -65,13 +71,13 @@ class Career2Fragment : Fragment() {
     private fun setBtnOnClickListener(){
         val add_award: RelativeLayout = career2Fragment!!.find(R.id.btn_add_award)
         add_award.setOnClickListener {
-            startActivity<AwardDetail>()
+            startActivityForResult<AwardDetail>(REQUEST_CODE_OUT_ACTIVITY)
         }
 
     }
 
     fun invisibleImage() {
-        rl_empty_career.visibility = View.INVISIBLE
+        rl_empty_award.visibility = View.INVISIBLE
     }
 
 }

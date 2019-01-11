@@ -5,7 +5,7 @@
                 android:layout_height="match_parent"
                 tools:context=".Fragment.Career.Career2Fragment">
     <RelativeLayout
-            android:id="@+id/activity_top"
+            android:id="@+id/award_top"
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -37,10 +37,36 @@
                     android:layout_height="wrap_content" />
         </RelativeLayout>
 
+
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/rl_empty_award"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/award_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <ImageView
+                android:layout_marginTop="85dp"
+                android:id="@+id/iv_empty_career"
+                android:src="@drawable/img_empty_career"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:gravity="center"
+                android:lineSpacingExtra="9sp"
+                android:textColor="#b2b2b2"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="36dp"
+                android:layout_below="@+id/iv_empty_career"
+                android:text="나의 수상내역을\n기록해보세요!"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
     </RelativeLayout>
     <android.support.v7.widget.RecyclerView
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/activity_top"
+            android:layout_below="@+id/award_top"
             android:layout_marginTop="12dp"
             android:id="@+id/rv_career2_frag_award_list"
             android:layout_width="wrap_content"
