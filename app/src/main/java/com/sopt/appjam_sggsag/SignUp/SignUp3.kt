@@ -104,7 +104,7 @@ class SignUp3 : AppCompatActivity() {
         getEditText()
         if (getSignUp3.school.isNotEmpty() && getSignUp3.major.isNotEmpty() && getSignUp3.grade.isNotEmpty() && getSignUp3.sid.isNotEmpty()) {
             iv_next_3.setImageResource(R.drawable.bt_next_active)
-            iv_next_3.onClick {
+            iv_next_3.setOnClickListener {
                 startActivity<SignUp4>()
                 finish()
             }

@@ -28,7 +28,7 @@ import android.support.v4.view.MotionEventCompat
 
 var textSize: Float = 2.5f
 var year: Int = 2019
-var toDay: Int = 1   //아니 이게 사실은 달 받아오는 거임.
+var toDay: Int = 1   //달 받아오는 거임.
 var date: Int = 0
 class CalendarRecyclerAdapter(
     val ctx: Context,
@@ -334,12 +334,7 @@ class CalendarRecyclerAdapter(
         holder.oneDay.setOnClickListener(){
             holder.numberView1.setBackgroundResource(R.drawable.select_marker)
         }
-        /*
-        holder.oneDay.setOnTouchListener { view, motionEvent ->
 
-
-        }
-        */
 
         if(holder.numberView1.text == date.toString() && yyear==year && mmonth==toDay){
             holder.numberView1.setBackgroundResource(R.drawable.today_marker);

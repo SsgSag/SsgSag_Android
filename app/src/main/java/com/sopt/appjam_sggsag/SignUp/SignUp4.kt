@@ -183,7 +183,6 @@ class SignUp4 : AppCompatActivity() {
                     interestListServer.put(i)
                 //interestListServer = arrayOf(i.toByte())
             }
-            Log.d("interest", "진희야 힘내" + interestListServer)
             getSignUpResponseData()
             startActivity<MainActivity>()
             finish()
@@ -259,80 +258,6 @@ class SignUp4 : AppCompatActivity() {
             }
         })
 
-        //
-        /*
-        if (edit_id.text.toString().isNotEmpty() && edit_password.text.toString().isNotEmpty()) {
-            val input_email = edit_id.text.toString()
-            val input_pw = edit_password.text.toString()
-            val jsonObject : JSONObject = JSONObject()
-            jsonObject.put("userEmail", input_email)
-            jsonObject.put("userPw", input_pw)
 
-            val gsonObject: JsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-
-            val postLogInResponse: Call<PostLogInResponse> =
-                    networkService.postLoginResponse("application/json", gsonObject)
-            postLogInResponse.enqueue(object : Callback<PostLogInResponse> {
-                override fun onFailure(call: Call<PostLogInResponse>, t: Throwable) {
-                    Log.d("Login fail", t.toString())
-                }
-
-                override fun onResponse(call: Call<PostLogInResponse>, response: Response<PostLogInResponse>) {
-                    if (response.isSuccessful) {
-                        Log.d("log값", response.body()?.status.toString())
-                        val token = response.body()!!.data.token
-                        //저번 시간에 배웠던 SharedPreference에 토큰을 저장!
-                        SharedPreferenceController.setAuthorization(this@LoginActivity, token)
-                        toast(SharedPreferenceController.getAuthorization(this@LoginActivity))
-                        startActivity<MainActivity>()
-                        finish()
-                    }
-                }
-            })
-        }
-        */
-        //
-//        var userEmail = RequestBody.create(MediaType.parse("text/plain"), SignUp1.getSignUp1.id)
-//        var userPw = RequestBody.create(MediaType.parse("text/plain"), SignUp1.getSignUp1.pw)
-//        var userName = RequestBody.create(MediaType.parse("text/plain"), SignUp2.getSignUp2.name)
-//        var userUniv = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.school)
-//        var userMajor = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.major)
-//        var userStudentNum = RequestBody.create(MediaType.parse("text/plain"), SignUp3.getSignUp3.sid)
-//        var userBirth = RequestBody.create(MediaType.parse("text/plain"), SignUp2.getSignUp2.birth)
-//        var userPushAllow = RequestBody.create(MediaType.parse("text/plain"), "1")
-//        var userInfoAllow = RequestBody.create(MediaType.parse("text/plain"), "1")
-//        //RequestBody.create(MediaType.parse("application/json"), interestListServer)
-//        var userInterest = RequestBody.create(MediaType.parse("application/json"), interestListServer)
-////        var profile = RequestBody.create(MediaType.parse("text/plain"), )
-//
-//        if(SignUp2.getSignUp2.btn==1)
-//            gender="female"
-//        else if(SignUp2.getSignUp2.btn==2)
-//            gender="male"
-//
-//        var userGender = RequestBody.create(MediaType.parse("text/plain"), gender)
-//        val file : File = File(SignUp2.getSignUp2.imageURI)
-//        val requestfile : RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-//        val data : MultipartBody.Part = MultipartBody.Part.createFormData("photo", file.name, requestfile)
-//
-//        val postSignUpResponse = networkService.postSignUpResponse(userEmail, userPw, userName, userMajor, userStudentNum, userBirth, )
-//
-//        //Gson 라이브러리의 Json Parser을 통해 객체를 Json으로!
-//        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-//        val postSignUpResponse: Call<PostSignUpResponse> =
-//            networkService.postSignUpResponse(gsonObject)
-//        postSignUpResponse.enqueue(object : Callback<PostSignUpResponse> {
-//            override fun onFailure(call: Call<PostSignUpResponse>, t: Throwable) {
-//                Log.e("sign up fail", t.toString())
-//            }
-//
-//            //통신 성공 시 수행되는 메소드
-//            override fun onResponse(call: Call<PostSignUpResponse>, response: Response<PostSignUpResponse>) {
-//                if (response.isSuccessful) {
-//                    toast(response.body()!!.message)
-//                    finish()
-//                }
-//            }
-//        })
     }
 }
