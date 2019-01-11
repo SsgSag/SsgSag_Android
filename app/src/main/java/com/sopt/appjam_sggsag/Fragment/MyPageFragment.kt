@@ -172,26 +172,6 @@ class MyPageFragment : Fragment() {
             showAlbum()
         }
 
-//        if (ActivityCompat.checkSelfPermission(
-//                context!!,
-//                android.Manifest.permission.ACCESS_FINE_LOCATION
-//            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-//                context!!,
-//                android.Manifest.permission.ACCESS_COARSE_LOCATION
-//            ) != PackageManager.PERMISSION_GRANTED
-//        ) {
-//            requestPermissions(
-//                activity,
-//                arrayOf(
-//                    android.Manifest.permission.ACCESS_COARSE_LOCATION,
-//                    android.Manifest.permission.ACCESS_FINE_LOCATION
-//                ),
-//                REQUEST_LOCATION
-//            )
-//        } else {
-//            Log.e("DB", "PERMISSION GRANTED")
-//        }
-
     }
 
     private fun showAlbum() {

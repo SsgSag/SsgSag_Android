@@ -28,18 +28,25 @@
             android:padding="16dp">
 
         <TextView
+                android:letterSpacing="-0.02"
+                android:textColor="#474747"
+                android:fontFamily="sans-serif"
+                android:layout_marginTop="30dp"
                 android:id="@+id/item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="29sp"/>
+                android:textSize="24sp"/>
 
         <TextView
+                android:letterSpacing="-0.02"
+                android:textColor="#97979b"
+                android:fontFamily="sans-serif-medium"
                 android:id="@+id/item_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="17sp"/>
+                android:textSize="14sp"/>
 
     </LinearLayout>
 
@@ -49,11 +56,6 @@
             android:layout_height="match_parent"
             android:background="@drawable/img_main_swipe_x">
 
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-
     </FrameLayout>
 
     <FrameLayout
@@ -61,11 +63,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/img_main_swipe_o">
-
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
 
     </FrameLayout>
 

@@ -18,8 +18,6 @@ class FifthInfoFragment: Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fifthInfoFragment = inflater!!.inflate(R.layout.fragment_fifth_info, container, false)
 
-        setOnBtnClickListener()
-
         progress_1.setImageResource(R.drawable.progress_unactive)
         progress_2.setImageResource(R.drawable.progress_unactive)
         progress_3.setImageResource(R.drawable.progress_unactive)
@@ -28,13 +26,4 @@ class FifthInfoFragment: Fragment(){
 
         return fifthInfoFragment
     }
-
-    private fun setOnBtnClickListener(){
-//        val fifth_skip: RelativeLayout = fifthInfoFragment!!.find(R.id.btn_fifth_skip)
-//        fifth_skip.setOnClickListener {
-//            startActivity<LoginActivity>()
-//            activity!!.finish()
-//        }
-    }
-
 }

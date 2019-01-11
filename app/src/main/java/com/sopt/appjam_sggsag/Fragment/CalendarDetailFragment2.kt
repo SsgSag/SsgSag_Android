@@ -46,7 +46,7 @@ class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
         MyApplication.instance.networkService
     }
     override fun getYearMonthTab(year: String, month: String) {
-        //이거 아마 안쓸걸? 걍 비워두자
+
     }
 
     override fun onClick(year: Int, month: Int, day: String) {
@@ -64,8 +64,7 @@ class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
 
     lateinit var recyclerViewAdapter: CalendarRecyclerAdapter2
 
-    //var dataList = (activity!!.application as MyApplication).dataList1
-    //(activity!!.application as MyApplication).
+
     var dataList : ArrayList<CalendarDateData> = ArrayList()
     var scheduleList : ArrayList<EventList> = ArrayList()
     var mArrayList: ArrayList<EventList> = ArrayList()

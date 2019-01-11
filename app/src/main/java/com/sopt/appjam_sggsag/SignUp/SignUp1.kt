@@ -100,7 +100,6 @@ class SignUp1 : AppCompatActivity() {
         getEditText()
         if (getSignUp1.id.isNotEmpty() && getSignUp1.pw.isNotEmpty() && pw_check.isNotEmpty()) {
             if(getSignUp1.pw==pw_check){
-                Log.d("show input","aaaaaaaaa"+getSignUp1.id+"   "+getSignUp1.pw)
                 iv_next_1.setImageResource(R.drawable.bt_next_active)
                 iv_next_1.setOnClickListener {
                     startActivity<SignUp2>()
