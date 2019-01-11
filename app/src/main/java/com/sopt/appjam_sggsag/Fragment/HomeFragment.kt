@@ -14,8 +14,6 @@ import android.widget.TextView
 import com.sopt.appjam_sggsag.CardStackAdapter
 import com.sopt.appjam_sggsag.Data.DetailPosterData
 import com.sopt.appjam_sggsag.MyApplication
-import com.sopt.appjam_sggsag.MyApplication.Companion.inputPosterData
-import com.sopt.appjam_sggsag.MyApplication.Companion.inputUserCnt
 import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.SpotDiffCallback

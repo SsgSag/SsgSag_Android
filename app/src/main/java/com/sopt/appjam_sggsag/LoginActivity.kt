@@ -7,6 +7,7 @@ import android.view.WindowManager
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.sopt.appjam_sggsag.DB.SharedPreferenceController
+import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.Post.PostLogInResponse
 import com.sopt.appjam_sggsag.SignUp.SignUp1
 import kotlinx.android.synthetic.main.activity_login.*

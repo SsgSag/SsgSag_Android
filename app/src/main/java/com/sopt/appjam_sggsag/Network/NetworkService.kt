@@ -1,8 +1,7 @@
+package com.sopt.appjam_sggsag.Network
+
 import com.google.gson.JsonObject
 import com.sopt.appjam_sggsag.Post.*
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
 
