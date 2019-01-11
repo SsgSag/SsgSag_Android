@@ -12,6 +12,7 @@
         app:cardCornerRadius="8dp"
         app:cardBackgroundColor="@android:color/white">
 
+
     <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/item_image"
             android:layout_width="match_parent"
@@ -45,41 +46,12 @@
 
     </LinearLayout>
 
-
-    <!--<FrameLayout-->
-    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
-    <!--<LinearLayout-->
-    <!--android:orientation="vertical"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
-    <!--<ImageView-->
-    <!--android:id="@+id/IV_card_content"-->
-    <!--android:background="#d1c4e9"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"/>-->
-    <!--<TextView-->
-    <!--android:layout_marginTop="-320dp"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:id="@+id/tmp_text_1"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"/>-->
-    <!--<TextView-->
-    <!--android:layout_marginTop="10dp"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:id="@+id/tmp_text_2"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="30dp"/>-->
-    <!--</LinearLayout>-->
-    <!--</FrameLayout>-->
-
     <!--detail_1-->
 
     <FrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android">
+            android:layout_height="match_parent">
         <LinearLayout
                 android:id="@+id/ll_detail1_background"
                 android:background="#ffffff"
@@ -297,9 +269,9 @@
 
     <!--detail_2-->
     <FrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android">
+            android:layout_height="match_parent">
         <LinearLayout
                 android:id="@+id/ll_detail2_background"
                 android:background="#ffffff"
@@ -563,9 +535,9 @@
 
     <!--detail_3-->
     <FrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android">
+            android:layout_height="match_parent">
         <LinearLayout
                 android:id="@+id/ll_detail3_background"
                 android:background="#ffffff"
@@ -868,56 +840,18 @@
 
     <!--detail_4-->
     <FrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android">
+            android:layout_height="match_parent">
         <LinearLayout
                 android:id="@+id/ll_detail4_background"
                 android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp">
-                <ImageView
-                        android:id="@+id/iv_tab_left_4"
-                        android:src="@drawable/tab_card_left"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                <ImageView
-                        android:id="@+id/iv_tab_right_4"
-                        android:layout_alignParentRight="true"
-                        android:src="@drawable/tab_card_right"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-            </RelativeLayout>
-            <TextView
-                    android:id="@+id/main_detail4_title"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="bold"
-                    android:textColor="#474747"
-                    android:letterSpacing="-0.02"
-                    android:text="IT 벤처 창업 동아리 SOPT"
-            />
-            <TextView
-                    android:id="@+id/main_detail4_hash"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="#기획/아이디어 #디자인 #IT/기술 #창업/스타트업"/>
-
 
             <RelativeLayout
-                    android:layout_marginTop="22dp"
+                    android:layout_marginTop="114dp"
                     android:layout_width="match_parent"
                     android:layout_height="126dp">
                 <ImageView
@@ -995,8 +929,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:id="@+id/text_main_detail4_step1_date"
                                 android:layout_below="@+id/text_main_detail4_step1"
-                                android:text="08.27
-     \n~09.05"
+                                android:text="08.27\n~09.05"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-light"
@@ -1060,8 +993,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:id="@+id/text_main_detail4_step3_date"
                                 android:layout_below="@+id/text_main_detail4_step3"
-                                android:text="09.08
-     \n~09.09"
+                                android:text="09.08\n~09.09"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-light"
@@ -1213,6 +1145,53 @@
         </LinearLayout>
     </FrameLayout>
 
+    <RelativeLayout
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/main_detail4_title"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textColor="#474747"
+                android:letterSpacing="-0.02"
+                android:text="IT 벤처 창업 동아리 SOPT"/>
+        <TextView
+                android:layout_marginBottom="22dp"
+                android:id="@+id/main_detail4_hash"
+                android:layout_marginTop="75dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#기획/아이디어 #디자인 #IT/기술 #창업/스타트업"/>
+    </RelativeLayout>
+    <LinearLayout
+            android:id="@+id/ll_top"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="4dp">
+        <ImageView
+                android:id="@+id/iv_tab_left_4"
+                android:src="@drawable/tab_card_left"
+                android:scaleType="fitXY"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+        <ImageView
+                android:id="@+id/iv_tab_right_4"
+                android:src="@drawable/tab_card_right"
+                android:scaleType="fitXY"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
     <FrameLayout
             android:id="@+id/left_overlay"
             android:layout_width="match_parent"
@@ -1240,7 +1219,6 @@
                 android:layout_gravity="center"/>
 
     </FrameLayout>
-
     <FrameLayout
             android:id="@+id/top_overlay"
             android:layout_width="match_parent"
@@ -1253,6 +1231,5 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
     </FrameLayout>
-
 
 </android.support.v7.widget.CardView>
