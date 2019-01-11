@@ -76,6 +76,8 @@ class MyApplication : Application() {
         dataList1.add(CalendarDateData(40, "40",""))
         dataList1.add(CalendarDateData(41, "41",""))
         dataList1.add(CalendarDateData(42, "42","blue"))
+
+        /*
         eventList1.add(EventList(2019,1,8,"대외활동",1))
         eventList1.add(EventList(2019,1,6,"대외활동",1))
         eventList1.add(EventList(2019,1,7,"대외활동",1))
@@ -98,7 +100,7 @@ class MyApplication : Application() {
         eventList1.add(EventList(2019,2,13,"동아리2",2))
         eventList1.add(EventList(2019,2,14,"동아리2",2))
 
-
+*/
     }
     /*
     fun getScreenHeightInDPs(context: Context): Int {

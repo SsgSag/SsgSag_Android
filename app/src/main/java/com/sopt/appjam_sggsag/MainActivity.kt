@@ -29,11 +29,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.e("설마 이것도?","안될라구?")
         MyApplication.instance.networkService.postPosterResponse("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08")
             .enqueue(object: Callback<PostPosterListResponse>{
                 override fun onFailure(call: Call<PostPosterListResponse>?, t: Throwable?) {
-                    Log.e("들어옴", "들어옴")
                 }
                 override fun onResponse(call: Call<PostPosterListResponse>?, response: Response<PostPosterListResponse>?) {
                     Log.e("들어옴", response.toString())
