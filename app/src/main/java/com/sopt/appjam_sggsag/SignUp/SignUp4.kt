@@ -8,6 +8,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.sopt.appjam_sggsag.MainActivity
 import com.sopt.appjam_sggsag.MyApplication
+import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.Post.PostSignUpResponse
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.activity_sign_up4.*

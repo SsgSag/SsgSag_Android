@@ -24,6 +24,7 @@ import com.sopt.appjam_sggsag.DB.SharedPreferenceController
 import com.sopt.appjam_sggsag.MyApplication
 import com.sopt.appjam_sggsag.MyPage.InterestArea
 import com.sopt.appjam_sggsag.MyPage.JobActivity
+import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.Post.InfoData
 import com.sopt.appjam_sggsag.Post.PostInfoResponse
 import com.sopt.appjam_sggsag.R
