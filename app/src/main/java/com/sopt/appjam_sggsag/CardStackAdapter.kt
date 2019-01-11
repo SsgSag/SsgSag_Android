@@ -216,6 +216,7 @@ class CardStackAdapter(
     }
 */
 
+
 override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     //왼쪽 오른쪽 안에서 holder 부르면 다시 onBindViewHolder로 돌아오네. 들어가기 전에 판단해서 넘겨줘라
     val poster = posters[position]
@@ -238,9 +239,9 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     if (poster.finalAnnounceDate != null){
         processCnt++
     }
-    Log.e("processCnt","-----------")
-    Log.e("processCnt",processCnt.toString())
-    Log.e("processCnt","-----------")
+//    Log.e("processCnt","-----------")
+//    Log.e("processCnt",processCnt.toString())
+//    Log.e("processCnt","-----------")
 
     setDetailViewInvisible(holder,1)
     setDetailViewInvisible(holder,2)
@@ -544,14 +545,14 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             MotionEvent.ACTION_UP->{//클릭
                 xAtUp = event.getX()
                 if (xAtUp<=widthOfCard/2) {//card의 왼쪽 클릭
-                    Log.e("왼쪽","클릭")
+//                    Log.e("왼쪽","클릭")
                     setDetailViewInvisible(holder,1)
                     setDetailViewInvisible(holder,2)
                     setDetailViewInvisible(holder,3)
                     setDetailViewInvisible(holder,4)
                 }
                 else{//card의 오른쪽 클릭
-                    Log.e("오른쪽","클릭")
+//                    Log.e("오른쪽","클릭")
                     holder.detail1_left_tab.visibility=View.INVISIBLE
                     holder.detail2_left_tab.visibility=View.INVISIBLE
                     holder.detail3_left_tab.visibility=View.INVISIBLE
@@ -566,7 +567,7 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
                         setDetailViewVisible(holder,3)
                     }
                     else{//processCnt==4
-                        Log.e("categoryIdx",poster.categoryIdx.toString())
+//                        Log.e("categoryIdx",poster.categoryIdx.toString())
                         setDetailViewVisible(holder,4)
                     }
                 }
@@ -593,7 +594,7 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
     fun setDetailViewInvisible(holder: ViewHolder, processCnt : Int){
         if (processCnt==1){
-            Log.e("setDetailViewInvisible","cnt1")
+//            Log.e("setDetailViewInvisible","cnt1")
             holder.detail1_right_tab.visibility=View.INVISIBLE
             holder.detail1_background.visibility=View.INVISIBLE
             holder.detail1_title.visibility=View.INVISIBLE
@@ -612,7 +613,7 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.detail1_text_benefit.visibility=View.INVISIBLE
         }
         else if (processCnt==2){
-            Log.e("setDetailViewInvisible","cnt2")
+//            Log.e("setDetailViewInvisible","cnt2")
             holder.detail2_right_tab.visibility=View.INVISIBLE
             holder.detail2_background.visibility=View.INVISIBLE
             holder.detail2_title.visibility=View.INVISIBLE
@@ -635,7 +636,7 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.detail2_text_benefit.visibility=View.INVISIBLE
         }
         else if (processCnt==3){
-            Log.e("setDetailViewInvisible","cnt3")
+//            Log.e("setDetailViewInvisible","cnt3")
             holder.detail3_right_tab.visibility=View.INVISIBLE
             holder.detail3_background.visibility=View.INVISIBLE
             holder.detail3_title.visibility=View.INVISIBLE
@@ -661,7 +662,7 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.detail3_text_benefit.visibility=View.INVISIBLE
         }
         else{//processCnt==4
-            Log.e("setDetailViewInvisible","cnt4")
+//            Log.e("setDetailViewInvisible","cnt4")
             holder.detail4_right_tab.visibility=View.INVISIBLE
             holder.detail4_background.visibility=View.INVISIBLE
             holder.detail4_title.visibility=View.INVISIBLE
