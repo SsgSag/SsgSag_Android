@@ -1,8 +1,9 @@
 package com.sopt.appjam_sggsag.Data
 
+
+
 data class DetailPosterData(
-    //서버에서 받은 거 Int인데 망가질까 무서워ㅜㅜㅜ
-    val posterIdx : Int,// = counter++,
+    val posterIdx : Int,
     val categoryIdx : Int,
     val photoUrl: String,
     val posterName : String,
@@ -21,8 +22,3 @@ data class DetailPosterData(
     val finalAnnounceDate : String?,
     val interviewDate : String?
 )
-//{
-//    companion object {
-//        private var counter = 0
-//    }
-//}

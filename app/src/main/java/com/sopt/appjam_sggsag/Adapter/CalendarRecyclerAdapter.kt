@@ -1,5 +1,6 @@
 package com.sopt.appjam_sggsag.Adapter
 
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.graphics.Color
 import android.support.v4.content.ContextCompat
@@ -18,6 +19,11 @@ import org.jetbrains.anko.toast
 import java.util.*
 import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 import org.jetbrains.anko.backgroundColor
+import android.widget.Toast
+import android.view.MotionEvent
+import android.support.v4.view.MotionEventCompat
+
+
 
 
 var textSize: Float = 2.5f
@@ -327,8 +333,13 @@ class CalendarRecyclerAdapter(
 
         holder.oneDay.setOnClickListener(){
             holder.numberView1.setBackgroundResource(R.drawable.select_marker)
-            listener.onClick(yyear, mmonth, holder.numberView1.text.toString())
         }
+        /*
+        holder.oneDay.setOnTouchListener { view, motionEvent ->
+
+
+        }
+        */
 
         if(holder.numberView1.text == date.toString() && yyear==year && mmonth==toDay){
             holder.numberView1.setBackgroundResource(R.drawable.today_marker);
