@@ -41,7 +41,7 @@ import retrofit2.Response
 
 class CalendarFragment : Fragment(), GetYearMonthTab {
 
-    override fun onClick(year: Int, month: Int, day: String) {
+    override fun onClick(year: Int, month: Int, day: String, position:Int) {
         if (day != "") {
             val animation = AlphaAnimation(1f, 0f)
             animation.duration = 400
@@ -63,6 +63,8 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
     var calendar_month = 24;
     var mArrayList: ArrayList<String>? = ArrayList()
     var listServer: ArrayList<CalendarData>? = ArrayList()
+   // var todoListListener : Int = 0
+
 
     val networkService: NetworkService by lazy {
         MyApplication.instance.networkService
@@ -91,7 +93,10 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
         super.onCreate(savedInstanceState)
 
         scheduleList = (activity!!.application as MyApplication).eventList1
-        getCalendarResponse()
+    //    getCalendarResponse("2018","12")
+        getCalendarResponse("2019","01")
+     //   getCalendarResponse("2019","02")
+//        getCalendarResponse("2019","03")
         /*
         arguments?.let{
             select_year = it.getInt("year")
@@ -139,7 +144,6 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setRecyclerView()
         configureBottomNavigation()
         setOnClickListener()
 
@@ -156,7 +160,7 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
             vp_frag_calendar_view_pager.setLayoutParams(params)
 
         }
-*/
+*//*
         frag_calendar_before.setOnClickListener {
             calendar_month--
             vp_frag_calendar_view_pager.setCurrentItem(calendar_month, true)
@@ -173,40 +177,18 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
             //    vp_frag_calendar_view_pager2.setCurrentItem(calendar_month - 1, true)
             //calendar_month--
         }
+        */
         frag_calendar_iv_register.setOnClickListener {
-
             startActivity<ScheduleRegisterActivity>()
             activity!!.finish()
 
         }
-        /*
-        iv_big_calendar.setOnClickListener {
 
-            val animation = AlphaAnimation(1f, 0f)
-            animation.duration = 400
-            val animation2 = AlphaAnimation(0f, 1f)
-            animation2.duration = 400
-
-            schedule_linear_layout.visibility = (View.GONE)
-            schedule_linear_layout.setAnimation(animation);
-            vp_frag_calendar_view_pager.visibility = View.VISIBLE
-            vp_frag_calendar_view_pager.setAnimation(animation2);
-        }
-        */
+    
 
     }
 
 
-    private fun setRecyclerView() {
-        //임시 데이터
-        var dataList: ArrayList<TodoListData> = ArrayList()
-        dataList.add(TodoListData("할 일1", "D-3"))
-        dataList.add(TodoListData("할 일2", "D-2"))
-
-        // todoListRecyclerViewAdapter = TodoListRecyclerViewAdapter(activity!!,dataList)
-        //   rv_frag_calendar_todo_list.adapter = todoListRecyclerViewAdapter
-        //  rv_frag_calendar_todo_list.layoutManager = LinearLayoutManager(activity)
-    }
 
 
     private fun configureBottomNavigation() {
@@ -215,56 +197,13 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
         vp_frag_calendar_view_pager.offscreenPageLimit = 0
         vp_frag_calendar_view_pager.setCurrentItem(24, true)
 
-        //frag_calendar_year_month.setText(year.toString())
-        //오빠 저 그럼 오빠가 해결해줄 수 있는 질문 하나 더 있어요 ㅎㅅㅎ
-        // ViewPager와 Tablayout을 엮어줍니다!
-        //tl_top_frag_cal_top_menu.setupWithViewPager(vp_frag_calendar_view_pager)
-        //TabLayout에 붙일 layout을 찾아준 다음
-
-        //  val bottomNaviLayout: View = this.layoutInflater.inflate(R.layout.fragment_top_navi_calendar, null, false)
-        //탭 하나하나 TabLayout에 연결시켜줍니다.
-
-        //tl_top_frag_cal_top_menu.getTabAt(0)!!.customView = bottomNaviLayout.findViewById(R.id.btn_navi_calendar_before) as RelativeLayout
-        //tl_top_navi_act_top_menu.getTabAt(1)!!.customView = bottomNaviLayout.findViewById(R.id.btn_navi_calendar_now) as RelativeLayout
-        //tl_top_navi_act_top_menu.getTabAt(2)!!.customView = bottomNaviLayout.findViewById(R.id.btn_navi_calendar_next) as RelativeLayout
-
-    }
-/*
-    companion object {
-        private var instance: CalendarFragment? = null
-        @Synchronized
-        fun getInstance(): CalendarFragment {
-            if (instance == null) {
-                instance = CalendarFragment()
-            }
-            return instance!!
-        }
     }
 
-   */
-/*
-    fun setOnClickListener(calendarFragment: View){
-        calendarFragment.frag_calendar_view.setOnDateChangedListener { widget, date, selected ->
 
-            var onedaydecorator2 = OneDayDecorator(date)
-            //여기에 그 투두리스트 날짜에 맞게 나오는 코드
-            var year = date.year
-            var month = date.month+1
-            var day = date.day
-            var today:String = year.toString()+"년"+month.toString()+"월"+day.toString()+"일"
-            Toast.makeText(context, today, Toast.LENGTH_SHORT).show()
-            Log.e("log test1", date.toString())
-            widget.addDecorator(onedaydecorator2)
-
-        }
-    }
-
-*/
-
-    private fun getCalendarResponse() {
+    private fun getCalendarResponse(year:String, month:String) {
         var jsonObject = JSONObject()
-        jsonObject.put("year", "2019")
-        jsonObject.put("month", "01")
+        jsonObject.put("year", year)
+        jsonObject.put("month", month)
         jsonObject.put("day", "00")
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
@@ -272,8 +211,7 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
         val postCalendarResponse: Call<PostCalendarResponse> = networkService.postCalendarResponse(
             "application/json",
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08"
-            ,
-            gsonObject
+            ,gsonObject
         )
         postCalendarResponse.enqueue(object : Callback<PostCalendarResponse> {
             override fun onFailure(call: Call<PostCalendarResponse>, t: Throwable) {
@@ -297,15 +235,42 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
                         var eventName = listServer!![i].posterName
                         var category = listServer!![i].categoryIdx
                         var dday = listServer!![i].dday
-                        Log.e("sampleResponse", startDay.toString() + endDay.toString())
                         if (tempcount==i) {
                             //이게
-                            //  if (startYear == endYear && startMonth == endMonth) {
-                            for (i in startDay..endDay) {
-                                scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
-                                Log.e("itest", i.toString())
+                            if (startYear == endYear && startMonth == endMonth) {
+                                for (i in startDay..endDay) {
+                                    scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
+                                }
                             }
-                            //  }
+                            else if(startYear == endYear){
+                                when(startMonth){
+                                    1,3,5,7,8,10,12->{
+                                        for(i in startDay..31){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
+                                        }
+                                        for(i in 1..endDay){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, endMonth, i, eventName, category, dday))
+                                        }
+                                    }
+                                    2->{
+                                        for(i in startDay..28){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
+                                        }
+                                        for(i in 1..endDay){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, endMonth, i, eventName, category, dday))
+                                        }
+                                    }
+                                    else->{
+                                        for(i in startDay..30){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
+                                        }
+                                        for(i in 1..endDay){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, endMonth, i, eventName, category, dday))
+                                        }
+                                    }
+
+                                }
+                            }
                             tempcount++
                         }
                     }
