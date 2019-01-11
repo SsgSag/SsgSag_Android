@@ -17,10 +17,14 @@ import com.sopt.appjam_sggsag.Data.CalendarDateData
 import com.sopt.appjam_sggsag.Data.EventList
 import com.sopt.appjam_sggsag.Data.EventNameList
 import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
+import com.sopt.appjam_sggsag.MyApplication
+import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
 import kotlinx.android.synthetic.main.rv_item_calendar.view.*
 import org.jetbrains.anko.toast
+import java.lang.Boolean.FALSE
+import java.lang.Boolean.TRUE
 import java.util.*
 
 
@@ -33,12 +37,11 @@ class CalendarRecyclerAdapter2(
 ) :
     RecyclerView.Adapter<CalendarRecyclerAdapter2.Holder>() {
 
-    lateinit var viewGroup : ViewGroup
-
+    var calendar : Calendar = Calendar.getInstance()
     var year: Int = 2019
     var toDay: Int = 1   //아니 이게 사실은 달 받아오는 거임.
-    var yyear : Int = year
-    var mmonth : Int = toDay
+    var yyear: Int = year
+    var mmonth: Int = toDay
     var eventName: String? = null      //scheduleList에 있는 event 종류 저장
     val eventNameList: ArrayList<EventNameList> = ArrayList()   //우선순위 순 이벤트 저장
     internal var startDay: Int = 0  //이번달의 시작요일
@@ -50,7 +53,6 @@ class CalendarRecyclerAdapter2(
     val params2 =
         LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
     var flag = 0
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -74,7 +76,7 @@ class CalendarRecyclerAdapter2(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
+        var black = false
 
 
 
@@ -99,38 +101,70 @@ class CalendarRecyclerAdapter2(
         holder.numberView5.setTextSize(3.0f)
         //Log.e("arr[position]",arr[position][1])
         if (arr[position][1] != 9999) {
-            if(eventNameList[arr[position][1]].minDay.toString()== dataList[position].day || position%7==0){
+            if (eventNameList[arr[position][1]].minDay.toString() == dataList[position].day || position % 7 == 0) {
                 holder.numberView2.text = eventNameList[arr[position][1]].eventName
                 holder.numberView2.setTextSize(3.0f)
             }
-            if(eventNameList[arr[position][1]].maxDay.toString()== dataList[position].day){
+            if (eventNameList[arr[position][1]].maxDay.toString() == dataList[position].day) {
                 holder.numberView2.layoutParams = params
                 holder.numberView2.setTextSize(3.0f)
             }
             when (eventNameList[arr[position][1]].category) {
                 0 -> {
-                    holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color0))
-                    holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color0))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else{
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color0))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color0))
+                    }
+
+
                 }
                 1 -> {
-                    holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color1))
-                    holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color1))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color1))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color1))
+                    }
                 }
                 2 -> {
-                    holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color2))
-                    holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color2))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color2))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color2))
+                    }
                 }
                 3 -> {
-                    holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color3))
-                    holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color3))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color3))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color3))
+                    }
                 }
                 4 -> {
-                    holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color4))
-                    holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color4))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color4))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color4))
+                    }
                 }
                 5 -> {
-                    holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color5))
-                    holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView2.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color5))
+                        holder.numberView2.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
+                    }
                 }
                 else -> {
                 }
@@ -138,38 +172,68 @@ class CalendarRecyclerAdapter2(
             //setColor(holder.numberView2,position)
         }
         if (arr[position][2] != 9999) {
-            if(eventNameList[arr[position][2]].minDay.toString()== dataList[position].day || position%7==0) {
+            if (eventNameList[arr[position][2]].minDay.toString() == dataList[position].day || position % 7 == 0) {
                 holder.numberView3.text = eventNameList[arr[position][2]].eventName
                 holder.numberView3.setTextSize(3.0f)
             }
-            if(eventNameList[arr[position][2]].maxDay.toString()== dataList[position].day){
+            if (eventNameList[arr[position][2]].maxDay.toString() == dataList[position].day) {
                 holder.numberView3.layoutParams = params
                 holder.numberView3.setTextSize(3.0f)
             }
             when (eventNameList[arr[position][2]].category) {
                 0 -> {
-                    holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color0))
-                    holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color0))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color0))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color0))
+                    }
                 }
                 1 -> {
-                    holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color1))
-                    holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color1))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color1))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color1))
+                    }
                 }
                 2 -> {
-                    holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color2))
-                    holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color2))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color2))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color2))
+                    }
                 }
                 3 -> {
-                    holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color3))
-                    holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color3))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color3))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color3))
+                    }
                 }
                 4 -> {
-                    holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color4))
-                    holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color4))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color4))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color4))
+                    }
                 }
                 5 -> {
-                    holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color5))
-                    holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color5))
+                        holder.numberView3.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
+                    }
                 }
                 else -> {
                 }
@@ -177,38 +241,68 @@ class CalendarRecyclerAdapter2(
             //setColor(holder.numberView3,position)
         }
         if (arr[position][3] != 9999) {
-            if(eventNameList[arr[position][3]].minDay.toString()== dataList[position].day || position%7==0) {
+            if (eventNameList[arr[position][3]].minDay.toString() == dataList[position].day || position % 7 == 0) {
                 holder.numberView4.text = eventNameList[arr[position][3]].eventName
                 holder.numberView4.setTextSize(3.0f)
             }
-            if(eventNameList[arr[position][3]].maxDay.toString()== dataList[position].day){
+            if (eventNameList[arr[position][3]].maxDay.toString() == dataList[position].day) {
                 holder.numberView4.layoutParams = params
                 holder.numberView4.setTextSize(3.0f)
             }
             when (eventNameList[arr[position][3]].category) {
                 0 -> {
-                    holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color0))
-                    holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color0))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color0))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color0))
+                    }
                 }
                 1 -> {
-                    holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color1))
-                    holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color1))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color1))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color1))
+                    }
                 }
                 2 -> {
-                    holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color2))
-                    holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color2))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color2))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color2))
+                    }
                 }
                 3 -> {
-                    holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color3))
-                    holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color3))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color3))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color3))
+                    }
                 }
                 4 -> {
-                    holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color4))
-                    holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color4))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color4))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color4))
+                    }
                 }
                 5 -> {
-                    holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color5))
-                    holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView4.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color5))
+                        holder.numberView4.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
+                    }
                 }
                 else -> {
                 }
@@ -217,38 +311,68 @@ class CalendarRecyclerAdapter2(
 
         }
         if (arr[position][4] != 9999) {
-            if(eventNameList[arr[position][4]].minDay.toString()== dataList[position].day || position%7==0) {
+            if (eventNameList[arr[position][4]].minDay.toString() == dataList[position].day || position % 7 == 0) {
                 holder.numberView5.text = eventNameList[arr[position][4]].eventName
                 holder.numberView5.setTextSize(3.0f)
             }
-            if(eventNameList[arr[position][4]].maxDay.toString()== dataList[position].day){
+            if (eventNameList[arr[position][4]].maxDay.toString() == dataList[position].day) {
                 holder.numberView5.layoutParams = params
                 holder.numberView5.setTextSize(3.0f)
             }
             when (eventNameList[arr[position][4]].category) {
                 0 -> {
-                    holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color0))
-                    holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color0))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color0))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color0))
+                    }
                 }
                 1 -> {
-                    holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color1))
-                    holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color1))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color1))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color1))
+                    }
                 }
                 2 -> {
-                    holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color2))
-                    holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color2))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color2))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color2))
+                    }
                 }
                 3 -> {
-                    holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color3))
-                    holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color3))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color3))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color3))
+                    }
                 }
                 4 -> {
-                    holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color4))
-                    holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color4))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color4))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color4))
+                    }
                 }
                 5 -> {
-                    holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color5))
-                    holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
+                    if(dataList[position].day!!.toInt() < calendar.get(Calendar.DAY_OF_MONTH)){
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.very_light_pink))
+                    } else {
+                        holder.numberView5.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color5))
+                        holder.numberView5.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
+                    }
                 }
                 else -> {
                 }
@@ -257,58 +381,18 @@ class CalendarRecyclerAdapter2(
         }
 
 
-//        holder.oneDay.setOnClickListener {
-        //토스트뜨고
-        //
-        //          holder.numberView1
-        //        ctx.toast(holder.numberView1.text)
-        //하트 상태 바꾸고
-        /*
-        if(dataList[position].isLike==true){
-            dataList[position].isLike=false
-            holder.heartImage.visibility = View.GONE
+        holder.oneDay.setOnClickListener {
+            holder.numberView1.setBackgroundResource(R.drawable.today_marker)
+            listener.onClick(yyear, mmonth, holder.numberView1.text.toString())
         }
-        else{
-            dataList[position].isLike=true
-            holder.heartImage.visibility = View.VISIBLE
-        }
-        */
-
-        //  }
-
-        //holder.heartImage.image = dataList[position].isLike.image
-        /*
-        if(dataList[position].isLike==false){
-            holder.heartImage.visibility = View.GONE
-        }
-        */
-
-        if(holder.numberView1.text == date.toString() && yyear== com.sopt.appjam_sggsag.Adapter.year && mmonth== com.sopt.appjam_sggsag.Adapter.toDay){
+        if (holder.numberView1.text == date.toString() && yyear == com.sopt.appjam_sggsag.Adapter.year && mmonth == com.sopt.appjam_sggsag.Adapter.toDay) {
+            black = true
+            Log.e("todaymarker", "why not")
             holder.numberView1.setBackgroundResource(R.drawable.today_marker);
             holder.numberView1.setTextColor(Color.WHITE)
         }
-
-        setOnClickListener(holder)
     }
 
-
-    private fun setOnClickListener(holder:Holder){
-        holder.oneDay.setOnClickListener{
-            //리스너 여기있어요.
-
-            var printDay = holder.numberView1.text
-            holder.numberView2.setBackgroundResource(R.drawable.today_marker);
-            holder.numberView3.setTextColor(Color.WHITE)
-            // it.numbering1.text = "이이이"
-            //holder.numberView1.setBackgroundResource(R.drawable.select_marker)
-            //   holder.numberView1.setTextColor(Color.WHITE)
-            holder.numberView1.setText("77")
-            var xxxx = holder.numberView1.text
-            ctx.toast("도희는 자야한다")
-            listener.onClick(yyear, mmonth, printDay.toString())
-            Log.e("CRA2", printDay.toString())
-        }
-    }
 
     private fun getDay(month: Int) {
         val iCal = Calendar.getInstance()
@@ -377,7 +461,6 @@ class CalendarRecyclerAdapter2(
     }
 
 
-
     private fun saveEventName() {
 
         for (i in 0..scheduleList.size - 1) {
@@ -389,7 +472,7 @@ class CalendarRecyclerAdapter2(
                     for (j in 0..eventNameList.size - 1) {
                         if (eventName == eventNameList[j].eventName) {
                             eventNameList[j].count++
-                            Log.e("eventNameTest",eventNameList[j].count.toString())
+                            Log.e("eventNameTest", eventNameList[j].count.toString())
                             if (scheduleList[i].day < eventNameList[j].minDay)
                                 eventNameList[j].minDay = scheduleList[i].day
                             if (scheduleList[i].day > eventNameList[j].maxDay)
@@ -400,12 +483,28 @@ class CalendarRecyclerAdapter2(
                     }
 
                     if (alreadyExist == 0) {
-                        eventNameList.add(EventNameList(eventName!!, scheduleList[i].category, 1, scheduleList[i].day,scheduleList[i].day))
+                        eventNameList.add(
+                            EventNameList(
+                                eventName!!,
+                                scheduleList[i].category,
+                                1,
+                                scheduleList[i].day,
+                                scheduleList[i].day
+                            )
+                        )
                     } else {
                         alreadyExist = 0
                     }
                 } else {
-                    eventNameList.add(EventNameList(eventName!!, scheduleList[i].category, 1, scheduleList[i].day,scheduleList[i].day))
+                    eventNameList.add(
+                        EventNameList(
+                            eventName!!,
+                            scheduleList[i].category,
+                            1,
+                            scheduleList[i].day,
+                            scheduleList[i].day
+                        )
+                    )
                 }
             }
 
@@ -425,45 +524,6 @@ class CalendarRecyclerAdapter2(
             eventNameList[i] = eventNameList[maxIndex]
             eventNameList[maxIndex] = temp
         }
-    }
-
-    private fun setColor(tv: TextView, position:Int){
-        Log.e("[position][i]",arr[position][2].toString())//eventNameList[arr[position][2]].eventName)
-        //var category = eventNameList[arr[position][1]].category
-        /*
-        when (eventNameList[arr[position][1]].category) {
-
-            0 -> {
-               tv.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color0))
-            }
-            1 -> {
-                tv.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color1))
-            }
-            2 -> {
-                tv.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color2))
-            }
-            3 -> {
-                tv.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color3))
-            }
-            4 -> {
-                tv.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color4))
-            }
-            5 -> {
-                tv.setBackgroundColor(ContextCompat.getColor(ctx, R.color.color4))
-            }
-
-            else -> {
-                tv.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
-            }
-
-        }
-        */
-
-    }
-
-    private fun changeLayout(){
-        //fragment_calendar의 schedule_linear_layout를 setVisible을 visible로 바꾼다.
-
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

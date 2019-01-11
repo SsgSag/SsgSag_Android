@@ -13,10 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
-import android.widget.BaseAdapter
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.baoyz.swipemenulistview.SwipeMenu
 import com.baoyz.swipemenulistview.SwipeMenuCreator
 import com.baoyz.swipemenulistview.SwipeMenuItem
@@ -40,6 +37,7 @@ import com.sopt.appjam_sggsag.DB.SharedPreferenceController
 import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.Post.CalendarData
 import com.sopt.appjam_sggsag.Post.PostCalendarResponse
+import kotlinx.android.synthetic.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.json.JSONObject
 import retrofit2.Call
@@ -47,7 +45,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 var tempcount = 0
-
+var countMonth = 0
 class CalendarDetailFragment : Fragment(), GetYearMonthTab {
 
     lateinit var recyclerViewAdapter: CalendarRecyclerAdapter
@@ -90,10 +88,24 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         //list에 표시할 정보 골라내기
         //Toast.makeText(activity!!, "바보도희"+year.toString(),Toast.LENGTH_SHORT).show()
         //toast("날짜래요:"+dday)
+
+        //이게 안되는 경우가 뭐냐면
+
         var count = 0
         for (i in 0..scheduleList.size - 1) {
             if (scheduleList[i].year == yyear && scheduleList[i].month == mmonth + 1 && scheduleList[i].day.toString() == dday) {
-                mArrayList.add(EventList(year, mmonth + 1, dday.toInt(), scheduleList[i].eventName, 2))
+                mArrayList.add(
+                    EventList(
+                        scheduleList[i].startDay,
+                        scheduleList[i].endDay,
+                        year,
+                        mmonth + 1,
+                        dday.toInt(),
+                        scheduleList[i].eventName,
+                        scheduleList[i].category,
+                        scheduleList[i].dday
+                    )
+                )
                 //변경사항 카테고리
 //                var eee = mArrayList[i].eventName
                 count++
@@ -112,11 +124,13 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
     var month: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        countMonth=0
         super.onCreate(savedInstanceState)
         arguments?.let {
             month = it.getInt("diff")
 
         }
+
 //        getCalendarResponse()
 
 
@@ -205,6 +219,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
                         1 -> {
                             mArrayList!!.removeAt(position)
                             //서버에서 일정 삭제 요청.
+                            getScheduleDelete()
                             listAdapter.notifyDataSetChanged()      //바뀌었다고 알려줌.
                             Toast.makeText(activity!!, "Item deleted", Toast.LENGTH_SHORT).show()
                         }
@@ -235,96 +250,100 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
     }
 
 
-    //통신해서 스케쥴리스트에 넣어줄 코드 작성
-    private fun getCalendarResponse() {
-        var jsonObject = JSONObject()
-        jsonObject.put("year", "2019")
-        jsonObject.put("month", "01")
-        jsonObject.put("day", "00")
-        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+    private fun getScheduleDelete() {
 
-        val token = SharedPreferenceController.getAuthorization(this.context!!)
-        val postCalendarResponse: Call<PostCalendarResponse> = networkService.postCalendarResponse(
-            "application/json",
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08"
-            ,
-            gsonObject
-        )
-
-        postCalendarResponse.enqueue(object : Callback<PostCalendarResponse> {
-            override fun onFailure(call: Call<PostCalendarResponse>, t: Throwable) {
-                Log.e("calendar fail", t.toString())
-            }
-
-            override fun onResponse(call: Call<PostCalendarResponse>, response: Response<PostCalendarResponse>) {
-                if (response.isSuccessful) {
-                    toast(response.body()!!.message)
-                    response.body()?.status
-                    listServer = response.body()?.data
-                    for(i in 0..listServer!!.size-1){
-                        var startYear = listServer!![i].posterStartDate.substring(0, 4).toInt()
-                        var startMonth = listServer!![i].posterStartDate.substring(5, 7).toInt()
-                        var startDay = listServer!![i].posterStartDate.substring(8, 10).toInt()
-                        var endYear = listServer!![i].posterEndDate.substring(0, 4).toInt()
-                        var endMonth = listServer!![i].posterEndDate.substring(5, 7).toInt()
-                        var endDay = listServer!![i].posterEndDate.substring(8, 10).toInt()
-                        var eventName = listServer!![i].posterName
-                        var category = listServer!![i].categoryIdx
-                        Log.e("sampleResponse", startDay.toString() + endDay.toString())
-                        if (tempcount==i) {
-
-                            if (startYear == endYear && startMonth == endMonth) {
-                                for (i in startDay..endDay) {
-                                    scheduleList.add(EventList(startYear, startMonth, i, eventName, category))
-                                    Log.e("itest", i.toString())
-                                }
-                            }
-                            tempcount++
-                        }
-                    }
-
-
-
-                    /*
-                    startYear = listServer!![1].posterStartDate.substring(0,4).toInt()
-                    startMonth = listServer!![1].posterStartDate.substring(5,7).toInt()
-                    startDay = listServer!![1].posterStartDate.substring(8,10).toInt()
-                    endYear = listServer!![1].posterEndDate.substring(0,4).toInt()
-                    endMonth = listServer!![1].posterEndDate.substring(5,7).toInt()
-                    endDay = listServer!![1].posterEndDate.substring(8,10).toInt()
-                    eventName = listServer!![1].posterName
-                    category = listServer!![1].categoryIdx
-                    Log.e("sampleResponse",startMonth.toString())
-
-                    if(startYear==endYear && startMonth==endMonth){
-                        for(i in startDay..endDay){
-                            scheduleList.add(EventList(startYear,startMonth,i,eventName,category ))
-                            Log.e("itest",i.toString())
-                        }
-                    }
-
-                    */
-
-                    Log.e("calendar success", response.body()!!.message)
-                }
-            }
-        })
     }
 
+    /*
+        //통신해서 스케쥴리스트에 넣어줄 코드 작성
+        private fun getCalendarResponse() {
+            var jsonObject = JSONObject()
+            jsonObject.put("year", "2019")
+            jsonObject.put("month", "01")
+            jsonObject.put("day", "00")
+            val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+
+            val token = SharedPreferenceController.getAuthorization(this.context!!)
+            val postCalendarResponse: Call<PostCalendarResponse> = networkService.postCalendarResponse(
+                "application/json",
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08",
+                gsonObject
+            )
+
+            postCalendarResponse.enqueue(object : Callback<PostCalendarResponse> {
+                override fun onFailure(call: Call<PostCalendarResponse>, t: Throwable) {
+                    Log.e("calendar fail", t.toString())
+                }
+
+                override fun onResponse(call: Call<PostCalendarResponse>, response: Response<PostCalendarResponse>) {
+                    if (response.isSuccessful) {
+                        toast(response.body()!!.message)
+                        response.body()?.status
+                        listServer = response.body()?.data
+                        for(i in 0..listServer!!.size-1){
+                            var startDate = listServer!![i].posterStartDate
+                            var endDate = listServer!![i].posterEndDate
+                            var startYear = listServer!![i].posterStartDate.substring(0, 4).toInt()
+                            var startMonth = listServer!![i].posterStartDate.substring(5, 7).toInt()
+                            var startDay = listServer!![i].posterStartDate.substring(8, 10).toInt()
+                            var endYear = listServer!![i].posterEndDate.substring(0, 4).toInt()
+                            var endMonth = listServer!![i].posterEndDate.substring(5, 7).toInt()
+                            var endDay = listServer!![i].posterEndDate.substring(8, 10).toInt()
+                            var eventName = listServer!![i].posterName
+                            var category = listServer!![i].categoryIdx
+                            var dday = listServer!![i].dday
+                            Log.e("sampleResponse", startDay.toString() + endDay.toString())
+                            if (tempcount==i) {
+                                if (startYear == endYear && startMonth == endMonth) {
+                                    for (i in startDay..endDay) {
+                                        scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
+                                    }
+                                }
+                                else if(startYear == endYear){
+                                    //년은 같을 때
+                                }
+                                else{   //년,월 다를 때
+
+                                }
+                                tempcount++
+                            }
+                        }
+
+
+                        Log.e("calendar success", response.body()!!.message)
+                    }
+                }
+            })
+        }
+    */
     private fun setRecycleView() {
-        //임시데이터
-
-        //리사이클러뷰 어댑터를 만들어서 아래처럼 고대로 하면 돼! 그 리사이클러뷰 어댑터에서 ctx는 activity!! 이거 넘겨주면되고!
-
-        recyclerViewAdapter = CalendarRecyclerAdapter(activity!!, dataList, scheduleList, month, this)
-        frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter
-        frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
+        if(countMonth==0){
+            val params =
+                LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 689)
+            val animation = AlphaAnimation(0f, 1f)
+            animation.duration = 400
+            frag_calendar_detail_recycle_view.layoutParams = params
+            recyclerViewAdapter3 = CalendarRecyclerAdapter2(activity!!, dataList, scheduleList, month, this)
+            frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter3
+            frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
+            countMonth++
+        }
+        else{
+            val params =
+                LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT)
+            val animation = AlphaAnimation(0f, 1f)
+            animation.duration = 400
+            frag_calendar_detail_recycle_view.layoutParams = params
+            recyclerViewAdapter = CalendarRecyclerAdapter(activity!!, dataList, scheduleList, month, this)
+            frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter
+            frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
+        }
 
 
     }
 
     private fun setOnClickListener() {
-        iv_big_calendar2.setOnClickListener {
+        ll_todo_top_bar2.setOnClickListener {
             //달력 커지게 하는 이벤트.
             //대신 중요한 점은 보고있던 달력 그대로 넘어가야 한다는 점.
             val params =
@@ -370,6 +389,9 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
                 holder?.mCategoryview = convertView!!.findViewById<View>(R.id.tv_rv_todo_category) as TextView
                 holder?.mTitleview = convertView!!.findViewById<View>(R.id.tv_rv_todo_title) as TextView
                 holder?.mPeriodview = convertView!!.findViewById<View>(R.id.tv_rv_todo_period) as TextView
+                holder?.mDdayview = convertView!!.findViewById<View>(R.id.tv_rv_d_day) as TextView
+                holder?.mCategoryColorview =
+                        convertView!!.findViewById<View>(R.id.iv_rv_todo_category_color) as ImageView
                 convertView.tag = holder
             } else {
                 holder = convertView.tag as ViewHolder
@@ -379,33 +401,73 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
                 0 -> {
                     holder?.mCategoryview!!.text = "공모전"
                     holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color0))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_blue
+                        )
+                    )
                 }
                 1 -> {
                     holder?.mCategoryview!!.text = "대외활동"
                     holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color1))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_skyblue
+                        )
+                    )
                 }
                 2 -> {
                     holder?.mCategoryview!!.text = "동아리"
                     holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color2))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_violet
+                        )
+                    )
                 }
                 3 -> {
                     holder?.mCategoryview!!.text = "교내활동"
                     holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color3))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_lavender
+                        )
+                    )
                 }
                 4 -> {
                     holder?.mCategoryview!!.text = "채용"
                     holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color4))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_coral_red
+                        )
+                    )
                 }
                 5 -> {
                     holder?.mCategoryview!!.text = "기타"
                     holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_pink
+                        )
+                    )
                 }
             }
             holder?.mTitleview!!.text = mArrayList!!.get(position).eventName
 
             //계산코드
-            holder?.mPeriodview!!.text = (mArrayList!!.get(position).month).toString() + "." +
-                    mArrayList!!.get(position).day.toString() + " ~ "
+            holder?.mPeriodview!!.text = (mArrayList!!.get(position).startDay?.substring(5, 7)).toString() + "." +
+                    mArrayList!!.get(position).startDay?.substring(8, 10).toString() + " ~ " +
+                    (mArrayList!!.get(position).endDay?.substring(5, 7)).toString() + "." +
+                    mArrayList!!.get(position).endDay?.substring(8, 10).toString()
+
+            holder?.mDdayview!!.text = (mArrayList!!.get(position).dday).toString()
 
             return convertView
         }
@@ -414,6 +476,8 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
             var mCategoryview: TextView? = null
             var mTitleview: TextView? = null
             var mPeriodview: TextView? = null
+            var mDdayview: TextView? = null
+            var mCategoryColorview: ImageView? = null
 
         }
     }
