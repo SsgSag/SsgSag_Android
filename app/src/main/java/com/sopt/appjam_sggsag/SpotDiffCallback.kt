@@ -2,11 +2,10 @@ package com.sopt.appjam_sggsag
 
 
 import android.support.v7.util.DiffUtil
-import com.sopt.appjam_sggsag.Adapter.Spot
 
 class SpotDiffCallback(
-    private val old: List<Spot>,
-    private val new: List<Spot>
+    private val old: List<DetailPosterData>,
+    private val new: List<DetailPosterData>
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {

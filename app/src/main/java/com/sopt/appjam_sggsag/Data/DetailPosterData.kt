@@ -1,7 +1,5 @@
 package com.sopt.appjam_sggsag.Data
 
-
-
 data class DetailPosterData(
     val posterIdx : Int,
     val categoryIdx : Int,

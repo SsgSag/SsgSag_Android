@@ -9,12 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.sopt.appjam_sggsag.Data.DetailPosterData
 import com.sopt.appjam_sggsag.R
 
 class CardStackAdapter(
-    private var spots: List<Spot> = emptyList()
+    private var spots: List<DetailPosterData> = emptyList()
 ) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,10 +24,10 @@ class CardStackAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val spot = spots[position]
-        holder.name.text = "${spot.id}. ${spot.name}"
-        holder.city.text = spot.city
+        holder.name.text = "${spot.posterIdx}.${spot.posterName}"
+        holder.city.text = spot.posterName
         Glide.with(holder.image)
-            .load(spot.url)
+            .load(spot.photoUrl)
             .into(holder.image)
 
         var widthOfCard = holder.image.width
@@ -61,11 +61,11 @@ class CardStackAdapter(
         return spots.size
     }
 
-    fun setSpots(spots: List<Spot>) {
+    fun setSpots(spots: List<DetailPosterData>) {
         this.spots = spots
     }
 
-    fun getSpots(): List<Spot> {
+    fun getSpots(): List<DetailPosterData> {
         return spots
     }
 
