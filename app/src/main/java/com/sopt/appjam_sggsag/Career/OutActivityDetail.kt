@@ -1,19 +1,20 @@
 package com.sopt.appjam_sggsag.Career
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.widget.DatePicker
+import com.sopt.appjam_sggsag.Fragment.Career.Career1Fragment
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.activity_out_detail.*
 import org.jetbrains.anko.*
 import java.util.*
 
 
-class OutActivityDetail: AppCompatActivity() {
-
-
+class OutActivityDetail : AppCompatActivity() {
 
     val c = Calendar.getInstance()
     val c_year = c.get(Calendar.YEAR)
@@ -31,6 +32,14 @@ class OutActivityDetail: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_out_detail)
+
+        var year = c.get(Calendar.YEAR)
+        var month = c.get(Calendar.MONTH) + 1
+        var day = c.get(Calendar.DAY_OF_MONTH)
+
+        tv_activity_start.setText(year.toString() + "년 " + month.toString() + "월 " + day.toString() + "일")
+        tv_activity_end.setText(year.toString() + "년 " + month.toString() + "월 " + day.toString() + "일")
+
         getDateData()
         sendData()
     }
@@ -120,31 +129,22 @@ class OutActivityDetail: AppCompatActivity() {
 
     private fun sendData() {
         btn_activity_save.setOnClickListener {
-            var title: String = R.id.et_activity_title.toString()
-            var notes: String = R.id.et_activity_note.toString()
+            var title: String = et_activity_title.text.toString()
+            var notes: String = et_activity_note.text.toString()
 
             var start_data: String = startYear + "." + startMonth + "." + startDay
             var end_data: String = endYear + "." + endMonth + "." + endDay
 
-            Log.e("진희야 힘내", "진희야 화이팅" + start_data + end_data)
+            if (title.isNotEmpty() && notes.isNotEmpty()) {
+                val intent = Intent(this@OutActivityDetail, Career1Fragment::class.java)
+                intent.putExtra("title", title)
+                intent.putExtra("notes", notes)
+                intent.putExtra("start_data", start_data)
+                intent.putExtra("end_data", end_data)
 
-            val fragment = Fragment()
-            val bundle = Bundle()
-            bundle.putString("title", title)
+                setResult(Activity.RESULT_OK, intent)
+            }
 
-            fragment.arguments = bundle
-
-            /*
-
-            val intent = Intent(this@OutActivityDetail, Career1Fragment::class.java)
-            intent.putExtra("title", title)
-            intent.putExtra("notes", notes)
-            intent.putExtra("start_data", start_data)
-            intent.putExtra("end_data", end_data)
-
-            startActivity(intent)
-
-            */
             finish()
         }
     }
