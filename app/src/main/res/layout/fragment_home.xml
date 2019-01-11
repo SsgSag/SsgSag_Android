@@ -57,16 +57,20 @@
             <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
                     android:layout_above="@+id/button_container"
-                    android:padding="20dp"
+                    android:paddingHorizontal="10dp"
                     android:clipToPadding="false"
                     android:clipChildren="false">
 
                 <com.yuyakaido.android.cardstackview.CardStackView
                         android:id="@+id/card_stack_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_width="340dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true">
+
                 </com.yuyakaido.android.cardstackview.CardStackView>
+
 
             </RelativeLayout>
 
