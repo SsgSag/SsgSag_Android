@@ -19,8 +19,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.TabHost
 import com.sopt.appjam_sggsag.Fragment.SignUpDialogFragment
-import com.sopt.appjam_sggsag.MyApplication.Companion.inputUserCnt
-import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import org.jetbrains.anko.toast
 
 var flag: Int = 0
@@ -29,21 +27,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        MyApplication.instance.networkService.postPosterResponse("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08")
-            .enqueue(object: Callback<PostPosterListResponse>{
-                override fun onFailure(call: Call<PostPosterListResponse>?, t: Throwable?) {
-                }
-                override fun onResponse(call: Call<PostPosterListResponse>?, response: Response<PostPosterListResponse>?) {
-                    Log.e("들어옴", response.toString())
-                    Log.e("들어옴", response!!.body().toString())
-                    if (response.body()?.data!=null) {
-                        Log.e("pleaseeeeeeeeeeeee", "can you come to here")
-                        inputPosterData = response.body()!!.data
-                        inputUserCnt =response.body()!!.data.userCnt
-                        Log.e("들어옴3",inputPosterData.toString())
-                    }
-                }
-            })
+//        MyApplication.instance.networkService.postPosterResponse("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08")
+//            .enqueue(object: Callback<PostPosterListResponse>{
+//                override fun onFailure(call: Call<PostPosterListResponse>?, t: Throwable?) {
+//                }
+//                override fun onResponse(call: Call<PostPosterListResponse>?, response: Response<PostPosterListResponse>?) {
+//                    Log.e("들어옴", response.toString())
+//                    Log.e("들어옴", response!!.body().toString())
+//                    if (response.body()?.data!=null) {
+//                        Log.e("pleaseeeeeeeeeeeee", "can you come to here")
+//                        inputPosterData = response.body()!!.data
+//                        inputUserCnt =response.body()!!.data.userCnt
+//                        Log.e("들어옴3",inputPosterData.toString())
+//                    }
+//                }
+//            })
 
 
         var check :Int = intent.getIntExtra("check_signUp",0)

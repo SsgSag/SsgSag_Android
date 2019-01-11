@@ -3,18 +3,25 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <ImageView
-            android:src="@drawable/background"
-            android:scaleType="centerCrop"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.airbnb.lottie.LottieAnimationView
+            android:layout_centerInParent="true"
+            app:lottie_loop="false"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/splash"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-    <ImageView
-            android:layout_centerInParent="true"
-            android:src="@drawable/img_logo_splash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <!--<ImageView-->
+    <!--android:src="@drawable/background"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"/>-->
+
+    <!--<ImageView-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:src="@drawable/img_logo_splash"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"/>-->
 
 </RelativeLayout>

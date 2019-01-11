@@ -1,5 +1,6 @@
 package com.sopt.appjam_sggsag.Info
 
+import android.animation.Animator
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -17,6 +18,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import com.airbnb.lottie.LottieAnimationView
 import com.sopt.appjam_sggsag.DB.SharedPreferenceController
 import com.sopt.appjam_sggsag.LoginActivity
 import com.sopt.appjam_sggsag.MainActivity
@@ -106,6 +108,7 @@ class WelcomeActivity : AppCompatActivity() {
 //                launchHomeScreen()
 //            }
 //        }
+
     }
 
     private fun addBottomDots(currentPage: Int) {

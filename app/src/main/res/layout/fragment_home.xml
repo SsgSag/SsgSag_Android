@@ -27,29 +27,58 @@
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
-                <ImageView
+                <!--<ImageView-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:id="@+id/btn_x"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_toLeftOf="@+id/fl_number_background"-->
+                        <!--android:layout_marginRight="18dp"-->
+                        <!--android:src="@drawable/bt_x"/>-->
+                <com.airbnb.lottie.LottieAnimationView
                         android:layout_centerVertical="true"
-                        android:id="@+id/btn_x"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toLeftOf="@+id/btn_number"
+                        android:id="@+id/lt_bt_x"
+                        app:lottie_loop="false"
+                        app:lottie_autoPlay="false"
+                        android:layout_toLeftOf="@+id/fl_number_background"
                         android:layout_marginRight="18dp"
-                        android:src="@drawable/bt_x"/>
-                <ImageView
-                        android:layout_centerVertical="true"
-                        android:id="@+id/btn_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:lottie_rawRes="@raw/bt_x"
+                />
+
+                <!--카운트 배경-->
+                <FrameLayout
+                        android:id="@+id/fl_number_background"
                         android:layout_centerInParent="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_count"/>
-                <ImageView
                         android:layout_centerVertical="true"
-                        android:id="@+id/btn_o"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_count"/>
+                </FrameLayout>
+
+                <!--<ImageView-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:id="@+id/btn_o"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/bt_o"-->
+                        <!--android:layout_marginLeft="18dp"-->
+                        <!--android:layout_toEndOf="@id/fl_number_background"/>-->
+                <com.airbnb.lottie.LottieAnimationView
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="18dp"
+                        android:layout_toEndOf="@id/fl_number_background"
+                        android:id="@+id/lt_bt_o"
+                        app:lottie_loop="false"
+                        app:lottie_autoPlay="false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/bt_o"
-                        android:layout_marginLeft="18dp"
-                        android:layout_toEndOf="@id/btn_number"/>
+                        app:lottie_rawRes="@raw/bt_o"
+                />
 
 
             </RelativeLayout>
@@ -62,7 +91,28 @@
                     android:paddingHorizontal="10dp"
                     android:clipToPadding="false"
                     android:clipChildren="false">
-
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                        <com.airbnb.lottie.LottieAnimationView
+                                android:layout_centerInParent="true"
+                                android:id="@+id/lt_empty_hifive"
+                                app:lottie_rawRes="@raw/main_empty_hifive"
+                                android:layout_width="276dp"
+                                android:layout_height="276dp"/>
+                        <ImageView
+                                android:layout_marginTop="20dp"
+                                android:layout_below="@+id/lt_empty_hifive"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/bt_sort"
+                        />
+                    </RelativeLayout>
+                </FrameLayout>
                 <com.yuyakaido.android.cardstackview.CardStackView
                         android:id="@+id/card_stack_view"
                         android:layout_width="340dp"
@@ -70,7 +120,6 @@
                         android:layout_centerInParent="true">
 
                 </com.yuyakaido.android.cardstackview.CardStackView>
-
 
             </RelativeLayout>
 
