@@ -1,12 +1,12 @@
 package com.sopt.appjam_sggsag
 
-import android.support.v7.util.DiffUtil
-import com.sopt.appjam_sggsag.Data.DetailPosterData
 
+import android.support.v7.util.DiffUtil
+import com.sopt.appjam_sggsag.Adapter.Spot
 
 class SpotDiffCallback(
-    private val old: List<DetailPosterData>,
-    private val new: List<DetailPosterData>
+    private val old: List<Spot>,
+    private val new: List<Spot>
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {
@@ -18,7 +18,7 @@ class SpotDiffCallback(
     }
 
     override fun areItemsTheSame(oldPosition: Int, newPosition: Int): Boolean {
-        return old[oldPosition].posterIdx == new[newPosition].posterIdx
+        return old[oldPosition].id == new[newPosition].id
     }
 
     override fun areContentsTheSame(oldPosition: Int, newPosition: Int): Boolean {

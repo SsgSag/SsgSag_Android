@@ -1,5 +1,6 @@
 package com.yuyakaido.android.cardstackview;
 
+import android.util.Log;
 import android.view.View;
 
 public interface CardStackListener {
@@ -14,7 +15,11 @@ public interface CardStackListener {
         @Override
         public void onCardDragging(Direction direction, float ratio) {}
         @Override
-        public void onCardSwiped(Direction direction) {}
+        public void onCardSwiped(Direction direction) {
+            if(direction==Direction.Right){
+                Log.e("abcde","abcd");
+            }
+        }
         @Override
         public void onCardRewound() {}
         @Override
