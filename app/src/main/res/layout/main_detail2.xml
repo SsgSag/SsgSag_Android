@@ -1,52 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:background="#ffffff"
         android:orientation="vertical"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <RelativeLayout
+    <LinearLayout
+            android:id="@+id/ll_detail1_top_content"
+            android:background="#FFF"
+            android:layout_marginBottom="22dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="4dp">
-        <ImageView
-                android:id="@+id/iv_tab_left"
-                android:src="@drawable/tab_card_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <ImageView
-                android:id="@+id/iv_tab_right"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/tab_card_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-    </RelativeLayout>
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp">
+            <ImageView
+                    android:id="@+id/iv_tab_left"
+                    android:src="@drawable/tab_card_left"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:scaleType="fitXY"
+                    android:layout_height="wrap_content"/>
+            <ImageView
+                    android:id="@+id/iv_tab_right"
+                    android:src="@drawable/tab_card_right"
+                    android:scaleType="fitXY"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
 
-    <TextView
-            android:id="@+id/main_detail2_title"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:fontFamily="sans-serif"
-            android:textStyle="bold"
-            android:textColor="#474747"
-            android:letterSpacing="-0.02"
-            android:text="IT 벤처 창업 동아리 SOPT"
-    />
-    <TextView
-            android:id="@+id/main_detail2_hash"
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="#기획/아이디어 #디자인 #IT/기술 #창업/스타트업"/>
+        <TextView
+                android:id="@+id/main_detail2_title"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textColor="#474747"
+                android:letterSpacing="-0.02"
+                android:text="IT 벤처 창업 동아리 SOPT"
+        />
+        <TextView
+                android:id="@+id/main_detail2_hash"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#기획/아이디어 #디자인 #IT/기술 #창업/스타트업"/>
 
+
+    </LinearLayout>
 
     <RelativeLayout
-            android:layout_marginTop="22dp"
             android:layout_width="match_parent"
             android:layout_height="126dp">
         <ImageView

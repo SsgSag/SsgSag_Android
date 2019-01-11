@@ -9,11 +9,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.sopt.appjam_sggsag.Data.DetailPosterData
-import com.sopt.appjam_sggsag.Data.PosterData
-import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 
 class CardStackAdapter(
 //    private var posters: List<DetailPosterData> = emptyList()
@@ -516,8 +513,8 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             Log.e("setDetailViewvisible","cnt1")
             holder.detail1_right_tab.visibility=View.VISIBLE
             holder.detail1_background.visibility=View.VISIBLE
-            holder.detail1_title.visibility=View.VISIBLE
-            holder.detail1_hash.visibility=View.VISIBLE
+//            holder.detail1_title.visibility=View.VISIBLE
+//            holder.detail1_hash.visibility=View.VISIBLE
             holder.detail1_rectangle.visibility=View.VISIBLE
             holder.detail1_process_paper .visibility=View.VISIBLE
             holder.detail1_step1.visibility=View.VISIBLE
@@ -757,7 +754,7 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //Poster_detail_1
         var detail1_left_tab : ImageView =view.findViewById(R.id.iv_tab_left_1)
         var detail1_right_tab : ImageView =view.findViewById(R.id.iv_tab_right_1)
-        var detail1_background : LinearLayout = view.findViewById(R.id.ll_detail1_background)
+        var detail1_background : LinearLayout = view.findViewById(R.id.ll_detail1_top_content)
         var detail1_title :TextView =view.findViewById(R.id.main_detail1_title)
         var detail1_hash : TextView=view.findViewById(R.id.main_detail1_hash)
         var detail1_rectangle : ImageView=view.findViewById(R.id.iv_rectangle_1)
@@ -776,7 +773,7 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //Poster_detail_2
         var detail2_left_tab : ImageView =view.findViewById(R.id.iv_tab_left_2)
         var detail2_right_tab : ImageView =view.findViewById(R.id.iv_tab_right_2)
-        var detail2_background : LinearLayout = view.findViewById(R.id.ll_detail2_background)
+        var detail2_background : LinearLayout = view.findViewById(R.id.ll_detail2_top_content)
         var detail2_title :TextView =view.findViewById(R.id.main_detail2_title)
         var detail2_hash : TextView=view.findViewById(R.id.main_detail2_hash)
         var detail2_rectangle : ImageView=view.findViewById(R.id.iv_rectangle_2)
@@ -799,7 +796,7 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //Poster_detail_3
         var detail3_left_tab : ImageView =view.findViewById(R.id.iv_tab_left_3)
         var detail3_right_tab : ImageView =view.findViewById(R.id.iv_tab_right_3)
-        var detail3_background : LinearLayout = view.findViewById(R.id.ll_detail3_background)
+        var detail3_background : LinearLayout = view.findViewById(R.id.ll_detail3_top_content)
         var detail3_title :TextView =view.findViewById(R.id.main_detail3_title)
         var detail3_hash : TextView=view.findViewById(R.id.main_detail3_hash)
         var detail3_rectangle : ImageView=view.findViewById(R.id.iv_rectangle_3)
