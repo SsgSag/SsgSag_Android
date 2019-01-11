@@ -127,7 +127,7 @@
         <FrameLayout
                 android:id="@+id/frameLayout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp" android:layout_weight="84.6">
+                android:layout_height="0dp" android:layout_weight="88">
             <android.support.v4.view.ViewPager
                     android:id="@+id/vp_frag_calendar_view_pager"
                     android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="8.4dp"
                     android:layout_marginRight="8.5dp"
-                    android:layout_marginBottom="24.2dp"
+                    android:layout_marginBottom="0dp"
                     android:visibility="visible">
 
             </android.support.v4.view.ViewPager>

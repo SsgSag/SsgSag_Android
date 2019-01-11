@@ -171,27 +171,6 @@ class MyPageFragment : Fragment() {
             //첫번째 if문의 else로써, 기존에 이미 권한 메시지를 통해 권한을 허용했다면 아래와 같은 곧바로 앨범을 여는 메소드를 호출해주면됩니다!!
             showAlbum()
         }
-
-//        if (ActivityCompat.checkSelfPermission(
-//                context!!,
-//                android.Manifest.permission.ACCESS_FINE_LOCATION
-//            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-//                context!!,
-//                android.Manifest.permission.ACCESS_COARSE_LOCATION
-//            ) != PackageManager.PERMISSION_GRANTED
-//        ) {
-//            requestPermissions(
-//                activity,
-//                arrayOf(
-//                    android.Manifest.permission.ACCESS_COARSE_LOCATION,
-//                    android.Manifest.permission.ACCESS_FINE_LOCATION
-//                ),
-//                REQUEST_LOCATION
-//            )
-//        } else {
-//            Log.e("DB", "PERMISSION GRANTED")
-//        }
-
     }
 
     private fun showAlbum() {
@@ -206,8 +185,7 @@ class MyPageFragment : Fragment() {
         var jsonObject = JSONObject()
 
         val token = SharedPreferenceController.getAuthorization(this.context!!)
-        val postInfoResponse: Call<PostInfoResponse> = networkService.postInfoResponse(
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08")
+        val postInfoResponse: Call<PostInfoResponse> = networkService.postInfoResponse(token)
 
         postInfoResponse.enqueue(object : Callback<PostInfoResponse>{
             override fun onFailure(call: Call<PostInfoResponse>, t: Throwable) {

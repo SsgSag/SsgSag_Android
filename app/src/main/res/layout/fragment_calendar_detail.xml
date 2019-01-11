@@ -3,6 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
+
     <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -10,14 +11,13 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp"
-            android:layout_marginStart="0dp"
-    />
+            android:layout_marginStart="0dp"/>
 
     <LinearLayout
             android:background="@drawable/to_do_list_bg_rectangle"
             android:id="@+id/ll_todo_all_list"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
         <RelativeLayout
@@ -55,7 +55,9 @@
                 android:layout_width="match_parent"
                 android:divider="@null"
                 android:layout_height="0dp"
-                android:layout_weight="42"/>
+                android:layout_weight="42">
+
+        </com.baoyz.swipemenulistview.SwipeMenuListView>
 
     </LinearLayout>
 
