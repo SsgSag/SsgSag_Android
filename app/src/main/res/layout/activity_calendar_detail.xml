@@ -397,12 +397,13 @@
             <RelativeLayout
                     android:clickable="true"
                     android:layout_marginTop="16.5dp"
-                    android:id="@+id/btn_calendar_detail_see_detail"
+                    android:id="@+id/btn_calendar_detail_website"
                     android:layout_width="match_parent"
                     android:layout_height="50dp">
                 <TextView
+                        android:id="@+id/btn_calendar_detail_goto_website"
                         android:clickable="false"
-                        android:text="자세히 보기"
+                        android:text="웹사이트로 이동"
                         android:layout_centerInParent="true"
                         android:textSize="15sp"
                         android:fontFamily="sans-serif-light"
