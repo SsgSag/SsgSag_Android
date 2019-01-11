@@ -23,22 +23,13 @@ class TodoListRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Todo
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-     //   holder.title.text = dataList[position].title
         holder.dday.text = dataList[position].date
-        /*
-        holder.item_btn.setOnClickListener {
-            ctx.toast("메인엑티비티로")
-            ctx.startActivity<MainActivity>()
-        }
-        */
+
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-   //     val title: TextView = itemView.findViewById(R.id.tv_rv_todo_list) as TextView
         val dday: TextView = itemView.findViewById(R.id.tv_rv_d_day) as TextView
-   //    val item_btn : RelativeLayout = itemView.findViewById(R.id.btn_rv_item_todo_list) as RelativeLayout
     }
-
 
 
 }

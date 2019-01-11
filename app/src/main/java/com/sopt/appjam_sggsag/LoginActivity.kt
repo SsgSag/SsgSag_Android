@@ -52,7 +52,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_forgot_pw.setOnClickListener {
-            toast("비밀번호 찾기")
         }
 
         btn_login.setOnClickListener {
@@ -61,7 +60,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login_signup.setOnClickListener {
-            toast("회원가입")
             startActivity<SignUp1>()
             finish()
         }
@@ -86,7 +84,6 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<PostLogInResponse>, response: Response<PostLogInResponse>) {
                     if (response.isSuccessful) {
-                        Log.d("log값", response.body()?.status.toString())
                         val token = response.body()!!.data.token
                         //저번 시간에 배웠던 SharedPreference에 토큰을 저장!
                         SharedPreferenceController.setAuthorization(this@LoginActivity, token)
