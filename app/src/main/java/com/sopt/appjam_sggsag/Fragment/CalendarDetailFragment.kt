@@ -30,8 +30,10 @@ import org.jetbrains.anko.support.v4.toast
 import com.baoyz.swipemenulistview.SwipeMenuLayout
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.sopt.appjam_sggsag.Adapter.year
 import com.sopt.appjam_sggsag.CalendarDetailActivity
 import com.sopt.appjam_sggsag.DB.SharedPreferenceController
+import com.sopt.appjam_sggsag.Data.EventNameList
 import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.Post.CalendarData
 import com.sopt.appjam_sggsag.Post.PostCalendarResponse
@@ -41,9 +43,12 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
+import java.lang.Thread.sleep
 
 var tempcount = 0
 var countMonth = 0
+
 class CalendarDetailFragment : Fragment(), GetYearMonthTab {
 
     lateinit var recyclerViewAdapter: CalendarRecyclerAdapter
@@ -51,11 +56,14 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
 
 
     var mArrayList: ArrayList<EventList> = ArrayList()
+    var mArrayList2: ArrayList<EventList> = ArrayList()
+
 
     var yyear: Int = 0
     var mmonth: Int = 0
     var dday: String = ""
     var listAdapter: ListDataAdapter = ListDataAdapter()
+    var listAdapter2: ListDataAdapter2 = ListDataAdapter2()
     var listServer: ArrayList<CalendarData>? = ArrayList()
 
     val networkService: NetworkService by lazy {
@@ -66,18 +74,17 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
 
     }
 
-    override fun onClick(year: Int, month: Int, day: String) {
+    override fun onClick(year: Int, month: Int, day: String, position: Int) {
         mArrayList.clear()
         yyear = year
         mmonth = month
         dday = day
-        toast(dday)
         val params =
             LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 689)
         val animation = AlphaAnimation(0f, 1f)
         animation.duration = 400
         frag_calendar_detail_recycle_view.layoutParams = params
-        recyclerViewAdapter3 = CalendarRecyclerAdapter2(activity!!, dataList, scheduleList, month, this)
+        recyclerViewAdapter3 = CalendarRecyclerAdapter2(activity!!, dataList, scheduleList, month, this, position)
         frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter3
         frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
         ll_todo_all_list.visibility = View.VISIBLE
@@ -88,7 +95,6 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         //toast("날짜래요:"+dday)
 
         //이게 안되는 경우가 뭐냐면
-
         var count = 0
         for (i in 0..scheduleList.size - 1) {
             if (scheduleList[i].year == yyear && scheduleList[i].month == mmonth + 1 && scheduleList[i].day.toString() == dday) {
@@ -109,11 +115,58 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
                 count++
             }
         }
+/*
+        for (j in 0..scheduleList.size - 1) {
+            if (scheduleList[j].dday >= 0 && scheduleList[j].dday <= 30) {
+                if (mArrayList2.size == 0) {
+                    mArrayList2.add(
+                        EventList(
+                            scheduleList[j].startDay, scheduleList[j].endDay, year, mmonth + 1,
+                            dday.toInt(), scheduleList[j].eventName, scheduleList[j].category, scheduleList[j].dday
+                        ))
+                } else {
+                    for (i in 0..mArrayList2.size - 1) {
+                        if (mArrayList2[i].eventName != scheduleList[j].eventName) {
+                            mArrayList2.add(
+                                EventList(
+                                    scheduleList[j].startDay,
+                                    scheduleList[j].endDay,
+                                    year,
+                                    mmonth + 1,
+                                    dday.toInt(),
+                                    scheduleList[j].eventName,
+                                    scheduleList[j].category,
+                                    scheduleList[j].dday
+                                )
+                            )
+                        }
+                    }
+                }
+
+
+            }
+            /*
+            mArrayList2.add(
+                EventList( scheduleList[j].startDay,
+                    scheduleList[j].endDay,
+                    year,
+                    mmonth + 1,
+                    dday.toInt(),
+                    scheduleList[j].eventName,
+                    scheduleList[j].category,
+                    scheduleList[j].dday)
+            )*/
+        }
+*/
+        sorting()   //dday순 정렬 끝
+        for (i in 0..mArrayList2.size - 1)
+            Log.e("mArrayList2", mArrayList2[i].dday.toString() + " " + mArrayList2.size)
+
         if (count > 4) {
             //표시 추가
         }
+        //mArrayList = mArrayList2
         listAdapter.notifyDataSetChanged()
-        toast("던져버려" + count.toString())
     }
 
 
@@ -122,7 +175,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
     var month: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        countMonth=0
+        countMonth = 0
         super.onCreate(savedInstanceState)
         arguments?.let {
             month = it.getInt("diff")
@@ -147,19 +200,16 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         scheduleList = (activity!!.application as MyApplication).eventList1
         setRecycleView()
 
+
+        //mArrayList.add(EventList("2018-01-12","2018-01-13", 2018,1,1,"정연이생일",4,0))
+
         listView2.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT)       //왼쪽 모션 추가
 
         //scheduleList 받아와서 날짜로 검사해서, 그 size로 for문 돌게.
         //1. scheduleList 받아오기.
 
-        /*
-        var count = 0
-        for(i in 0..scheduleList.size-1){
-            if(scheduleList[i].year==yyear &&scheduleList[i].month==mmonth+1 && scheduleList[i].day.toString()==dday ){
-                mArrayList.add(scheduleList[i].eventName)
-            }
-        }
-        */
+
+        listView2.adapter = listAdapter2
 
         listView2.adapter = listAdapter
 
@@ -203,16 +253,11 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
                         0 -> {
                             Toast.makeText(activity!!, position.toString() + "지원완료", Toast.LENGTH_SHORT).show()
                             val view = listView2 as SwipeMenuLayout
+
                             menu.getMenuItem(0).background =
                                     ColorDrawable(Color.rgb(0xE4, 0xE4, 0xE4))// .setIcon(R.drawable.ic_task_delete)
-                            // listView2.mTitle
-                            //menu.getMenuItem(0).icon = R.drawable.ic_task_delete
-                            //listAdapter.notifyDataSetChanged()
-                            /*
-                            goodItem.background = ColorDrawable(
-                                Color.rgb(0x30, 0xB1,0xF5)
-                            )
-                            */
+
+
                         }
                         1 -> {
                             mArrayList!!.removeAt(position)
@@ -315,20 +360,24 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         }
     */
     private fun setRecycleView() {
-        if(countMonth==0){
+        if (countMonth == 0) {
             val params =
                 LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 689)
             val animation = AlphaAnimation(0f, 1f)
             animation.duration = 400
             frag_calendar_detail_recycle_view.layoutParams = params
-            recyclerViewAdapter3 = CalendarRecyclerAdapter2(activity!!, dataList, scheduleList, month, this)
+
+            //오류여기
+            recyclerViewAdapter3 = CalendarRecyclerAdapter2(activity!!, dataList, scheduleList, month, this, 50)
             frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter3
             frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
             countMonth++
-        }
-        else{
+        } else {
             val params =
-                LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT)
+                LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+                )
             val animation = AlphaAnimation(0f, 1f)
             animation.duration = 400
             frag_calendar_detail_recycle_view.layoutParams = params
@@ -361,6 +410,22 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
     }
 
 
+    private fun sorting() {
+        var minIndex = 9999;
+
+        var temp: EventList? = null
+        for (i in 0..mArrayList2.size - 1) {
+            minIndex = i
+            for (j in i + 1..mArrayList2.size - 1) {
+                if (mArrayList2[j].dday < mArrayList2[minIndex].dday)
+                    minIndex = j    //
+            }
+            temp = mArrayList2[i]
+            mArrayList2[i] = mArrayList2[minIndex]
+            mArrayList2[minIndex] = temp
+        }
+    }
+
     inner class ListDataAdapter : BaseAdapter() {
 
         var holder: ViewHolder? = null
@@ -387,7 +452,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
                 holder?.mCategoryview = convertView!!.findViewById<View>(R.id.tv_rv_todo_category) as TextView
                 holder?.mTitleview = convertView!!.findViewById<View>(R.id.tv_rv_todo_title) as TextView
                 holder?.mPeriodview = convertView!!.findViewById<View>(R.id.tv_rv_todo_period) as TextView
-                holder?.mDdayview = convertView!!.findViewById<View>(R.id.tv_rv_d_day) as TextView
+                //        holder?.mDdayview = convertView!!.findViewById<View>(R.id.tv_rv_d_day3) as TextView
                 holder?.mCategoryColorview =
                         convertView!!.findViewById<View>(R.id.iv_rv_todo_category_color) as ImageView
                 convertView.tag = holder
@@ -465,7 +530,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
                     (mArrayList!!.get(position).endDay?.substring(5, 7)).toString() + "." +
                     mArrayList!!.get(position).endDay?.substring(8, 10).toString()
 
-            holder?.mDdayview!!.text = (mArrayList!!.get(position).dday).toString()
+            //   holder?.mDdayview!!.text = (mArrayList!!.get(position).dday).toString()
 
             return convertView
         }
@@ -474,10 +539,131 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
             var mCategoryview: TextView? = null
             var mTitleview: TextView? = null
             var mPeriodview: TextView? = null
+            // var mDdayview: TextView? = null
+            var mCategoryColorview: ImageView? = null
+
+        }
+    }
+
+
+    inner class ListDataAdapter2 : BaseAdapter() {
+
+        var holder: ViewHolder2? = null
+
+        override fun getCount(): Int {
+            return mArrayList2!!.size
+        }
+
+        override fun getItem(i: Int): Any? {
+            return null
+        }
+
+        override fun getItemId(i: Int): Long {
+            return 0
+        }
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            var convertView = convertView
+
+            if (convertView == null) {
+                holder = ViewHolder2()
+                convertView = layoutInflater.inflate(R.layout.list_item2, null)
+                // holder.mTextview
+                holder?.mCategoryview = convertView!!.findViewById<View>(R.id.tv_rv_todo_category2) as TextView
+                holder?.mTitleview = convertView!!.findViewById<View>(R.id.tv_rv_todo_title2) as TextView
+                holder?.mPeriodview = convertView!!.findViewById<View>(R.id.tv_rv_todo_period2) as TextView
+                holder?.mDdayview = convertView!!.findViewById<View>(R.id.tv_rv_d_day3) as TextView
+                holder?.mCategoryColorview =
+                        convertView!!.findViewById<View>(R.id.iv_rv_todo_category_color2) as ImageView
+                convertView.tag = holder
+            } else {
+                holder = convertView.tag as ViewHolder2
+            }
+
+            when (mArrayList.get(position).category) {
+                0 -> {
+                    holder?.mCategoryview!!.text = "공모전"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color0))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_blue
+                        )
+                    )
+                }
+                1 -> {
+                    holder?.mCategoryview!!.text = "대외활동"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color1))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_skyblue
+                        )
+                    )
+                }
+                2 -> {
+                    holder?.mCategoryview!!.text = "동아리"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color2))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_violet
+                        )
+                    )
+                }
+                3 -> {
+                    holder?.mCategoryview!!.text = "교내활동"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color3))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_lavender
+                        )
+                    )
+                }
+                4 -> {
+                    holder?.mCategoryview!!.text = "채용"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color4))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_coral_red
+                        )
+                    )
+                }
+                5 -> {
+                    holder?.mCategoryview!!.text = "기타"
+                    holder?.mCategoryview!!.setTextColor(ContextCompat.getColor(ctx, R.color.color5))
+                    holder?.mCategoryColorview!!.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            ctx,
+                            R.drawable.label_task_pink
+                        )
+                    )
+                }
+            }
+            holder?.mTitleview!!.text = mArrayList2!!.get(position).eventName
+
+            //계산코드
+            holder?.mPeriodview!!.text = (mArrayList2!!.get(position).startDay?.substring(5, 7)).toString() + "." +
+                    mArrayList!!.get(position).startDay?.substring(8, 10).toString() + " ~ " +
+                    (mArrayList!!.get(position).endDay?.substring(5, 7)).toString() + "." +
+                    mArrayList!!.get(position).endDay?.substring(8, 10).toString()
+
+            holder?.mDdayview!!.text = (mArrayList2!!.get(position).dday).toString()
+
+            return convertView
+        }
+
+        inner class ViewHolder2 {
+            var mCategoryview: TextView? = null
+            var mTitleview: TextView? = null
+            var mPeriodview: TextView? = null
             var mDdayview: TextView? = null
             var mCategoryColorview: ImageView? = null
 
         }
     }
+
 
 }
