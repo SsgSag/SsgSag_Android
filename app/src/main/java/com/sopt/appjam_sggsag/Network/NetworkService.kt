@@ -23,12 +23,14 @@ interface NetworkService {
         @Body() body: JsonObject
     ): Call<PostLogInResponse>
 
+
     //Poster_승완
-    @POST("posters/show")
+    @POST("/posters/show")
     fun postPosterResponse(
         @Header("Authorization") token: String//,
 //        @Header("Content-Type") content_type : JSONObject
 //        @Body() body : JsonObject
+
     ): Call<PostPosterListResponse>
 
     //캘린더
