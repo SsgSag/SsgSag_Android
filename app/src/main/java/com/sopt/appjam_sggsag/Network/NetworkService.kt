@@ -24,9 +24,7 @@ interface NetworkService {
     //Poster_승완
     @POST("/posters/show")
     fun postPosterResponse(
-        @Header("Authorization") token: String//,
-//        @Header("Content-Type") content_type : JSONObject
-//        @Body() body : JsonObject
+        @Header("Authorization") token: String
 
     ): Call<PostPosterListResponse>
 
@@ -50,7 +48,15 @@ interface NetworkService {
 
     //회원 정보 조회
     @POST("/users/info")
-    fun postInfoResponse (
+    fun postInfoResponse(
         @Header("Authorization") token: String
-    ) :Call<PostInfoResponse>
+    ): Call<PostInfoResponse>
+
+    //포스터 좋아요
+    @POST("/posters/like")
+    fun postPosterLike(
+        @Header("Content-Type") content_type: String,
+        @Header("Authorization") token: String,
+        @Body() body: JsonObject
+    ): Call<PostPosterLike>
 }

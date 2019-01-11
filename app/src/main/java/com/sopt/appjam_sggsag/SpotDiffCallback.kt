@@ -2,7 +2,6 @@ package com.sopt.appjam_sggsag
 
 
 import android.support.v7.util.DiffUtil
-import com.sopt.appjam_sggsag.Adapter.Spot
 
 class SpotDiffCallback(
     private val old: List<Spot>,
@@ -18,7 +17,7 @@ class SpotDiffCallback(
     }
 
     override fun areItemsTheSame(oldPosition: Int, newPosition: Int): Boolean {
-        return old[oldPosition].id == new[newPosition].id
+        return old[oldPosition] == new[newPosition]
     }
 
     override fun areContentsTheSame(oldPosition: Int, newPosition: Int): Boolean {

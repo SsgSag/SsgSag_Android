@@ -20,5 +20,6 @@ data class DetailPosterData(
     val announceDate1 : String?,
     val announceDate2 : String?,
     val finalAnnounceDate : String?,
-    val interviewDate : String?
+    val interviewDate : String?,
+    val posterInterest : List<Int>
 )
