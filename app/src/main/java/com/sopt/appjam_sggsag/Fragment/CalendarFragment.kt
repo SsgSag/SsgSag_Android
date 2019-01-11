@@ -24,6 +24,19 @@ import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.ScheduleRegisterActivity
 import android.view.animation.AlphaAnimation
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import com.sopt.appjam_sggsag.DB.SharedPreferenceController
+import com.sopt.appjam_sggsag.Data.EventList
+import com.sopt.appjam_sggsag.MyApplication
+import com.sopt.appjam_sggsag.Network.NetworkService
+import com.sopt.appjam_sggsag.Post.CalendarData
+import com.sopt.appjam_sggsag.Post.PostCalendarResponse
+import org.jetbrains.anko.support.v4.toast
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class CalendarFragment : Fragment(), GetYearMonthTab {
@@ -49,7 +62,13 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
     var temp_month = 1;
     var calendar_month = 24;
     var mArrayList: ArrayList<String>? = ArrayList()
+    var listServer: ArrayList<CalendarData>? = ArrayList()
 
+    val networkService: NetworkService by lazy {
+        MyApplication.instance.networkService
+    }
+
+    var scheduleList: ArrayList<EventList> = ArrayList()
     companion object {
         private var instance: CalendarFragment? = null
         @Synchronized
@@ -70,6 +89,9 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
     //RegisterScheduleActivity로 부터 정보 꺼내오기
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        scheduleList = (activity!!.application as MyApplication).eventList1
+        getCalendarResponse()
         /*
         arguments?.let{
             select_year = it.getInt("year")
@@ -238,5 +260,59 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
     }
 
 */
+
+    private fun getCalendarResponse() {
+        var jsonObject = JSONObject()
+        jsonObject.put("year", "2019")
+        jsonObject.put("month", "01")
+        jsonObject.put("day", "00")
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+
+        val token = SharedPreferenceController.getAuthorization(this.context!!)
+        val postCalendarResponse: Call<PostCalendarResponse> = networkService.postCalendarResponse(
+            "application/json",
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08"
+            ,
+            gsonObject
+        )
+        postCalendarResponse.enqueue(object : Callback<PostCalendarResponse> {
+            override fun onFailure(call: Call<PostCalendarResponse>, t: Throwable) {
+                Log.e("calendar fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostCalendarResponse>, response: Response<PostCalendarResponse>) {
+                if (response.isSuccessful) {
+                    toast(response.body()!!.message)
+                    response.body()?.status
+                    listServer = response.body()?.data
+                    for(i in 0..listServer!!.size-1){
+                        var startDate = listServer!![i].posterStartDate
+                        var endDate = listServer!![i].posterEndDate
+                        var startYear = listServer!![i].posterStartDate.substring(0, 4).toInt()
+                        var startMonth = listServer!![i].posterStartDate.substring(5, 7).toInt()
+                        var startDay = listServer!![i].posterStartDate.substring(8, 10).toInt()
+                        var endYear = listServer!![i].posterEndDate.substring(0, 4).toInt()
+                        var endMonth = listServer!![i].posterEndDate.substring(5, 7).toInt()
+                        var endDay = listServer!![i].posterEndDate.substring(8, 10).toInt()
+                        var eventName = listServer!![i].posterName
+                        var category = listServer!![i].categoryIdx
+                        var dday = listServer!![i].dday
+                        Log.e("sampleResponse", startDay.toString() + endDay.toString())
+                        if (tempcount==i) {
+                            //이게
+                            //  if (startYear == endYear && startMonth == endMonth) {
+                            for (i in startDay..endDay) {
+                                scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
+                                Log.e("itest", i.toString())
+                            }
+                            //  }
+                            tempcount++
+                        }
+                    }
+                    Log.e("calendar success", response.body()!!.message)
+                }
+            }
+        })
+    }
 }
 

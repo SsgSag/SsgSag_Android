@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,18 +17,34 @@ import com.baoyz.swipemenulistview.SwipeMenu
 import com.baoyz.swipemenulistview.SwipeMenuCreator
 import com.baoyz.swipemenulistview.SwipeMenuItem
 import com.baoyz.swipemenulistview.SwipeMenuListView
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import com.sopt.appjam_sggsag.Adapter.CalendarRecyclerAdapter2
+import com.sopt.appjam_sggsag.DB.SharedPreferenceController
 import com.sopt.appjam_sggsag.Data.CalendarDateData
 import com.sopt.appjam_sggsag.Data.EventList
 import com.sopt.appjam_sggsag.Interface.GetYearMonthTab
 import com.sopt.appjam_sggsag.MyApplication
+import com.sopt.appjam_sggsag.Network.NetworkService
+import com.sopt.appjam_sggsag.Post.CalendarData
+import com.sopt.appjam_sggsag.Post.PostCalendarResponse
 import com.sopt.appjam_sggsag.R
 import kotlinx.android.synthetic.main.fragment_calendar_detail.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
+
+    var listServer: ArrayList<CalendarData>? = ArrayList()
+
+    val networkService: NetworkService by lazy {
+        MyApplication.instance.networkService
+    }
     override fun getYearMonthTab(year: String, month: String) {
         //이거 아마 안쓸걸? 걍 비워두자
     }
@@ -41,14 +58,7 @@ class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
         //list에 표시할 정보 골라내기
         tv_todo_title2.setText((month+1).toString()+"월 "+dday+"일")
         var count = 0
-        for(i in 0..scheduleList.size-1){
-            if(scheduleList[i].year==yyear &&scheduleList[i].month==mmonth+1 && scheduleList[i].day.toString()==dday){
-                mArrayList.add(EventList(year,mmonth+1,dday.toInt(),scheduleList[i].eventName,2))
-                //변경사항 카테고리
-//                var eee = mArrayList[i].eventName
-                count++
-            }
-        }
+
 
     }
 
@@ -67,6 +77,7 @@ class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
             month = it.getInt("diff")
 
         }
+        getCalendarResponse()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -161,12 +172,39 @@ class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
         })
     }
 
+    //통신해서 스케쥴리스트에 넣어줄 코드 작성
+    private fun getCalendarResponse() {
+        var jsonObject = JSONObject()
+        jsonObject.put("year", "2019")
+        jsonObject.put("month", "01")
+        jsonObject.put("day", "00")
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+
+        val token = SharedPreferenceController.getAuthorization(this.context!!)
+        val postCalendarResponse: Call<PostCalendarResponse> = networkService.postCalendarResponse(
+            "application/json",
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08"
+            ,
+            gsonObject
+        )
+
+        postCalendarResponse.enqueue(object : Callback<PostCalendarResponse> {
+            override fun onFailure(call: Call<PostCalendarResponse>, t: Throwable) {
+                Log.e("calendar fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostCalendarResponse>, response: Response<PostCalendarResponse>) {
+                if (response.isSuccessful) {
+                    toast(response.body()!!.message)
+                    response.body()?.status
+                    listServer = response.body()?.data
+
+                    Log.e("calendar success", response.body()!!.message)
+                }
+            }
+        })
+    }
     private fun setRecycleView() {
-        //임시데이터
-
-
-
-        //리사이클러뷰 어댑터를 만들어서 아래처럼 고대로 하면 돼! 그 리사이클러뷰 어댑터에서 ctx는 activity!! 이거 넘겨주면되고!
         recyclerViewAdapter = CalendarRecyclerAdapter2(activity!!, dataList,scheduleList, month,this)
         frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter
         frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)

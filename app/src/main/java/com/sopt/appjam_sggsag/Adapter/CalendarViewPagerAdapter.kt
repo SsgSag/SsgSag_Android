@@ -41,53 +41,6 @@ class CalendarViewPagerAdapter(fm: FragmentManager?, val fCount: Int, val listen
         fragment.setArguments(bundle)
         //beforeMonth
         return fragment
-        /*
-        when (position%1) {
-
-            0 -> {
-                val fragment = CalendarDetailFragment() // Fragment 생성
-                val bundle = Bundle(1) // 파라미터는 전달할 데이터 개수
-                bundle.putInt("diff", position-49) // key , value
-                val iCal:Calendar = Calendar.getInstance()
-                iCal.add(Calendar.MONTH,position-49)
-                year = iCal.get(Calendar.YEAR)
-                toDay = iCal.get(Calendar.MONTH)
-                nowMonth = (toDay+1)
-                mCallback.getYearMonthTab(year.toString(),nowMonth.toString())
-                fragment.setArguments(bundle)
-                //beforeMonth
-                return fragment
-            }
-
-            1 -> {
-                val fragment = CalendarDetailFragment() // Fragment 생성
-                val bundle = Bundle(1) // 파라미터는 전달할 데이터 개수
-                bundle.putInt("diff", position-49) // key , value
-                val iCal:Calendar = Calendar.getInstance()
-                iCal.add(Calendar.MONTH,position-49)
-                year = iCal.get(Calendar.YEAR)
-                toDay = iCal.get(Calendar.MONTH)
-                nowMonth = (toDay+1)
-                mCallback.getYearMonthTab(year.toString(),nowMonth.toString())
-                fragment.setArguments(bundle)
-                return fragment
-            }
-            2 -> {
-                val fragment = CalendarDetailFragment() // Fragment 생성
-                val bundle = Bundle(1) // 파라미터는 전달할 데이터 개수
-                bundle.putInt("diff", position-49) // key , value
-                val iCal:Calendar = Calendar.getInstance()
-                iCal.add(Calendar.MONTH,position-49)
-                year = iCal.get(Calendar.YEAR)
-                toDay = iCal.get(Calendar.MONTH)
-                nowMonth = (toDay+1)
-                mCallback.getYearMonthTab(year.toString(),nowMonth.toString())
-                fragment.setArguments(bundle)
-                return fragment
-            }
-
-            else -> return null
-        } */
     }
 
     override fun getCount(): Int = fCount //return fCount

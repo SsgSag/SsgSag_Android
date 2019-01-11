@@ -6,11 +6,23 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import com.sopt.appjam_sggsag.DB.SharedPreferenceController
 import com.sopt.appjam_sggsag.Data.EventList
+import com.sopt.appjam_sggsag.Fragment.tempcount
+import com.sopt.appjam_sggsag.Network.NetworkService
+import com.sopt.appjam_sggsag.Post.PostCalendarResponse
+import com.sopt.appjam_sggsag.Post.PostCalendaraddResponse
 import com.sopt.appjam_sggsag.R.id.et_schedule_title
 import com.sopt.appjam_sggsag.R.id.tv_date_start
 import kotlinx.android.synthetic.main.activity_schedule_register.*
 import org.jetbrains.anko.*
+import org.jetbrains.anko.support.v4.toast
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.xml.datatype.DatatypeConstants.MONTHS
@@ -18,11 +30,37 @@ import javax.xml.datatype.DatatypeConstants.MONTHS
 class ScheduleRegisterActivity : AppCompatActivity() {
 
 
+    val networkService: NetworkService by lazy {
+        MyApplication.instance.networkService
+    }
+
     val c = Calendar.getInstance()
     val c_year = c.get(Calendar.YEAR)
     val c_month = c.get(Calendar.MONTH)
     val c_day = c.get(Calendar.DAY_OF_MONTH)
+    var check_category = 10
 
+    var startYear: String = c_year.toString()
+    var startMonth: String = (c_month + 1).toString()
+    var startDay: String = (c_day).toString()
+    var startHour: String = ""
+    var startMin: String = ""
+
+    var endYear: String = c_year.toString()
+    var endMonth: String = (c_month + 1).toString()
+    var endDay: String = (c_day).toString()
+    var endHour: String = ""
+    var endMin: String = ""
+
+    var check_contest: Boolean = false;
+    var check_activity: Boolean = false;
+    var check_club: Boolean = false;
+    var check_school: Boolean = false;
+    var check_career: Boolean = false;
+    var check_extra: Boolean = false;
+
+    var check_date: Boolean = false;
+    var check_time: Boolean = false;
 
     var eventList: ArrayList<EventList> = ArrayList()
 
@@ -36,30 +74,13 @@ class ScheduleRegisterActivity : AppCompatActivity() {
         setOnClickListener()
         eventList = (this.application as MyApplication).eventList1
         // var dataList : ArrayList<CalendarDateData> = CalendarDetailFragment.dataList
+
+        check_category = 10
     }
 
+
     private fun setOnClickListener() {
-        var startYear: String = c_year.toString()
-        var startMonth: String = (c_month + 1).toString()
-        var startDay: String = (c_day).toString()
-        var startHour: String = ""
-        var startMin: String = ""
 
-        var endYear: String = c_year.toString()
-        var endMonth: String = (c_month + 1).toString()
-        var endDay: String = (c_day).toString()
-        var endHour: String = ""
-        var endMin: String = ""
-
-        var check_contest: Boolean = false;
-        var check_activity: Boolean = false;
-        var check_club: Boolean = false;
-        var check_school: Boolean = false;
-        var check_career: Boolean = false;
-        var check_extra: Boolean = false;
-
-        var check_date: Boolean = false;
-        var check_time: Boolean = false;
         tv_date_start.setOnClickListener {
             //datePicker
             alert {
@@ -97,31 +118,26 @@ class ScheduleRegisterActivity : AppCompatActivity() {
                     endYear = "${datePicker.year}"
                     endMonth = "${datePicker.month + 1}"
                     endDay = "${datePicker.dayOfMonth}"
-                    if(endYear > startYear){
+                    if (endYear > startYear) {
                         tv_date_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
                         check_date = true
-                    }
-                    else if(endYear == startYear){
-                        if(endMonth > startMonth){
+                    } else if (endYear == startYear) {
+                        if (endMonth > startMonth) {
                             tv_date_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
                             check_date = true
-                        }
-                        else if(endMonth==startMonth){
-                            if(endDay >= startDay){
+                        } else if (endMonth == startMonth) {
+                            if (endDay >= startDay) {
                                 tv_date_end.setText(endYear + "년 " + endMonth + "월 " + endDay + "일")
                                 check_date = true
-                            }
-                            else{
+                            } else {
                                 toast("잘못된 날짜입니다.")
                                 check_date = false
                             }
-                        }
-                        else {
+                        } else {
                             toast("잘못된 날짜입니다.")
                             check_date = false
                         }
-                    }
-                    else {
+                    } else {
                         toast("잘못된 날짜입니다.")
                         check_date = false
                     }
@@ -145,9 +161,9 @@ class ScheduleRegisterActivity : AppCompatActivity() {
                     startMin = "${timePicker.minute}"
                     //"${timePicker.}"
                     if (startHour.toInt() > 12) {
-                        if (startMin.length == 1){
+                        if (startMin.length == 1) {
                             tv_time_start.setText("오후 " + (startHour.toInt() - 12) + ":0" + startMin)
-                        } else{
+                        } else {
                             tv_time_start.setText("오후 " + (startHour.toInt() - 12) + ":" + startMin)
                         }
                     } else if (startHour.toInt() < 12) {
@@ -157,9 +173,9 @@ class ScheduleRegisterActivity : AppCompatActivity() {
                             tv_time_start.setText("오전 " + startHour + ":" + startMin)
                         }
                     } else {
-                        if (startMin.length == 1){
+                        if (startMin.length == 1) {
                             tv_time_start.setText("오후 " + (startHour) + ":0" + startMin)
-                        } else{
+                        } else {
                             tv_time_start.setText("오후 " + (startHour) + ":" + startMin)
                         }
                     }
@@ -213,32 +229,29 @@ class ScheduleRegisterActivity : AppCompatActivity() {
                                 check_time = false
                             } else {
                                 if (endHour.toInt() > 12) {
-                                    if(endMin.length==1){
-                                        tv_time_end.setText("오후 "+(endHour.toInt() - 12)+":0"+endMin)
-                                    }
-                                    else{
-                                        tv_time_end.setText("오후 "+(endHour.toInt() - 12)+":"+endMin)
+                                    if (endMin.length == 1) {
+                                        tv_time_end.setText("오후 " + (endHour.toInt() - 12) + ":0" + endMin)
+                                    } else {
+                                        tv_time_end.setText("오후 " + (endHour.toInt() - 12) + ":" + endMin)
                                     }
                                     check_time = true
                                 } else if (endHour.toInt() < 12) {
-                                    if(endMin.length==1){
-                                        tv_time_end.setText("오전 "+endHour+":0"+endMin)
-                                    }
-                                    else{
-                                        tv_time_end.setText("오전 "+endHour+":"+endMin)
+                                    if (endMin.length == 1) {
+                                        tv_time_end.setText("오전 " + endHour + ":0" + endMin)
+                                    } else {
+                                        tv_time_end.setText("오전 " + endHour + ":" + endMin)
                                     }
                                     check_time = true
                                 } else {
-                                    if(endMin.length==1){
-                                        tv_time_end.setText("오후 "+endHour+":0"+endMin)
-                                    }
-                                    else{
-                                        tv_time_end.setText("오후 "+endHour+":"+endMin)
+                                    if (endMin.length == 1) {
+                                        tv_time_end.setText("오후 " + endHour + ":0" + endMin)
+                                    } else {
+                                        tv_time_end.setText("오후 " + endHour + ":" + endMin)
                                     }
                                     check_time = true
                                 }
                             }
-                        } else if(startHour > endHour) {
+                        } else if (startHour > endHour) {
                             toast("잘못된 시간입니다.")
                             check_time = false
                         }
@@ -286,127 +299,113 @@ class ScheduleRegisterActivity : AppCompatActivity() {
             if (!check_contest) {
                 iv_category_contest.setImageResource(R.drawable.ic_category_contest_active)
                 check_contest = true
+                check_category = 0
             } else {
                 iv_category_contest.setImageResource(R.drawable.ic_category_contest)
                 check_contest = false
+                check_category = 10
             }
         }
         ll_category_activity.setOnClickListener {
             if (!check_activity) {
                 iv_category_activity.setImageResource(R.drawable.ic_category_activity_active)
                 check_activity = true
+                check_category = 1
             } else {
                 iv_category_activity.setImageResource(R.drawable.ic_category_activity)
                 check_activity = false
+                check_category = 10
             }
         }
         ll_category_club.setOnClickListener {
             if (!check_club) {
                 iv_category_club.setImageResource(R.drawable.ic_category_club_active)
+                check_category = 2
                 check_club = true
             } else {
                 iv_category_club.setImageResource(R.drawable.ic_category_club)
                 check_club = false
+                check_category = 10
             }
         }
         ll_category_school.setOnClickListener {
             if (!check_school) {
                 iv_category_school.setImageResource(R.drawable.ic_category_school_active)
+                check_category = 3
                 check_school = true
             } else {
                 iv_category_school.setImageResource(R.drawable.ic_category_school)
                 check_school = false
+                check_category = 10
             }
         }
         ll_category_career.setOnClickListener {
             if (!check_career) {
                 iv_category_career.setImageResource(R.drawable.ic_category_career_active)
+                check_category = 4
                 check_career = true
             } else {
                 iv_category_career.setImageResource(R.drawable.ic_category_career)
                 check_career = false
+                check_category = 10
             }
         }
         ll_category_extra.setOnClickListener {
             if (!check_extra) {
                 iv_category_extra.setImageResource(R.drawable.ic_category_extra_active)
                 check_extra = true
+                check_category = 5
             } else {
                 iv_category_extra.setImageResource(R.drawable.ic_category_extra)
                 check_extra = false
+                check_category = 10
             }
         }
         btn_schedule_save.setOnClickListener {
-            if (startYear.toInt() > endYear.toInt()) {
-                alert {
-
-                }
-            }
-        }
-    }
-/*
-    private fun setSpinner(){
-        //var yearSpinner: Spinner = year_spinner
-        // var monthSpinner : Spinner = month_spinner
-        // var daySpinner : Spinner = day_spinner
-        val yearArray = arrayOf(2017,2018,2019,2020)
-        year_spinner.setSelection(1)
-
-        //year_spinner.adapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,yearArray)
-
-        year_spinner.adapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,yearArray)
-        year_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                toast("나도 모르겠다 여기 뭐 들어가야하는지")
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                year_spinner.setSelection(p2)
-            }
-        }
-
-        val monthArray = arrayOf(1,2,3,4,5,6,7,8,9,10,11,12)
-        month_spinner.setSelection(1)
-        month_spinner.adapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,monthArray)
-        month_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                toast("나도 모르겠다 여기 뭐 들어가야하는지")
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                month_spinner.setSelection(p2)
-            }
-        }
-        val dayArray = arrayOf(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31)
-
-
-        day_spinner.setSelection(1)
-        day_spinner.adapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,dayArray)
-        day_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                //toast("나도 모르겠다 여기 뭐 들어가야하는지")
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                day_spinner.setSelection(p2)
-            }
-        }
-    }
-*/
-    /*
-    private fun setOnClickListener(){
-        //addFragment
-        btn_act_sche_reg.setOnClickListener{
-            eventList.add(EventList(year_spinner.getSelectedItem().toString().toInt(),month_spinner.getSelectedItem().toString().toInt(),day_spinner.getSelectedItem().toString().toInt(),register_event_name.text.toString(),3))
-            //category3 넣어놨음.이거 받아와야함.
-            startActivity<MainActivity>()
+            getCalendaraddResponse()
             finish()
         }
     }
-    */
 
+    private fun getCalendaraddResponse() {
+        var categoryIdx = check_category
+        var manualName = et_schedule_title.text
+        var manualDetail = et_note.text
+        var manualStartDate = startYear + "-" + startMonth + "-" + startDay + " " + startHour + ":" + startMin
+        var manualEndDate = endYear + "-" + endMonth + "-" + endDay + " " + endHour + ":" + endMin
+        var isAlarm = 0
+        var jsonObject = JSONObject()
+        jsonObject.put("categoryIdx", categoryIdx)
+        jsonObject.put("manualName", manualName)
+        jsonObject.put("manualDetail", manualDetail)
+        jsonObject.put("manualStartDate", manualStartDate)
+        jsonObject.put("manualEndDate", manualEndDate)
+        jsonObject.put("isAlarm", isAlarm)
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
+        val token = SharedPreferenceController.getAuthorization(this)
+        val postCalendaraddResponse: Call<PostCalendaraddResponse> = networkService.postCalendaraddResponse(
+            "application/json",
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08"
+            , gsonObject
+        )
+
+        postCalendaraddResponse.enqueue(object : Callback<PostCalendaraddResponse> {
+            override fun onFailure(call: Call<PostCalendaraddResponse>, t: Throwable) {
+                Log.e("manualadd fail", t.toString())
+            }
+            override fun onResponse(call: Call<PostCalendaraddResponse>, response: Response<PostCalendaraddResponse>) {
+                if (response.isSuccessful) {
+                    Log.e("manualadd success", response.body()!!.message)
+                    toast(response.body()!!.message)
+                    response.body()?.status
+
+                }
+            }
+        })
+    }
 }
+
+
+
+
