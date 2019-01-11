@@ -9,7 +9,7 @@ data class DetailPosterData(
     val posterRegDate : String?,
     val posterStartDate: String?,
     val posterEndDate: String?,
-    val posterWebsite: String?,
+    val posterWebSite: String?,
     val isSeek : Int,
     val outline : String?,
     val target : String?,

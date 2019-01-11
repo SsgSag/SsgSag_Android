@@ -29,192 +29,6 @@ class CardStackAdapter(
         )
     }
 
-/*
-    var tempPosterIdx : Int=0
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val poster = posters[position]
-        Log.e("tempPosterIdx",tempPosterIdx.toString())
-        Log.e("currentPosterIdx",poster.posterIdx.toString())
-//        holder.name.text = "${spot.posterIdx}. ${spot.photoUrl}"
-//        holder.city.text = spot.outline
-
-        Glide.with(holder.image)
-            .load(poster.photoUrl)
-            .into(holder.image)
-
-        //Count process
-        var processCnt=0
-        if (poster.documentDate != null){
-            processCnt++
-        }
-        if (poster.announceDate1 != null){
-            processCnt++
-        }
-        if (poster.interviewDate != null){
-            processCnt++
-        }
-        if (poster.finalAnnounceDate != null){
-            processCnt++
-        }
-        Log.e("processCnt","-----------")
-        Log.e("processCnt",processCnt.toString())
-        Log.e("processCnt","-----------")
-
-        if (isClick==0){
-
-            //posterIdx가 바뀌면 isClick 초기화
-            if (tempPosterIdx==0){
-                tempPosterIdx=poster.posterIdx
-            }
-            else{
-                if(tempPosterIdx!=poster.posterIdx){
-//                isClick=0
-                }
-            }
-            Log.e("isClick",isClick.toString())
-
-
-
-            //for fix error of background of second tab->now it's not error
-            //우선 item_spot에서 FrameLayout끼리 있는 곳에 놔줘야해. CardView보다 텍스트 상 위에 놓으면 View상으로 밑면에 놓이게 돼.
-            //FrameLayout있는 곳에 second tab을 놔두고, 이게 라이브러리 내부 로직에 있지 않으므로 다른 itme_spot안의 view들처럼 기본적으로 안 보이지 않아.
-            //그러니까 INVISIBLE 처리해주고, 클릭할 때만 VISIBLE해주는 것으로. 그리고 왼쪽을 누르면 다시 INVISIBLE.
-            //bringToFront가 holder.image에만 먹히고, holder.name, holer.city에 안 먹는 이유, holer.cardContentBackground에 제대로 안 먹는 이유는 미지수
-            //일부만 잘려서 움직이던데 같이 엮인 TextView 및 음수 margin값 때문일 것 같다만 이 부분은 실험 안 해봄.
-
-            setDetailViewInvisible(holder,1)
-            setDetailViewInvisible(holder,2)
-            Log.e("why come into here","uuuu")
-            setDetailViewInvisible(holder,3)
-            setDetailViewInvisible(holder,4)
-            if (isClick==1){
-                setDetailViewVisible(holder,1)
-                setDetailViewVisible(holder,2)
-                setDetailViewVisible(holder,3)
-                setDetailViewVisible(holder,4)
-            }
-        }
-
-        //for card information
-//        holder.tmpcontent1.text = spot.posterName
-//        holder.tmpcontent2.text = spot.posterName
-
-
-        var widthOfCard=holder.image.width
-        var xAtDown : Float
-        var xAtUp :Float
-
-        holder.itemView.setOnTouchListener { v, event ->
-            when (event.action) {
-                //true로 하면 다음으로 내려간다. false를 하면 거기서 끝나버려
-                //눌렀다가 바로 떼려해도 미세하게 움직이면 그걸 누른채 움직이는 걸로 감지하는 동시에 떼는 걸로 감지함
-                //그런데 작정하고 움직이면 떼는 것을 감지 안 함
-                //ACTION_DOWN이 없으면 ACTION_UP이 감지가 안 되네
-                //isClick 초기화는 안 해도 되는 듯
-                MotionEvent.ACTION_DOWN-> {
-                    xAtDown = event.getX()
-                    Toast.makeText(v.context,poster.posterIdx.toString(),Toast.LENGTH_SHORT).show()
-                    return@setOnTouchListener true
-                }
-                /*
-                MotionEvent.ACTION_MOVE->{
-                    Toast.makeText(v.context,"누른 채 움직일 때",Toast.LENGTH_SHORT).show()
-                    return@setOnTouchListener false
-                }
-                */
-                MotionEvent.ACTION_UP->{//클릭
-                    xAtUp = event.getX()
-                    //detail_number 먼저 확인하고 들어가자
-                    if (xAtUp<=widthOfCard/2) {//card의 왼쪽 클릭
-                        if (processCnt==1){
-                            setDetailViewInvisible(holder,1)
-                            setDetailViewInvisible(holder,2)
-                            Log.e("why come into here","uuuu")
-                            setDetailViewInvisible(holder,3)
-                            setDetailViewInvisible(holder,4)
-                            holder.detail2_step1.visibility=View.INVISIBLE
-                            holder.detail2_step1_date.visibility=View.INVISIBLE
-                        }
-                        else if (processCnt==2){
-                            setDetailViewInvisible(holder,1)
-                            setDetailViewInvisible(holder,2)
-                            Log.e("why come into here","uuuu")
-                            setDetailViewInvisible(holder,3)
-                            setDetailViewInvisible(holder,4)
-                            holder.detail2_step1.visibility=View.INVISIBLE
-                            holder.detail2_step1_date.visibility=View.INVISIBLE
-                            holder.detail2_step2.visibility=View.INVISIBLE
-                            holder.detail2_step2_date.visibility=View.INVISIBLE
-                        }
-                        else if (processCnt==3){
-                            setDetailViewInvisible(holder,1)
-                            setDetailViewInvisible(holder,2)
-                            Log.e("why come into here","uuuu")
-                            setDetailViewInvisible(holder,3)
-                            setDetailViewInvisible(holder,4)
-                            holder.detail3_step1.visibility=View.INVISIBLE
-                            holder.detail3_step1_date.visibility=View.INVISIBLE
-                            holder.detail3_step2.visibility=View.INVISIBLE
-                            holder.detail3_step2_date.visibility=View.INVISIBLE
-                            holder.detail3_step3.visibility=View.INVISIBLE
-                            holder.detail3_step3_date.visibility=View.INVISIBLE
-                        }
-                        else{//processCnt==4
-                            setDetailViewInvisible(holder,1)
-                            setDetailViewInvisible(holder,2)
-                            Log.e("why come into here","uuuu")
-                            setDetailViewInvisible(holder,3)
-                            setDetailViewInvisible(holder,4)
-                            holder.detail4_step1.visibility=View.INVISIBLE
-                            holder.detail4_step1_date.visibility=View.INVISIBLE
-                            holder.detail4_step2.visibility=View.INVISIBLE
-                            holder.detail4_step2_date.visibility=View.INVISIBLE
-                            holder.detail4_step3.visibility=View.INVISIBLE
-                            holder.detail4_step3_date.visibility=View.INVISIBLE
-                            holder.detail4_step4.visibility=View.INVISIBLE
-                            holder.detail4_step4_date.visibility=View.INVISIBLE
-                        }
-                    }
-                    else{//card의 오른쪽 클릭
-                        if (processCnt==1){
-//                            holder.detail1_step1_date.text=poster.documentDate
-                            setDetailByCategory(holder,poster.categoryIdx,poster)
-                            setDetailViewVisible(holder,1)
-                        }
-                        else if (processCnt==2){
-//                            holder.detail2_step1_date.text=poster.documentDate
-//                            holder.detail2_step2_date.text=(poster.announceDate1+poster.interviewDate+poster.finalAnnounceDate)
-                            setDetailByCategory(holder,poster.categoryIdx,poster)
-                            setDetailViewVisible(holder,2)
-                        }
-                        else if (processCnt==3){
-//                            holder.detail3_step1_date.text=poster.documentDate
-//                            holder.detail3_step2_date.text=poster.announceDate1+poster.interviewDate
-//                            holder.detail3_step3_date.text=poster.finalAnnounceDate
-                            setDetailByCategory(holder,poster.categoryIdx,poster)
-                            setDetailViewVisible(holder,3)
-                        }
-                        else{//processCnt==4
-                            Log.e("categoryIdx",poster.categoryIdx.toString())
-//                            holder.detail4_step1_date.text=poster.documentDate
-//                            holder.detail4_step2_date.text=poster.announceDate1
-//                            holder.detail4_step3_date.text=poster.interviewDate
-//                            holder.detail4_step4_date.text=poster.finalAnnounceDate
-                            setDetailByCategory(holder,poster.categoryIdx,poster)
-                            setDetailViewVisible(holder,4)
-                        }
-                        isClick=1
-                    }
-                    return@setOnTouchListener true
-                }
-                else -> {
-                    return@setOnTouchListener false
-                }
-            }
-//            v?.onTouchEvent(event) ?: true
-        }
-    }
-*/
 
 override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     //왼쪽 오른쪽 안에서 holder 부르면 다시 onBindViewHolder로 돌아오네. 들어가기 전에 판단해서 넘겨줘라
@@ -248,9 +62,9 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     setDetailViewInvisible(holder,4)
 
     holder.detail1_left_tab.bringToFront()
-    holder.detail1_left_tab.bringToFront()
-    holder.detail1_left_tab.bringToFront()
-    holder.detail1_left_tab.bringToFront()
+    holder.detail2_left_tab.bringToFront()
+    holder.detail3_left_tab.bringToFront()
+    holder.detail4_left_tab.bringToFront()
 
     Log.e("여기를","돌아올까")
 
@@ -545,6 +359,11 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
                 xAtUp = event.getX()
                 if (xAtUp<=widthOfCard/2) {//card의 왼쪽 클릭
                     Log.e("왼쪽","클릭")
+                    holder.detail1_left_tab.visibility=View.VISIBLE
+                    holder.detail2_left_tab.visibility=View.VISIBLE
+                    holder.detail3_left_tab.visibility=View.VISIBLE
+                    holder.detail4_left_tab.visibility=View.VISIBLE
+
                     setDetailViewInvisible(holder,1)
                     setDetailViewInvisible(holder,2)
                     setDetailViewInvisible(holder,3)
@@ -601,7 +420,7 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.detail1_rectangle.visibility=View.INVISIBLE
             holder.detail1_process_paper .visibility=View.INVISIBLE
             holder.detail1_step1.visibility=View.INVISIBLE
-            holder.detail1_step1_date .visibility=View.INVISIBLE
+            holder.detail1_step1_date.visibility=View.INVISIBLE
             holder.detail1_title_summary.visibility=View.INVISIBLE
             holder.detail1_text_summary.visibility=View.INVISIBLE
             holder.detail1_title_target.visibility=View.INVISIBLE
@@ -664,8 +483,8 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             Log.e("setDetailViewInvisible","cnt4")
             holder.detail4_right_tab.visibility=View.INVISIBLE
             holder.detail4_background.visibility=View.INVISIBLE
-            holder.detail4_title.visibility=View.INVISIBLE
-            holder.detail4_hash .visibility=View.INVISIBLE
+//            holder.detail4_title.visibility=View.INVISIBLE
+//            holder.detail4_hash .visibility=View.INVISIBLE
             holder.detail4_rectangle.visibility=View.INVISIBLE
             holder.detail4_process_paper.visibility=View.INVISIBLE
             holder.detail4_process_line.visibility=View.INVISIBLE
@@ -701,7 +520,7 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.detail1_rectangle.visibility=View.VISIBLE
             holder.detail1_process_paper .visibility=View.VISIBLE
             holder.detail1_step1.visibility=View.VISIBLE
-            holder.detail1_step1_date .visibility=View.VISIBLE
+            holder.detail1_step1_date.visibility=View.VISIBLE
             holder.detail1_title_summary.visibility=View.VISIBLE
             holder.detail1_text_summary.visibility=View.VISIBLE
             holder.detail1_title_target.visibility=View.VISIBLE
@@ -764,8 +583,8 @@ override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             Log.e("setDetailViewvisible","cnt4")
             holder.detail4_right_tab.visibility=View.VISIBLE
             holder.detail4_background.visibility=View.VISIBLE
-            holder.detail4_title.visibility=View.VISIBLE
-            holder.detail4_hash .visibility=View.VISIBLE
+//            holder.detail4_title.visibility=View.VISIBLE
+//            holder.detail4_hash .visibility=View.VISIBLE
             holder.detail4_rectangle.visibility=View.VISIBLE
             holder.detail4_process_paper.visibility=View.VISIBLE
             holder.detail4_process_line.visibility=View.VISIBLE

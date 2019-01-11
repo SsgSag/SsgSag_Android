@@ -39,15 +39,15 @@
         <activity android:name=".ScheduleRegisterActivity">
         </activity>
         <activity android:name=".SplashActivity">
-
-        </activity>
-        <activity android:name=".MyPage.JobActivity"/>
-        <activity android:name=".Career.CareerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".MyPage.JobActivity"/>
+        <activity android:name=".Career.CareerActivity">
+
         </activity>
         <activity android:name=".MyPage.InterestArea">
         </activity>
