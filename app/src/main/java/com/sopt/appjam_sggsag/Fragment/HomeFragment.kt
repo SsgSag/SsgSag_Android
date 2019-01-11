@@ -268,7 +268,7 @@ class HomeFragment : Fragment(), CardStackListener {
         spots.add(Spot(name = "Louvre Museum", city = "Paris", url = "https://source.unsplash.com/LrMWHKqilUw/600x800"))
         spots.add(Spot(name = "Eiffel Tower", city = "Paris", url = "https://source.unsplash.com/HN-5Z6AmxrM/600x800"))
         spots.add(Spot(name = "Big Ben", city = "London", url = "https://source.unsplash.com/CdVAUADdqEc/600x800"))
-        spots.add(Spot(name = "Great Wall of China", city = "China", url = "https://source.unsplash.com/AWh9C-QjhE4/600x800"))
+        spots.add(Spot(name = "Great Wall o f China", city = "China", url = "https://source.unsplash.com/AWh9C-QjhE4/600x800"))
         return spots
     }
 
