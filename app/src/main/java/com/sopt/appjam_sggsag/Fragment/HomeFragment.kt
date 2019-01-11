@@ -397,7 +397,7 @@ class HomeFragment : Fragment(), CardStackListener {
             })
     }
     */
-
+/*
     private fun createPosters(): ArrayList<DetailPosterData> {
         val posters = ArrayList<DetailPosterData>()
 //        Log.e(inputPosterData!!.posters[0].photoUrl, inputPosterData!!.posters[0].photoUrl.toString())
@@ -700,14 +700,10 @@ class HomeFragment : Fragment(), CardStackListener {
         Log.e("-------------------","----------------------")
         return posters
     }
+*/
 
-/*
     private fun createPosters(): ArrayList<DetailPosterData> {
         val posters = ArrayList<DetailPosterData>()
-
-        Log.e("입력 전전전", "eeeeeeeeeeeee")
-        Log.e("inputPosterData!!.posters[0]",inputPosterData!!.posters[0].toString())
-        Log.e("poster 확인",posters.toString())
 
         //1번 CARD
         posters.add(
@@ -733,11 +729,6 @@ class HomeFragment : Fragment(), CardStackListener {
             )
         )
 
-        Log.e("posters[0] 입력 완료"," ")
-//        Log.e("inputPosterData!!.posters[1]",inputPosterData!!.posters[1].toString())
-        Log.e("inputPosterData!!.posters[1].posterIdx",inputPosterData!!.posters[1].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
-
         //2번 CARD
         posters.add(
             DetailPosterData(
@@ -762,9 +753,6 @@ class HomeFragment : Fragment(), CardStackListener {
         )
 
         Log.e("posters[1] 입력 완료"," ")
-//        Log.e("inputPosterData!!.posters[1]",inputPosterData!!.posters[1].toString())
-        Log.e("inputPosterData!!.posters[2].posterIdx",inputPosterData!!.posters[2].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
 
         //3번 CARD
         posters.add(
@@ -952,5 +940,5 @@ class HomeFragment : Fragment(), CardStackListener {
         )
         return posters
     }
-*/
+
 }

@@ -30,9 +30,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         //자동 로그인
-        if (SharedPreferenceController.getAuthorization(this).isNotEmpty()){
-            startActivity<MainActivity>()
-        }
+            if (SharedPreferenceController.getAuthorization(this).isNotEmpty()){
+                startActivity<MainActivity>()
+            }
+
+
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,

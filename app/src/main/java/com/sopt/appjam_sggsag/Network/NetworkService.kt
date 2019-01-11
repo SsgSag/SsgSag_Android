@@ -1,10 +1,7 @@
 package com.sopt.appjam_sggsag.Network
 
 import com.google.gson.JsonObject
-import com.sopt.appjam_sggsag.Post.PostCalendarResponse
-import com.sopt.appjam_sggsag.Post.PostLogInResponse
-import com.sopt.appjam_sggsag.Post.PostPosterListResponse
-import com.sopt.appjam_sggsag.Post.PostSignUpResponse
+import com.sopt.appjam_sggsag.Post.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONObject
@@ -39,4 +36,10 @@ interface NetworkService{
         @Header("Authorization") token : String,
         @Body() body : JsonObject
     ) : Call<PostCalendarResponse>
+
+    //회원 정보 조회
+    @POST("/users/info")
+    fun postInfoResponse (
+        @Header("Authorization") token: String
+    ) :Call<PostInfoResponse>
 }

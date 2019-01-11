@@ -59,6 +59,7 @@
                         android:text="김은혜"/>
 
                 <TextView
+                        android:id="@+id/mypage_user_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/mypage_user_name"
@@ -97,6 +98,7 @@
                         android:src="@drawable/rectangle"/>
 
                 <TextView
+                        android:id="@+id/mypage_user_major"
                         android:layout_toRightOf="@+id/mypage_user_rectangle"
                         android:layout_marginStart="8dp"
                         android:layout_width="wrap_content"

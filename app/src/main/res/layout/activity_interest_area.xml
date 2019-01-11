@@ -53,12 +53,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
-                        android:text="관심분야를 기반으로\n활동을 추천해드려요"/>
+                        android:text="관심분야에 기반해\n활동을 추천해드려요"/>
                 <TextView
+                        android:fontFamily="sans-serif"
                         android:layout_marginLeft="6dp"
                         android:layout_alignParentBottom="true"
                         android:layout_toEndOf="@+id/tv_interest"
                         android:lineSpacingExtra="14sp"
+                        android:textStyle="bold"
                         android:letterSpacing="-0.02"
                         android:textColor="#000"
                         android:textSize="15sp"

@@ -36,6 +36,7 @@
                 android:layout_height="match_parent">
 
             <TextView
+                    android:id="@+id/tv_interest"
                     android:clickable="false"
                     android:textStyle="bold"
                     android:textColor="#000000"
@@ -47,7 +48,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
-                    android:text="관심분야를 기반으로\n활동을 추천해드려요"/>
+                    android:text="관심분야에 기반해\n활동을 추천해드려요"/>
+            <TextView
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="6dp"
+                    android:layout_alignBottom="@+id/tv_interest"
+                    android:layout_toEndOf="@+id/tv_interest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.02"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:text="(복수선택)"/>
+
             <RelativeLayout
                     android:layout_marginTop="140dp"
                     android:id="@+id/img_1st_line"
