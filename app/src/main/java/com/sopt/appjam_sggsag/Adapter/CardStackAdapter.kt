@@ -2,7 +2,9 @@ package com.sopt.appjam_sggsag.Adapter
 
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -27,8 +29,31 @@ class CardStackAdapter(
         Glide.with(holder.image)
             .load(spot.url)
             .into(holder.image)
-        holder.itemView.setOnClickListener { v ->
-            Toast.makeText(v.context, spot.name, Toast.LENGTH_SHORT).show()
+
+        var widthOfCard = holder.image.width
+        var xAtDown: Float
+        var xAtUp: Float
+
+        holder.itemView.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    xAtDown = event.getX()
+                    return@setOnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {//클릭
+                    xAtUp = event.getX()
+                    if (xAtUp <= widthOfCard / 2) {//card의 왼쪽 클릭
+                        Log.e("왼쪽", "클릭")
+
+                    } else {//card의 오른쪽 클릭
+                        Log.e("오른쪽", "클릭")
+                    }
+                    return@setOnTouchListener true
+                }
+                else -> {
+                    return@setOnTouchListener false
+                }
+            }
         }
     }
 

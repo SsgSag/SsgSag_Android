@@ -70,6 +70,7 @@ class HomeFragment : Fragment(), CardStackListener {
         setupCardStackView()
         setOnClickListener()
     }
+
     private fun setOnClickListener(){
         btn_x.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
