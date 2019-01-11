@@ -114,7 +114,7 @@
                             android:inputType="textEmailAddress"
                             android:singleLine="true"
                             android:id="@+id/et_email"
-                            android:hint="이메일"
+                            android:hint="닉네임"
                             android:letterSpacing="-0.02"
                             android:textColor="#000"
                             android:textStyle="normal"
