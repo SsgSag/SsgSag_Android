@@ -19,6 +19,7 @@ class MyApplication : Application() {
     companion object {
         lateinit var instance: MyApplication
         var inputPosterData: PosterData? = null
+        var inputUserCnt : Int =15
     }
 
     override fun onCreate() {

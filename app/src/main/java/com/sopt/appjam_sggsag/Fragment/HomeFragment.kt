@@ -14,7 +14,6 @@ import android.widget.TextView
 import com.sopt.appjam_sggsag.CardStackAdapter
 import com.sopt.appjam_sggsag.Data.DetailPosterData
 import com.sopt.appjam_sggsag.MyApplication
-import com.sopt.appjam_sggsag.MyApplication.Companion.inputPosterData
 import com.sopt.appjam_sggsag.Network.NetworkService
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.SpotDiffCallback
@@ -28,8 +27,8 @@ class HomeFragment : Fragment(), CardStackListener {
     //본래 선언
     //private val manager by lazy { CardStackLayoutManager(context, this) }
     //private val adapter by lazy { CardStackAdapter(createPosters()) }
-    lateinit var manager : CardStackLayoutManager
-    lateinit var adapter : CardStackAdapter
+    lateinit var manager: CardStackLayoutManager
+    lateinit var adapter: CardStackAdapter
     private var homeFragmentView: View? = null
 
     val networkService: NetworkService by lazy {
@@ -47,8 +46,8 @@ class HomeFragment : Fragment(), CardStackListener {
         //내가 차라리 메인에서 불러온다...
         //getPosterListResponse()
         //by lazy에서 lateinit으로 변경함에 따라 adapter 초기화하기 위함
-        manager =CardStackLayoutManager(context)
-        adapter= CardStackAdapter(createPosters())
+        manager = CardStackLayoutManager(context)
+        adapter = CardStackAdapter(createPosters())
         setupCardStackView()//CardStackAdapter가 처음 쓰이는 부분
         setupButton()
     }
@@ -397,17 +396,17 @@ class HomeFragment : Fragment(), CardStackListener {
             })
     }
     */
-
+/*
     private fun createPosters(): ArrayList<DetailPosterData> {
         val posters = ArrayList<DetailPosterData>()
 //        Log.e(inputPosterData!!.posters[0].photoUrl, inputPosterData!!.posters[0].photoUrl.toString())
 //        Log.e("posterIdx",inputPosterData!!.posters[0].posterIdx.toString())
         Log.e("입력 전전전", "eeeeeeeeeeeee")
 //        Log.e("inputPosterData",inputPosterData.toString())
-        Log.e("inputPosterData!!.posters[0]",inputPosterData!!.posters[0].toString())
-        Log.e("poster 확인",posters.toString())
+        Log.e("inputPosterData!!.posters[0]", inputPosterData!!.posters[0].toString())
+        Log.e("poster 확인", posters.toString())
 //        Log.e("inputPosterData!!.posters[0].posterIdx",inputPosterData!!.posters[0].posterIdx.toString())
-        Log.e("-------------------","----------------------")
+        Log.e("-------------------", "----------------------")
 
         //0번 CARD
         posters.add(
@@ -433,11 +432,11 @@ class HomeFragment : Fragment(), CardStackListener {
             )
         )
 
-        Log.e("posters[0] 입력 완료"," ")
+        Log.e("posters[0] 입력 완료", " ")
 //        Log.e("inputPosterData!!.posters[1]",inputPosterData!!.posters[1].toString())
-        Log.e("inputPosterData!!.posters[1].posterIdx",inputPosterData!!.posters[1].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
-        Log.e("-------------------","----------------------")
+        Log.e("inputPosterData!!.posters[1].posterIdx", inputPosterData!!.posters[1].posterIdx.toString())
+        Log.e("poster 확인", posters.toString())
+        Log.e("-------------------", "----------------------")
         //1번 CARD
         posters.add(
             DetailPosterData(
@@ -462,11 +461,11 @@ class HomeFragment : Fragment(), CardStackListener {
             )
         )
 
-        Log.e("posters[1] 입력 완료"," ")
+        Log.e("posters[1] 입력 완료", " ")
 //        Log.e("inputPosterData!!.posters[2]",inputPosterData!!.posters[2].toString())
-        Log.e("inputPosterData!!.posters[2].posterIdx",inputPosterData!!.posters[2].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
-        Log.e("-------------------","----------------------")
+        Log.e("inputPosterData!!.posters[2].posterIdx", inputPosterData!!.posters[2].posterIdx.toString())
+        Log.e("poster 확인", posters.toString())
+        Log.e("-------------------", "----------------------")
 
         //2번 CARD
         posters.add(
@@ -492,11 +491,11 @@ class HomeFragment : Fragment(), CardStackListener {
             )
         )
 
-        Log.e("posters[2] 입력 완료"," ")
+        Log.e("posters[2] 입력 완료", " ")
 //        Log.e("inputPosterData!!.posters[3]",inputPosterData!!.posters[3].toString())
-        Log.e("inputPosterData!!.posters[3].posterIdx",inputPosterData!!.posters[3].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
-        Log.e("-------------------","----------------------")
+        Log.e("inputPosterData!!.posters[3].posterIdx", inputPosterData!!.posters[3].posterIdx.toString())
+        Log.e("poster 확인", posters.toString())
+        Log.e("-------------------", "----------------------")
 
         //3번 CARD
         posters.add(
@@ -522,11 +521,11 @@ class HomeFragment : Fragment(), CardStackListener {
             )
         )
 
-        Log.e("posters[3] 입력 완료"," ")
+        Log.e("posters[3] 입력 완료", " ")
 //        Log.e("inputPosterData!!.posters[4]",inputPosterData!!.posters[4].toString())
-        Log.e("inputPosterData!!.posters[4].posterIdx",inputPosterData!!.posters[4].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
-        Log.e("-------------------","----------------------")
+        Log.e("inputPosterData!!.posters[4].posterIdx", inputPosterData!!.posters[4].posterIdx.toString())
+        Log.e("poster 확인", posters.toString())
+        Log.e("-------------------", "----------------------")
 
         //4번 CARD
         posters.add(
@@ -552,11 +551,11 @@ class HomeFragment : Fragment(), CardStackListener {
             )
         )
 
-        Log.e("posters[4] 입력 완료"," ")
+        Log.e("posters[4] 입력 완료", " ")
 //        Log.e("inputPosterData!!.posters[5]",inputPosterData!!.posters[5].toString())
-        Log.e("inputPosterData!!.posters[5].posterIdx",inputPosterData!!.posters[5].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
-        Log.e("-------------------","----------------------")
+        Log.e("inputPosterData!!.posters[5].posterIdx", inputPosterData!!.posters[5].posterIdx.toString())
+        Log.e("poster 확인", posters.toString())
+        Log.e("-------------------", "----------------------")
         //5번 CARD
         posters.add(
             DetailPosterData(
@@ -581,11 +580,11 @@ class HomeFragment : Fragment(), CardStackListener {
             )
         )
 
-        Log.e("posters[5] 입력 완료"," ")
+        Log.e("posters[5] 입력 완료", " ")
 //        Log.e("inputPosterData!!.posters[6]",inputPosterData!!.posters[6].toString())
-        Log.e("inputPosterData!!.posters[6].posterIdx",inputPosterData!!.posters[6].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
-        Log.e("-------------------","----------------------")
+        Log.e("inputPosterData!!.posters[6].posterIdx", inputPosterData!!.posters[6].posterIdx.toString())
+        Log.e("poster 확인", posters.toString())
+        Log.e("-------------------", "----------------------")
         //6번 CARD
         posters.add(
             DetailPosterData(
@@ -609,11 +608,11 @@ class HomeFragment : Fragment(), CardStackListener {
                 documentDate = inputPosterData!!.posters[6].documentDate
             )
         )
-        Log.e("posters[6] 입력 완료"," ")
+        Log.e("posters[6] 입력 완료", " ")
 //        Log.e("inputPosterData!!.posters[7]",inputPosterData!!.posters[7].toString())
-        Log.e("inputPosterData!!.posters[7].posterIdx",inputPosterData!!.posters[7].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
-        Log.e("-------------------","----------------------")
+        Log.e("inputPosterData!!.posters[7].posterIdx", inputPosterData!!.posters[7].posterIdx.toString())
+        Log.e("poster 확인", posters.toString())
+        Log.e("-------------------", "----------------------")
         //7번 CARD
         posters.add(
             DetailPosterData(
@@ -637,11 +636,11 @@ class HomeFragment : Fragment(), CardStackListener {
                 documentDate = inputPosterData!!.posters[7].documentDate
             )
         )
-        Log.e("posters[7] 입력 완료"," ")
+        Log.e("posters[7] 입력 완료", " ")
 //        Log.e("inputPosterData!!.posters[8]",inputPosterData!!.posters[8].toString())
-        Log.e("inputPosterData!!.posters[8].posterIdx",inputPosterData!!.posters[8].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
-        Log.e("-------------------","----------------------")
+        Log.e("inputPosterData!!.posters[8].posterIdx", inputPosterData!!.posters[8].posterIdx.toString())
+        Log.e("poster 확인", posters.toString())
+        Log.e("-------------------", "----------------------")
         //8번 CARD
         posters.add(
             DetailPosterData(
@@ -665,11 +664,11 @@ class HomeFragment : Fragment(), CardStackListener {
                 documentDate = inputPosterData!!.posters[8].documentDate
             )
         )
-        Log.e("posters[8] 입력 완료"," ")
+        Log.e("posters[8] 입력 완료", " ")
 //        Log.e("inputPosterData!!.posters[9]",inputPosterData!!.posters[9].toString())
-        Log.e("inputPosterData!!.posters[9].posterIdx",inputPosterData!!.posters[9].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
-        Log.e("-------------------","----------------------")
+        Log.e("inputPosterData!!.posters[9].posterIdx", inputPosterData!!.posters[9].posterIdx.toString())
+        Log.e("poster 확인", posters.toString())
+        Log.e("-------------------", "----------------------")
         //9번 CARD
         posters.add(
             DetailPosterData(
@@ -693,21 +692,24 @@ class HomeFragment : Fragment(), CardStackListener {
                 documentDate = inputPosterData!!.posters[9].documentDate
             )
         )
-        Log.e("posters[9] 입력 완료"," ")
-        Log.e("inputPosterData!!.posters[9]",inputPosterData!!.posters[9].toString())
-        Log.e("inputPosterData!!.posters[9].posterIdx",inputPosterData!!.posters[9].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
-        Log.e("-------------------","----------------------")
+        Log.e("posters[9] 입력 완료", " ")
+        Log.e("inputPosterData!!.posters[9]", inputPosterData!!.posters[9].toString())
+        Log.e("inputPosterData!!.posters[9].posterIdx", inputPosterData!!.posters[9].posterIdx.toString())
+        Log.e("poster 확인", posters.toString())
+        Log.e("-------------------", "----------------------")
         return posters
     }
+*/
 
-/*
+    //직접 넘겨주기를 가정하고 전역변수로 userCnt넘겨주기
+
+
     private fun createPosters(): ArrayList<DetailPosterData> {
         val posters = ArrayList<DetailPosterData>()
 
         Log.e("입력 전전전", "eeeeeeeeeeeee")
-        Log.e("inputPosterData!!.posters[0]",inputPosterData!!.posters[0].toString())
-        Log.e("poster 확인",posters.toString())
+//        Log.e("inputPosterData!!.posters[0]",inputPosterData!!.posters[0].toString())
+//        Log.e("poster 확인",posters.toString())
 
         //1번 CARD
         posters.add(
@@ -733,17 +735,17 @@ class HomeFragment : Fragment(), CardStackListener {
             )
         )
 
-        Log.e("posters[0] 입력 완료"," ")
+        Log.e("posters[0] 입력 완료", " ")
 //        Log.e("inputPosterData!!.posters[1]",inputPosterData!!.posters[1].toString())
-        Log.e("inputPosterData!!.posters[1].posterIdx",inputPosterData!!.posters[1].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
+//        Log.e("inputPosterData!!.posters[1].posterIdx",inputPosterData!!.posters[1].posterIdx.toString())
+//        Log.e("poster 확인",posters.toString())
 
         //2번 CARD
         posters.add(
             DetailPosterData(
                 posterIdx = 2,
-                categoryIdx = 1,
-                photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
+                categoryIdx = 2,
+                photoUrl = "https://source.unsplash.com/THozNzxEP3g/600x800",
                 posterName = "hahaha",
                 posterRegDate = "hahah",
                 posterStartDate = "hahah",
@@ -758,20 +760,21 @@ class HomeFragment : Fragment(), CardStackListener {
                 announceDate1 = "hahah",
                 announceDate2 = "hahah",
                 finalAnnounceDate = "hahah",
-                interviewDate = "hahah"            )
+                interviewDate = "hahah"
+            )
         )
 
-        Log.e("posters[1] 입력 완료"," ")
+        Log.e("posters[1] 입력 완료", " ")
 //        Log.e("inputPosterData!!.posters[1]",inputPosterData!!.posters[1].toString())
-        Log.e("inputPosterData!!.posters[2].posterIdx",inputPosterData!!.posters[2].posterIdx.toString())
-        Log.e("poster 확인",posters.toString())
+//        Log.e("inputPosterData!!.posters[2].posterIdx",inputPosterData!!.posters[2].posterIdx.toString())
+//        Log.e("poster 확인",posters.toString())
 
         //3번 CARD
         posters.add(
             DetailPosterData(
-                posterIdx = 1,
-                categoryIdx = 1,
-                photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
+                posterIdx = 3,
+                categoryIdx = 2,
+                photoUrl = "https://source.unsplash.com/USrZRcRS2Lw/600x800",
                 posterName = "hahaha",
                 posterRegDate = "hahah",
                 posterStartDate = "hahah",
@@ -783,18 +786,19 @@ class HomeFragment : Fragment(), CardStackListener {
                 period = "hahah",
                 benefit = "hahah",
                 documentDate = "hahah",
-                announceDate1 = "hahah",
+                announceDate1 = null,
                 announceDate2 = "hahah",
                 finalAnnounceDate = "hahah",
-                interviewDate = "hahah"            )
+                interviewDate = "hahah"
+            )
         )
 
         //4번 CARD
         posters.add(
             DetailPosterData(
-                posterIdx = 1,
-                categoryIdx = 1,
-                photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
+                posterIdx = 4,
+                categoryIdx = 2,
+                photoUrl = "https://source.unsplash.com/NYyCqdBOKwc/600x800",
                 posterName = "hahaha",
                 posterRegDate = "hahah",
                 posterStartDate = "hahah",
@@ -806,18 +810,19 @@ class HomeFragment : Fragment(), CardStackListener {
                 period = "hahah",
                 benefit = "hahah",
                 documentDate = "hahah",
-                announceDate1 = "hahah",
+                announceDate1 = null,
                 announceDate2 = "hahah",
                 finalAnnounceDate = "hahah",
-                interviewDate = "hahah"            )
+                interviewDate = null
+            )
         )
 
         //5번 CARD
         posters.add(
             DetailPosterData(
-                posterIdx = 1,
+                posterIdx = 5,
                 categoryIdx = 1,
-                photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
+                photoUrl = "https://source.unsplash.com/buF62ewDLcQ/600x800",
                 posterName = "hahaha",
                 posterRegDate = "hahah",
                 posterStartDate = "hahah",
@@ -832,15 +837,16 @@ class HomeFragment : Fragment(), CardStackListener {
                 announceDate1 = "hahah",
                 announceDate2 = "hahah",
                 finalAnnounceDate = "hahah",
-                interviewDate = "hahah"            )
+                interviewDate = "hahah"
+            )
         )
 
         //6번 CARD
         posters.add(
             DetailPosterData(
-                posterIdx = 1,
+                posterIdx = 6,
                 categoryIdx = 1,
-                photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
+                photoUrl = "https://source.unsplash.com/PeFk7fzxTdk/600x800",
                 posterName = "hahaha",
                 posterRegDate = "hahah",
                 posterStartDate = "hahah",
@@ -855,15 +861,16 @@ class HomeFragment : Fragment(), CardStackListener {
                 announceDate1 = "hahah",
                 announceDate2 = "hahah",
                 finalAnnounceDate = "hahah",
-                interviewDate = "hahah"            )
+                interviewDate = "hahah"
+            )
         )
 
         //7번 CARD
         posters.add(
             DetailPosterData(
-                posterIdx = 1,
+                posterIdx = 7,
                 categoryIdx = 1,
-                photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
+                photoUrl = "https://source.unsplash.com/LrMWHKqilUw/600x800",
                 posterName = "hahaha",
                 posterRegDate = "hahah",
                 posterStartDate = "hahah",
@@ -878,15 +885,16 @@ class HomeFragment : Fragment(), CardStackListener {
                 announceDate1 = "hahah",
                 announceDate2 = "hahah",
                 finalAnnounceDate = "hahah",
-                interviewDate = "hahah"            )
+                interviewDate = "hahah"
+            )
         )
 
         //8번 CARD
         posters.add(
             DetailPosterData(
-                posterIdx = 1,
+                posterIdx = 8,
                 categoryIdx = 1,
-                photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
+                photoUrl = "https://source.unsplash.com/LrMWHKqilUw/600x800",
                 posterName = "hahaha",
                 posterRegDate = "hahah",
                 posterStartDate = "hahah",
@@ -901,15 +909,16 @@ class HomeFragment : Fragment(), CardStackListener {
                 announceDate1 = "hahah",
                 announceDate2 = "hahah",
                 finalAnnounceDate = "hahah",
-                interviewDate = "hahah"            )
+                interviewDate = "hahah"
+            )
         )
 
         //9번 CARD
         posters.add(
             DetailPosterData(
-                posterIdx = 1,
+                posterIdx = 9,
                 categoryIdx = 1,
-                photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
+                photoUrl = "https://source.unsplash.com/CdVAUADdqEc/600x800",
                 posterName = "hahaha",
                 posterRegDate = "hahah",
                 posterStartDate = "hahah",
@@ -931,9 +940,9 @@ class HomeFragment : Fragment(), CardStackListener {
         //10번 CARD
         posters.add(
             DetailPosterData(
-                posterIdx = 1,
+                posterIdx = 10,
                 categoryIdx = 1,
-                photoUrl = "https://source.unsplash.com/Xq1ntWruZQI/600x800",
+                photoUrl = "https://source.unsplash.com/AWh9C-QjhE4/600x800",
                 posterName = "hahaha",
                 posterRegDate = "hahah",
                 posterStartDate = "hahah",
@@ -948,9 +957,10 @@ class HomeFragment : Fragment(), CardStackListener {
                 announceDate1 = "hahah",
                 announceDate2 = "hahah",
                 finalAnnounceDate = "hahah",
-                interviewDate = "hahah"            )
+                interviewDate = "hahah"
+            )
         )
         return posters
     }
-*/
+
 }

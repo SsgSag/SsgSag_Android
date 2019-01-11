@@ -81,10 +81,26 @@
             android:layout_height="match_parent"
             xmlns:android="http://schemas.android.com/apk/res/android">
         <LinearLayout
+                android:id="@+id/ll_detail1_background"
                 android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp">
+                <ImageView
+                        android:id="@+id/iv_tab_left_1"
+                        android:src="@drawable/tab_card_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <ImageView
+                        android:id="@+id/iv_tab_right_1"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/tab_card_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </RelativeLayout>
             <TextView
                     android:id="@+id/main_detail1_title"
                     android:layout_marginLeft="15dp"
@@ -114,6 +130,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="126dp">
                 <ImageView
+                        android:id="@+id/iv_rectangle_1"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
@@ -284,10 +301,26 @@
             android:layout_height="match_parent"
             xmlns:android="http://schemas.android.com/apk/res/android">
         <LinearLayout
+                android:id="@+id/ll_detail2_background"
                 android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp">
+                <ImageView
+                        android:id="@+id/iv_tab_left_2"
+                        android:src="@drawable/tab_card_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <ImageView
+                        android:id="@+id/iv_tab_right_2"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/tab_card_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </RelativeLayout>
             <TextView
                     android:id="@+id/main_detail2_title"
                     android:layout_marginLeft="15dp"
@@ -317,7 +350,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="126dp">
                 <ImageView
-                        android:id="@+id/main_sub_rectangle"
+                        android:id="@+id/iv_rectangle_2"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
@@ -534,10 +567,26 @@
             android:layout_height="match_parent"
             xmlns:android="http://schemas.android.com/apk/res/android">
         <LinearLayout
+                android:id="@+id/ll_detail3_background"
                 android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp">
+                <ImageView
+                        android:id="@+id/iv_tab_left_3"
+                        android:src="@drawable/tab_card_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <ImageView
+                        android:id="@+id/iv_tab_right_3"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/tab_card_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </RelativeLayout>
             <TextView
                     android:id="@+id/main_detail3_title"
                     android:layout_marginLeft="15dp"
@@ -561,12 +610,12 @@
                     android:layout_height="wrap_content"
                     android:text="#기획/아이디어 #디자인 #IT/기술 #창업/스타트업"/>
 
-
             <RelativeLayout
                     android:layout_marginTop="22dp"
                     android:layout_width="match_parent"
                     android:layout_height="126dp">
                 <ImageView
+                        android:id="@+id/iv_rectangle_3"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
@@ -823,10 +872,26 @@
             android:layout_height="match_parent"
             xmlns:android="http://schemas.android.com/apk/res/android">
         <LinearLayout
+                android:id="@+id/ll_detail4_background"
                 android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp">
+                <ImageView
+                        android:id="@+id/iv_tab_left_4"
+                        android:src="@drawable/tab_card_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <ImageView
+                        android:id="@+id/iv_tab_right_4"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/tab_card_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </RelativeLayout>
             <TextView
                     android:id="@+id/main_detail4_title"
                     android:layout_marginLeft="15dp"
@@ -856,6 +921,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="126dp">
                 <ImageView
+                        android:id="@+id/iv_rectangle_4"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
@@ -1148,9 +1214,38 @@
     </FrameLayout>
 
     <FrameLayout
+            android:id="@+id/left_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_black">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_main_swipe_x"
+                android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+            android:id="@+id/right_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_black">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_main_swipe_o"
+                android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+    <FrameLayout
             android:id="@+id/top_overlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
     </FrameLayout>
 
     <FrameLayout
@@ -1158,5 +1253,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
     </FrameLayout>
+
 
 </android.support.v7.widget.CardView>
