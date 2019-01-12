@@ -13,7 +13,6 @@ import com.airbnb.lottie.LottieAnimationView
 import com.sopt.appjam_sggsag.Adapter.CardStackAdapter
 import com.sopt.appjam_sggsag.Data.DetailPosterData
 import android.widget.TextView
-import com.sopt.appjam_sggsag.Adapter.CardStackAdapter
 import com.sopt.appjam_sggsag.DB.SharedPreferenceController
 import com.sopt.appjam_sggsag.Data.PosterData
 import com.sopt.appjam_sggsag.MyApplication
@@ -34,7 +33,8 @@ class HomeFragment : Fragment(), CardStackListener {
     val manager by lazy { CardStackLayoutManager(activity!!, this) }
     val adapter = CardStackAdapter(createSpots())
     var num: Int = adapter.itemCount
-
+    lateinit var bt_x_animation : LottieAnimationView
+    lateinit var bt_o_animation : LottieAnimationView
     var posterlist: List<PosterData>? = null
 
     val networkService: NetworkService by lazy {
@@ -122,7 +122,6 @@ class HomeFragment : Fragment(), CardStackListener {
     private fun setOnClickListener() {
         lt_bt_x.setOnClickListener {
             bt_x_animation.playAnimation()
-        btn_x.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
                 .setDirection(Direction.Left)
                 .setDuration(200)
