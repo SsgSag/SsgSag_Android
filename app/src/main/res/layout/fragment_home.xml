@@ -116,39 +116,40 @@
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                    <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                        <com.airbnb.lottie.LottieAnimationView
-                                android:layout_centerInParent="true"
-                                android:id="@+id/lt_empty_hifive"
-                                app:lottie_rawRes="@raw/main_empty_hifive"
-                                android:layout_width="276dp"
-                                android:layout_height="276dp"/>
-                        <ImageView
-                                android:layout_marginTop="20dp"
-                                android:layout_below="@+id/lt_empty_hifive"
-                                android:layout_centerHorizontal="true"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/bt_sort"
-                        />
-                    </RelativeLayout>
-                </FrameLayout>
-                <com.yuyakaido.android.cardstackview.CardStackView
-                        android:id="@+id/card_stack_view"
-                        android:layout_width="360dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true">
-
-                </com.yuyakaido.android.cardstackview.CardStackView>
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <com.airbnb.lottie.LottieAnimationView
+                            android:layout_centerInParent="true"
+                            android:id="@+id/lt_empty_hifive"
+                            app:lottie_rawRes="@raw/main_empty_hifive"
+                            android:layout_width="276dp"
+                            android:layout_height="276dp"/>
+                    <ImageView
+                            android:layout_marginTop="20dp"
+                            android:layout_below="@+id/lt_empty_hifive"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/bt_sort"
+                    />
 
             </RelativeLayout>
+        </FrameLayout>
+        <com.yuyakaido.android.cardstackview.CardStackView
+                android:id="@+id/card_stack_view"
+                android:layout_width="360dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true">
 
-        </RelativeLayout>
+        </com.yuyakaido.android.cardstackview.CardStackView>
 
-    </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
+
+        </LinearLayout>
 
 
-</android.support.v4.widget.DrawerLayout>
+        </android.support.v4.widget.DrawerLayout>

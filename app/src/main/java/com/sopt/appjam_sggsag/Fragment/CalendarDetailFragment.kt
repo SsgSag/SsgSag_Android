@@ -1,5 +1,6 @@
 package com.sopt.appjam_sggsag.Fragment
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -68,6 +69,21 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
 
     val networkService: NetworkService by lazy {
         MyApplication.instance.networkService
+    }
+
+    // 혜원 투두리스트 통신 투두리스트 터치했을 때 액티비티로 정보 보내기
+    private fun sendData() {
+        listView2.setOnItemClickListener { parent, view, position, id ->
+
+            var name: String = mArrayList[position].eventName
+            var category_num: String = mArrayList[position].category.toString()
+
+            val intent = Intent(context, CalendarDetailActivity::class.java)
+            intent.putExtra("name", name)
+            intent.putExtra("category", category_num)
+            Log.e("혜원아 힘내","화이팅"+name)
+            startActivityForResult(intent, 666)
+        }
     }
 
     override fun getYearMonthTab(year: String, month: String) {
@@ -200,6 +216,7 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
         scheduleList = (activity!!.application as MyApplication).eventList1
         setRecycleView()
 
+        sendData()
 
         //mArrayList.add(EventList("2018-01-12","2018-01-13", 2018,1,1,"정연이생일",4,0))
 
@@ -242,9 +259,6 @@ class CalendarDetailFragment : Fragment(), GetYearMonthTab {
 
 
 
-        listView2.setOnItemClickListener { parent, view, position, id ->
-            startActivity<CalendarDetailActivity>()
-        }
 
         listView2.setOnMenuItemClickListener(
             object : SwipeMenuListView.OnMenuItemClickListener {
