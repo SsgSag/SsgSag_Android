@@ -35,6 +35,7 @@ class HomeFragment : Fragment(), CardStackListener {
     var num: Int = adapter.itemCount
     lateinit var bt_x_animation : LottieAnimationView
     lateinit var bt_o_animation : LottieAnimationView
+    lateinit var lastSplash : LottieAnimationView
     var posterlist: List<PosterData>? = null
 
     val networkService: NetworkService by lazy {
@@ -54,6 +55,9 @@ class HomeFragment : Fragment(), CardStackListener {
             Log.e("aaaa", "왼쪽")
         }
         changeCardNum()
+        if (num==0){
+            lastSplash.playAnimation()
+        }
     }
 
     override fun onCardRewound() {
@@ -81,6 +85,8 @@ class HomeFragment : Fragment(), CardStackListener {
 
         bt_x_animation = homeFragment.findViewById(R.id.lt_bt_x)
         bt_o_animation = homeFragment.findViewById(R.id.lt_bt_o)
+
+        lastSplash = homeFragment.findViewById(R.id.lt_empty_hifive)
         //calendarFragment.frag_calendar_view.addDecorators(sundayDecorator, onedayDecorator)
         //  setOnClickListener()
 

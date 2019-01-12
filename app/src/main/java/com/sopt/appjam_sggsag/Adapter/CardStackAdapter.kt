@@ -12,6 +12,8 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.Spot
+import org.jetbrains.anko.find
+import org.w3c.dom.Text
 
 class CardStackAdapter(
     private var spots: List<Spot> = emptyList()
@@ -33,6 +35,12 @@ class CardStackAdapter(
         Glide.with(holder.image)
             .load(spot.url)
             .into(holder.image)
+        holder.title_term_4.text ="서류접수 마감"
+        holder.summary_4.text="언제나 안심 <에스원> 에서 모두가 안심할 수 있는 첨단 미래를 만들기 위한 <2019 에스원 아이디어 공모전>을 개최합니다."
+        holder.target_4.text="국내 거주 대학(원)생 또는 일반인\n팀 지원 시 3인 이내 구성\n"
+        holder.date_4.text="2018-01-08"
+        holder.benefit_4.text="대상(1명/팀): 500만원 / 최우수상(2명/팀): 각 300만원\n우수상(3명/팀): 각 100만원 / 장려상(4명/팀): 각 50만원\n"
+
 
         var widthOfCard = holder.image.width
         var xAtDown: Float
@@ -147,9 +155,23 @@ class CardStackAdapter(
         var end_date: TextView = view.findViewById(R.id.text_main_detail4_step4_date)
         var image: ImageView = view.findViewById(R.id.item_image)
 
-        val progress_bar_left: ImageView = view.findViewById(R.id.iv_progress_left)
-        val progress_bar_right: ImageView = view.findViewById(R.id.iv_progress_right)
-        val detail_view: LinearLayout = view.findViewById(R.id.ll_detail4_background)
+        var progress_bar_left: ImageView = view.findViewById(R.id.iv_progress_left)
+        var progress_bar_right: ImageView = view.findViewById(R.id.iv_progress_right)
+        var detail_view: LinearLayout = view.findViewById(R.id.ll_detail4_background)
+
+        //은혜 처리
+        var title_term_4 : TextView =view.findViewById(R.id.title_main_detail4_term)
+        var summary_4 : TextView =view.findViewById(R.id.text_main_detail4_summary)
+        var target_4 : TextView =view.findViewById(R.id.text_main_detail4_target)
+        var date_4 :TextView =view.findViewById(R.id.text_main_detail4_term)
+        var benefit_4 :TextView =view.findViewById(R.id.text_main_detail4_benefit)
+
+//        var title_term_3 : TextView =view.findViewById(R.id.title_main_detail3_term)
+//        var summary_3 : TextView =view.findViewById(R.id.text_main_detail3_summary)
+//        var target_3 : TextView =view.findViewById(R.id.text_main_detail3_target)
+//        var date_3 :TextView =view.findViewById(R.id.text_main_detail3_term)
+//        var benefit_3 :TextView =view.findViewById(R.id.text_main_detail3_benefit)
+
 
     }
 
