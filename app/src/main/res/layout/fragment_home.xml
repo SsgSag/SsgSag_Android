@@ -30,14 +30,6 @@
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
-                <!--<ImageView-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:id="@+id/btn_x"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_toLeftOf="@+id/fl_number_background"-->
-                        <!--android:layout_marginRight="18dp"-->
-                        <!--android:src="@drawable/bt_x"/>-->
                 <com.airbnb.lottie.LottieAnimationView
                         android:layout_centerVertical="true"
                         android:id="@+id/lt_bt_x"
@@ -56,20 +48,29 @@
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_count"/>
+                    <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/ic_count"/>-->
+                    <RelativeLayout
+                            android:layout_marginTop="18dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                        <ImageView
+                                android:id="@+id/btn_number"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_count"/>
+                        <ImageView
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_num_10"
+                                android:id="@+id/iv_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                    </RelativeLayout>
                 </FrameLayout>
 
-                <!--<ImageView-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:id="@+id/btn_o"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:src="@drawable/bt_o"-->
-                        <!--android:layout_marginLeft="18dp"-->
-                        <!--android:layout_toEndOf="@id/fl_number_background"/>-->
                 <com.airbnb.lottie.LottieAnimationView
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="18dp"
@@ -80,27 +81,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:lottie_rawRes="@raw/bt_o"
-                        />
-                <RelativeLayout
-                        android:layout_marginHorizontal="18dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    <ImageView
-                            android:id="@+id/btn_number"
-                            android:layout_centerInParent="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_count"/>
-                    <ImageView
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_num_10"
-                            android:id="@+id/iv_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </RelativeLayout>
+                />
+                <!--<RelativeLayout-->
+                <!--android:layout_marginHorizontal="18dp"-->
 
-             
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<ImageView-->
+                <!--android:id="@+id/btn_number"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/ic_count"/>-->
+                <!--<ImageView-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:src="@drawable/ic_num_10"-->
+                <!--android:id="@+id/iv_num"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"/>-->
+                <!--</RelativeLayout>-->
 
 
             </LinearLayout>
