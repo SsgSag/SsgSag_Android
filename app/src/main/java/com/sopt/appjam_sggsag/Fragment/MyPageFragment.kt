@@ -171,7 +171,10 @@ class MyPageFragment : Fragment() {
             //첫번째 if문의 else로써, 기존에 이미 권한 메시지를 통해 권한을 허용했다면 아래와 같은 곧바로 앨범을 여는 메소드를 호출해주면됩니다!!
             showAlbum()
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> cc424f97351f7c8af93f42ee1b9e5307700caacd
     }
 
     private fun showAlbum() {
@@ -186,8 +189,7 @@ class MyPageFragment : Fragment() {
         var jsonObject = JSONObject()
 
         val token = SharedPreferenceController.getAuthorization(this.context!!)
-        val postInfoResponse: Call<PostInfoResponse> = networkService.postInfoResponse(
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08")
+        val postInfoResponse: Call<PostInfoResponse> = networkService.postInfoResponse(token)
 
         postInfoResponse.enqueue(object : Callback<PostInfoResponse>{
             override fun onFailure(call: Call<PostInfoResponse>, t: Throwable) {

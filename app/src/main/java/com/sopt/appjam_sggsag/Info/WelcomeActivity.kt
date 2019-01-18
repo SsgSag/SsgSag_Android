@@ -1,5 +1,6 @@
 package com.sopt.appjam_sggsag.Info
 
+import android.animation.Animator
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -17,6 +18,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import com.airbnb.lottie.LottieAnimationView
 import com.sopt.appjam_sggsag.DB.SharedPreferenceController
 import com.sopt.appjam_sggsag.LoginActivity
 import com.sopt.appjam_sggsag.MainActivity
@@ -84,6 +86,22 @@ class WelcomeActivity : AppCompatActivity() {
         viewPager!!.adapter = myViewPagerAdapter
         viewPager!!.addOnPageChangeListener(viewPagerPageChangeListener)
 
+<<<<<<< HEAD
+=======
+//        btnSkip!!.setOnClickListener { launchHomeScreen() }
+//
+//        btnNext!!.setOnClickListener {
+//            // checking for last page if true launch MainActivity
+//            val current = getItem(+1)
+//            if (current < layouts!!.size) {
+//                // move to next screen
+//                viewPager!!.currentItem = current
+//            } else {
+//                launchHomeScreen()
+//            }
+//        }
+
+>>>>>>> cc424f97351f7c8af93f42ee1b9e5307700caacd
     }
 
     private fun addBottomDots(currentPage: Int) {

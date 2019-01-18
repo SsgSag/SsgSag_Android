@@ -19,8 +19,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.TabHost
 import com.sopt.appjam_sggsag.Fragment.SignUpDialogFragment
-import com.sopt.appjam_sggsag.MyApplication.Companion.inputUserCnt
-import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import org.jetbrains.anko.toast
 
 var flag: Int = 0

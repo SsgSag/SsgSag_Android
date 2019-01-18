@@ -49,7 +49,7 @@ class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
 
     }
 
-    override fun onClick(year: Int, month: Int, day: String) {
+    override fun onClick(year: Int, month: Int, day: String,position:Int) {
         mArrayList.clear()
         val yyear = year
         val mmonth = month
@@ -194,7 +194,6 @@ class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
 
             override fun onResponse(call: Call<PostCalendarResponse>, response: Response<PostCalendarResponse>) {
                 if (response.isSuccessful) {
-                    toast(response.body()!!.message)
                     response.body()?.status
                     listServer = response.body()?.data
 
@@ -204,7 +203,7 @@ class CalendarDetailFragment2 : Fragment(),GetYearMonthTab{
         })
     }
     private fun setRecycleView() {
-        recyclerViewAdapter = CalendarRecyclerAdapter2(activity!!, dataList,scheduleList, month,this)
+        recyclerViewAdapter = CalendarRecyclerAdapter2(activity!!, dataList,scheduleList, month,this, 50)
         frag_calendar_detail_recycle_view.adapter = recyclerViewAdapter
         frag_calendar_detail_recycle_view.layoutManager = GridLayoutManager(getActivity(), 7)
 

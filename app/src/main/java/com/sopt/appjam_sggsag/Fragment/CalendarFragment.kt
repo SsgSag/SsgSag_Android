@@ -41,7 +41,7 @@ import retrofit2.Response
 
 class CalendarFragment : Fragment(), GetYearMonthTab {
 
-    override fun onClick(year: Int, month: Int, day: String) {
+    override fun onClick(year: Int, month: Int, day: String, position:Int) {
         if (day != "") {
             val animation = AlphaAnimation(1f, 0f)
             animation.duration = 400
@@ -56,6 +56,8 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
     var calendar_month = 24;
     var mArrayList: ArrayList<String>? = ArrayList()
     var listServer: ArrayList<CalendarData>? = ArrayList()
+   // var todoListListener : Int = 0
+
 
     val networkService: NetworkService by lazy {
         MyApplication.instance.networkService
@@ -86,6 +88,17 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
         scheduleList = (activity!!.application as MyApplication).eventList1
         getCalendarResponse()
 
+    //    getCalendarResponse("2018","12")
+        getCalendarResponse("2019","01")
+     //   getCalendarResponse("2019","02")
+//        getCalendarResponse("2019","03")
+        /*
+        arguments?.let{
+            select_year = it.getInt("year")
+            select_month = it.getInt("month")
+            select_day = it.getInt("day")
+        }
+        */
     }
 
     override fun getYearMonthTab(year: String, month: String) {
@@ -124,7 +137,6 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setRecyclerView()
         configureBottomNavigation()
         setOnClickListener()
 
@@ -134,6 +146,8 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
     private fun setOnClickListener() {
 
 
+        }
+*//*
         frag_calendar_before.setOnClickListener {
             calendar_month--
             vp_frag_calendar_view_pager.setCurrentItem(calendar_month, true)
@@ -150,8 +164,8 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
             //    vp_frag_calendar_view_pager2.setCurrentItem(calendar_month - 1, true)
             //calendar_month--
         }
+        */
         frag_calendar_iv_register.setOnClickListener {
-
             startActivity<ScheduleRegisterActivity>()
             activity!!.finish()
 
@@ -180,10 +194,10 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
     }
 
 
-    private fun getCalendarResponse() {
+    private fun getCalendarResponse(year:String, month:String) {
         var jsonObject = JSONObject()
-        jsonObject.put("year", "2019")
-        jsonObject.put("month", "01")
+        jsonObject.put("year", year)
+        jsonObject.put("month", month)
         jsonObject.put("day", "00")
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
@@ -191,8 +205,7 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
         val postCalendarResponse: Call<PostCalendarResponse> = networkService.postCalendarResponse(
             "application/json",
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEb0lUU09QVCIsInVzZXJfaWR4IjoxfQ.5lCvAqnzYP4-2pFx1KTgLVOxYzBQ6ygZvkx5jKCFM08"
-            ,
-            gsonObject
+            ,gsonObject
         )
         postCalendarResponse.enqueue(object : Callback<PostCalendarResponse> {
             override fun onFailure(call: Call<PostCalendarResponse>, t: Throwable) {
@@ -216,15 +229,42 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
                         var eventName = listServer!![i].posterName
                         var category = listServer!![i].categoryIdx
                         var dday = listServer!![i].dday
-                        Log.e("sampleResponse", startDay.toString() + endDay.toString())
                         if (tempcount==i) {
                             //이게
-                            //  if (startYear == endYear && startMonth == endMonth) {
-                            for (i in startDay..endDay) {
-                                scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
-                                Log.e("itest", i.toString())
+                            if (startYear == endYear && startMonth == endMonth) {
+                                for (i in startDay..endDay) {
+                                    scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
+                                }
                             }
-                            //  }
+                            else if(startYear == endYear){
+                                when(startMonth){
+                                    1,3,5,7,8,10,12->{
+                                        for(i in startDay..31){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
+                                        }
+                                        for(i in 1..endDay){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, endMonth, i, eventName, category, dday))
+                                        }
+                                    }
+                                    2->{
+                                        for(i in startDay..28){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
+                                        }
+                                        for(i in 1..endDay){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, endMonth, i, eventName, category, dday))
+                                        }
+                                    }
+                                    else->{
+                                        for(i in startDay..30){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, startMonth, i, eventName, category, dday))
+                                        }
+                                        for(i in 1..endDay){
+                                            scheduleList.add(EventList(startDate, endDate, startYear, endMonth, i, eventName, category, dday))
+                                        }
+                                    }
+
+                                }
+                            }
                             tempcount++
                         }
                     }
