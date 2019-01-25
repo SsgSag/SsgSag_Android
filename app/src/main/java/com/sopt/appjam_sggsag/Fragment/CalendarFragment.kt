@@ -47,16 +47,23 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
             animation.duration = 400
             val animation2 = AlphaAnimation(0f, 1f)
             animation2.duration = 400
-
+/*
+            schedule_linear_layout.visibility = (View.VISIBLE)
+            schedule_linear_layout.setAnimation(animation);
+            vp_frag_calendar_view_pager.visibility = View.GONE
+            vp_frag_calendar_view_pager.setAnimation(animation2);
+            */
         }
     }
 
-
+    // var select_year : Int? = null       //RegisterScheduleActivity에서 넘겨받을 날짜 정보(spinner로 부터)
+    // var select_month : Int? = null
+    // var select_day : Int? = null
     var temp_month = 1;
     var calendar_month = 24;
     var mArrayList: ArrayList<String>? = ArrayList()
     var listServer: ArrayList<CalendarData>? = ArrayList()
-   // var todoListListener : Int = 0
+    // var todoListListener : Int = 0
 
 
     val networkService: NetworkService by lazy {
@@ -86,11 +93,9 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
         super.onCreate(savedInstanceState)
 
         scheduleList = (activity!!.application as MyApplication).eventList1
-        getCalendarResponse()
-
-    //    getCalendarResponse("2018","12")
+        //    getCalendarResponse("2018","12")
         getCalendarResponse("2019","01")
-     //   getCalendarResponse("2019","02")
+        //   getCalendarResponse("2019","02")
 //        getCalendarResponse("2019","03")
         /*
         arguments?.let{
@@ -109,7 +114,7 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
         } else {
             sp = SpannableStringBuilder(year + "." + month)
         }
-
+        //1월 -> 12월, 12월 -> 1월 고려 안한 코드
         if (temp_month < month.toInt()) {
             calendar_month++
         } else if (temp_month > month.toInt()) {
@@ -125,11 +130,13 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
 
     }
 
-
+    lateinit var todoListRecyclerViewAdapter: TodoListRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val calendarFragment: View = inflater!!.inflate(R.layout.fragment_calendar, container, false)
 
+        //calendarFragment.frag_calendar_view.addDecorators(sundayDecorator, onedayDecorator)
+        //  setOnClickListener()
 
         return calendarFragment
 
@@ -144,7 +151,13 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
 
 
     private fun setOnClickListener() {
-
+        /*
+        frag_calendar_tv_title.setOnClickListener{
+            frag_calendar_tv_title.setVisibility(TextView.INVISIBLE);
+            rv_frag_calendar_todo_list.setVisibility(TextView.INVISIBLE);
+            val params = vp_frag_calendar_view_pager.getLayoutParams() //as LayoutParams
+            params.height = (params.height*8*(0.2)).toInt()
+            vp_frag_calendar_view_pager.setLayoutParams(params)
 
         }
 *//*
@@ -171,17 +184,11 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
 
         }
 
-    }
-
-
-    private fun setRecyclerView() {
-        //임시 데이터
-        var dataList: ArrayList<TodoListData> = ArrayList()
-        dataList.add(TodoListData("할 일1", "D-3"))
-        dataList.add(TodoListData("할 일2", "D-2"))
 
 
     }
+
+
 
 
     private fun configureBottomNavigation() {
@@ -189,7 +196,6 @@ class CalendarFragment : Fragment(), GetYearMonthTab {
         vp_frag_calendar_view_pager.adapter = CalendarViewPagerAdapter(childFragmentManager, 50, this) //3개를 고정시키겠다.
         vp_frag_calendar_view_pager.offscreenPageLimit = 0
         vp_frag_calendar_view_pager.setCurrentItem(24, true)
-
 
     }
 

@@ -336,16 +336,9 @@
             android:layout_height="wrap_content">
 
         <TextView
-<<<<<<< HEAD
-                android:letterSpacing="-0.02"
-                android:textColor="#474747"
-                android:fontFamily="sans-serif"
-                android:layout_marginTop="30dp"
-=======
                 android:layout_marginBottom="6dp"
                 android:layout_marginTop="26dp"
                 android:text="IT 벤처 창업 동아리 SOPT"
->>>>>>> cc424f97351f7c8af93f42ee1b9e5307700caacd
                 android:id="@+id/item_name"
                 android:letterSpacing="-0.02"
                 android:textColor="#474747"
@@ -356,15 +349,6 @@
                 android:textSize="24sp"/>
 
         <TextView
-<<<<<<< HEAD
-                android:letterSpacing="-0.02"
-                android:textColor="#97979b"
-                android:fontFamily="sans-serif-medium"
-                android:id="@+id/item_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-=======
                 android:layout_marginBottom="22dp"
                 android:text="#기획/아이디어 #디자인 #IT/기술 #창업/스타트업"
                 android:letterSpacing="-0.02"
@@ -374,7 +358,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="normal"
->>>>>>> cc424f97351f7c8af93f42ee1b9e5307700caacd
                 android:textSize="14sp"/>
 
     </LinearLayout>
@@ -382,10 +365,6 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-<<<<<<< HEAD
-            android:layout_height="match_parent"
-            android:background="@drawable/img_main_swipe_x">
-=======
             android:layout_height="wrap_content">
         <ImageView
                 android:id="@+id/iv_progress_left"
@@ -405,36 +384,32 @@
     </LinearLayout>
 
     <FrameLayout
-    android:id="@+id/left_overlay"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/img_main_swipe_x">
->>>>>>> cc424f97351f7c8af93f42ee1b9e5307700caacd
+            android:id="@+id/left_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/img_main_swipe_x">
 
     </FrameLayout>
 
     <FrameLayout
-    android:id="@+id/right_overlay"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/img_main_swipe_o">
+            android:id="@+id/right_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/img_main_swipe_o">
 
-<<<<<<< HEAD
-=======
 
->>>>>>> cc424f97351f7c8af93f42ee1b9e5307700caacd
     </FrameLayout>
 
     <FrameLayout
-    android:id="@+id/top_overlay"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+            android:id="@+id/top_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     </FrameLayout>
 
     <FrameLayout
-    android:id="@+id/bottom_overlay"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+            android:id="@+id/bottom_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     </FrameLayout>
 
 </android.support.v7.widget.CardView>

@@ -28,7 +28,7 @@ import android.support.v4.view.MotionEventCompat
 
 var textSize: Float = 2.5f
 var year: Int = 2019
-var toDay: Int = 1   //달 받아오는 거임.
+var toDay: Int = 1   //아니 이게 사실은 달 받아오는 거임.
 var date: Int = 0
 class CalendarRecyclerAdapter(
     val ctx: Context,
@@ -212,7 +212,7 @@ class CalendarRecyclerAdapter(
                     }
                 }
             }
-    }
+        }
         if (arr[position][3] != 9999) {
             if (eventNameList[arr[position][3]].minDay.toString() == dataList[position].day || position % 7 == 0) {
                 holder.numberView4.text = " " + eventNameList[arr[position][3]].eventName
@@ -342,6 +342,9 @@ class CalendarRecyclerAdapter(
         holder.oneDay.setOnTouchListener { view, motionEvent ->
 
 
+        }
+        */
+
         if(holder.numberView1.text == date.toString() && yyear==year && mmonth==toDay){
             holder.numberView1.setBackgroundResource(R.drawable.today_marker);
             holder.numberView1.setTextColor(Color.WHITE)
@@ -388,7 +391,7 @@ class CalendarRecyclerAdapter(
         }
 
         var count = 0
-    for (i in 0..eventNameList.size - 1) {
+        for (i in 0..eventNameList.size - 1) {
             for (h in 0..41) {
                 if (arr[h][0] == eventNameList[i].minDay) {
                     for (k in 1..4) {

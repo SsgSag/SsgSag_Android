@@ -171,10 +171,6 @@ class MyPageFragment : Fragment() {
             //첫번째 if문의 else로써, 기존에 이미 권한 메시지를 통해 권한을 허용했다면 아래와 같은 곧바로 앨범을 여는 메소드를 호출해주면됩니다!!
             showAlbum()
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> cc424f97351f7c8af93f42ee1b9e5307700caacd
     }
 
     private fun showAlbum() {

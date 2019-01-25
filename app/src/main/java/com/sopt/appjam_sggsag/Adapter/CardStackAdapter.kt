@@ -10,14 +10,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.sopt.appjam_sggsag.Data.DetailPosterData
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.Spot
 import org.jetbrains.anko.find
 import org.w3c.dom.Text
 
 class CardStackAdapter(
-    private var spots: List<DetailPosterData> = emptyList()
+    private var spots: List<Spot> = emptyList()
 ) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,15 +27,13 @@ class CardStackAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val spot = spots[position]
-        holder.name.text = "${spot.posterIdx}.${spot.posterName}"
-        holder.city.text = spot.posterName
         holder.name.text = "${spot.name}"
         holder.hash.text = spot.category
         holder.start_date.text=spot.start_date
         holder.end_date.text=spot.end_date
 
         Glide.with(holder.image)
-            .load(spot.photoUrl)
+            .load(spot.url)
             .into(holder.image)
         holder.title_term_4.text ="서류접수 마감"
         holder.summary_4.text="언제나 안심 <에스원> 에서 모두가 안심할 수 있는 첨단 미래를 만들기 위한 <2019 에스원 아이디어 공모전>을 개최합니다."
@@ -58,9 +55,6 @@ class CardStackAdapter(
                 MotionEvent.ACTION_UP -> {//클릭
                     xAtUp = event.getX()
                     if (xAtUp <= widthOfCard / 2) {//card의 왼쪽 클릭
-                        Log.e("왼쪽", "클릭")
-
-                    } else {//card의 오른쪽 클릭
                         holder.progress_bar_left.visibility = View.VISIBLE
                         holder.progress_bar_right.visibility = View.INVISIBLE
                         holder.detail_view.visibility = View.INVISIBLE
@@ -84,11 +78,11 @@ class CardStackAdapter(
         return spots.size
     }
 
-    fun setSpots(spots: List<DetailPosterData>) {
+    fun setSpots(spots: List<Spot>) {
         this.spots = spots
     }
 
-    fun getSpots(): List<DetailPosterData> {
+    fun getSpots(): List<Spot> {
         return spots
     }
 

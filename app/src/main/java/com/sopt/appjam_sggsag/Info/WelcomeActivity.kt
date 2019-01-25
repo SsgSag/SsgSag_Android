@@ -35,6 +35,9 @@ class WelcomeActivity : AppCompatActivity() {
     private var myViewPagerAdapter: MyViewPagerAdapter? = null
     private var dotsLayout: LinearLayout? = null
     private var layouts: IntArray? = null
+//    private var btnSkip: Button? = null
+//    private var btnNext: Button? = null
+//    private var prefManager: PrefManager? = null
 
     //  viewpager change listener
     internal var viewPagerPageChangeListener: ViewPager.OnPageChangeListener = object : ViewPager.OnPageChangeListener {
@@ -54,6 +57,13 @@ class WelcomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Checking for first time launch - before calling setContentView()
+//        prefManager = PrefManager(this)
+//        if (!prefManager!!.isFirstTimeLaunch()) {
+//            launchHomeScreen()
+//            finish()
+//        }
 
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
@@ -86,8 +96,6 @@ class WelcomeActivity : AppCompatActivity() {
         viewPager!!.adapter = myViewPagerAdapter
         viewPager!!.addOnPageChangeListener(viewPagerPageChangeListener)
 
-<<<<<<< HEAD
-=======
 //        btnSkip!!.setOnClickListener { launchHomeScreen() }
 //
 //        btnNext!!.setOnClickListener {
@@ -101,7 +109,6 @@ class WelcomeActivity : AppCompatActivity() {
 //            }
 //        }
 
->>>>>>> cc424f97351f7c8af93f42ee1b9e5307700caacd
     }
 
     private fun addBottomDots(currentPage: Int) {

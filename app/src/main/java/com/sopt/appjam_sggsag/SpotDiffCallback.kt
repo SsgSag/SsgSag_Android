@@ -2,6 +2,7 @@ package com.sopt.appjam_sggsag
 
 
 import android.support.v7.util.DiffUtil
+import com.sopt.appjam_sggsag.Data.DetailPosterData
 
 class SpotDiffCallback(
     private val old: List<DetailPosterData>,
