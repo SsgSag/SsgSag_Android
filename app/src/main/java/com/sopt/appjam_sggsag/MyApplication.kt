@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MyApplication : Application() {
     public var screen_height:Int? = 0
-    private val baseURL = "http://54.180.79.158:8080/"
+    private val baseURL = "http://54.180.32.22:8080/"
     lateinit var networkService: NetworkService
 
     companion object {

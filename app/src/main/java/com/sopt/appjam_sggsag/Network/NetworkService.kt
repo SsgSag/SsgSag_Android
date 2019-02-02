@@ -23,7 +23,7 @@ interface NetworkService {
 
     //Poster_승완
     @POST("/posters/show")
-    fun postPosterResponse(
+    fun posterResponse(
         @Header("Authorization") token: String
 
     ): Call<PostPosterListResponse>

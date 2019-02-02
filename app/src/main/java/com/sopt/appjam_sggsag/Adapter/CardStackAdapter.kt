@@ -1,5 +1,6 @@
 package com.sopt.appjam_sggsag.Adapter
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,13 +11,15 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.makeramen.roundedimageview.RoundedImageView
+import com.sopt.appjam_sggsag.Data.DetailPosterData
 import com.sopt.appjam_sggsag.R
 import com.sopt.appjam_sggsag.Spot
 import org.jetbrains.anko.find
 import org.w3c.dom.Text
 
 class CardStackAdapter(
-    private var spots: List<Spot> = emptyList()
+    val ctx: Context, var dataList: ArrayList<DetailPosterData>
 ) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,23 +29,21 @@ class CardStackAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val spot = spots[position]
-        holder.name.text = "${spot.name}"
-        holder.hash.text = spot.category
-        holder.start_date.text=spot.start_date
-        holder.end_date.text=spot.end_date
-
-        Glide.with(holder.image)
-            .load(spot.url)
-            .into(holder.image)
-        holder.title_term_4.text ="서류접수 마감"
-        holder.summary_4.text="언제나 안심 <에스원> 에서 모두가 안심할 수 있는 첨단 미래를 만들기 위한 <2019 에스원 아이디어 공모전>을 개최합니다."
-        holder.target_4.text="국내 거주 대학(원)생 또는 일반인\n팀 지원 시 3인 이내 구성\n"
-        holder.date_4.text="2018-01-08"
-        holder.benefit_4.text="대상(1명/팀): 500만원 / 최우수상(2명/팀): 각 300만원\n우수상(3명/팀): 각 100만원 / 장려상(4명/팀): 각 50만원\n"
+        holder.poster_name.text = dataList[position].posterName
+//        holder.category_index.text = dataList[position].categoryIdx
 
 
-        var widthOfCard = holder.image.width
+        Glide.with(holder.photo_url)
+            .load(dataList[position].photoUrl)
+            .into(holder.photo_url)
+//        holder.title_term_4.text ="서류접수 마감"
+//        holder.summary_4.text="언제나 안심 <에스원> 에서 모두가 안심할 수 있는 첨단 미래를 만들기 위한 <2019 에스원 아이디어 공모전>을 개최합니다."
+//        holder.target_4.text="국내 거주 대학(원)생 또는 일반인\n팀 지원 시 3인 이내 구성\n"
+//        holder.date_4.text="2018-01-08"
+//        holder.benefit_4.text="대상(1명/팀): 500만원 / 최우수상(2명/팀): 각 300만원\n우수상(3명/팀): 각 100만원 / 장려상(4명/팀): 각 50만원\n"
+
+
+        var widthOfCard = holder.photo_url.width
         var xAtDown: Float
         var xAtUp: Float
 
@@ -75,36 +76,36 @@ class CardStackAdapter(
     }
 
     override fun getItemCount(): Int {
-        return spots.size
+        return dataList.size
     }
 
-    fun setSpots(spots: List<Spot>) {
-        this.spots = spots
+    fun setSpots(dataList: ArrayList<DetailPosterData>) {
+        this.dataList = dataList
     }
 
-    fun getSpots(): List<Spot> {
-        return spots
+    fun getSpots(): ArrayList<DetailPosterData> {
+        return dataList
     }
 
-    var poster_index: Int? = null
-    var category_index: Int? = null
-    var photo_url: String? = null
-    var poster_name: String? = null
-    var poster_reg_date: String? = null
-    var poster_start_date: String? = null
-    var poster_end_date: String? = null
-    var poster_web_site: String? = null
-    var is_seek: Int? = null
-    var out_line: String? = null
-    var target: String? = null
-    var period: String? = null
-    var benefit: String? = null
-    var document_date: String? = null
-    var announce_date1: String? = null
-    var announce_date2: String? = null
-    var finalAnnounce_date: String? = null
-    var interview_date: String? = null
-    var poster_interest: Int? = null
+//    var poster_index: Int? = null
+//    var category_index: Int? = null
+//    var photo_url: String? = null
+//    var poster_name: String? = null
+//    var poster_reg_date: String? = null
+//    var poster_start_date: String? = null
+//    var poster_end_date: String? = null
+//    var poster_web_site: String? = null
+//    var is_seek: Int? = null
+//    var out_line: String? = null
+//    var target: String? = null
+//    var period: String? = null
+//    var benefit: String? = null
+//    var document_date: String? = null
+//    var announce_date1: String? = null
+//    var announce_date2: String? = null
+//    var finalAnnounce_date: String? = null
+//    var interview_date: String? = null
+//    var poster_interest: Int? = null
 
 //    private fun getPosterResponse() {
 //        var jsonObject = JSONObject()
@@ -149,22 +150,43 @@ class CardStackAdapter(
 //    }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var name: TextView = view.findViewById(R.id.item_name)
-        var hash: TextView = view.findViewById(R.id.item_hash)
-        var start_date: TextView = view.findViewById(R.id.text_main_detail4_step1_date)
-        var end_date: TextView = view.findViewById(R.id.text_main_detail4_step4_date)
-        var image: ImageView = view.findViewById(R.id.item_image)
+
+//        val poster_index: Int? = null
+        val category_index: TextView = view.findViewById(R.id.item_hash)
+        val photo_url: RoundedImageView = view.findViewById(R.id.item_image)
+        val poster_name: TextView = view.findViewById(R.id.item_name)
+
+//        val poster_reg_date: String? = null
+//        val poster_start_date: String? = null
+//        val poster_end_date: String? = null
+//        val poster_web_site: String? = null
+//        val is_seek: Int? = null
+//        val out_line: String? = null
+//        val target: String? = null
+//        val period: String? = null
+//        val benefit: String? = null
+//        val announce_date1: String? = null
+//        val announce_date2: String? = null
+//        val finalAnnounce_date: String? = null
+//        val interview_date: String? = null
+//        val document_date: String? = null
+
+//        var name: TextView = view.findViewById(R.id.item_name)
+//        var hash: TextView = view.findViewById(R.id.item_hash)
+//        var start_date: TextView = view.findViewById(R.id.text_main_detail4_step1_date)
+//        var end_date: TextView = view.findViewById(R.id.text_main_detail4_step4_date)
+//        var image: ImageView = view.findViewById(R.id.item_image)
 
         var progress_bar_left: ImageView = view.findViewById(R.id.iv_progress_left)
         var progress_bar_right: ImageView = view.findViewById(R.id.iv_progress_right)
         var detail_view: LinearLayout = view.findViewById(R.id.ll_detail4_background)
-
-        //은혜 처리
-        var title_term_4 : TextView =view.findViewById(R.id.title_main_detail4_term)
-        var summary_4 : TextView =view.findViewById(R.id.text_main_detail4_summary)
-        var target_4 : TextView =view.findViewById(R.id.text_main_detail4_target)
-        var date_4 :TextView =view.findViewById(R.id.text_main_detail4_term)
-        var benefit_4 :TextView =view.findViewById(R.id.text_main_detail4_benefit)
+//
+//        //은혜 처리
+//        var title_term_4 : TextView =view.findViewById(R.id.title_main_detail4_term)
+//        var summary_4 : TextView =view.findViewById(R.id.text_main_detail4_summary)
+//        var target_4 : TextView =view.findViewById(R.id.text_main_detail4_target)
+//        var date_4 :TextView =view.findViewById(R.id.text_main_detail4_term)
+//        var benefit_4 :TextView =view.findViewById(R.id.text_main_detail4_benefit)
 
 //        var title_term_3 : TextView =view.findViewById(R.id.title_main_detail3_term)
 //        var summary_3 : TextView =view.findViewById(R.id.text_main_detail3_summary)
